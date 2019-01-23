@@ -32,6 +32,7 @@ class Train:
         comm=None,
         tags=None,
         max_time=inf):
+        #start_time=inf):
         self.rank_workers = rank_workers
         self.problem = problem
         self.seed = seed
@@ -39,6 +40,7 @@ class Train:
         self.num_episodes_per_batch = len(rank_workers)
         self.num_episodes = num_episodes
         self.max_time = max_time
+        #self.start_time = start_time
         self.comm = MPI.COMM_WORLD if comm is None else comm
         self.tags = tags
 
@@ -69,6 +71,7 @@ class Train:
         pposgd_simple.learn(env, policy_fn,
             # max_timesteps=int(num_timesteps),
             max_seconds=self.max_time,
+            #start_time=self.start_time,
             timesteps_per_actorbatch=timesteps_per_actorbatch,
             clip_param=0.2,
             entcoeff=0.01,

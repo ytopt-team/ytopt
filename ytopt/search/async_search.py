@@ -26,8 +26,7 @@ class AsyncSearch(Search):
         param_dict = kwargs
         self.acq_func = param_dict['acq_func']
         self.base_estimator=param_dict['base_estimator']
-        self.kappa= param_dict['kappa']
-
+        self.kappa = param_dict['kappa']
         self.patience_fac = param_dict['patience_fac']
 
     @staticmethod
@@ -54,10 +53,11 @@ class AsyncSearch(Search):
         rank = comm.rank        # rank of this process
         status = MPI.Status()   # get MPI status object
 
+        comm.Barrier()
+        start_time = time.time()
+
         # Master process executes code below
         if rank == 0:
-            start_time = time.time()
-
             num_workers = size - 1
             closed_workers = 0
             space = [self.spaceDict[key] for key in self.params]
@@ -110,7 +110,7 @@ class AsyncSearch(Search):
                         task['x'] = x
                         task['eval_counter'] = eval_counter
                         task['rank_master'] = rank
-                        task['start_time'] = elapsed_time
+                        #task['start_time'] = elapsed_time
                         print('Sending task {} to worker {}'.format (eval_counter, source))
                         comm.send(task, dest=source, tag=tags.START)
                         eval_counter = eval_counter + 1
@@ -135,28 +135,35 @@ class AsyncSearch(Search):
                 elif tag == tags.EXIT:
                     print('Worker {} exited.'.format(source))
                     closed_workers = closed_workers + 1
-            print('Search finished..')
-            y_best = np.min(opt.yi)
-            best_index = np.where(opt.yi==y_best)[0][0]
-            x_best = opt.Xi[best_index]
-            print('Best: x = {}; y={}'.format(y_best, x_best))
-            saveResults(resultsList, self.results_json_fname, self.results_csv_fname)
+                    resultsList = data
+                    print('Search finished..')
+                    #resultsList = comm.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG, status=status) #comm.recv(source=MPI.ANY_SOURCE, tag=tags.EXIT)
+                    #print(resultsList)
+                    saveResults(resultsList, self.results_json_fname, self.results_csv_fname)
+                    y_best = np.min(opt.yi)
+                    best_index = np.where(opt.yi==y_best)[0][0]
+                    x_best = opt.Xi[best_index]
+                    print('Best: x = {}; y={}'.format(y_best, x_best))
         else:
             # Worker processes execute code below
             name = MPI.Get_processor_name()
             print("worker with rank %d on %s." % (rank, name))
+            resultsList = []
             while True:
                 comm.send(None, dest=0, tag=tags.READY)
                 task = comm.recv(source=0, tag=MPI.ANY_TAG, status=status)
                 tag = status.Get_tag()
                 if tag == tags.START:
                     result = self.evaluate(self.problem, task, self.jobs_dir, self.results_dir)
-                    result['start_time'] = task['start_time']
+                    elapsed_time = float(time.time() - start_time)
+                    result['elapsed_time'] = elapsed_time
                     print(result)
+                    resultsList.append(result)
                     comm.send(result, dest=0, tag=tags.DONE)
                 elif tag == tags.EXIT:
+                    print(f'Exit rank={comm.rank}')
                     break
-            comm.send(None, dest=0, tag=tags.EXIT)
+            comm.send(resultsList, dest=0, tag=tags.EXIT)
 
 if __name__ == "__main__":
     args = AsyncSearch.parse_args()

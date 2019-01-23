@@ -1,18 +1,17 @@
-# from collections import OrderedDict
-# class Problem():
-#     def __init__(self):
-#         nparam = 10
-#         space = OrderedDict()
-#         #problem specific parameters
-#         for i in range(nparam):
-#             space['p%d'%(i+1)] = (-15,30)
-#         self.space = space
-#         self.params = self.space.keys()
-#         self.starting_point = [-15] * nparam
+from collections import OrderedDict
+import numpy as np
+import os 
+
+np.random.seed(0)
+
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 from ytopt.problem import Problem
 
-cmd_frmt = "python /Users/romainegele/Documents/Argonne/ytopt/problems/ackley_real/executable.py --p1 {} --p2 {} --p3 {} --p4 {} --p5 {} --p6 {} --p7 {} --p8 {} --p9 {} --p10 {}"
+cmd_frmt = "python " +HERE+"/executable.py"
+nparam = 10
+for i in range(1, nparam+1):
+    cmd_frmt += f" --p{i} {'{}'}"
 problem = Problem(cmd_frmt)
 
 a, b = -15, 30

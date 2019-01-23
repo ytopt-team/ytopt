@@ -17,11 +17,13 @@ benchmarks = ['ackley_real', 'ellipse_real', 'levy_real', 'perm_real', 'powersum
 
 benchmarks = sorted(benchmarks)
 print(benchmarks)
-#benchmarks = ['ackley_real']
+benchmarks = ['ackley_real', 'ackley_int', 'ackley_cat']
+benchmarks = ['addition_cat']
+benchmarks = ['load_imbalance']
 
-base_estimator = ['RF']#,'NND']
-kappa = [0, 1.96]
-acq_func= ['EI','LCB','PI','gp_hedge']
+base_estimator = ['RF']
+kappa = [0.0] #, 1.96]
+acq_func= ['EI'] #,'LCB','PI','gp_hedge']
 for benchmark_i in benchmarks:
     for base_estimator_i in base_estimator:                       
         for kappa_i in kappa:                       
@@ -32,16 +34,16 @@ for benchmark_i in benchmarks:
                 except:
                     pass
                 with open(HERE+'/'+folder_name+'/'+exp_id+'.sh', "w+") as f:
-                    f.write(f"mpiexec -np 2 python ../search/async-search.py "
-                            f"--prob_dir=../benchmarks/{benchmark_i} "
-                            f"--exp_dir=../experiments-01/{benchmark_i} "
+                    f.write(f"mpirun -np 2 python -m ytopt.search.async_search "
+                            f"--prob_path=problems/{benchmark_i}/problem.py "
+                            f"--exp_dir=experiments-01/{benchmark_i} "
+                            f"--prob_attr=problem "
                             f"--exp_id={exp_id} "
                             f"--max_evals=1000 "
                             f"--max_time=60 "
                             f"--base_estimator='{base_estimator_i}' "
                             f"--kappa={kappa_i} "
                             f"--acq_func='{acq_func_i}' \n")
-
 
 base_estimator = ['DUMMY'] #,'NND']
 kappa = [1.96]
@@ -56,12 +58,36 @@ for benchmark_i in benchmarks:
                 except:
                     pass
                 with open(HERE+'/'+folder_name+'/'+exp_id+'.sh', "w+") as f:
-                    f.write(f"mpiexec -np 2 python ../search/async-search.py "
-                            f"--prob_dir=../benchmarks/{benchmark_i} "
-                            f"--exp_dir=../experiments-01/{benchmark_i} "
+                    f.write(f"mpirun -np 2 python -m ytopt.search.async_search "
+                            f"--prob_path=problems/{benchmark_i}/problem.py "
+                            f"--exp_dir=experiments-01/{benchmark_i} "
+                            f"--prob_attr=problem "
                             f"--exp_id={exp_id} "
                             f"--max_evals=1000 "
                             f"--max_time=60 "
                             f"--base_estimator='{base_estimator_i}' "
                             f"--kappa={kappa_i} "
                             f"--acq_func='{acq_func_i}' \n")
+
+base_estimator = ['PPO'] #,'NND']
+kappa = [1.96]
+acq_func= ['gp_hedge']
+for benchmark_i in benchmarks:
+    for base_estimator_i in base_estimator:                       
+        for kappa_i in kappa:                       
+            for acq_func_i in acq_func:
+                exp_id = '{}_{}'.format(benchmark_i, base_estimator_i)
+                try:
+                    os.makedirs(f"../experiments-01/{benchmark_i}")
+                except:
+                    pass
+                with open(HERE+'/'+folder_name+'/'+exp_id+'.sh', "w+") as f:
+                    f.write(f"mpirun -np 2 python -m ytopt.search.ppo_a3c "
+                            f"--prob_path=problems/{benchmark_i}/problem.py "
+                            f"--exp_dir=experiments-01/{benchmark_i} "
+                            f"--prob_attr=problem "
+                            f"--exp_id={exp_id} "
+                            f"--max_evals=1000 "
+                            f"--max_time=60 "
+                            f"--base_estimator='{base_estimator_i}' \n")
+
