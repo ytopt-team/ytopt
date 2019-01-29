@@ -4,9 +4,9 @@
 
 [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)
 
-# What is Ytopt?
+# What is Ytopt/SuRF?
 
-Ytopt is a model-based search framework that consists of sampling a small number of input parameter configurations and 
+Ytopt/SuRF is a model-based search framework that consists of sampling a small number of input parameter configurations and 
 progressively fitting a surrogate model over the input-output space until exhausting the user-defined maximum number of evaluations. 
 The asynchronous aspect allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
 soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the 
