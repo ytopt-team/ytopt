@@ -20,7 +20,7 @@ def create_parser():
 
     for id in range(1,11):
         parser.add_argument('--p%d'%id, action='store', dest='p%d'%id,
-                            nargs='?', const=2, type=float, default='-2',
+                            nargs='?', const=2, type=int, default='4',
                             help='parameter p%d value'%id)
 
     return(parser)
@@ -41,12 +41,14 @@ p9 = param_dict['p9']
 p10 = param_dict['p10']
 
 x=np.array([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10])
-print(x)
 
-def ellipse(x):
+def dixonprice( x ):  # dp.m
     x = np.asarray_chkfinite(x)
-    return mean( (1 - x) **2 )  + 100 * mean( np.diff(x) **2 )
+    n = len(x)
+    j = np.arange( 2, n+1 )
+    x2 = 2 * x**2
+    return sum( j * (x2[1:] - x[:-1]) **2 ) + (x[0] - 1) **2
 
 
-pval = ellipse(x)
+pval = dixonprice(x)
 print('OUTPUT:%1.3f'%pval)

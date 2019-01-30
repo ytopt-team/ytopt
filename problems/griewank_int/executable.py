@@ -20,7 +20,7 @@ def create_parser():
 
     for id in range(1,11):
         parser.add_argument('--p%d'%id, action='store', dest='p%d'%id,
-                            nargs='?', const=2, type=float, default='-2',
+                            nargs='?', const=2, type=int, default='-2',
                             help='parameter p%d value'%id)
 
     return(parser)
@@ -41,12 +41,17 @@ p9 = param_dict['p9']
 p10 = param_dict['p10']
 
 x=np.array([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10])
-print(x)
 
-def ellipse(x):
+def griewank( x, fr=4000 ):
     x = np.asarray_chkfinite(x)
-    return mean( (1 - x) **2 )  + 100 * mean( np.diff(x) **2 )
+    n = len(x)
+    j = np.arange( 1., n+1 )
+    s = sum( x**2 )
+    p = prod( cos( x / sqrt(j) ))
+    return s/fr - p + 1
 
 
-pval = ellipse(x)
+pval = griewank( x, fr=4000 )
 print('OUTPUT:%1.3f'%pval)
+
+
