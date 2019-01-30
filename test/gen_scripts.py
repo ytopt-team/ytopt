@@ -23,8 +23,17 @@ benchmarks = sorted(benchmarks)
 print(benchmarks)
 #benchmarks = ['load_imbalance']
 #benchmarks = ['ackley_real', 'ackley_int', 'ackley_cat']
-benchmarks = ['addition_cat']
 
+probs = ['ackley', 'addition', 'dixonprice', 'ellipse', 'griewank']
+types = ['cat', 'int', 'real']
+
+benchmarks = []
+for p in probs:
+    for t in types:
+        bname = '{}_{}'.format(p,t)
+        benchmarks.append(bname)
+print(benchmarks)
+#sys.exit(0)
 
 base_estimator = ['RF']
 kappa = [0.0] #, 1.96]
@@ -77,7 +86,7 @@ for benchmark_i in benchmarks:
 
 base_estimator = ['PPO'] #,'NND']
 kappa = [1.96]
-acq_func= ['gp_hedge']
+acq_func= ['a3c']
 for benchmark_i in benchmarks:
     for base_estimator_i in base_estimator:                       
         for kappa_i in kappa:                       
