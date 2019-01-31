@@ -24,7 +24,9 @@ print(benchmarks)
 #benchmarks = ['load_imbalance']
 #benchmarks = ['ackley_real', 'ackley_int', 'ackley_cat']
 
-probs = ['ackley', 'addition', 'dixonprice', 'ellipse', 'griewank', 'levy']
+probs = ['ackley', 'addition', 'dixonprice', 'ellipse', 'griewank', 'levy', 'nesterov', 'perm', 
+            'powell', 'powersum', 'rastrigin', 'rosenbrock', 'saddle', 'schwefel', 'sphere', 
+            'sum2', 'trid', 'zakharov']
 types = ['cat', 'int', 'real']
 
 benchmarks = []
