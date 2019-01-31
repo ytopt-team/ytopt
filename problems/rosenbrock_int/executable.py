@@ -20,7 +20,7 @@ def create_parser():
 
     for id in range(1,11):
         parser.add_argument('--p%d'%id, action='store', dest='p%d'%id,
-                            nargs='?', const=2, type=float, default=-2,
+                            nargs='?', const=2, type=int, default=-2,
                             help='parameter p%d value'%id)
 
     return(parser)
@@ -41,7 +41,6 @@ p9 = param_dict['p9']
 p10 = param_dict['p10']
 
 x=np.array([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10])
-print(x)
 
 def rosenbrock( x ):  # rosen.m
     """ http://en.wikipedia.org/wiki/Rosenbrock_function """
@@ -54,6 +53,7 @@ def rosenbrock( x ):  # rosen.m
 
 pval = rosenbrock( x )
 print('OUTPUT:%1.3f'%pval)
+
 
 
 
