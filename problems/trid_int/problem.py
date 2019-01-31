@@ -2,7 +2,6 @@ from collections import OrderedDict
 import numpy as np
 import os 
 
-np.random.seed(0)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,11 +13,10 @@ for i in range(1, nparam+1):
     cmd_frmt += f" --p{i} {'{}'}"
 problem = Problem(cmd_frmt)
 
-a, b = -10, 10
+a, b = -100, 100
 for i in range(nparam):
-    problem.spec_dim(p_id=i, p_space=(a, b), default=a)
+    problem.spec_dim(p_id=i, p_space=[i for i in range(a,b+1,10)], default=a)
 problem.checkcfg()
 
 if __name__ == '__main__':
-    print(problem)
-
+    print(pb)

@@ -1,17 +1,24 @@
 from collections import OrderedDict
-class Problem():
-    def __init__(self):
-        space = OrderedDict()
-        nparam = 10
-        for i in range(nparam):
-            space['p%d'%(i+1)] = (-5,10)
-        self.space = space
-        self.params = self.space.keys()
-        self.starting_point = [-5] * nparam
+import numpy as np
+import os 
 
+np.random.seed(0)
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+from ytopt.problem import Problem
+
+cmd_frmt = "python " +HERE+"/executable.py"
+nparam = 10
+for i in range(1, nparam+1):
+    cmd_frmt += f" --p{i} {'{}'}"
+problem = Problem(cmd_frmt)
+
+a, b = -5, 10
+for i in range(nparam):
+    problem.spec_dim(p_id=i, p_space=(a, b), default=a)
+problem.checkcfg()
 
 if __name__ == '__main__':
-    instance = Problem()
-    print(instance.space)
-    print(instance.params)
+    print(problem)
 

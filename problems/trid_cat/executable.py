@@ -20,7 +20,7 @@ def create_parser():
 
     for id in range(1,11):
         parser.add_argument('--p%d'%id, action='store', dest='p%d'%id,
-                            nargs='?', const=2, type=float, default=-10,
+                            nargs='?', const=2, type=int, default=-100,
                             help='parameter p%d value'%id)
 
     return(parser)
@@ -41,15 +41,13 @@ p9 = param_dict['p9']
 p10 = param_dict['p10']
 
 x=np.array([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10])
-print(x)
 
-def sum2( x ):
+def trid( x ):
     x = np.asarray_chkfinite(x)
-    n = len(x)
-    j = np.arange( 1., n+1 )
-    return sum( j * x**2 )
-pval = sum2( x )
+    return sum( (x - 1) **2 ) - sum( x[:-1] * x[1:] )
+pval = trid( x )
 print('OUTPUT:%1.3f'%pval)
+
 
 
 
