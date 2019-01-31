@@ -20,7 +20,7 @@ def create_parser():
 
     for id in range(1,11):
         parser.add_argument('--p%d'%id, action='store', dest='p%d'%id,
-                            nargs='?', const=2, type=float, default=-500,
+                            nargs='?', const=2, type=int, default=-500,
                             help='parameter p%d value'%id)
 
     return(parser)
@@ -41,7 +41,6 @@ p9 = param_dict['p9']
 p10 = param_dict['p10']
 
 x=np.array([p1,p2,p3,p4,p5,p6,p7,p8,p9,p10])
-print(x)
 
 def schwefel( x ):  # schw.m
     x = np.asarray_chkfinite(x)
@@ -49,6 +48,7 @@ def schwefel( x ):  # schw.m
     return 418.9829*n - sum( x * sin( sqrt( abs( x ))))
 pval = schwefel( x )
 print('OUTPUT:%1.3f'%pval)
+
 
 
 

@@ -16,9 +16,8 @@ problem = Problem(cmd_frmt)
 
 a, b = -500, 500
 for i in range(nparam):
-    problem.spec_dim(p_id=i, p_space=(a, b), default=a)
+    problem.spec_dim(p_id=i, p_space= list(np.random.permutation([str(i) for i in range(a,b+1,100)])), default=str(a))
 problem.checkcfg()
 
 if __name__ == '__main__':
     print(problem)
-
