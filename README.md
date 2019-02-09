@@ -6,8 +6,9 @@
 
 # What is Ytopt/SuRF?
 
-Ytopt/SuRF is a model-based search framework that consists of sampling a small number of input parameter configurations and 
-progressively fitting a surrogate model over the input-output space until exhausting the user-defined maximum number of evaluations. 
+Ytopt/SuRF is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations 
+and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
+evaluations. The package provides two different class of methods: Bayesian Optimization and Reinforcement Learning.
 The asynchronous aspect allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
 soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the 
 promising configurations. The framework is designed to operate in the master-worker computational paradigm, where one master node fits 
@@ -16,13 +17,21 @@ return the outputs to the master node.
 
 # Documentation
 
-Ytopt documentation is on : [ReadTheDocs](https://ytopt.readthedocs.io)
+ytopt documentation is on : [ReadTheDocs](https://ytopt.readthedocs.io)
 
 # Directory structure
 
 ```
-search/
-    directory for search applications
+docs/	
+    documentation
+ppo/
+    proximal policy optimization based reinforcement learning 
+problems/
+    easy to evalaute benchmark functions
+test/
+    scipts for running benchmark problems in the problems directory
+ytopt/	
+    scripts that contain the search implementations  
 ```
 
 # Install instructions
@@ -42,7 +51,7 @@ pip install -e .
 
 # Who is responsible?
 
-The core Ytopt team is at Argonne National Laboratory:
+The core ytopt team is at Argonne National Laboratory:
 
 * Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
 * Romain Egele <regele@anl.gov>
@@ -62,7 +71,7 @@ Patches are much appreciated on the software itself as well as documentation.
 Optionally, please include in your first patch a credit for yourself in the
 list above.
 
-The Ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/).
+The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/).
 
 # Acknowledgements
 
