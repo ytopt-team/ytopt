@@ -1,20 +1,19 @@
-.. deephyper documentation master file, created by
+.. ytopt documentation master file, created by
    sphinx-quickstart on Thu Sep 27 13:32:19 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 *********
-Ytopt
+ytopt
 *********
 
-Model-based search for autotuning
----------------------------------
+Machine-learning-based search methods for autotuning
+----------------------------------------------------
 
 .. image:: _static/logo/medium.png
    :scale: 100%
    :alt: logo
    :align: center
-
 
 .. automodule:: ytopt
 

@@ -4,6 +4,14 @@ Installation
 Local
 =====
 
+ytopt can be installed on your local machine using conda.
+
+::
+    conda create -n ytopt -c anaconda python=3.6
+    source activate ytopt
+    git clone https://github.com/ytopt-team/ytopt.git
+    cd ytopt/
+    pip install -e .
 
 Contribute to documentation
 ===========================
@@ -12,7 +20,6 @@ Installation
 ------------
 
 ::
-
     source activate ENV_NAME
     pip install -U Sphinx
     pip install sphinx_bootstrap_theme
@@ -20,7 +27,7 @@ Installation
 Build
 -----
 
-To build the documentation you just need to be in the ``deephyper/doc`` folder and run ``make html`` assuming you have MakeFile installed on your computer. Then you can see the build documentation inside the ``doc/_build`` folder just by opening the ``index.html`` file with your web browser.
+To build the documentation you just need to be in the ``ytopt/docs`` directory and run ``make html`` assuming you have MakeFile installed on your computer. Then you can see the build documentation inside the ``doc/_build`` folder just by opening the ``index.html`` file with your web browser.
 
 Useful informations
 -------------------
