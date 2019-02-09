@@ -4,9 +4,9 @@
 
 [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)
 
-# What is Ytopt/SuRF?
+# What is ytopt?
 
-Ytopt/SuRF is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations 
+ytopt is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations 
 and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
 evaluations. The package provides two different class of methods: Bayesian Optimization and Reinforcement Learning.
 The asynchronous aspect allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
