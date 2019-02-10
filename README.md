@@ -47,7 +47,114 @@ If you encounter mpi4py installtion error, (re)install mpich as follows
 ```
 conda install -c conda-forge mpich
 ```
-# Problem definition
+# Autotuning problem definition
+
+An example is given in problems/ackley_mix
+
+To define an autotuning problem, create two files.
+
+The problem.py file defines the search space:
+
+```
+from collections import OrderedDict
+import numpy as np
+import os 
+
+np.random.seed(0)
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+from ytopt.problem import Problem
+
+cmd_frmt = "python " +HERE+"/executable.py"
+nparam = 6
+
+for i in range(0, nparam):
+    cmd_frmt += f" --p{i} {'{}'}"
+problem = Problem(cmd_frmt)
+
+a, b = -15, 30
+
+problem.spec_dim(p_id=0, p_space=(a, b), default=a)
+problem.spec_dim(p_id=1, p_space=(a, b), default=a)
+problem.spec_dim(p_id=2, p_space=[a+i for i in range(b-a)], default=a)
+problem.spec_dim(p_id=3, p_space=[a+i for i in range(b-a)], default=a)
+problem.spec_dim(p_id=4, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
+problem.spec_dim(p_id=5, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
+
+problem.checkcfg()
+
+if __name__ == '__main__':
+    print(problem)
+
+```
+
+The executable.py file defines the method to evaluate a point in the search space:
+```
+#!/usr/bin/env python
+from __future__ import print_function
+import re
+import os
+import sys
+import time
+import json
+import math
+import os
+import argparse
+import numpy as np
+from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
+seed = 12345
+
+def create_parser():
+    'command line parser'
+    
+    parser = argparse.ArgumentParser(add_help=True)
+    group = parser.add_argument_group('required arguments')
+    parser.add_argument('--p0', action='store', dest='p0',
+                        nargs='?', const=2, type=float, default=-15.0,
+                        help='parameter p0 value')
+    parser.add_argument('--p1', action='store', dest='p1',
+                        nargs='?', const=2, type=float, default=-15.0,
+                        help='parameter p1 value')
+    parser.add_argument('--p2', action='store', dest='p2',
+                        nargs='?', const=2, type=int, default=-15,
+                        help='parameter p2 value')
+    parser.add_argument('--p3', action='store', dest='p3',
+                        nargs='?', const=2, type=int, default=-15,
+                        help='parameter p3 value')
+    parser.add_argument('--p4', action='store', dest='p4',
+                        nargs='?', const=2, type=str, default='-15',
+                        help='parameter p4 value')
+    parser.add_argument('--p5', action='store', dest='p5',
+                        nargs='?', const=2, type=str, default='-15',
+                        help='parameter p5 value')
+
+    return(parser)
+
+parser = create_parser()
+cmdline_args = parser.parse_args()
+param_dict = vars(cmdline_args)
+print(param_dict)
+p0 = param_dict['p0']
+p1 = param_dict['p1']
+p2 = param_dict['p2']
+p3 = param_dict['p3']
+p4 = int(param_dict['p4'])
+p5 = int(param_dict['p5'])
+
+
+x=np.array([p0,p1,p2,p3,p4,p5])
+
+def ackley( x, a=20, b=0.2, c=2*pi ):
+    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
+    n = len(x)
+    s1 = sum( x**2 )
+    s2 = sum(cos( c * x ))
+    return -a*exp( -b*sqrt( s1 / n )) - exp( s2 / n ) + a + exp(1)
+
+pval = ackley(x, a=20, b=0.2, c=2*pi)
+print('OUTPUT:%1.3f'%pval)
+```
 
 
 # Running
