@@ -14,10 +14,6 @@ promising configurations. The framework is designed to operate in the master-wor
 the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and 
 return the outputs to the master node.
 
-# Documentation
-
-ytopt [ReadTheDocs] documentation is at https://ytopt.readthedocs.io
-
 # Directory structure
 
 ```
@@ -179,6 +175,7 @@ mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/
 * Documentation: https://ytopt.readthedocs.io
 
 * GitHub repository: https://github.com/ytopt-team/ytopt
+
 
 # Who is responsible?
 
