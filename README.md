@@ -5,9 +5,8 @@
 [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)
 
 # What is ytopt?
-
-ytopt is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations 
-and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
+``ytopt`` is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations,
+evaluating them, and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
 evaluations. The package provides two different class of methods: Bayesian Optimization and Reinforcement Learning.
 The asynchronous aspect allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
 soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the 
@@ -17,13 +16,13 @@ return the outputs to the master node.
 
 # Documentation
 
-ytopt documentation is on : [ReadTheDocs](https://ytopt.readthedocs.io)
+ytopt [ReadTheDocs] documentation is at https://ytopt.readthedocs.io
 
 # Directory structure
 
 ```
 docs/	
-    documentation
+    Sphinx documentation files
 ppo/
     proximal policy optimization based reinforcement learning 
 problems/
@@ -43,6 +42,31 @@ git clone https://github.com/ytopt-team/ytopt.git
 cd ytopt/
 pip install -e .
 ```
+
+If you encounter mpi4py installtion error, (re)install mpich as follows
+```
+conda install -c conda-forge mpich
+```
+# Problem definition
+
+
+# Running
+
+Reinforcement learning based search with proximal policy optimization
+```
+mpirun -np 2 python -m ytopt.search.ppo_a3c --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=load_imbalance_PPO --max_time=60 --base_estimator='PPO' 
+```
+
+Bayesian optimization with random forest model
+```
+mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='RF' 
+```
+
+Random search
+```
+mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID> --max_time=60 --base_estimator='DUMMY'
+```
+
 # How do I learn more?
 
 * Documentation: https://ytopt.readthedocs.io
@@ -51,7 +75,7 @@ pip install -e .
 
 # Who is responsible?
 
-The core ytopt team is at Argonne National Laboratory:
+The core ``ytopt`` team is at Argonne National Laboratory:
 
 * Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
 * Romain Egele <regele@anl.gov>

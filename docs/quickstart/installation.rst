@@ -18,7 +18,6 @@ Contribute to documentation
 
 Installation
 ------------
-
 ::
     source activate ENV_NAME
     pip install -U Sphinx
