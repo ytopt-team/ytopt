@@ -157,7 +157,7 @@ print('OUTPUT:%1.3f'%pval)
 
 Reinforcement learning based search with proximal policy optimization
 ```
-mpirun -np 2 python -m ytopt.search.ppo_a3c --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=load_imbalance_PPO --max_time=60 --base_estimator='PPO' 
+mpirun -np 2 python -m ytopt.search.ppo_a3c --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='PPO' 
 ```
 
 Bayesian optimization with random forest model
@@ -172,7 +172,7 @@ mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/
 
 # How do I learn more?
 
-* Documentation: https://ytopt.readthedocs.io
+<!-- * Documentation: https://ytopt.readthedocs.io -->
 
 * GitHub repository: https://github.com/ytopt-team/ytopt
 
