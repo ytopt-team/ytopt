@@ -37,13 +37,16 @@ p4 = param_dict['p4']
 
 x=np.array([p0,p1,p2,p3,p4])
 
-def ackley( x, a=20, b=0.2, c=2*pi ):
+
+
+
+def evaluate(x):
     x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-    n = len(x)
-    s1 = sum( x**2 )
-    s2 = sum(cos( c * x ))
-    return -a*exp( -b*sqrt( s1 / n )) - exp( s2 / n ) + a + exp(1)
+    # code start
 
+    # code end
 
-pval = ackley( x, a=20, b=0.2, c=2*pi )
+    return result
+
+pval = evaluate(x)
 print('OUTPUT:%1.3f'%pval)
