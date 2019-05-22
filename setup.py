@@ -50,8 +50,8 @@ EXTRAS = {
         'pytest',
     ],
     'docs': [
-        'sphinx',
-        'sphinx_bootstrap_theme',
+        'Sphinx>=1.8.2',
+        'sphinx_rtd_theme',
         'sphinx_copybutton'
     ]
 }
@@ -130,11 +130,12 @@ setup(
     url=URL,
     # packages=find_packages(exclude=('tests',)),
     # If your package is a single module, use this instead of 'packages':
-    py_modules=['ytopt', 'ppo'],
-
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    py_modules=['ytopt'],
+    entry_points={
+        'console_scripts': [
+            'ytopt-analytics=ytopt.core.logs.analytics:main'
+        ],
+    },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     include_package_data=True,
