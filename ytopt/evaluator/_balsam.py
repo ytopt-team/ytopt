@@ -28,15 +28,14 @@ class BalsamEvaluator(Evaluator):
         cache_key (func): takes one parameter of type dict and returns a hashable type, used as the key for caching evaluations. Multiple inputs that map to the same hashable key will only be evaluated once. If ``None``, then cache_key defaults to a lossless (identity) encoding of the input dict.
     """
 
-    def __init__(self, run_function, cache_key=None):
-        super().__init__(run_function, cache_key)
+    def __init__(self, problem, cache_key=None):
+        super().__init__(problem, cache_key)
         self.id_key_map = {}
         self.num_workers = max(1, LAUNCHER_NODES*self.WORKERS_PER_NODE - 2)
         logger.info("Balsam Evaluator instantiated")
         logger.debug(f"LAUNCHER_NODES = {LAUNCHER_NODES}")
         logger.debug(f"WORKERS_PER_NODE = {self.WORKERS_PER_NODE}")
         logger.debug(f"Total number of workers: {self.num_workers}")
-        logger.info(f"Backend runs will use Python: {self.PYTHON_EXE}")
         self._init_app()
         logger.info(f"Backend runs will execute function: {self.appName}")
         self.transaction_context = transaction.atomic
@@ -45,15 +44,13 @@ class BalsamEvaluator(Evaluator):
         return balsam_wait(futures, timeout=timeout, return_when=return_when)
 
     def _init_app(self):
-        funcName = self._run_function.__name__
-        moduleName = self._run_function.__module__
-        self.appName = '.'.join((moduleName, funcName))
+        self.appName = self.problem.app_name if self.problem.app_name is not None else self._executable
         try:
             app = AppDef.objects.get(name=self.appName)
         except ObjectDoesNotExist:
             logger.info(
                 f"ApplicationDefinition did not exist for {self.appName}; creating new app in BalsamDB")
-            app = AppDef(name=self.appName, executable=self._runner_executable)
+            app = AppDef(name=self.appName, executable=self._executable)
             app.save()
         else:
             logger.info(
@@ -62,8 +59,7 @@ class BalsamEvaluator(Evaluator):
     def _eval_exec(self, x):
         jobname = f"task{self.counter}"
         args = f"'{self.encode(x)}'"
-        envs = f"KERAS_BACKEND={self.KERAS_BACKEND}"
-        #envs = ":".join(f'KERAS_BACKEND={self.KERAS_BACKEND} OMP_NUM_THREADS=62 KMP_BLOCKTIME=0 KMP_AFFINITY=\"granularity=fine,compact,1,0\"'.split())
+        envs = f""
         resources = {
             'num_nodes': 1,
             'ranks_per_node': 1,

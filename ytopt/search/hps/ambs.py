@@ -41,8 +41,8 @@ def on_exit(signum, stack):
     EXIT_FLAG = True
 
 class AMBS(Search):
-    def __init__(self, problem, run, evaluator, **kwargs):
-        super().__init__(problem, run, evaluator, **kwargs)
+    def __init__(self, problem, evaluator, **kwargs):
+        super().__init__(problem, evaluator, **kwargs)
         logger.info("Initializing AMBS")
         self.optimizer = Optimizer(self.problem, self.num_workers, self.args)
 

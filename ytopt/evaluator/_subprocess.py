@@ -88,20 +88,16 @@ class SubprocessEvaluator(Evaluator):
     WaitResult = namedtuple(
         'WaitResult', ['active', 'done', 'failed', 'cancelled'])
 
-    def __init__(self, run_function, cache_key=None):
-        super().__init__(run_function, cache_key)
+    def __init__(self, problem, cache_key=None):
+        super().__init__(problem, cache_key)
         self.num_workers = self.WORKERS_PER_NODE
         logger.info(
-            f"Subprocess Evaluator will execute {self._run_function.__name__}() from module {self._run_function.__module__}")
-
-    def _args(self, x):
-        exe = self._runner_executable
-        cmd = ' '.join((exe, f"'{self.encode(x)}'"))
-        return cmd
+            f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
 
     def _eval_exec(self, x):
         assert isinstance(x, dict)
-        cmd = self._args(x)
+        cmd = f'{self._executable} {self.problem.args_format(x.values())}'
+        logger.info(f'executing: {cmd}')
         future = PopenFuture(cmd, self._parse)
         return future
 

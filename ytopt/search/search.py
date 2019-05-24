@@ -27,23 +27,20 @@ class Search:
         evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
     """
 
-    def __init__(self, problem, run, evaluator, **kwargs):
+    def __init__(self, problem, evaluator, **kwargs):
         _args = vars(self.parse_args(''))
         kwargs['problem'] = problem
-        kwargs['run'] = run
         kwargs['evaluator'] = evaluator
         _args.update(kwargs)
         _args['problem'] = problem
-        _args['run'] = run
         self.args = Namespace(**_args)
         self.problem = util.generic_loader(problem, 'Problem')
-        self.run_func = util.generic_loader(run, 'run')
-        logger.info('Evaluator will execute the function: '+run)
+        logger.info('Evaluator will execute the function: '+f"{self.problem.app_exe} {self.problem.args_template}")
         if kwargs.get('cache_key') is None:
-            self.evaluator = Evaluator.create(self.run_func, method=evaluator)
+            self.evaluator = Evaluator.create(self.problem, method=evaluator)
         else:
             self.evaluator = Evaluator.create(
-                self.run_func, method=evaluator, cache_key=kwargs['cache_key'])
+                self.problem, method=evaluator, cache_key=kwargs['cache_key'])
         self.num_workers = self.evaluator.num_workers
 
         logger.info(f'Options: '+pformat(self.args.__dict__, indent=4))
@@ -72,16 +69,8 @@ class Search:
     def _base_parser():
         parser = argparse.ArgumentParser(conflict_handler='resolve')
         parser.add_argument("--problem",
-                            default="ytopt.benchmark.hps.polynome2.Problem",
-                            help="Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.Problem)."
-                            )
-        parser.add_argument("--run",
-                            default="ytopt.benchmark.hps.polynome2.run",
-                            help="Module path to the run function you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.run)."
-                            )
-        parser.add_argument("--backend",
-                            default='tensorflow',
-                            help="Keras backend module name"
+                            default="ytopt.benchmark.ackley_int.problem.Problem",
+                            help="Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.ackley_int.problem.Problem)."
                             )
         parser.add_argument('--max-evals',
                             type=int, default=100,
@@ -94,8 +83,7 @@ class Search:
                             )
         parser.add_argument('--evaluator',
                             default='subprocess',
-                            choices=['balsam', 'subprocess',
-                                     'processPool', 'threadPool'],
+                            choices=['balsam', 'subprocess'],
                             help="The evaluator is an object used to run the model."
                             )
         return parser

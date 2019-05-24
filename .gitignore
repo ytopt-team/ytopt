@@ -114,3 +114,5 @@ venv.bak/
 .LSOverride
 
 *-old/
+*.csv
+*.json

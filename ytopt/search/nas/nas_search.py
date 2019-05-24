@@ -33,10 +33,6 @@ except ImportError:
 dhlogger = util.conf_logger('ytopt.search.nas.nas_search')
 
 
-def key(d):
-    return json.dumps(dict(arch_seq=d['arch_seq']))
-
-
 class NeuralArchitectureSearch(Search):
     """Represents different kind of RL algorithms working with NAS.
 
@@ -60,14 +56,14 @@ class NeuralArchitectureSearch(Search):
             balsam_launcher_nodes = int(
                 os.environ.get('BALSAM_LAUNCHER_NODES', 1))
             ytopt_workers_per_node = int(
-                os.environ.get('ytopt_WORKERS_PER_NODE', 1))
+                os.environ.get('YTOPT_WORKERS_PER_NODE', 1))
             nworkers = balsam_launcher_nodes * ytopt_workers_per_node
         else:
             nworkers = None
 
         if MPI is None:
             self.rank = 0
-            super().__init__(problem, run, evaluator, cache_key=key, **kwargs)
+            super().__init__(problem, run, evaluator, cache_key=None, **kwargs)
             dhlogger.info(jm(
                 type='start_infos',
                 alg=alg,
@@ -75,11 +71,11 @@ class NeuralArchitectureSearch(Search):
                 num_envs_per_agent=num_envs,
                 nagents=1,
                 nworkers=nworkers,
-                encoded_space=json.dumps(self.problem.space, cls=Encoder)))
+                encoded_space=str(problem)))
         else:
             self.rank = MPI.COMM_WORLD.Get_rank()
             if self.rank == 0:
-                super().__init__(problem, run, evaluator, cache_key=key,
+                super().__init__(problem, run, evaluator, cache_key=None,
                                  **kwargs)
                 dhlogger.info(jm(
                     type='start_infos',
@@ -88,10 +84,10 @@ class NeuralArchitectureSearch(Search):
                     num_envs_per_agent=num_envs,
                     nagents=MPI.COMM_WORLD.Get_size(),
                     nworkers=nworkers,
-                    encoded_space=json.dumps(self.problem.space, cls=Encoder)))
+                    encoded_space=json.dumps(str(problem))))
             MPI.COMM_WORLD.Barrier()
             if self.rank != 0:
-                super().__init__(problem, run, evaluator, cache_key=key,
+                super().__init__(problem, run, evaluator, cache_key=None,
                                  **kwargs)
         # set in super : self.problem, self.run_func, self.evaluator
 

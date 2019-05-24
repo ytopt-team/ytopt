@@ -10,10 +10,10 @@ import os
 import sys
 import time
 import types
+import re
 
 from ytopt.evaluator import runner
 logger = logging.getLogger(__name__)
-
 
 class Encoder(json.JSONEncoder):
     """
@@ -34,34 +34,23 @@ class Encoder(json.JSONEncoder):
         else:
             return super(Encoder, self).default(obj)
 
-
 class Evaluator:
     FAIL_RETURN_VALUE = sys.float_info.max
-    PYTHON_EXE = os.environ.get('ytopt_PYTHON_BACKEND', sys.executable)
-    WORKERS_PER_NODE = int(os.environ.get('ytopt_WORKERS_PER_NODE', 1))
-    KERAS_BACKEND = os.environ.get('KERAS_BACKEND', 'tensorflow')
-    os.environ['KERAS_BACKEND'] = KERAS_BACKEND
-    assert os.path.isfile(PYTHON_EXE)
+    WORKERS_PER_NODE = int(os.environ.get('YTOPT_WORKERS_PER_NODE', 1))
 
     @staticmethod
-    def create(run_function, cache_key=None, method='balsam'):
-        assert method in ['balsam', 'subprocess', 'processPool', 'threadPool']
+    def create(problem, cache_key=None, method='balsam'):
+        assert method in ['balsam', 'subprocess']
         if method == "balsam":
             from ytopt.evaluator._balsam import BalsamEvaluator
             Eval = BalsamEvaluator
         elif method == "subprocess":
             from ytopt.evaluator._subprocess import SubprocessEvaluator
             Eval = SubprocessEvaluator
-        elif method == "processPool":
-            from ytopt.evaluator._processPool import ProcessPoolEvaluator
-            Eval = ProcessPoolEvaluator
-        else:
-            from ytopt.evaluator._threadPool import ThreadPoolEvaluator
-            Eval = ThreadPoolEvaluator
 
-        return Eval(run_function, cache_key=cache_key)
+        return Eval(problem, cache_key=cache_key)
 
-    def __init__(self, run_function, cache_key=None):
+    def __init__(self, problem, cache_key=None):
         self.pending_evals = {}  # uid --> Future
         self.finished_evals = OrderedDict()  # uid --> scalar
         self.requested_evals = []  # keys
@@ -75,7 +64,7 @@ class Evaluator:
         self._start_sec = time.time()
         self.elapsed_times = {}
 
-        self._run_function = run_function
+        self.problem = problem
         self.num_workers = 0
 
         if cache_key is not None:
@@ -83,12 +72,6 @@ class Evaluator:
             self._gen_uid = cache_key
         else:
             self._gen_uid = lambda d: self.encode(d)
-
-        moduleName = self._run_function.__module__
-        if moduleName == '__main__':
-            raise RuntimeError(f'Evaluator will not execute function "{run_function.__name__}" '
-                               "because it is in the __main__ module.  Please provide a function "
-                               "imported from an external module!")
 
     def encode(self, x):
         if not isinstance(x, dict):
@@ -132,30 +115,31 @@ class Evaluator:
 
     @staticmethod
     def _parse(run_stdout):
-        y = sys.float_info.max
+
+        pattern = re.compile("real (.*)")
+        timing = None
+
         for line in run_stdout.split('\n'):
-            if "DH-OUTPUT:" in line.upper():
+
+            if pattern.search(line) is not None:
+
+                res = re.findall(pattern, line)
                 try:
-                    y = float(line.split()[-1])
-                except ValueError as e:
-                    logger.exception("Could not parse DH-OUTPUT line:\n"+line)
-                    y = sys.float_info.max
+                    timing = float(res[0])
+                except:
+                    logger.info('Failed to converte parsed time {res} to float.')
+                    timing = Evaluator.FAIL_RETURN_VALUE
                 break
-        if isnan(y):
-            y = sys.float_info.max
-        return y
+
+        if timing is None:
+
+            timing = Evaluator.FAIL_RETURN_VALUE
+
+        return timing
 
     @property
-    def _runner_executable(self):
-        funcName = self._run_function.__name__
-        moduleName = self._run_function.__module__
-        assert moduleName != '__main__'
-        module = sys.modules[moduleName]
-        modulePath = os.path.dirname(os.path.abspath(module.__file__))
-        runnerPath = os.path.abspath(runner.__file__)
-        runner_exec = ' '.join((self.PYTHON_EXE, runnerPath, modulePath, moduleName,
-                                funcName))
-        return runner_exec
+    def _executable(self):
+        return f'time -p {self.problem.app_exe}'
 
     def await_evals(self, to_read, timeout=None):
         """Waiting for a collection of tasks.
