@@ -52,18 +52,19 @@ class BalsamEvaluator(Evaluator):
                 f"ApplicationDefinition did not exist for {self.appName}; creating new app in BalsamDB")
             app = AppDef(name=self.appName, executable=self._executable)
             app.save()
-        else:
+        finally:
             logger.info(
-                f"BalsamEvaluator will use existing app {self.appName}: {app.executable}")
+                f"BalsamEvaluator will use existing app {self.appName}: {self._executable}")
 
     def _eval_exec(self, x):
         jobname = f"task{self.counter}"
-        args = f"'{self.encode(x)}'"
+        # args = f"'{self.encode(x)}'"
+        args = self.problem.args_format(x.values())
         envs = f""
         resources = {
-            'num_nodes': 1,
-            'ranks_per_node': 1,
-            'threads_per_rank': 64,
+            'num_nodes': 1 if x.get('num_nodes') is None else x['num_nodes'],
+            'ranks_per_node': 1 if x.get('ranks_per_node') is None else x['ranks_per_node'],
+            'threads_per_rank': 64 if x.get('threads_per_rank') is None else x['threads_per_rank'],
             'node_packing_count': self.WORKERS_PER_NODE,
         }
         for key in resources:

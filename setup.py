@@ -33,7 +33,8 @@ REQUIRED = [
     'keras',
     # nas
     'gym',
-    'joblib'
+    'joblib',
+    'deap'
 ]
 
 if not on_rtd:

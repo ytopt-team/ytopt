@@ -1,5 +1,4 @@
 import os
-from collections import OrderedDict
 
 import numpy as np
 
@@ -17,6 +16,8 @@ Problem = Problem(
     app_exe=f"python {os.path.join(HERE, 'executable.py')}",
     args_template=template
 )
+
+Problem.resources['threads_per_rank'] = [1, 2, 3]
 
 a, b = -15, 30
 for i in range(nparam):

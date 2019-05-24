@@ -13,20 +13,29 @@ class Problem:
         self.num_params = self.args_template.count("{}")
         self.__space = [None for _ in range(self.num_params)]
         self.__def_values = [None for _ in range(self.num_params)]
+        self.resources = OrderedDict(
+            num_nodes=None,
+            ranks_per_node=None,
+            threads_per_rank=None)
 
     def __str__(self):
         return repr(self)
 
     def __repr__(self):
 
-        rep_args_frmt = f'command format: "{self.app_exe} {self.args_template}"'
-        starting_cmd = f'starting point: "{self.args_template.format(*self.__def_values)}"'
+        rep_args_frmt = f'command format: \n "{self.app_exe} {self.args_template}"'
+        starting_cmd = f'starting point: \n "{self.args_template.format(*self.__def_values)}"'
         rep_space = ""
         ln = len(str(self.num_params))
         for i,v in enumerate(self.__space):
             tmp = '  {:'+str(ln)+'}: {} \n'
             rep_space += tmp.format(i, v)
-        rep = f'{rep_args_frmt}\n{starting_cmd}\nspec of all dimensions:\n{rep_space} '
+
+        resources = "resources dimensions:\n"
+        for r in self.resources:
+            resources += f" {r}: {str(self.resources[r])}\n"
+
+        rep = f'{rep_args_frmt}\n\n{starting_cmd}\n\napplication dimensions:\n{rep_space}\n{resources}'
         return rep
 
     def spec_dim(self, p_id, p_space, default=None):
@@ -49,11 +58,19 @@ class Problem:
 
     @property
     def starting_point_asdict(self):
-        return {str(k):v for k,v in enumerate(self.__def_values)}
+        dd = {str(k):v for k,v in enumerate(self.__def_values)}
+        for k in self.resources:
+            if self.resources[k] is not None:
+                dd[k] = self.resources[k][0]
+        return dd
 
     @property
     def space(self):
-        return {str(k):v for k,v in enumerate(self.__space)}
+        dd = {str(k):v for k,v in enumerate(self.__space)}
+        for k in self.resources:
+            if self.resources[k] is not None:
+                dd[k] = self.resources[k]
+        return dd
 
     @property
     def params(self):
