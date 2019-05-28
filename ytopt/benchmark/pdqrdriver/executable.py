@@ -13,7 +13,7 @@ def write_input(params):
             params['nb'],
             params['p'],
             params['q'],
-            params['last']))
+            params['thresh']))
 
 # ('fac', 'm', 'n', 'nodes',
 #'cores', 'mb', 'nb', 'nth', 'nproc', 'p', 'q', 'thresh').
@@ -32,7 +32,7 @@ def create_parser():
     parser.add_argument('--nb', type=int, default=1)
     parser.add_argument('--p', type=int, default=1)
     parser.add_argument('--q', type=int, default=1)
-    parser.add_argument('--last', type=float, default=1.)
+    parser.add_argument('--thresh', type=float, default=1.)
 
     return(parser)
 
