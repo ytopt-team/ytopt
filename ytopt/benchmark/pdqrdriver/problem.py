@@ -9,7 +9,12 @@ Problem = Problem(
     args_template=""
 )
 
-Problem.resources['threads_per_rank'] = [1, 2, 3]
+Problem.resources['threads_per_rank'] = 64
+Problem.resources['threads_per_core'] = 1
+Problem.resources['cpu_binding'] = 'depth'
+Problem.resources['ranks_per_node'] = (1, 10)
+Problem.resources['num_nodes'] = 1
+Problem.resources['env'] = 'OMP_PLACES=threads OMP_PROC_BIND=spread export OMP_NUM_THREADS=64'
 
 Problem.checkcfg()
 

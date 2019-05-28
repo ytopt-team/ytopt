@@ -16,7 +16,10 @@ class Problem:
         self.resources = OrderedDict(
             num_nodes=None,
             ranks_per_node=None,
-            threads_per_rank=None)
+            threads_per_rank=None,
+            threads_per_core=None,
+            cpu_binding=None,
+            env=None)
 
     def __str__(self):
         return repr(self)
@@ -60,7 +63,9 @@ class Problem:
     def starting_point_asdict(self):
         dd = {str(k):v for k,v in enumerate(self.__def_values)}
         for k in self.resources:
-            if self.resources[k] is not None:
+            if self.resources[k] is not None \
+                and (type(self.resources[k]) is list \
+                    or type(self.resources[k]) is tuple):
                 dd[k] = self.resources[k][0]
         return dd
 
@@ -68,7 +73,9 @@ class Problem:
     def space(self):
         dd = {str(k):v for k,v in enumerate(self.__space)}
         for k in self.resources:
-            if self.resources[k] is not None:
+            if self.resources[k] is not None \
+                and (type(self.resources[k]) is list \
+                    or type(self.resources[k]) is tuple):
                 dd[k] = self.resources[k]
         return dd
 
