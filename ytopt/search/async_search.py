@@ -28,6 +28,8 @@ class AsyncSearch(Search):
         self.base_estimator=param_dict['base_estimator']
         self.kappa = param_dict['kappa']
         self.patience_fac = param_dict['patience_fac']
+        self.acq_optimizer = param_dict['acq_optimizer']
+        self.n_initial_points = param_dict['n_initial_points']
 
     @staticmethod
     def _extend_parser(parser):
@@ -44,6 +46,12 @@ class AsyncSearch(Search):
                             nargs='?', const=2, type=float, default='10',
                             help='patience_fac for early stopping; search stops when no improvement \
                             is seen for patience_fac * n evals')
+        parser.add_argument('--acq_optimizer', action='store', dest='acq_optimizer',
+                            nargs='?',  type=str, default='sampling',
+                            help='method to minimize acquisition function sampling or lbfgs')
+        parser.add_argument('--n_initial_points', action='store', dest='n_initial_points',
+                            nargs='?', const=2, type=float, default='10',
+                            help='number of initial points')
         return parser
 
     def main(self):
@@ -79,8 +87,13 @@ class AsyncSearch(Search):
                 opt = Optimizer(space, base_estimator=NeuralNetworksDropoutRegressor(), acq_optimizer='sampling',
                             acq_func = self.acq_func, acq_func_kwargs=parDict, random_state=seed)
             else:
-                opt = Optimizer(space, base_estimator=self.base_estimator, acq_optimizer='sampling',
-                            acq_func=self.acq_func, acq_func_kwargs=parDict, random_state=seed)
+                opt = Optimizer(space,
+                    base_estimator=self.base_estimator,
+                    acq_optimizer=self.acq_optimizer,
+                    acq_func=self.acq_func,
+                    acq_func_kwargs=parDict,
+                    random_state=seed,
+                    n_initial_points=self.n_initial_points)
             print('Master starting with {} workers'.format(num_workers))
 
             while closed_workers < num_workers:
