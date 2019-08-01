@@ -27,26 +27,30 @@ class Search:
         evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
     """
 
-    def __init__(self, problem, evaluator, **kwargs):
-        _args = vars(self.parse_args(''))
-        kwargs['problem'] = problem
-        kwargs['evaluator'] = evaluator
-        _args.update(kwargs)
-        _args['problem'] = problem
-        self.args = Namespace(**_args)
+    def __init__(self, problem, evaluator, cache_key=None, max_evals=100,   eval_timeout_minutes=None, **kwargs):
+        settings = kwargs
+        settings['problem'] = problem
+        settings['evaluator'] = evaluator
+        settings['cache_key'] = cache_key
+
+
+
         self.problem = util.generic_loader(problem, 'Problem')
-        logger.info('Evaluator will execute the function: '+f"{self.problem.app_exe} {self.problem.args_template}")
-        if kwargs.get('cache_key') is None:
+
+        if cache_key is None:
             self.evaluator = Evaluator.create(self.problem, method=evaluator)
         else:
             self.evaluator = Evaluator.create(
-                self.problem, method=evaluator, cache_key=kwargs['cache_key'])
+                self.problem, method=evaluator, cache_key=cache_key)
+
+        self.max_evals = max_evals
+        self.eval_timeout_minutes = eval_timeout_minutes
+
         self.num_workers = self.evaluator.num_workers
 
-        logger.info(f'Options: '+pformat(self.args.__dict__, indent=4))
-        logger.info('Hyperparameter space definition: ' +
-                    pformat(self.problem.space, indent=4))
-        logger.info(f'Created {self.args.evaluator} evaluator')
+        logger.info(f'Options: {pformat(dict(settings), indent=4)}')
+        logger.info(f'Hyperparameter space definition: {pformat(self.problem.input_space, indent=4)}')
+        logger.info(f'Created "{evaluator}" evaluator')
         logger.info(f'Evaluator: num_workers is {self.num_workers}')
 
     def main(self):
@@ -83,7 +87,7 @@ class Search:
                             )
         parser.add_argument('--evaluator',
                             default='subprocess',
-                            choices=['balsam', 'subprocess'],
+                            choices=['balsam', 'subprocess', 'ray'],
                             help="The evaluator is an object used to run the model."
                             )
         return parser

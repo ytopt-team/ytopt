@@ -12,31 +12,36 @@ class Optimizer:
     SEED = 12345
     KAPPA = 1.96
 
-    def __init__(self, problem, num_workers, args):
-        assert args.learner in ["RF", "ET", "GBRT", "GP", "DUMMY"], f"Unknown scikit-optimize base_estimator: {args.learner}"
+    def __init__(self, num_workers: int, space, learner, acq_func, liar_strategy, **kwargs):
+        assert learner in ["RF", "ET", "GBRT", "GP", "DUMMY"], f"Unknown scikit-optimize base_estimator: {learner}"
+        assert liar_strategy in "cl_min cl_mean cl_max".split()
 
-        self.space = problem.space
-        n_init = inf if args.learner=='DUMMY' else num_workers
+
+        self.space = space
+        self.learner = learner
+        self.acq_func = acq_func
+        self.liar_strategy = liar_strategy
+
+        n_init = inf if learner=='DUMMY' else num_workers
+
         self._optimizer = SkOptimizer(
-            self.space.values(),
-            base_estimator=args.learner,
+            dimensions=self.space.dimensions,
+            base_estimator=self.learner,
             acq_optimizer='sampling',
-            acq_func=args.acq_func,
+            acq_func=self.acq_func,
             acq_func_kwargs={'kappa':self.KAPPA},
             random_state=self.SEED,
             n_initial_points=n_init
         )
 
-        assert args.liar_strategy in "cl_min cl_mean cl_max".split()
-        self.strategy = args.liar_strategy
         self.evals = {}
         self.counter = 0
-        logger.info("Using skopt.Optimizer with %s base_estimator" % args.learner)
+        logger.info("Using skopt.Optimizer with %s base_estimator" % self.learner)
 
     def _get_lie(self):
-        if self.strategy == "cl_min":
+        if self.liar_strategy == "cl_min":
             return min(self._optimizer.yi) if self._optimizer.yi else 0.0
-        elif self.strategy == "cl_mean":
+        elif self.liar_strategy == "cl_mean":
             return np.mean(self._optimizer.yi) if self._optimizer.yi else 0.0
         else:
             return  max(self._optimizer.yi) if self._optimizer.yi else 0.0
@@ -46,8 +51,8 @@ class Optimizer:
         YY = [self.evals[x] for x in XX]
         return XX, YY
 
-    def to_dict(self, x):
-        return {k:v for k,v in zip(self.space, x)}
+    def to_dict(self, x: list) -> dict:
+        return self.space.to_dict(x)
 
     def _ask(self):
         x = self._optimizer.ask()
@@ -67,7 +72,7 @@ class Optimizer:
             return self._ask()
         else:
             batch = []
-            for i in range(n_points):
+            for _ in range(n_points):
                 batch.append(self._ask())
                 if len(batch) == batch_size:
                     yield batch
@@ -90,7 +95,7 @@ class Optimizer:
         assert isinstance(xy_data, list), f"where type(xy_data)=={type(xy_data)}"
         maxval = max(self._optimizer.yi) if self._optimizer.yi else 0.0
         for x,y in xy_data:
-            key = tuple(x[k] for k in self.space)
+            key = tuple(x.values()) # * tuple(x[k] for k in self.space)
             assert key in self.evals, f"where key=={key} and self.evals=={self.evals}"
             logger.debug(f'tell: {x} --> {key}: evaluated objective: {y}')
             self.evals[key] = (y if y < float_info.max else maxval)

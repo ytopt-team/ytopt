@@ -72,7 +72,7 @@ class BalsamEvaluator(Evaluator):
             # 'threads_per_core': 1, if x.get('threads_per_core') is None else x['threads_per_core'],
             'threads_per_core': x.get('threads_per_core') or pb_res.get('threads_per_core'),
             # 'cpu_binding': 'none' if x.get('cpu_binding') is None else x['cpu_binding'],
-            'cpu_binding': x.get('cpu_binding') or pb_res.get('cpu_binding')
+            'cpu_binding': x.get('cpu_binding') or pb_res.get('cpu_binding'),
             'node_packing_count': self.WORKERS_PER_NODE,
         }
         for key in resources:

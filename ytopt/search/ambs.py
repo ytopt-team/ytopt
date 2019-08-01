@@ -41,10 +41,16 @@ def on_exit(signum, stack):
     EXIT_FLAG = True
 
 class AMBS(Search):
-    def __init__(self, problem, evaluator, **kwargs):
-        super().__init__(problem, evaluator, **kwargs)
+    def __init__(self, learner='RF', liar_strategy='cl_max', acq_func='gp_hedge', **kwargs):
+        super().__init__(**kwargs)
+
         logger.info("Initializing AMBS")
-        self.optimizer = Optimizer(self.problem, self.num_workers, self.args)
+        self.optimizer = Optimizer(
+            num_workers=self.num_workers,
+            space=self.problem.input_space,
+            learner=learner,
+            acq_func=acq_func,
+            liar_strategy=liar_strategy)
 
     @staticmethod
     def _extend_parser(parser):
@@ -80,12 +86,12 @@ class AMBS(Search):
             results = list(self.evaluator.get_finished_evals())
             num_evals += len(results)
             chkpoint_counter += len(results)
-            if EXIT_FLAG or num_evals >= self.args.max_evals:
+            if EXIT_FLAG or num_evals >= self.max_evals:
                 break
             if results:
                 logger.info(f"Refitting model with batch of {len(results)} evals")
                 self.optimizer.tell(results)
-                logger.info(f"Drawing {len(results)} points with strategy {self.optimizer.strategy}")
+                logger.info(f"Drawing {len(results)} points with strategy {self.optimizer.liar_strategy}")
                 for batch in self.optimizer.ask(n_points=len(results)):
                     self.evaluator.add_eval_batch(batch)
             if chkpoint_counter >= CHECKPOINT_INTERVAL:
