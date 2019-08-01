@@ -17,7 +17,7 @@ def write_input(params):
             params['thresh']))
 
 # ('fac', 'm', 'n', 'nodes',
-#'cores', 'mb', 'nb', 'nth', 'nproc', 'p', 'q', 'thresh').
+# 'cores', 'mb', 'nb', 'nth', 'nproc', 'p', 'q', 'thresh').
 # params = [('QR', m, n, nodes, cores, mb, nb, nth, nproc, p, q, 1.)]
 #             0    1  2   3       4     5   6   7    8     9  10 11
 
