@@ -61,18 +61,23 @@ class BalsamEvaluator(Evaluator):
         # args = f"'{self.encode(x)}'"
         args = self.problem.args_format(x.values())
         pb_res = self.problem.resources
-        envs = f""
+        envs = x.get('env') or pb_res.get('env') or ''
         resources = {
-            # 'num_nodes': 1 if x.get('num_nodes') is None else x['num_nodes'],
-            'num_nodes': x.get('num_nodes') or pb_res.get('num_nodes'),
-            # 'ranks_per_node': 1 if x.get('ranks_per_node') is None else x['ranks_per_node'],
-            'ranks_per_node': x.get('ranks_per_node') or pb_res.get('ranks_per_node'),
-            # 'threads_per_rank': 64 if x.get('threads_per_rank') is None else x['threads_per_rank'],
-            'threads_per_rank': x.get('threads_per_rank') or pb_res.get('threads_per_rank'),
-            # 'threads_per_core': 1, if x.get('threads_per_core') is None else x['threads_per_core'],
-            'threads_per_core': x.get('threads_per_core') or pb_res.get('threads_per_core'),
-            # 'cpu_binding': 'none' if x.get('cpu_binding') is None else x['cpu_binding'],
-            'cpu_binding': x.get('cpu_binding') or pb_res.get('cpu_binding')
+            'num_nodes': x.get('num_nodes') \
+                or pb_res.get('num_nodes') \
+                or 1,
+            'ranks_per_node': x.get('ranks_per_node') \
+                or pb_res.get('ranks_per_node') \
+                or 1,
+            'threads_per_rank': x.get('threads_per_rank') \
+                or pb_res.get('threads_per_rank') \
+                or 64,
+            'threads_per_core': x.get('threads_per_core') \
+                or pb_res.get('threads_per_core') \
+                or 1,
+            'cpu_affinity': x.get('cpu_affinity') \
+                or pb_res.get('cpu_affinity') \
+                or 'none',
             'node_packing_count': self.WORKERS_PER_NODE,
         }
         for key in resources:

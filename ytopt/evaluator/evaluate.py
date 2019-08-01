@@ -116,14 +116,25 @@ class Evaluator:
     @staticmethod
     def _parse(run_stdout):
 
-        pattern = re.compile("real (.*)")
+        pattern1 = re.compile("real (.*)")
+        pattern2 = re.compile("DH-OUTPUT: (.*)")
         timing = None
 
         for line in run_stdout.split('\n'):
 
-            if pattern.search(line) is not None:
+            # if pattern1.search(line) is not None:
 
-                res = re.findall(pattern, line)
+            #     res = re.findall(pattern1, line)
+            #     try:
+            #         timing = float(res[0])
+            #     except:
+            #         logger.info('Failed to converte parsed time {res} to float.')
+            #         timing = Evaluator.FAIL_RETURN_VALUE
+            #     break
+
+            if pattern2.search(line) is not None:
+
+                res = re.findall(pattern2, line)
                 try:
                     timing = float(res[0])
                 except:

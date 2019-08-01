@@ -1,4 +1,5 @@
 import os
+import sys
 import argparse
 
 def write_input(params):
@@ -19,6 +20,26 @@ def write_input(params):
 #'cores', 'mb', 'nb', 'nth', 'nproc', 'p', 'q', 'thresh').
 # params = [('QR', m, n, nodes, cores, mb, nb, nth, nproc, p, q, 1.)]
 #             0    1  2   3       4     5   6   7    8     9  10 11
+
+def read_output():
+    with open('QR.out', 'r') as fout:
+        time = sys.float_info.max
+        for line in fout.readlines():
+            words = line.split()
+            # WRITE( NOUT, FMT = 9993 ) 'WALL', M, N, MB, NB, NPROW, NPCOL, WTIME( 1 ), TMFLOPS, PASSED, FRESID
+            if (len(words) > 0 and words[0] == "WALL"):
+                if (words[9] == "PASSED"):
+                    # m  = int(words[1])
+                    # n  = int(words[2])
+                    # mb = int(words[3])
+                    # nb = int(words[4])
+                    # p  = int(words[5])
+                    # q  = int(words[6])
+                    # thresh = float(words[10])
+                    time = float(words[7])
+                    break
+        return time
+
 
 def create_parser():
     'command line parser for keras'
@@ -42,3 +63,6 @@ param_dict = vars(cmdline_args)
 write_input(param_dict)
 
 os.system('/projects/datascience/regele/ztune/examples/scalapack-driver/bin/theta/pdqrdriver 2>> QR.err')
+
+time = read_output()
+print('DH-OUTPUT: ', time)
