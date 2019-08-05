@@ -27,7 +27,7 @@ class Search:
         evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
     """
 
-    def __init__(self, problem, evaluator, cache_key=None, max_evals=100, eval_timeout_minutes=None, redis_address=None, *kwargs):
+    def __init__(self, problem, evaluator, cache_key=None, max_evals=100, eval_timeout_minutes=None, redis_address=None, **kwargs):
         settings = kwargs
         settings['problem'] = problem
         settings['evaluator'] = evaluator
