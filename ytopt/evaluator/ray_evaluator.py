@@ -76,10 +76,15 @@ class RayEvaluator(Evaluator):
     WaitResult = namedtuple(
         'WaitResult', ['active', 'done', 'failed', 'cancelled'])
 
-    def __init__(self, problem, cache_key=None):
+    def __init__(self, problem, cache_key=None, redis_address=None):
         super().__init__(problem, cache_key)
 
-        proc_info = ray.init()
+        print(f'RAY Evaluator init: redis-address={redis_address}')
+
+        if not redis_address is None:
+            proc_info = ray.init(redis_address=redis_address)
+        else:
+            proc_info = ray.init()
 
         self.num_workers = len(ray.nodes())
 

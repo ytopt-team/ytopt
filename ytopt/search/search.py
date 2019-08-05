@@ -27,7 +27,7 @@ class Search:
         evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
     """
 
-    def __init__(self, problem, evaluator, cache_key=None, max_evals=100,   eval_timeout_minutes=None, **kwargs):
+    def __init__(self, problem, evaluator, cache_key=None, max_evals=100, eval_timeout_minutes=None, redis_address=None, *kwargs):
         settings = kwargs
         settings['problem'] = problem
         settings['evaluator'] = evaluator
@@ -38,10 +38,10 @@ class Search:
         self.problem = util.generic_loader(problem, 'Problem')
 
         if cache_key is None:
-            self.evaluator = Evaluator.create(self.problem, method=evaluator)
+            self.evaluator = Evaluator.create(self.problem, method=evaluator, redis_address=redis_address)
         else:
             self.evaluator = Evaluator.create(
-                self.problem, method=evaluator, cache_key=cache_key)
+                self.problem, method=evaluator, cache_key=cache_key, redis_address=redis_address)
 
         self.max_evals = max_evals
         self.eval_timeout_minutes = eval_timeout_minutes
@@ -90,4 +90,6 @@ class Search:
                             choices=['balsam', 'subprocess', 'ray'],
                             help="The evaluator is an object used to run the model."
                             )
+        parser.add_argument('--redis-address', type=str, default=None,
+                            help="The redis-address for Ray-Worker when ray evaluator is choosen")
         return parser
