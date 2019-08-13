@@ -19,7 +19,6 @@ class Encoder(json.JSONEncoder):
     """
     Enables JSON dump of numpy data
     """
-
     def default(self, obj):
         if isinstance(obj, uuid.UUID):
             return obj.hex
@@ -37,21 +36,6 @@ class Encoder(json.JSONEncoder):
 class Evaluator:
     FAIL_RETURN_VALUE = sys.float_info.max
     WORKERS_PER_NODE = int(os.environ.get('YTOPT_WORKERS_PER_NODE', 1))
-
-    @staticmethod
-    def create(problem, cache_key=None, method='balsam', redis_address=None):
-        assert method in ['balsam', 'subprocess', 'ray']
-        if method == "balsam":
-            from ytopt.evaluator.balsam_evaluator import BalsamEvaluator
-            Eval = BalsamEvaluator(problem, cache_key=cache_key)
-        elif method == "subprocess":
-            from ytopt.evaluator.subprocess_evaluator import SubprocessEvaluator
-            Eval = SubprocessEvaluator(problem, cache_key=cache_key)
-        elif method == "ray":
-            from ytopt.evaluator.ray_evaluator import RayEvaluator
-            Eval = RayEvaluator(problem, cache_key=cache_key, redis_address=redis_address)
-
-        return Eval
 
     def __init__(self, problem, cache_key=None):
         self.pending_evals = {}  # uid --> Future
@@ -75,6 +59,23 @@ class Evaluator:
             self._gen_uid = cache_key
         else:
             self._gen_uid = lambda d: self.encode(d)
+
+
+    @staticmethod
+    def create(problem, cache_key=None, method='balsam', redis_address=None):
+        assert method in ['balsam', 'subprocess', 'ray']
+        if method == "balsam":
+            from ytopt.evaluator.balsam_evaluator import BalsamEvaluator
+            Eval = BalsamEvaluator(problem, cache_key=cache_key)
+        elif method == "subprocess":
+            from ytopt.evaluator.subprocess_evaluator import SubprocessEvaluator
+            Eval = SubprocessEvaluator(problem, cache_key=cache_key)
+        elif method == "ray":
+            from ytopt.evaluator.ray_evaluator import RayEvaluator
+            Eval = RayEvaluator(problem, cache_key=cache_key, redis_address=redis_address)
+
+        return Eval
+
 
     def encode(self, x):
         if not isinstance(x, dict):

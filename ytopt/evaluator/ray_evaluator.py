@@ -3,6 +3,8 @@ import subprocess
 import time
 from collections import defaultdict, namedtuple
 import sys
+import socket
+from pprint import pformat
 
 import ray
 
@@ -79,16 +81,32 @@ class RayEvaluator(Evaluator):
     def __init__(self, problem, cache_key=None, redis_address=None):
         super().__init__(problem, cache_key)
 
-        print(f'RAY Evaluator init: redis-address={redis_address}')
+        logger.info(f'RAY Evaluator init: redis-address={redis_address}')
 
-        if not redis_address is None:
-            proc_info = ray.init(redis_address=redis_address)
+        if redis_address is not None:
+            sleep_time = 5
+            infos = None
+            while infos is None: # Raylets can take some time to register
+                try:
+                    infos = ray.init(redis_address=redis_address)
+                    logger.info(infos)
+                except ConnectionError:
+                    logger.info('Quitting driver start-up...', exc_info=True)
+                    exit()
+                except Exception:
+                    logger.info('Failed to init driver... sleeping for 1sec...', exc_info=True)
+                    time.sleep(sleep_time)
         else:
-            proc_info = ray.init()
+            infos = ray.init()
+
+
 
         self.num_workers = len(ray.nodes())
 
-        logger.info(f"RAY Evaluator will execute: '{self.problem.objective}', proc_info: {proc_info}")
+        logger.info(f"RAY Evaluator will execute: '{self.problem.objective}', proc_info: {infos}")
+        logger.info(f'Driver started on: {socket.gethostbyname(socket.gethostname())}')
+        nodes_infos = ray.nodes()
+        logger.info(f'Cluster as {len(nodes_infos)} nodes:\n {pformat(nodes_infos)}')
 
     def _eval_exec(self, x: dict):
         assert isinstance(x, dict)
