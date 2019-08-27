@@ -73,8 +73,8 @@ class Search:
     def _base_parser():
         parser = argparse.ArgumentParser(conflict_handler='resolve')
         parser.add_argument("--problem",
-                            default="ytopt.benchmark.ackley_int.problem.Problem",
-                            help="Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.ackley_int.problem.Problem)."
+                            default="ytopt.benchmark.ackley.problem.Problem",
+                            help="Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.ackley.problem.Problem)."
                             )
         parser.add_argument('--max-evals',
                             type=int, default=100,
