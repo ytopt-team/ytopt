@@ -39,9 +39,12 @@ cd ytopt/
 pip install -e .
 ```
 
-If you encounter mpi4py installtion error, (re)install mpich as follows
+If you encounter installtion error, install psutil, setproctitle, mpich first as follows
 ```
+conda install -c conda-forge psutil
+conda install -c conda-forge setproctitle
 conda install -c conda-forge mpich
+pip install -e .
 ```
 # Autotuning problem definition
 
