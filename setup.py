@@ -16,7 +16,7 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 # Package meta-data.
 NAME = 'ytopt'
 DESCRIPTION = 'Model-based search software for autotuning.'
-URL = 'https://xgitlab.cels.anl.gov/pbalapra/ytopt'
+URL = 'https://github.com/ytopt-team/ytopt'
 EMAIL = 'pbalapra@anl.gov'
 AUTHOR = 'Prasanna Balaprakash'
 REQUIRES_PYTHON = '>=3.6.0'
@@ -29,19 +29,21 @@ REQUIRED = [
     'scikit-optimize',
     'scikit-learn',
     'tqdm',
-    'tensorflow>=1.11.0',
+    'tensorflow==1.14.0',
     'keras',
     # nas
     'gym',
-    'joblib'
+    'joblib',
+    'deap',
+    'ray[debug]',
+    'psutil'
 ]
 
 if not on_rtd:
     REQUIRED.append('mpi4py>=3.0.0')
 else:
     REQUIRED.append('Sphinx>=1.8.2')
-    REQUIRED.append('sphinx_bootstrap_theme')
-    REQUIRED.append('sphinx_copybutton')
+    REQUIRED.append('sphinx_rtd_theme')
 
 # What packages are optional?
 EXTRAS = {
@@ -50,8 +52,8 @@ EXTRAS = {
         'pytest',
     ],
     'docs': [
-        'sphinx',
-        'sphinx_bootstrap_theme',
+        'Sphinx>=1.8.2',
+        'sphinx_rtd_theme',
         'sphinx_copybutton'
     ]
 }
@@ -130,11 +132,12 @@ setup(
     url=URL,
     # packages=find_packages(exclude=('tests',)),
     # If your package is a single module, use this instead of 'packages':
-    py_modules=['ytopt', 'ppo'],
-
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    py_modules=['ytopt'],
+    entry_points={
+        'console_scripts': [
+            'ytopt-analytics=ytopt.core.logs.analytics:main'
+        ],
+    },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     include_package_data=True,

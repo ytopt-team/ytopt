@@ -112,3 +112,7 @@ venv.bak/
 *.DS_Store
 .AppleDouble
 .LSOverride
+
+*-old/
+*.csv
+*.json

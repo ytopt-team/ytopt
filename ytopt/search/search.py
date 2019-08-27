@@ -1,34 +1,57 @@
 import argparse
-from ytopt.search.utils import saveMetaData, load_from_file, setup_expfolder
-from ytopt.evaluate import evaluate
+from pprint import pformat
+import logging
+from ytopt.search import util
+from ytopt.evaluator.evaluate import Evaluator
+
+logger = logging.getLogger(__name__)
+
+
+class Namespace:
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            self.__dict__[k] = v
+
 
 class Search:
-    def __init__(self, **kwargs):
-        param_dict = kwargs
-        self.prob_path = param_dict['prob_path'] #'/Users/pbalapra/Projects/repos/2017/dl-hps/benchmarks/test'
-        self.prob_attr = param_dict['prob_attr']
-        self.exp_dir = param_dict['exp_dir'] #'/Users/pbalapra/Projects/repos/2017/dl-hps/experiments'
-        self.eid = param_dict['exp_id'] #'exp-01'
-        self.max_evals = param_dict['max_evals']
-        self.max_time = param_dict['max_time']
+    """Abstract representation of a black box optimization search.
 
-        #exp_dir = exp_dir+'/'+eid
-        self.jobs_dir = self.exp_dir+'/jobs'
-        self.results_dir = self.exp_dir+'/results'
-        self.results_json_fname = self.exp_dir+'/'+self.eid+'_results.json'
-        self.results_csv_fname = self.exp_dir+'/'+self.eid+'_results.csv'
-        self.meta_data_json_fname = self.exp_dir+'/'+self.eid+'_metadata.json'
-        setup_expfolder(exp_dir=self.exp_dir, job_dir=self.jobs_dir, res_dir=self.results_dir)
-        saveMetaData(param_dict, self.meta_data_json_fname)
+    A search comprises 3 main objects: a problem, a run function and an evaluator:
+        The `problem` class defines the optimization problem, providing details like the search domain.  (You can find many kind of problems in `ytopt.benchmark`)
+        The `run` function executes the black box function/model and returns the objective value which is to be optimized.
+        The `evaluator` abstracts the run time environment (local, supercomputer...etc) in which run functions are executed.
 
-        self.problem = load_from_file(self.prob_path, self.prob_attr)
-        self.problem.checkcfg()
-        self.spaceDict = self.problem.space
-        self.params = self.problem.params
-        self.starting_point = self.problem.starting_point
+    Args:
+        problem (str): Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.Problem).
+        run (str): Module path to the run function you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.run).
+        evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
+    """
 
-        self.evaluate = evaluate
+    def __init__(self, problem, evaluator, cache_key=None, max_evals=100, eval_timeout_minutes=None, redis_address=None, **kwargs):
+        settings = kwargs
+        settings['problem'] = problem
+        settings['evaluator'] = evaluator
+        settings['cache_key'] = cache_key
 
+
+
+        self.problem = util.generic_loader(problem, 'Problem')
+
+        if cache_key is None:
+            self.evaluator = Evaluator.create(self.problem, method=evaluator, redis_address=redis_address)
+        else:
+            self.evaluator = Evaluator.create(
+                self.problem, method=evaluator, cache_key=cache_key, redis_address=redis_address)
+
+        self.max_evals = max_evals
+        self.eval_timeout_minutes = eval_timeout_minutes
+
+        self.num_workers = self.evaluator.num_workers
+
+        logger.info(f'Options: {pformat(dict(settings), indent=4)}')
+        logger.info(f'Hyperparameter space definition: {pformat(self.problem.input_space, indent=4)}')
+        logger.info(f'Created "{evaluator}" evaluator')
+        logger.info(f'Evaluator: num_workers is {self.num_workers}')
 
     def main(self):
         raise NotImplementedError
@@ -48,25 +71,25 @@ class Search:
 
     @staticmethod
     def _base_parser():
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-v', '--version', action='version',
-                            version='%(prog)s 0.1')
-        parser.add_argument("--prob_path", nargs='?', type=str,
-                            default='problems/prob1',
-                            help="problem directory")
-        parser.add_argument("--prob_attr", type=str,
-                            default='problem',
-                            help="attribute to load from the file located at prob_path")
-        parser.add_argument("--exp_dir", nargs='?', type=str,
-                            default='experiments',
-                            help="experiments directory")
-        parser.add_argument("--exp_id", nargs='?', type=str,
-                            default='exp-01',
-                            help="experiments id")
-        parser.add_argument('--max_evals', action='store', dest='max_evals',
-                            nargs='?', const=2, type=int, default='1000',
-                            help='maximum number of evaluations')
-        parser.add_argument('--max_time', action='store', dest='max_time',
-                            nargs='?', const=1, type=float, default='2000',
-                            help='maximum time in secs')
+        parser = argparse.ArgumentParser(conflict_handler='resolve')
+        parser.add_argument("--problem",
+                            default="ytopt.benchmark.ackley_int.problem.Problem",
+                            help="Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.ackley_int.problem.Problem)."
+                            )
+        parser.add_argument('--max-evals',
+                            type=int, default=100,
+                            help='maximum number of evaluations'
+                            )
+        parser.add_argument('--eval-timeout-minutes',
+                            type=int,
+                            default=4096,
+                            help="Kill evals that take longer than this"
+                            )
+        parser.add_argument('--evaluator',
+                            default='subprocess',
+                            choices=['balsam', 'subprocess', 'ray'],
+                            help="The evaluator is an object used to run the model."
+                            )
+        parser.add_argument('--redis-address', type=str, default=None,
+                            help="The redis-address for Ray-Worker when ray evaluator is choosen")
         return parser

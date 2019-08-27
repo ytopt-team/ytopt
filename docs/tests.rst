@@ -1,7 +1,7 @@
 Tests
 *****
 
-For automatic tests in deephyper we choosed to use the pytest framework: `pytest official website <https://docs.pytest.org/en/latest/index.html>`_.
+For automatic tests in ytopt we choosed to use the pytest framework: `pytest official website <https://docs.pytest.org/en/latest/index.html>`_.
 
 
 Install Pytest
@@ -16,5 +16,5 @@ Run Tests
 
 ::
 
-    cd deephyper/tests/
+    cd ytopt/tests/
     pytest
