@@ -6,6 +6,8 @@ from skopt import Optimizer as SkOptimizer
 
 from ytopt.search import util
 
+import ConfigSpace as CS
+
 logger = util.conf_logger('ytopt.search.hps.optimizer.optimizer')
 
 class Optimizer:
@@ -16,7 +18,6 @@ class Optimizer:
         assert learner in ["RF", "ET", "GBRT", "GP", "DUMMY"], f"Unknown scikit-optimize base_estimator: {learner}"
         assert liar_strategy in "cl_min cl_mean cl_max".split()
 
-
         self.space = space
         self.learner = learner
         self.acq_func = acq_func
@@ -24,15 +25,26 @@ class Optimizer:
 
         n_init = inf if learner=='DUMMY' else num_workers
 
-        self._optimizer = SkOptimizer(
-            dimensions=self.space.dimensions,
-            base_estimator=self.learner,
-            acq_optimizer='sampling',
-            acq_func=self.acq_func,
-            acq_func_kwargs={'kappa':self.KAPPA},
-            random_state=self.SEED,
-            n_initial_points=n_init
-        )
+        if isinstance(self.space, CS.ConfigurationSpace):
+            self._optimizer = SkOptimizer(
+                dimensions=self.space,
+                base_estimator=self.learner,
+                acq_optimizer='sampling',
+                acq_func=self.acq_func,
+                acq_func_kwargs={'kappa':self.KAPPA},
+                random_state=self.SEED,
+                n_initial_points=n_init
+            )
+        else:
+             self._optimizer = SkOptimizer(
+                dimensions=self.space.dimensions,
+                base_estimator=self.learner,
+                acq_optimizer='sampling',
+                acq_func=self.acq_func,
+                acq_func_kwargs={'kappa':self.KAPPA},
+                random_state=self.SEED,
+                n_initial_points=n_init
+            )           
 
         self.evals = {}
         self.counter = 0
@@ -52,7 +64,14 @@ class Optimizer:
         return XX, YY
 
     def to_dict(self, x: list) -> dict:
-        return self.space.to_dict(x)
+        if isinstance(self.space, CS.ConfigurationSpace):
+            res = {}
+            hps_names = self.space.get_hyperparameter_names()
+            for i in range(len(x)):
+                res[hps_names[i]] = x [i]
+            return res
+        else:
+            return self.space.to_dict(x)
 
     def _ask(self):
         x = self._optimizer.ask()
