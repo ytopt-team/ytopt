@@ -190,6 +190,8 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 
 Modules, patches (code, documentation, etc.) contributed by:
 
+* Thomas Randall <tlranda@clemson.edu>
+
 # How can I participate?
 
 Questions, comments, feature requests, bug reports, etc. can be directed to:
