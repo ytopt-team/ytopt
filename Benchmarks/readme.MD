@@ -52,4 +52,4 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.pr
 If this works, this environment for the autotuning framework is ready to use.
 Please read the pdf file polybench-autotune.pdf for the details.
 
-Note: For the benchmarks using Clang loop optimization pragmas, please look at the detailed instructions from the link 
+2. For the benchmarks using Clang loop optimization pragmas, please look at the detailed instructions from the link https://github.com/ytopt-team/autotune/tree/master/Benchmarks
