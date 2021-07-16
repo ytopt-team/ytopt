@@ -19,7 +19,7 @@ python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-eval
 python findMin.py (Note: find the configuration for optimal performance from results.csv)
 
 
-Installation requirements
+Installation requirements:
 
 This autotuning framework requires the following components: configspace, scikit-optimize, autotune and ytopt. See the following installation instructions for the details.
 
