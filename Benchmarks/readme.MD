@@ -10,7 +10,7 @@ DL    (deep learning mnist)
 
 ...
 
-To autotune a benchmark, under the conda environment, use run.bat in the benchmark directory to test the autotuning framework. See the description of the framework for the details.
+To autotune a benchmark, under the conda environment, use run.bat in the benchmark directory to test the autotuning framework. See the description of the framework in the pdf file CCPE2021.pdf for the details.
 
 The run.bat looks like:
 
