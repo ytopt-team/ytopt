@@ -8,6 +8,7 @@ The package Benchmarks includes the following directories:
 
 DL    (deep learning mnist)
 
+...
 
 To autotune a benchmark, under the conda environment, use run.bat in the benchmark directory to test the autotuning framework. See the description of the framework for the details.
 
