@@ -28,147 +28,207 @@ ytopt/
 ```
 
 # Install instructions
+The autotuning framework requires the following components: Ytopt, Configspace, scikit-optimize, and autotune. 
+
+We recommend creating isolated Python environments on your local machine using virtualenv, for example:
 
 ```
-conda create -n ytopt -c anaconda python=3.6
-source activate ytopt
-git clone https://github.com/ytopt-team/ytopt.git
-cd ytopt/
+conda create --name ytune python=3.7
+conda activate ytune
+```
+
+Install Configspace:
+```
+pip install ConfigSpace 
+```
+
+Install scikit-optimize:
+```
+git clone https://github.com/pbalapra/scikit-optimize.git
+cd scikit-optimize
 pip install -e .
 ```
 
-If you encounter installtion error, install psutil, setproctitle, mpich first as follows
+Install autotune:
+```
+git clone -b version1  https://github.com/ytopt-team/autotune.git
+cd autotune/
+pip install -e . 
+```
+
+Install ytopt:
+```
+git clone https://github.com/ytopt-team/ytopt.git
+cd ytopt/
+pip install -e .
+pip install scikit-learn==0.23.1
+```
+
+If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
 conda install -c conda-forge mpich
+conda install -c conda-forge mpi4py
 pip install -e .
 ```
 # Autotuning problem definition
 
-An example is given in problems/ackley_mix
-
-To define an autotuning problem, create two files.
+1. An example for hyperparameter search of the nerual network on mnist is given in /Benchmark/DL/mnist/problem.py
 
 The problem.py file defines the search space:
-
 ```
-from collections import OrderedDict
 import numpy as np
-import os 
-
-np.random.seed(0)
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-
-from ytopt.problem import Problem
-
-cmd_frmt = "python " +HERE+"/executable.py"
-nparam = 6
-
-for i in range(0, nparam):
-    cmd_frmt += f" --p{i} {'{}'}"
-problem = Problem(cmd_frmt)
-
-a, b = -15, 30
-
-problem.spec_dim(p_id=0, p_space=(a, b), default=a)
-problem.spec_dim(p_id=1, p_space=(a, b), default=a)
-problem.spec_dim(p_id=2, p_space=[a+i for i in range(b-a)], default=a)
-problem.spec_dim(p_id=3, p_space=[a+i for i in range(b-a)], default=a)
-problem.spec_dim(p_id=4, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
-problem.spec_dim(p_id=5, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
-
-problem.checkcfg()
-
-if __name__ == '__main__':
-    print(problem)
-
-```
-
-The executable.py file defines the method to evaluate a point in the search space:
-```
-#!/usr/bin/env python
-from __future__ import print_function
-import re
+from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
+from autotune import TuningProblem
+from autotune.space import *
 import os
 import sys
 import time
 import json
 import math
-import os
-import argparse
+
+import ConfigSpace as CS
+import ConfigSpace.hyperparameters as CSH
+from skopt.space import Real, Integer, Categorical
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
+from plopper import Plopper
+nparams = 4
+
+cs = CS.ConfigurationSpace(seed=1234)
+#batch_size
+p0= CSH.OrdinalHyperparameter(name='p0', sequence=['16','32','64','100','128','200','256','300','400','512'], default_value='128')
+#epochs
+p1= CSH.OrdinalHyperparameter(name='p1', sequence=['1','2','4','8','12','16','20','22','24','30'], default_value='20')
+#dropout rate
+p2= CSH.OrdinalHyperparameter(name='p2', sequence=['0.1', '0.15', '0.2', '0.25','0.4'], default_value='0.2')
+#optimizer
+p3= CSH.CategoricalHyperparameter(name='p3', choices=['rmsprop','adam','sgd','adamax','adadelta','adagrad','nadam'], default_value='rmsprop')
+
+cs.add_hyperparameters([p0, p1, p2, p3])
+
+# problem space
+task_space = None
+
+input_space = cs
+
+output_space = Space([
+     Real(0.0, inf, name="time")
+])
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+kernel_idx = dir_path.rfind('/')
+kernel = dir_path[kernel_idx+1:]
+obj = Plopper(dir_path+'/dlp.py',dir_path)
+
+x1=['p0','p1','p2','p3']
+
+def myobj(point: dict):
+
+  def plopper_func(x):
+    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
+    value = [point[x1[0]],point[x1[1]],point[x1[2]],point[x1[3]]]
+    print('VALUES:',point[x1[0]])
+    params = ["P1","P2","P3","P4"]
+
+    result = obj.findRuntime(value, params)
+    return result
+
+  x = np.array([point[f'p{i}'] for i in range(len(point))])
+  results = plopper_func(x)
+  print('OUTPUT: ',results)
+
+  return results
+
+Problem = TuningProblem(
+    task_space=None,
+    input_space=input_space,
+    output_space=output_space,
+    objective=myobj,
+    constraints=None,
+    model=None
+    )
+```
+
+2. An example for loop optimization problem with constraints is given in ytopt/benchmark/loopopt/problem.py
+
+The problem.py file defines the search space:
+```
 import numpy as np
 from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
-seed = 12345
+from autotune import TuningProblem
+from autotune.space import *
 
-def create_parser():
-    'command line parser'
-    
-    parser = argparse.ArgumentParser(add_help=True)
-    group = parser.add_argument_group('required arguments')
-    parser.add_argument('--p0', action='store', dest='p0',
-                        nargs='?', const=2, type=float, default=-15.0,
-                        help='parameter p0 value')
-    parser.add_argument('--p1', action='store', dest='p1',
-                        nargs='?', const=2, type=float, default=-15.0,
-                        help='parameter p1 value')
-    parser.add_argument('--p2', action='store', dest='p2',
-                        nargs='?', const=2, type=int, default=-15,
-                        help='parameter p2 value')
-    parser.add_argument('--p3', action='store', dest='p3',
-                        nargs='?', const=2, type=int, default=-15,
-                        help='parameter p3 value')
-    parser.add_argument('--p4', action='store', dest='p4',
-                        nargs='?', const=2, type=str, default='-15',
-                        help='parameter p4 value')
-    parser.add_argument('--p5', action='store', dest='p5',
-                        nargs='?', const=2, type=str, default='-15',
-                        help='parameter p5 value')
+import sys
+import ConfigSpace as CS
+import ConfigSpace.hyperparameters as CSH
+from skopt.space import Real, Integer, Categorical
 
-    return(parser)
+cs = CS.ConfigurationSpace(seed=1234)
+p1 = CSH.CategoricalHyperparameter(name='p1', choices=['None', '#pragma omp #p3', '#pragma omp target #p3', '#pragma omp target #p5', '#pragma omp #p4'])
+p3 = CSH.CategoricalHyperparameter(name='p3', choices=['None', '#parallel for #p4', '#parallel for #p6', '#parallel for #p7'])
+p4 = CSH.CategoricalHyperparameter(name='p4', choices=['None', 'simd'])
+p5 = CSH.CategoricalHyperparameter(name='p5', choices=['None', '#dist_schedule static', '#dist_schedule #p11'])
+p6 = CSH.CategoricalHyperparameter(name='p6', choices=['None', '#schedule #p10', '#schedule #p11'])
+p7 = CSH.CategoricalHyperparameter(name='p7', choices=['None', '#numthreads #p12'])
+p10 = CSH.CategoricalHyperparameter(name='p10', choices=['static', 'dynamic'])
+p11 = CSH.OrdinalHyperparameter(name='p11', sequence=['1', '8', '16'])
+p12 = CSH.OrdinalHyperparameter(name='p12', sequence=['1', '8', '16'])
 
-parser = create_parser()
-cmdline_args = parser.parse_args()
-param_dict = vars(cmdline_args)
-print(param_dict)
-p0 = param_dict['p0']
-p1 = param_dict['p1']
-p2 = param_dict['p2']
-p3 = param_dict['p3']
-p4 = int(param_dict['p4'])
-p5 = int(param_dict['p5'])
+cs.add_hyperparameters([p1, p3, p4, p5, p6, p7, p10, p11, p12])
 
+#make p3 an active parameter when p1 value is ... 
+cond0 = CS.EqualsCondition(p3, p1, '#pragma omp #p3')
+cond1 = CS.EqualsCondition(p3, p1, '#pragma omp target #p3')
+cond2 = CS.EqualsCondition(p5, p1, '#pragma omp target #p5')
+cond3 = CS.EqualsCondition(p4, p1, '#pragma omp #p4')
+cond4 = CS.EqualsCondition(p4, p3, '#parallel for #p4')
+cond5 = CS.EqualsCondition(p6, p3, '#parallel for #p6')
+cond6 = CS.EqualsCondition(p7, p3, '#parallel for #p7')
+cond7 = CS.EqualsCondition(p11, p5, '#dist_schedule #p11')
+cond8 = CS.EqualsCondition(p10, p6, '#schedule #p10')
+cond9 = CS.EqualsCondition(p11, p6, '#schedule #p11')
+cond10 = CS.EqualsCondition(p12, p7, '#numthreads #p12')
 
-x=np.array([p0,p1,p2,p3,p4,p5])
+cs.add_condition(CS.OrConjunction(cond0,cond1))
+cs.add_condition(cond2) 
+cs.add_condition(CS.OrConjunction(cond3,cond4))
+cs.add_condition(cond5) 
+cs.add_condition(cond6) 
+cs.add_condition(cond8) 
+cs.add_condition(CS.OrConjunction(cond7,cond9))
+cs.add_condition(cond10)
 
-def ackley( x, a=20, b=0.2, c=2*pi ):
-    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-    n = len(x)
-    s1 = sum( x**2 )
-    s2 = sum(cos( c * x ))
-    return -a*exp( -b*sqrt( s1 / n )) - exp( s2 / n ) + a + exp(1)
+# problem space
+task_space = None
+input_space = cs 
 
-pval = ackley(x, a=20, b=0.2, c=2*pi)
-print('OUTPUT:%1.3f'%pval)
-```
+output_space = Space([
+    Real(-inf, inf, name='y')
+])
+
+def myobj(point: dict):
+    s = np.random.uniform()
+    return s
+
+Problem = TuningProblem(
+    task_space=None,
+    input_space=input_space,
+    output_space=output_space,
+    objective=myobj,
+    constraints=None,
+    model=None
+    )
+``` 
 
 
 # Running
 
-Reinforcement learning based search with proximal policy optimization
+Bayesian optimization with random forest model:
 ```
-mpirun -np 2 python -m ytopt.search.ppo_a3c --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='PPO' 
-```
-
-Bayesian optimization with random forest model
-```
-mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='RF' 
-```
-
-Random search
-```
-mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID> --max_time=60 --base_estimator='DUMMY'
+python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.problem.Problem --learner RF
 ```
 
 # How do I learn more?
@@ -185,6 +245,8 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
 * Romain Egele <regele@anl.gov>
 * Paul Hovland <hovland@anl.gov>
+* Xingfu Wu <xingfu.wu@anl.gov>
+* Jaehoon Koo <jkoo@anl.gov>
 
 Modules, patches (code, documentation, etc.) contributed by:
 
@@ -206,6 +268,7 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 
 * YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2017--Present) 
 * Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
+* PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--Present)
 
 # Copyright and license
 
