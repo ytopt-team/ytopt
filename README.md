@@ -61,7 +61,6 @@ Install ytopt:
 git clone https://github.com/ytopt-team/ytopt.git
 cd ytopt/
 pip install -e .
-pip install scikit-learn==0.23.1
 ```
 
 If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
@@ -228,7 +227,7 @@ Problem = TuningProblem(
 
 Bayesian optimization with random forest model:
 ```
-python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.problem.Problem --learner RF
+python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.problem.Problem --max-evals=10 --learner RF
 ```
 
 # How do I learn more?
