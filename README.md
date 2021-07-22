@@ -17,12 +17,10 @@ promising configurations.
 
 # Directory structure
 ```
+Benchmarks/	
+    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 docs/	
     Sphinx documentation files
-ppo/
-    proximal policy optimization based reinforcement learning 
-problems/
-    easy to evalaute benchmark functions
 test/
     scipts for running benchmark problems in the problems directory
 ytopt/	
