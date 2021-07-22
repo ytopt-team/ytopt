@@ -73,7 +73,7 @@ pip install -e .
 ```
 # Autotuning problem definition
 
-1. An example for hyperparameter search of the nerual network on mnist is given in /Benchmark/DL/mnist/problem.py
+1. An example of hyperparameter search for the nerual network on mnist is given in /Benchmark/DL/mnist/problem.py
 
 The problem.py file defines the search space:
 ```
