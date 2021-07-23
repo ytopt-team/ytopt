@@ -68,9 +68,10 @@ pip install -e .
 ```
 # Autotuning problem definition
 
-1. An example for hyperparameter search of the nerual network on mnist is given in [Benchmark/DL/mnist/problem.py](https://github.com/ytopt-team/ytopt/blob/master/Benchmarks/DL/mnist/problem.py).
+You can define your search problem such as:
 
-The problem.py file defines the search space:
+* An example for hyperparameter search of the nerual network on mnist is given in [Benchmark/DL/mnist/problem.py](https://github.com/ytopt-team/ytopt/blob/master/Benchmarks/DL/mnist/problem.py).
+
 ```
 import numpy as np
 from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
@@ -146,9 +147,8 @@ Problem = TuningProblem(
     )
 ```
 
-2. An example for loop optimization problem with constraints is given in [ytopt/benchmark/loopopt/problem.py](https://github.com/ytopt-team/ytopt/blob/master/ytopt/benchmark/loopopt/problem.py).
+* An example for loop optimization problem with constraints is given in [ytopt/benchmark/loopopt/problem.py](https://github.com/ytopt-team/ytopt/blob/master/ytopt/benchmark/loopopt/problem.py).
 
-The problem.py file defines the search space:
 ```
 import numpy as np
 from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
