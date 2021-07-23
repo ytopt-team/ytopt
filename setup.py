@@ -36,6 +36,7 @@ REQUIRED = [
     'joblib',
     'deap',
     'ray[debug]',
+    'ConfigSpace',
 ]
 
 if not on_rtd:

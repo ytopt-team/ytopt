@@ -28,35 +28,30 @@ ytopt/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: Ytopt, Configspace, scikit-optimize, and autotune. 
+The autotuning framework requires the following components: Ytopt, scikit-optimize, and autotune. 
 
-We recommend creating isolated Python environments on your local machine using virtualenv, for example:
+We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
 conda create --name ytune python=3.7
 conda activate ytune
 ```
 
-Install Configspace:
-```
-pip install ConfigSpace 
-```
-
-Install scikit-optimize:
+Install [scikit-optimize](https://github.com/pbalapra/scikit-optimize.git):
 ```
 git clone https://github.com/pbalapra/scikit-optimize.git
 cd scikit-optimize
 pip install -e .
 ```
 
-Install autotune:
+Install [autotune](https://github.com/ytopt-team/autotune.git):
 ```
-git clone -b version1  https://github.com/ytopt-team/autotune.git
+git clone -b version1 https://github.com/ytopt-team/autotune.git
 cd autotune/
 pip install -e . 
 ```
 
-Install ytopt:
+Install [ytopt](https://github.com/ytopt-team/ytopt.git):
 ```
 git clone https://github.com/ytopt-team/ytopt.git
 cd ytopt/
@@ -73,7 +68,7 @@ pip install -e .
 ```
 # Autotuning problem definition
 
-1. An example of hyperparameter search for the nerual network on mnist is given in /Benchmark/DL/mnist/problem.py
+1. An example for hyperparameter search of the nerual network on mnist is given in [Benchmark/DL/mnist/problem.py](https://github.com/ytopt-team/ytopt/blob/master/Benchmarks/DL/mnist/problem.py).
 
 The problem.py file defines the search space:
 ```
@@ -151,7 +146,7 @@ Problem = TuningProblem(
     )
 ```
 
-2. An example for loop optimization problem with constraints is given in ytopt/benchmark/loopopt/problem.py
+2. An example for loop optimization problem with constraints is given in [ytopt/benchmark/loopopt/problem.py](https://github.com/ytopt-team/ytopt/blob/master/ytopt/benchmark/loopopt/problem.py).
 
 The problem.py file defines the search space:
 ```
