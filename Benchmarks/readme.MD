@@ -8,13 +8,17 @@ The package Benchmarks includes the following directories:
 
 DL    (deep learning mnist)
 
+xsbench-omp (openmp version of XSBench https://github.com/ANL-CESAR/XSBench)
+
+xsbench-mpi-omp (hybrid MPI/OpenMP version of XSBench https://github.com/ANL-CESAR/XSBench)
+
 ...
 
 To autotune a benchmark, under the conda environment, use run.bat in the benchmark directory to test the autotuning framework. See the description of the framework in the pdf file CCPE2021.pdf for the details.
 
 The run.bat looks like:
 
-python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=200 --learner RF  (Note: autotuning the benchmark)
+python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=20 --learner RF  (Note: autotuning the benchmark)
 
 python findMin.py (Note: find the configuration for optimal performance from results.csv)
 
@@ -24,7 +28,7 @@ Installation requirements:
 This autotuning framework requires the following components: configspace, scikit-optimize, autotune and ytopt. See the following installation instructions for the details.
 
 
-1. Installing the latest version of autotune and ytopt
+- Installing the latest version of autotune and ytopt
 
 For the autotune and ytopt using ConfigSpace, the installation is as follows:
 
@@ -52,5 +56,4 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.pr
 
 If this works, this environment for the autotuning framework is ready to use.
 
-
-2. For the benchmarks using Clang loop optimization pragmas, please look at the detailed instructions from the link https://github.com/ytopt-team/autotune/tree/master/Benchmarks
+Note: The Benchmarks in this directory do not require the installation of LLVM Clang/Polly. For the benchmarks using Clang loop optimization pragmas, please look at the detailed instructions from the link https://github.com/ytopt-team/autotune/tree/master/Benchmarks
