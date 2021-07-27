@@ -70,7 +70,7 @@ pip install -e .
 
 An example to autotune the OpenMP version of XSBench:
 
-* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py):
+* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py) for the following search space:
 
 ```
 # number of threads
@@ -83,7 +83,7 @@ p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for"
 cs.add_hyperparameters([p0, p1, p2])
 ```
 
-* You can define the method to evaluate a point in the search space [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/plopper/plopper.py) includes code generation and compiling.
+* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/plopper/plopper.py) for code generation and compiling.
 
 * Note that you can install openmpi openmpi-mpicc openmp for this example:
 ```
