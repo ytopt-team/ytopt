@@ -17,14 +17,14 @@ promising configurations.
 
 # Directory structure
 ```
-Benchmarks/	
-    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 docs/	
     Sphinx documentation files
 test/
     scipts for running benchmark problems in the problems directory
 ytopt/	
     scripts that contain the search implementations  
+ytopt/benchmark/	
+    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ```
 
 # Install instructions
@@ -66,163 +66,65 @@ conda install -c conda-forge mpich
 conda install -c conda-forge mpi4py
 pip install -e .
 ```
-# Autotuning problem definition
+# Defining autotuning problem
 
-You can define your search problem such as:
+An example to autotune the OpenMP version of XSBench:
 
-* An example for hyperparameter search of the nerual network on mnist is given in [Benchmark/DL/mnist/problem.py](https://github.com/ytopt-team/ytopt/blob/master/Benchmarks/DL/mnist/problem.py).
+* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py):
 
 ```
-import numpy as np
-from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
-from autotune import TuningProblem
-from autotune.space import *
-import os
-import sys
-import time
-import json
-import math
+# number of threads
+p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+#block size for openmp dynamic schedule
+p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
+#clang unrolling
+#omp parallel
+p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
+cs.add_hyperparameters([p0, p1, p2])
+```
 
-import ConfigSpace as CS
-import ConfigSpace.hyperparameters as CSH
-from skopt.space import Real, Integer, Categorical
+* You can define the method to evaluate a point in the search space [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/plopper/plopper.py) includes code generation and compiling.
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
-from plopper import Plopper
-nparams = 4
+* Note that you can install openmpi openmpi-mpicc openmp for this example:
+```
+conda install -c conda-forge openmp openmpi openmpi-mpicc
+```
 
+An example to autotune the OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
+
+<!-- An example to autotune the deep learning mnist problem is given in [ytopt/benchmark/dl/](https://github.com/jke513/ytopt/tree/master/ytopt/benchmark/dl).
+
+ You can define your search problem such as:
+
+* An example to autotune the OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py).
+
+```
 cs = CS.ConfigurationSpace(seed=1234)
-#batch_size
-p0= CSH.OrdinalHyperparameter(name='p0', sequence=['16','32','64','100','128','200','256','300','400','512'], default_value='128')
-#epochs
-p1= CSH.OrdinalHyperparameter(name='p1', sequence=['1','2','4','8','12','16','20','22','24','30'], default_value='20')
-#dropout rate
-p2= CSH.OrdinalHyperparameter(name='p2', sequence=['0.1', '0.15', '0.2', '0.25','0.4'], default_value='0.2')
-#optimizer
-p3= CSH.CategoricalHyperparameter(name='p3', choices=['rmsprop','adam','sgd','adamax','adadelta','adagrad','nadam'], default_value='rmsprop')
+# number of threads
+p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+#block size for openmp dynamic schedule
+p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
+#clang unrolling
+#omp parallel
+p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
 
-cs.add_hyperparameters([p0, p1, p2, p3])
-
-# problem space
-task_space = None
-
-input_space = cs
-
-output_space = Space([
-     Real(0.0, inf, name="time")
-])
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-kernel_idx = dir_path.rfind('/')
-kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/dlp.py',dir_path)
-
-x1=['p0','p1','p2','p3']
-
-def myobj(point: dict):
-
-  def plopper_func(x):
-    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-    value = [point[x1[0]],point[x1[1]],point[x1[2]],point[x1[3]]]
-    print('VALUES:',point[x1[0]])
-    params = ["P1","P2","P3","P4"]
-
-    result = obj.findRuntime(value, params)
-    return result
-
-  x = np.array([point[f'p{i}'] for i in range(len(point))])
-  results = plopper_func(x)
-  print('OUTPUT: ',results)
-
-  return results
-
-Problem = TuningProblem(
-    task_space=None,
-    input_space=input_space,
-    output_space=output_space,
-    objective=myobj,
-    constraints=None,
-    model=None
-    )
+cs.add_hyperparameters([p0, p1, p2])
 ```
 
-* An example for loop optimization problem with constraints is given in [ytopt/benchmark/loopopt/problem.py](https://github.com/ytopt-team/ytopt/blob/master/ytopt/benchmark/loopopt/problem.py).
+
+
+* An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/problem.py).
 
 ```
-import numpy as np
-from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
-from autotune import TuningProblem
-from autotune.space import *
 
-import sys
-import ConfigSpace as CS
-import ConfigSpace.hyperparameters as CSH
-from skopt.space import Real, Integer, Categorical
-
-cs = CS.ConfigurationSpace(seed=1234)
-p1 = CSH.CategoricalHyperparameter(name='p1', choices=['None', '#pragma omp #p3', '#pragma omp target #p3', '#pragma omp target #p5', '#pragma omp #p4'])
-p3 = CSH.CategoricalHyperparameter(name='p3', choices=['None', '#parallel for #p4', '#parallel for #p6', '#parallel for #p7'])
-p4 = CSH.CategoricalHyperparameter(name='p4', choices=['None', 'simd'])
-p5 = CSH.CategoricalHyperparameter(name='p5', choices=['None', '#dist_schedule static', '#dist_schedule #p11'])
-p6 = CSH.CategoricalHyperparameter(name='p6', choices=['None', '#schedule #p10', '#schedule #p11'])
-p7 = CSH.CategoricalHyperparameter(name='p7', choices=['None', '#numthreads #p12'])
-p10 = CSH.CategoricalHyperparameter(name='p10', choices=['static', 'dynamic'])
-p11 = CSH.OrdinalHyperparameter(name='p11', sequence=['1', '8', '16'])
-p12 = CSH.OrdinalHyperparameter(name='p12', sequence=['1', '8', '16'])
-
-cs.add_hyperparameters([p1, p3, p4, p5, p6, p7, p10, p11, p12])
-
-#make p3 an active parameter when p1 value is ... 
-cond0 = CS.EqualsCondition(p3, p1, '#pragma omp #p3')
-cond1 = CS.EqualsCondition(p3, p1, '#pragma omp target #p3')
-cond2 = CS.EqualsCondition(p5, p1, '#pragma omp target #p5')
-cond3 = CS.EqualsCondition(p4, p1, '#pragma omp #p4')
-cond4 = CS.EqualsCondition(p4, p3, '#parallel for #p4')
-cond5 = CS.EqualsCondition(p6, p3, '#parallel for #p6')
-cond6 = CS.EqualsCondition(p7, p3, '#parallel for #p7')
-cond7 = CS.EqualsCondition(p11, p5, '#dist_schedule #p11')
-cond8 = CS.EqualsCondition(p10, p6, '#schedule #p10')
-cond9 = CS.EqualsCondition(p11, p6, '#schedule #p11')
-cond10 = CS.EqualsCondition(p12, p7, '#numthreads #p12')
-
-cs.add_condition(CS.OrConjunction(cond0,cond1))
-cs.add_condition(cond2) 
-cs.add_condition(CS.OrConjunction(cond3,cond4))
-cs.add_condition(cond5) 
-cs.add_condition(cond6) 
-cs.add_condition(cond8) 
-cs.add_condition(CS.OrConjunction(cond7,cond9))
-cs.add_condition(cond10)
-
-# problem space
-task_space = None
-input_space = cs 
-
-output_space = Space([
-    Real(-inf, inf, name='y')
-])
-
-def myobj(point: dict):
-    s = np.random.uniform()
-    return s
-
-Problem = TuningProblem(
-    task_space=None,
-    input_space=input_space,
-    output_space=output_space,
-    objective=myobj,
-    constraints=None,
-    model=None
-    )
-``` 
+``` -->
 
 
 # Running
 
 Bayesian optimization with random forest model:
 ```
-python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.loopopt.problem.Problem --max-evals=10 --learner RF
+python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-omp.xsbench.problem.Problem --max-evals=10 --learner RF
 ```
 
 # How do I learn more?
