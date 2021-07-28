@@ -27,7 +27,7 @@ REQUIRED = [
     # 'requests', 'maya', 'records',
     'numpy',
     'scikit-optimize',
-    'scikit-learn',
+    'scikit-learn==0.23.1',
     'tqdm',
     'tensorflow==1.14.0',
     'keras',
@@ -36,6 +36,7 @@ REQUIRED = [
     'joblib',
     'deap',
     'ray[debug]',
+    'ConfigSpace',
 ]
 
 if not on_rtd:

@@ -66,7 +66,7 @@ class Plopper:
         cmd1 = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
 		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
                 + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm"
+                " -lm  -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
 
         cmd2 = kernel_dir + "/exe.pl " +  tmpbinary
 

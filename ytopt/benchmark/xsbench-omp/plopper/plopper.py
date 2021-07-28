@@ -66,7 +66,7 @@ class Plopper:
         cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 "  + \
 		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
                 + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm"
+                " -lm " + " -L/usr/local/opt/llvm/lib"
 
         cmd2 = kernel_dir + "/exe.pl " +  tmpbinary
 

@@ -19,159 +19,114 @@ promising configurations.
 ```
 docs/	
     Sphinx documentation files
-ppo/
-    proximal policy optimization based reinforcement learning 
-problems/
-    easy to evalaute benchmark functions
 test/
     scipts for running benchmark problems in the problems directory
 ytopt/	
     scripts that contain the search implementations  
+ytopt/benchmark/	
+    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ```
 
 # Install instructions
+The autotuning framework requires the following components: Ytopt, scikit-optimize, and autotune. 
+
+* We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create -n ytopt -c anaconda python=3.6
-source activate ytopt
+conda create --name ytune python=3.7
+conda activate ytune
+```
+
+* Install [scikit-optimize](https://github.com/pbalapra/scikit-optimize.git):
+```
+git clone https://github.com/pbalapra/scikit-optimize.git
+cd scikit-optimize
+pip install -e .
+```
+
+* Install [autotune](https://github.com/ytopt-team/autotune.git):
+```
+git clone -b version1 https://github.com/ytopt-team/autotune.git
+cd autotune/
+pip install -e . 
+```
+
+* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
+```
 git clone https://github.com/ytopt-team/ytopt.git
 cd ytopt/
 pip install -e .
 ```
 
-If you encounter installtion error, install psutil, setproctitle, mpich first as follows
+If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
 conda install -c conda-forge mpich
+conda install -c conda-forge mpi4py
 pip install -e .
 ```
-# Autotuning problem definition
+# Defining autotuning problem
 
-An example is given in problems/ackley_mix
+An example to autotune the OpenMP version of XSBench:
 
-To define an autotuning problem, create two files.
-
-The problem.py file defines the search space:
+* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py) for the following search space:
 
 ```
-from collections import OrderedDict
-import numpy as np
-import os 
+# number of threads
+p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+#block size for openmp dynamic schedule
+p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
+#clang unrolling
+#omp parallel
+p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
+cs.add_hyperparameters([p0, p1, p2])
+```
 
-np.random.seed(0)
+* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/plopper/plopper.py) for code generation and compiling.
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+* Note that you can install openmpi openmpi-mpicc openmp for this example:
+```
+conda install -c conda-forge openmp openmpi openmpi-mpicc
+```
 
-from ytopt.problem import Problem
+An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
 
-cmd_frmt = "python " +HERE+"/executable.py"
-nparam = 6
+<!-- An example to autotune the deep learning mnist problem is given in [ytopt/benchmark/dl/](https://github.com/jke513/ytopt/tree/master/ytopt/benchmark/dl).
 
-for i in range(0, nparam):
-    cmd_frmt += f" --p{i} {'{}'}"
-problem = Problem(cmd_frmt)
+ You can define your search problem such as:
 
-a, b = -15, 30
+* An example to autotune the OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-omp/xsbench/problem.py).
 
-problem.spec_dim(p_id=0, p_space=(a, b), default=a)
-problem.spec_dim(p_id=1, p_space=(a, b), default=a)
-problem.spec_dim(p_id=2, p_space=[a+i for i in range(b-a)], default=a)
-problem.spec_dim(p_id=3, p_space=[a+i for i in range(b-a)], default=a)
-problem.spec_dim(p_id=4, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
-problem.spec_dim(p_id=5, p_space= list(np.random.permutation([str(a+i) for i in range(b-a)])), default=str(a))
+```
+cs = CS.ConfigurationSpace(seed=1234)
+# number of threads
+p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+#block size for openmp dynamic schedule
+p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
+#clang unrolling
+#omp parallel
+p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
 
-problem.checkcfg()
+cs.add_hyperparameters([p0, p1, p2])
+```
 
-if __name__ == '__main__':
-    print(problem)
+
+
+* An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/problem.py](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/problem.py).
 
 ```
 
-The executable.py file defines the method to evaluate a point in the search space:
-```
-#!/usr/bin/env python
-from __future__ import print_function
-import re
-import os
-import sys
-import time
-import json
-import math
-import os
-import argparse
-import numpy as np
-from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
-seed = 12345
-
-def create_parser():
-    'command line parser'
-    
-    parser = argparse.ArgumentParser(add_help=True)
-    group = parser.add_argument_group('required arguments')
-    parser.add_argument('--p0', action='store', dest='p0',
-                        nargs='?', const=2, type=float, default=-15.0,
-                        help='parameter p0 value')
-    parser.add_argument('--p1', action='store', dest='p1',
-                        nargs='?', const=2, type=float, default=-15.0,
-                        help='parameter p1 value')
-    parser.add_argument('--p2', action='store', dest='p2',
-                        nargs='?', const=2, type=int, default=-15,
-                        help='parameter p2 value')
-    parser.add_argument('--p3', action='store', dest='p3',
-                        nargs='?', const=2, type=int, default=-15,
-                        help='parameter p3 value')
-    parser.add_argument('--p4', action='store', dest='p4',
-                        nargs='?', const=2, type=str, default='-15',
-                        help='parameter p4 value')
-    parser.add_argument('--p5', action='store', dest='p5',
-                        nargs='?', const=2, type=str, default='-15',
-                        help='parameter p5 value')
-
-    return(parser)
-
-parser = create_parser()
-cmdline_args = parser.parse_args()
-param_dict = vars(cmdline_args)
-print(param_dict)
-p0 = param_dict['p0']
-p1 = param_dict['p1']
-p2 = param_dict['p2']
-p3 = param_dict['p3']
-p4 = int(param_dict['p4'])
-p5 = int(param_dict['p5'])
-
-
-x=np.array([p0,p1,p2,p3,p4,p5])
-
-def ackley( x, a=20, b=0.2, c=2*pi ):
-    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-    n = len(x)
-    s1 = sum( x**2 )
-    s2 = sum(cos( c * x ))
-    return -a*exp( -b*sqrt( s1 / n )) - exp( s2 / n ) + a + exp(1)
-
-pval = ackley(x, a=20, b=0.2, c=2*pi)
-print('OUTPUT:%1.3f'%pval)
-```
+``` -->
 
 
 # Running
 
-Reinforcement learning based search with proximal policy optimization
+Bayesian optimization with random forest model:
 ```
-mpirun -np 2 python -m ytopt.search.ppo_a3c --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='PPO' 
+python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-omp.xsbench.problem.Problem --max-evals=10 --learner RF
 ```
-
-Bayesian optimization with random forest model
-```
-mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID>  --max_time=60 --base_estimator='RF' 
-```
-
-Random search
-```
-mpirun -np 2 python -m ytopt.search.async_search --prob_path=<PROBLEM_DIR_PATH>/problem.py --exp_dir=<EXP_DIR_PATH> --prob_attr=problem --exp_id=<ID> --max_time=60 --base_estimator='DUMMY'
-```
+* Then, ytopt.log, results.csv, and results.json will be rendered. 
 
 # How do I learn more?
 
@@ -187,6 +142,8 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
 * Romain Egele <regele@anl.gov>
 * Paul Hovland <hovland@anl.gov>
+* Xingfu Wu <xingfu.wu@anl.gov>
+* Jaehoon Koo <jkoo@anl.gov>
 
 Modules, patches (code, documentation, etc.) contributed by:
 
@@ -208,6 +165,7 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 
 * YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2017--Present) 
 * Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
+* PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--Present)
 
 # Copyright and license
 
