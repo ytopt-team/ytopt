@@ -4,7 +4,8 @@ Tutorial: Autotune the OpenMP version of XSBench
 This tutorial describes how to define autotuning problem and an evaluating method for autotuning ECP XSBench app. 
 
 We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md). 
- 
+
+You can install openmpi openmpi-mpicc openmp for this example: `conda install -c conda-forge openmp openmpi openmpi-mpicc`
 
 Indentifying a problem to autotune 
 -----------------------
