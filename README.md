@@ -90,7 +90,7 @@ cs.add_hyperparameters([p0, p1, p2])
 conda install -c conda-forge openmp openmpi openmpi-mpicc
 ```
 
-An example to autotune the OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
+An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
 
 <!-- An example to autotune the deep learning mnist problem is given in [ytopt/benchmark/dl/](https://github.com/jke513/ytopt/tree/master/ytopt/benchmark/dl).
 
@@ -126,6 +126,7 @@ Bayesian optimization with random forest model:
 ```
 python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-omp.xsbench.problem.Problem --max-evals=10 --learner RF
 ```
+* Then, ytopt.log, results.csv, and results.json will be rendered. 
 
 # How do I learn more?
 
