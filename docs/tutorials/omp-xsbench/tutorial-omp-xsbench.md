@@ -133,7 +133,7 @@ class Plopper:
         tmpbinary = interimfile[:-2]
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+        cmd1 = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
         " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
         + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
         " -lm" + " -L${CONDA_PREFIX}/lib"
@@ -218,7 +218,7 @@ def findRuntime(self, x, params):
     tmpbinary = interimfile[:-2]
     kernel_idx = self.sourcefile.rfind('/')
     kernel_dir = self.sourcefile[:kernel_idx]
-    cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+    cmd1 = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
     " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
     + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
     " -lm" + " -L${CONDA_PREFIX}/lib"
@@ -239,8 +239,7 @@ def findRuntime(self, x, params):
     return exetime #return execution time as cost
 ```
 
-Note: you need to define your own evaluating function such as above. 
-
+Note: For macOS it may need to compile it with clang. Change `gcc` to `clang` such that `cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`
 
 --------------
 Last, we create an object of the autotuning problem. The problem will be called in the commandline implementation. 

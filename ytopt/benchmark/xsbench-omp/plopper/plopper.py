@@ -52,7 +52,7 @@ class Plopper:
         tmpbinary = interimfile[:-2]
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+        cmd1 = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
         " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
         + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
         " -lm" + " -L${CONDA_PREFIX}/lib"
