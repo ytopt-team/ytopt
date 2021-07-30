@@ -1,7 +1,5 @@
-import os
-import sys
-import subprocess
-import random
+import os, sys, subprocess, random
+random.seed(1234)
 
 class Plopper:
     def __init__(self,sourcefile,outputdir):
@@ -13,7 +11,6 @@ class Plopper:
         if not os.path.exists(self.outputdir):
             os.makedirs(self.outputdir)
 
-
     #Creating a dictionary using parameter label and value
     def createDict(self, x, params):
         dictVal = {}
@@ -21,7 +18,7 @@ class Plopper:
             dictVal[p] = v
         return(dictVal)
 
-    #Replace the Markers in the source file with the corresponding Pragma values
+    #Replace the Markers in the source file with the corresponding prameter values
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
@@ -38,48 +35,38 @@ class Plopper:
                     f2.write(modify_line)
                 else:
                     #To avoid writing the Marker
-                    f2.write(line)
-
+                    f2.write(line)       
 
     # Function to find the execution time of the interim file, and return the execution time as cost to the search module
     def findRuntime(self, x, params):
         interimfile = ""
-        #exetime = float('inf')
-        #exetime = sys.maxsize
         exetime = 1
-        counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
-
-        interimfile = self.outputdir+"/"+str(counter)+".c"
-
-
+        counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals          
+        interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
+        
         # Generate intermediate file
         dictVal = self.createDict(x, params)
         self.plotValues(dictVal, self.sourcefile, interimfile)
 
         #compile and find the execution time
         tmpbinary = interimfile[:-2]
-
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-
-
-        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 "  + \
-		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
-                + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm " + " -L/usr/local/opt/llvm/lib"
-
-        cmd2 = kernel_dir + "/exe.pl " +  tmpbinary
-
+        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+        " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
+        + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
+        " -lm" + " -L${CONDA_PREFIX}/lib"
+        cmd2 = kernel_dir + "/exe.pl " + tmpbinary
+        
         #Find the compilation status using subprocess
         compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
 
         #Find the execution time only when the compilation return code is zero, else return infinity
         if compilation_status.returncode == 0 :
-        #and len(compilation_status.stderr) == 0: #Second condition is to check for warnings
             execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
             exetime = float(execution_status.stdout.decode('utf-8'))
             if exetime == 0:
-               exetime = 1
+                exetime = 1
         else:
             print(compilation_status.stderr)
             print("compile failed")
