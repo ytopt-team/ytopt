@@ -65,11 +65,13 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
 obj = Plopper(dir_path+'/mmp.c',dir_path)
-x=['p0','p1','p2']
+
+x1=['p0','p1','p2']
 def myobj(point: dict):
     def plopper_func(x):
         x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-        value = [point[x[0]],point[x[1]],point[x[2]]]
+        value = [point[x1[0]],point[x1[1]],point[x1[2]]]
+        print('CONFIG:',point)
         params = ["P0","P1","P2"]
         result = obj.findRuntime(value, params)
         return result
@@ -84,23 +86,22 @@ The following describes our evaluating function, Plopper. You can find it `<http
 
 ```python
 import os, sys, subprocess, random
+random.seed(1234)
+
 class Plopper:
     def __init__(self,sourcefile,outputdir):
-
-        # Initilizing global variables
         self.sourcefile = sourcefile
         self.outputdir = outputdir+"/tmp_files"
+
         if not os.path.exists(self.outputdir):
             os.makedirs(self.outputdir)
 
-    #Creating a dictionary using parameter label and value
     def createDict(self, x, params):
         dictVal = {}
         for p, v in zip(params, x):
             dictVal[p] = v
         return(dictVal)
 
-    #Replace the Markers in the source file with the corresponding Pragma values
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
@@ -110,53 +111,132 @@ class Plopper:
                 modify_line = line
                 for key, value in dictVal.items():
                     if key in modify_line:
-                        if value != 'None': #For empty string options
+                        if value != 'None': 
                             modify_line = modify_line.replace('#'+key, str(value))
 
                 if modify_line != line:
                     f2.write(modify_line)
                 else:
-                    #To avoid writing the Marker
-                    f2.write(line)
+                    f2.write(line)     
 
-
-    # Function to find the execution time of the interim file, and return the execution time as cost to the search module
     def findRuntime(self, x, params):
         interimfile = ""
         exetime = 1
-        counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
-        interimfile = self.outputdir+"/"+str(counter)+".c"
+        counter = random.randint(1, 10001)         
+        interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
+        
         # Generate intermediate file
         dictVal = self.createDict(x, params)
         self.plotValues(dictVal, self.sourcefile, interimfile)
 
         #compile and find the execution time
         tmpbinary = interimfile[:-2]
-
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-
-        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 "  + \
+        cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
         " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
         + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-        " -lm " + " -L/usr/local/opt/llvm/lib"
-
-        cmd2 = kernel_dir + "/exe.pl " +  tmpbinary
-
+        " -lm" + " -L${CONDA_PREFIX}/lib"
+        cmd2 = kernel_dir + "/exe.pl " + tmpbinary
+        
         #Find the compilation status using subprocess
         compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
 
         #Find the execution time only when the compilation return code is zero, else return infinity
         if compilation_status.returncode == 0 :
-        #and len(compilation_status.stderr) == 0: #Second condition is to check for warnings
             execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
             exetime = float(execution_status.stdout.decode('utf-8'))
             if exetime == 0:
-               exetime = 1
+                exetime = 1
         else:
             print(compilation_status.stderr)
             print("compile failed")
-        return exetime #return execution time as cost
+        return exetime 
+```
+
+This file consists of several components.
+
+`__init__()` take paths of the source file and output directory, and creates the output directory if it does not exists.   
+
+
+```python
+def __init__(self,sourcefile,outputdir):
+    # Initilizing global variables
+    self.sourcefile = sourcefile
+    self.outputdir = outputdir+"/tmp_files"
+
+    if not os.path.exists(self.outputdir):
+        os.makedirs(self.outputdir)
+```
+
+`createDict()` generates a dictionary for parameter labels and values.
+
+
+```python
+def createDict(self, x, params):
+    dictVal = {}
+    for p, v in zip(params, x):
+        dictVal[p] = v
+    return(dictVal)
+```
+
+`plotValues()` replace the Markers in the source file with the corresponding prameter values of the parameter dictionary.  
+
+
+```python
+def plotValues(self, dictVal, inputfile, outputfile):
+    with open(inputfile, "r") as f1:
+        buf = f1.readlines()
+    with open(outputfile, "w") as f2:
+        for line in buf:
+            modify_line = line
+            for key, value in dictVal.items():
+                if key in modify_line:
+                    if value != 'None': #For empty string options
+                        modify_line = modify_line.replace('#'+key, str(value))
+            if modify_line != line:
+                f2.write(modify_line)
+            else:
+                f2.write(line)  #To avoid writing the Marker
+```
+
+`findRuntime()` generates commandlines for compiling the source code and and executing the compiled code. Then, it finds the compilation status using subprocess; finds the execution time of the compiled code; and returns the execution time as cost to the search module. 
+
+
+```python
+def findRuntime(self, x, params):
+    interimfile = ""
+    exetime = 1
+    counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals          
+    interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
+
+    # Generate intermediate file
+    dictVal = self.createDict(x, params)
+    self.plotValues(dictVal, self.sourcefile, interimfile)
+
+    #compile and find the execution time
+    tmpbinary = interimfile[:-2]
+    kernel_idx = self.sourcefile.rfind('/')
+    kernel_dir = self.sourcefile[:kernel_idx]
+    cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+    " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
+    + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
+    " -lm" + " -L${CONDA_PREFIX}/lib"
+    cmd2 = kernel_dir + "/exe.pl " + tmpbinary
+
+    #Find the compilation status using subprocess
+    compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
+
+    #Find the execution time only when the compilation return code is zero, else return infinity
+    if compilation_status.returncode == 0 :
+        execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
+        exetime = float(execution_status.stdout.decode('utf-8'))
+        if exetime == 0:
+            exetime = 1
+    else:
+        print(compilation_status.stderr)
+        print("compile failed")
+    return exetime #return execution time as cost
 ```
 
 Note: you need to define your own evaluating function such as above. 
