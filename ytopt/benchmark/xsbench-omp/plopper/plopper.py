@@ -52,18 +52,18 @@ class Plopper:
         tmpbinary = interimfile[:-2]
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-        cmd1 = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
+        gcc_cmd = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
         " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
         + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
         " -lm" + " -L${CONDA_PREFIX}/lib"
-        cmd2 = kernel_dir + "/exe.pl " + tmpbinary
+        run_cmd = kernel_dir + "/exe.pl " + tmpbinary
         
         #Find the compilation status using subprocess
-        compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
+        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
         #Find the execution time only when the compilation return code is zero, else return infinity
         if compilation_status.returncode == 0 :
-            execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
+            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
             exetime = float(execution_status.stdout.decode('utf-8'))
             if exetime == 0:
                 exetime = 1

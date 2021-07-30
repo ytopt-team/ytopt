@@ -1,23 +1,59 @@
 Tutorial: Autotune the OpenMP version of XSBench 
 ===================
 
-This tutorial describes how to define autotuning problem and an evaluating method for autotuning ECP XSBench app. 
+This tutorial describes how to define autotuning problem and an evaluating method for autotuning the block matrix multiplication. 
 
 We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md). 
 
-You can install openmpi openmpi-mpicc openmp for this example: `conda install -c conda-forge openmp openmpi openmpi-mpicc`
+This example including the source code is borrowed from [http://opentuner.org/tutorial/gettingstarted/](http://opentuner.org/tutorial/gettingstarted/).
 
 Indentifying a problem to autotune 
 -----------------------
-In this tutorial, we target to autotune ECP XSBench app `<https://github.com/ANL-CESAR/XSBench>`.
+In this tutorial, we target to autotune the block size for matrix multiplication. Save the related source files in the seprate folder: `mmm_block.cpp`. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/mmm-block/mmm_problem/mmm_block.cpp>`.
 
-XSBench is a mini-app representing a key computational kernel of the Monte Carlo neutron transport algorithm [(reference)](https://github.com/ANL-CESAR/XSBench). Save the related source and header files in the seprate folder: `mmp.c`, `Main.c`, `Materials.c`, `XSutils.c`, `XSbench_header.h`, `make.bat`. 
 
-We omit presenting the files for space. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-omp/xsbench>`. output lines are truncated 
+```python
+#include <stdio.h>
+#include <cstdlib>
+
+#define N 100
+
+int main(int argc, const char** argv)
+{
+
+  int n = BLOCK_SIZE * (N/BLOCK_SIZE);
+  int a[N][N];
+  int b[N][N];
+  int c[N][N];
+  int sum=0;
+  for(int k1=0;k1<n;k1+=BLOCK_SIZE)
+  {
+      for(int j1=0;j1<n;j1+=BLOCK_SIZE)
+      {
+          for(int k1=0;k1<n;k1+=BLOCK_SIZE)
+          {
+              for(int i=0;i<n;i++)
+              {
+                  for(int j=j1;j<j1+BLOCK_SIZE;j++)
+                  {
+                      sum = c[i][j];
+                      for(int k=k1;k<k1+BLOCK_SIZE;k++)
+                      {               
+                          sum += a[i][k] * b[k][j];
+                      }
+                      c[i][j] = sum;
+                  }
+              }
+          }
+      }
+         }
+  return 0;
+}
+```
 
 Defining autotuning problem
 -----------------------
-We describe how to define your search problem `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem.py>`
+We describe how to define your search problem `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/mmm-block/mmm_problem/problem.py>`
 
 --------------
 First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`.
@@ -34,20 +70,15 @@ import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
 ```
 
-Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: block size for openmp dynamic schedule, 3) `p2`: turn on/off omp parallel.  
+Our search space contains one parameter; `BLOCK_SIZE`: number of blocks.  
 
 
 ```python
-# create an object of ConfigSpace 
+# create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
-# number of threads
-p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
 #block size for openmp dynamic schedule
-p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
-#omp parallel
-p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
-#add parameters to search space object
-cs.add_hyperparameters([p0, p1, p2])
+p0= CSH.OrdinalHyperparameter(name='BLOCK_SIZE', sequence=['1','2','3','4','5','6','7','8','9','10'], default_value='5')
+cs.add_hyperparameters([p0])
 # problem space
 input_space = cs
 output_space = Space([Real(0.0, inf, name="time")])
@@ -64,24 +95,25 @@ Plopper take source code and output directory and return an execution time.
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmp.c',dir_path)
+obj = Plopper(dir_path+'/mmm_block.cpp',dir_path)
 
-x1=['p0','p1','p2']
+x1=['BLOCK_SIZE']
 def myobj(point: dict):
     def plopper_func(x):
         x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-        value = [point[x1[0]],point[x1[1]],point[x1[2]]]
+        value = [point[x1[0]]]
         print('CONFIG:',point)
-        params = ["P0","P1","P2"]
+        params = ["BLOCK_SIZE"]
         result = obj.findRuntime(value, params)
         return result
-    x = np.array([point[f'p{i}'] for i in range(len(point))])
+
+    x = np.array([point['BLOCK_SIZE']])
     results = plopper_func(x)
     print('OUTPUT:%f',results)
     return results
 ```
 
-The following describes our evaluating function, Plopper. You can find it `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/plopper/plopper.py>`.  
+The following describes our evaluating function, Plopper. You can find it `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/mmm-block/plopper/plopper.py>`.  
 
 
 ```python
@@ -101,44 +133,23 @@ class Plopper:
         for p, v in zip(params, x):
             dictVal[p] = v
         return(dictVal)
-
-    def plotValues(self, dictVal, inputfile, outputfile):
-        with open(inputfile, "r") as f1:
-            buf = f1.readlines()
-
-        with open(outputfile, "w") as f2:
-            for line in buf:
-                modify_line = line
-                for key, value in dictVal.items():
-                    if key in modify_line:
-                        if value != 'None': 
-                            modify_line = modify_line.replace('#'+key, str(value))
-
-                if modify_line != line:
-                    f2.write(modify_line)
-                else:
-                    f2.write(line)     
-
+    
     def findRuntime(self, x, params):
         interimfile = ""
         exetime = 1
-        counter = random.randint(1, 10001)         
-        interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
         
         # Generate intermediate file
         dictVal = self.createDict(x, params)
-        self.plotValues(dictVal, self.sourcefile, interimfile)
 
         #compile and find the execution time
-        tmpbinary = interimfile[:-2]
+        tmpbinary = self.outputdir + '/tmp.bin'
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-        gcc_cmd = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
-        " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
-        + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-        " -lm" + " -L${CONDA_PREFIX}/lib"
+        gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
+        gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
+        gcc_cmd += ' -o ' + tmpbinary #+ kernel_dir + '/tmp.bin'
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
-        
+
         #Find the compilation status using subprocess
         compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
@@ -180,70 +191,44 @@ def createDict(self, x, params):
     return(dictVal)
 ```
 
-`plotValues()` replaces the Markers in the source file with the corresponding prameter values of the parameter dictionary. 
-For example, a sampled value for number of threads `p0` replaces `#P0` in line 349 `input.nthreads = #P0` of `mmp.c` that is the original source file. 
-
-
-```python
-def plotValues(self, dictVal, inputfile, outputfile):
-    with open(inputfile, "r") as f1:
-        buf = f1.readlines()
-    with open(outputfile, "w") as f2:
-        for line in buf:
-            modify_line = line
-            for key, value in dictVal.items():
-                if key in modify_line:
-                    if value != 'None': #For empty string options
-                        modify_line = modify_line.replace('#'+key, str(value))
-            if modify_line != line:
-                f2.write(modify_line)
-            else:
-                f2.write(line)  #To avoid writing the Marker
-```
-
-`findRuntime()` first calls `createDict()` to obatain configuration values and `plotValues()` to modify the original source code. 
+`findRuntime()` first calls `createDict()` to obatain configuration. 
 After that, it generates the commandline `gcc_cmd` for compiling the modified source code and the commandline `run_cmd` for executing the compiled code. 
 Then, it finds the compilation status using subprocess; finds the execution time of the compiled code; and returns the execution time as cost to the search module. 
 
 
 ```python
-def findRuntime(self, x, params):
-    interimfile = ""
-    exetime = 1
-    counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals          
-    interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
+    def findRuntime(self, x, params):
+        interimfile = ""
+        exetime = 1
+        
+        # Generate intermediate file
+        dictVal = self.createDict(x, params)
 
-    # Generate intermediate file
-    dictVal = self.createDict(x, params)
-    self.plotValues(dictVal, self.sourcefile, interimfile)
+        #compile and find the execution time
+        tmpbinary = self.outputdir + '/tmp.bin'
+        kernel_idx = self.sourcefile.rfind('/')
+        kernel_dir = self.sourcefile[:kernel_idx]
+        gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
+        gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
+        gcc_cmd += ' -o ' + tmpbinary #+ kernel_dir + '/tmp.bin'
+        run_cmd = kernel_dir + "/exe.pl " + tmpbinary
 
-    #compile and find the execution time
-    tmpbinary = interimfile[:-2]
-    kernel_idx = self.sourcefile.rfind('/')
-    kernel_dir = self.sourcefile[:kernel_idx]
-    gcc_cmd = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
-    " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
-    + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-    " -lm" + " -L${CONDA_PREFIX}/lib"
-    run_cmd = kernel_dir + "/exe.pl " + tmpbinary
+        #Find the compilation status using subprocess
+        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
-    #Find the compilation status using subprocess
-    compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
-
-    #Find the execution time only when the compilation return code is zero, else return infinity
-    if compilation_status.returncode == 0 :
-        execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
-        exetime = float(execution_status.stdout.decode('utf-8'))
-        if exetime == 0:
-            exetime = 1
-    else:
-        print(compilation_status.stderr)
-        print("compile failed")
-    return exetime #return execution time as cost
+        #Find the execution time only when the compilation return code is zero, else return infinity
+        if compilation_status.returncode == 0 :
+            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
+            exetime = float(execution_status.stdout.decode('utf-8'))
+            if exetime == 0:
+                exetime = 1
+        else:
+            print(compilation_status.stderr)
+            print("compile failed")
+        return exetime #return execution time as cost
 ```
 
 Note: 
-- For macOS it may need to compile it with `clang`. You can change `gcc` to `clang` such that `cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`. 
 - `exe.pl` computes average the execution time over 5 runs. 
 
 --------------
@@ -266,7 +251,7 @@ Running and viewing Results
 Now, we can run the following command to autotune our program: 
 --evaluator flag sets which object used to evaluate models, --problem flag sets path to the Problem instance you want to use for the search, --max-evals flag sets the maximum number of evaluations, --learner flag sets the type of learner (surrogate model).
 
-`python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-omp.xsbench.problem.Problem --max-evals=10 --learner RF
+`python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.mmm-block.mmm_problem.problem.Problem --max-evals=5 --learner RF
 `
 
 --------------

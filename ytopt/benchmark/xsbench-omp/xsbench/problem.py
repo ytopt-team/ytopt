@@ -1,5 +1,4 @@
 import numpy as np
-from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
 from autotune import TuningProblem
 from autotune.space import *
 import os, sys, time, json, math
