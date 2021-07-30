@@ -243,7 +243,7 @@ def findRuntime(self, x, params):
 ```
 
 Note: 
-- For macOS it may need to compile it with `clang`. You can change `gcc` to `clang` such that `cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`. 
+- For macOS it may need to compile it with `clang`. You can change `gcc` to `clang` such that `gcc_cmd = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`. 
 - `exe.pl` computes average the execution time over 5 runs. 
 
 --------------
