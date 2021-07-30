@@ -1,4 +1,4 @@
-Tutorial: Autotune the OpenMP version of XSBench 
+Tutorial: Autotune the block matrix multiplication 
 ===================
 
 This tutorial describes how to define autotuning problem and an evaluating method for autotuning the block matrix multiplication. 
@@ -9,7 +9,7 @@ This example including the source code is borrowed from [http://opentuner.org/tu
 
 Indentifying a problem to autotune 
 -----------------------
-In this tutorial, we target to autotune the block size for matrix multiplication. Save the related source files in the seprate folder: `mmm_block.cpp`. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/mmm-block/mmm_problem/mmm_block.cpp>`.
+In this tutorial, we target to autotune the block size for matrix multiplication. Save the related source files in the seprate folder: `mmm_block.cpp`. We have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/mmm-block/mmm_problem/mmm_block.cpp>`.
 
 
 ```python
@@ -147,7 +147,7 @@ class Plopper:
         kernel_dir = self.sourcefile[:kernel_idx]
         gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
         gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
-        gcc_cmd += ' -o ' + tmpbinary #+ kernel_dir + '/tmp.bin'
+        gcc_cmd += ' -o ' + tmpbinary
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
 
         #Find the compilation status using subprocess
@@ -210,7 +210,7 @@ Then, it finds the compilation status using subprocess; finds the execution time
         kernel_dir = self.sourcefile[:kernel_idx]
         gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
         gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
-        gcc_cmd += ' -o ' + tmpbinary #+ kernel_dir + '/tmp.bin'
+        gcc_cmd += ' -o ' + tmpbinary
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
 
         #Find the compilation status using subprocess
@@ -257,44 +257,54 @@ Now, we can run the following command to autotune our program:
 --------------
 Once autotuning kick off, ytopt.log, results.csv, and results.json will be rendered.
 
-We can track the results of each run configuration from `ytopt.log` shows the following (output lines are truncated for readability here): 
+We can track the results of each run configuration from `ytopt.log` shows the following: 
 
 ```
-2021-07-28 15:51:49|2126|INFO|ytopt.search.search:53] Created "ray" evaluator
-2021-07-28 15:51:49|2126|INFO|ytopt.search.search:54] Evaluator: num_workers is 1
-2021-07-28 15:51:49|2126|INFO|ytopt.search.hps.ambs:47] Initializing AMBS
-2021-07-28 15:51:49|2126|INFO|ytopt.search.hps.optimizer.optimizer:51] Using skopt.Optimizer with RF base_estimator
-2021-07-28 15:51:49|2126|INFO|ytopt.search.hps.ambs:79] Generating 1 initial points...
-2021-07-28 15:51:50|2126|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': '6', 'p1': '200', 'p2': ' '}
-2021-07-28 15:52:12|2126|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": "6", "p1": "200", "p2": " "} --> 20.158
-2021-07-28 15:52:12|2126|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': '6', 'p1': '200', 'p2': ' '} y: 20.158
-2021-07-28 15:52:12|2126|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-07-28 15:52:12|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': '6', 'p1': '200', 'p2': ' '} --> ('6', '200', ' '): evaluated objective: 20.158
-2021-07-28 15:52:13|2126|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-07-28 15:52:13|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['7', '40', ' '] lie: 20.158
-2021-07-28 15:52:13|2126|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': '7', 'p1': '40', 'p2': ' '}
-2021-07-28 15:52:36|2126|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": "7", "p1": "40", "p2": " "} --> 21.687
-2021-07-28 15:52:36|2126|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': '7', 'p1': '40', 'p2': ' '} y: 21.687
-2021-07-28 15:52:36|2126|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-07-28 15:52:36|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': '7', 'p1': '40', 'p2': ' '} --> ('7', '40', ' '): evaluated objective: 21.687
-2021-07-28 15:52:37|2126|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-07-28 15:52:37|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['7', '200', '#pragma omp parallel for'] lie: 21.687
-2021-07-28 15:52:37|2126|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': '7', 'p1': '200', 'p2': '#pragma omp parallel for'}
-2021-07-28 15:52:58|2126|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": "7", "p1": "200", "p2": "#pragma omp parallel for"} --> 20.393
-2021-07-28 15:52:58|2126|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': '7', 'p1': '200', 'p2': '#pragma omp parallel for'} y: 20.393
-2021-07-28 15:52:58|2126|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-07-28 15:52:58|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': '7', 'p1': '200', 'p2': '#pragma omp parallel for'} --> ('7', '200', '#pragma omp parallel for'): evaluated objective: 20.393
-2021-07-28 15:52:59|2126|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-07-28 15:52:59|2126|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['8', '100', ' '] lie: 21.687
-2021-07-28 15:52:59|2126|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': '8', 'p1': '100', 'p2': ' '}
-2021-07-28 15:53:20|2126|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": "8", "p1": "100", "p2": " "} --> 20.577
+2021-07-30 15:35:14|15364|INFO|ytopt.search.search:53] Created "ray" evaluator
+2021-07-30 15:35:14|15364|INFO|ytopt.search.search:54] Evaluator: num_workers is 1
+2021-07-30 15:35:14|15364|INFO|ytopt.search.hps.ambs:47] Initializing AMBS
+2021-07-30 15:35:14|15364|INFO|ytopt.search.hps.optimizer.optimizer:51] Using skopt.Optimizer with RF base_estimator
+2021-07-30 15:35:14|15364|INFO|ytopt.search.hps.ambs:79] Generating 1 initial points...
+2021-07-30 15:35:15|15364|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'BLOCK_SIZE': '5'}
+2021-07-30 15:35:17|15364|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"BLOCK_SIZE": "5"} --> 0.144
+2021-07-30 15:35:17|15364|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'BLOCK_SIZE': '5'} y: 0.144
+2021-07-30 15:35:17|15364|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-07-30 15:35:17|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'BLOCK_SIZE': '5'} --> ('5',): evaluated objective: 0.144
+2021-07-30 15:35:17|15364|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-07-30 15:35:18|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['6'] lie: 0.144
+2021-07-30 15:35:18|15364|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'BLOCK_SIZE': '6'}
+2021-07-30 15:35:19|15364|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"BLOCK_SIZE": "6"} --> 0.139
+2021-07-30 15:35:19|15364|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'BLOCK_SIZE': '6'} y: 0.139
+2021-07-30 15:35:19|15364|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-07-30 15:35:19|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'BLOCK_SIZE': '6'} --> ('6',): evaluated objective: 0.139
+2021-07-30 15:35:19|15364|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-07-30 15:35:19|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['2'] lie: 0.144
+2021-07-30 15:35:19|15364|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'BLOCK_SIZE': '2'}
+2021-07-30 15:35:21|15364|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"BLOCK_SIZE": "2"} --> 0.303
+2021-07-30 15:35:21|15364|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'BLOCK_SIZE': '2'} y: 0.303
+2021-07-30 15:35:21|15364|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-07-30 15:35:21|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'BLOCK_SIZE': '2'} --> ('2',): evaluated objective: 0.303
+2021-07-30 15:35:21|15364|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-07-30 15:35:21|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['8'] lie: 0.303
+2021-07-30 15:35:21|15364|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'BLOCK_SIZE': '8'}
+2021-07-30 15:35:23|15364|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"BLOCK_SIZE": "8"} --> 0.128
+2021-07-30 15:35:23|15364|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'BLOCK_SIZE': '8'} y: 0.128
+2021-07-30 15:35:23|15364|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-07-30 15:35:23|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'BLOCK_SIZE': '8'} --> ('8',): evaluated objective: 0.128
+2021-07-30 15:35:23|15364|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-07-30 15:35:23|15364|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: ['9'] lie: 0.303
+2021-07-30 15:35:23|15364|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'BLOCK_SIZE': '9'}
+2021-07-30 15:35:25|15364|INFO|ytopt.search.hps.ambs:85] Elapsed time: 00:00:10.34
+2021-07-30 15:35:25|15364|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"BLOCK_SIZE": "9"} --> 0.125
+2021-07-30 15:35:25|15364|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'BLOCK_SIZE': '9'} y: 0.125
+2021-07-30 15:35:25|15364|INFO|ytopt.search.hps.ambs:101] Hyperopt driver finishing
 ```
 
 Look up the best configuration (found so far) and its value by inspecting the following created file: `results.csv` and `results.json`. 
 
 In this run, the best configuration and its runtime is obtained:
 
-`{"p0": "8", "p1": "200", "p2": "#pragma omp parallel for"}: 19.604`
+`{'BLOCK_SIZE': '9'}: 0.125`
 
 Further Reading
 --------------

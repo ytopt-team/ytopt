@@ -32,7 +32,7 @@ class Plopper:
         kernel_dir = self.sourcefile[:kernel_idx]
         gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
         gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
-        gcc_cmd += ' -o ' + tmpbinary #+ kernel_dir + '/tmp.bin'
+        gcc_cmd += ' -o ' + tmpbinary
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
 
         #Find the compilation status using subprocess
