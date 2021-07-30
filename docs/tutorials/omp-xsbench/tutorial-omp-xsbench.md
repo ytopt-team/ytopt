@@ -181,7 +181,6 @@ def createDict(self, x, params):
 ```
 
 `plotValues()` replaces the Markers in the source file with the corresponding prameter values of the parameter dictionary. 
-
 For example, a sampled value for number of threads `p0` replaces `#P0` in line 349 `input.nthreads = #P0` of `mmp.c` that is the original source file. 
 
 
@@ -202,7 +201,9 @@ def plotValues(self, dictVal, inputfile, outputfile):
                 f2.write(line)  #To avoid writing the Marker
 ```
 
-`findRuntime()` first calls `createDict()` to obatain configuration values and `plotValues()` to modify the original source code. After that, it generates the commandline `cmd1` for compiling the modified source code and the commandline `cmd2` for executing the compiled code. Then, it finds the compilation status using subprocess; finds the execution time of the compiled code; and returns the execution time as cost to the search module. 
+`findRuntime()` first calls `createDict()` to obatain configuration values and `plotValues()` to modify the original source code. 
+After that, it generates the commandline `cmd1` for compiling the modified source code and the commandline `cmd2` for executing the compiled code. 
+Then, it finds the compilation status using subprocess; finds the execution time of the compiled code; and returns the execution time as cost to the search module. 
 
 
 ```python
@@ -242,7 +243,7 @@ def findRuntime(self, x, params):
 ```
 
 Note: 
-- For macOS it may need to compile it with `clang`. Change `gcc` to `clang` such that `cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`
+- For macOS it may need to compile it with `clang`. You can change `gcc` to `clang` such that `cmd1 = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`. 
 - `exe.pl` computes average the execution time over 5 runs. 
 
 --------------
