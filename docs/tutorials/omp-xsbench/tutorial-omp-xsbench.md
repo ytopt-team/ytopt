@@ -41,7 +41,7 @@ Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`:
 # create an object of ConfigSpace 
 cs = CS.ConfigurationSpace(seed=1234)
 # number of threads
-p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+p0= CSH.UniformIntegerHyperparameter(name='p0', lower=4, upper=8, default_value=8)
 #block size for openmp dynamic schedule
 p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
 #omp parallel

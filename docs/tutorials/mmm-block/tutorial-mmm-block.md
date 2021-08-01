@@ -77,7 +77,7 @@ Our search space contains one parameter; `BLOCK_SIZE`: number of blocks.
 # create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
 #block size for openmp dynamic schedule
-p0= CSH.OrdinalHyperparameter(name='BLOCK_SIZE', sequence=['1','2','3','4','5','6','7','8','9','10'], default_value='5')
+p0= CSH.UniformIntegerHyperparameter(name='BLOCK_SIZE', lower=1, upper=10, default_value=5)
 cs.add_hyperparameters([p0])
 # problem space
 input_space = cs

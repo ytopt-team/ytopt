@@ -58,6 +58,13 @@ cd ytopt/
 pip install -e .
 ```
 
+* Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
+```
+git clone https://github.com/deephyper/ConfigSpace.git configspace
+cd configspace
+pip install -e .
+```
+
 If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
@@ -66,6 +73,7 @@ conda install -c conda-forge mpich
 conda install -c conda-forge mpi4py
 pip install -e .
 ```
+
 # Tutorials
 
 * [Autotuning the block matrix multiplication](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block)
