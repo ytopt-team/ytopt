@@ -78,6 +78,7 @@ pip install -e .
 
 * [Autotuning the block matrix multiplication](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block)
 * [Autotuning the OpenMP version of XSBench](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench)
+* [Autotuning the hybrid MPI/OpenMP version of XSBench](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench)
 
 # How do I learn more?
 
