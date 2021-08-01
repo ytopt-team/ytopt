@@ -35,6 +35,8 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-om
 
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-mpi-omp)
 
+* You can follow the [/docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.md) for this tutorial. 
+
 <!--
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
 
