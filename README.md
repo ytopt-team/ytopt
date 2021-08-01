@@ -47,14 +47,14 @@ pip install -e .
 * Install [autotune](https://github.com/ytopt-team/autotune.git):
 ```
 git clone -b version1 https://github.com/ytopt-team/autotune.git
-cd autotune/
+cd autotune
 pip install -e . 
 ```
 
 * Install [ytopt](https://github.com/ytopt-team/ytopt.git):
 ```
 git clone https://github.com/ytopt-team/ytopt.git
-cd ytopt/
+cd ytopt
 pip install -e .
 ```
 
