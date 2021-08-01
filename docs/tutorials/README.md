@@ -33,6 +33,8 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-om
 ```
 * Then, ytopt.log, results.csv, and results.json will be rendered. 
 
+An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-mpi-omp)
+
 <!--
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
 

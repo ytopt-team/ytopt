@@ -1,13 +1,7 @@
 import numpy as np
-from numpy import abs, cos, exp, mean, pi, prod, sin, sqrt, sum
 from autotune import TuningProblem
 from autotune.space import *
-import os
-import sys
-import time
-import json
-import math
-
+import os, sys, time, json, math
 import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
@@ -15,11 +9,12 @@ from skopt.space import Real, Integer, Categorical
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
 from plopper import Plopper
-nparams = 3
 
+# create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
 # number of threads
-p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+# p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
+p0= CSH.UniformIntegerHyperparameter(name='p0', lower=4, upper=8, default_value=8)
 #block size for openmp dynamic schedule
 p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
 #clang unrolling
@@ -30,9 +25,7 @@ cs.add_hyperparameters([p0, p1, p2])
 
 # problem space
 task_space = None
-
 input_space = cs
-
 output_space = Space([
      Real(0.0, inf, name="time")
 ])
@@ -46,20 +39,18 @@ x1=['p0','p1','p2']
 
 def myobj(point: dict):
 
-  def plopper_func(x):
-    x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-    value = [point[x1[0]],point[x1[1]],point[x1[2]]]
-    print('VALUES:',point[x1[0]])
-    params = ["P0","P1","P2"]
+    def plopper_func(x):
+        x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
+        value = [point[x1[0]],point[x1[1]],point[x1[2]]]
+        print('CONFIG:',point)
+        params = ["P0","P1","P2"]
+        result = obj.findRuntime(value, params)
+        return result
 
-    result = obj.findRuntime(value, params)
-    return result
-
-  x = np.array([point[f'p{i}'] for i in range(len(point))])
-  results = plopper_func(x)
-  print('OUTPUT:%f',results)
-
-  return results
+    x = np.array([point[f'p{i}'] for i in range(len(point))])
+    results = plopper_func(x)
+    print('OUTPUT:%f',results)
+    return results
 
 Problem = TuningProblem(
     task_space=None,

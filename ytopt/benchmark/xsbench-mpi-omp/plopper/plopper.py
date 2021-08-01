@@ -1,7 +1,5 @@
-import os
-import sys
-import subprocess
-import random
+import os, sys, subprocess, random
+random.seed(1234)
 
 class Plopper:
     def __init__(self,sourcefile,outputdir):
@@ -44,13 +42,9 @@ class Plopper:
     # Function to find the execution time of the interim file, and return the execution time as cost to the search module
     def findRuntime(self, x, params):
         interimfile = ""
-        #exetime = float('inf')
-        #exetime = sys.maxsize
         exetime = 1
         counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
-
         interimfile = self.outputdir+"/"+str(counter)+".c"
-
 
         # Generate intermediate file
         dictVal = self.createDict(x, params)
@@ -58,28 +52,25 @@ class Plopper:
 
         #compile and find the execution time
         tmpbinary = interimfile[:-2]
-
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
 
-
-        cmd1 = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
+        gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
 		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
                 + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm  -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
-
-        cmd2 = kernel_dir + "/exe.pl " +  tmpbinary
+                " -lm -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
+        run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
 
         #Find the compilation status using subprocess
-        compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
+        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
         #Find the execution time only when the compilation return code is zero, else return infinity
         if compilation_status.returncode == 0 :
         #and len(compilation_status.stderr) == 0: #Second condition is to check for warnings
-            execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
+            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
             exetime = float(execution_status.stdout.decode('utf-8'))
             if exetime == 0:
-               exetime = 1
+                exetime = 1
         else:
             print(compilation_status.stderr)
             print("compile failed")
