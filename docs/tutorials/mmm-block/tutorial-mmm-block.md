@@ -305,7 +305,3 @@ Look up the best configuration (found so far) and its value by inspecting the fo
 In this run, the best configuration and its runtime is obtained:
 
 `{'BLOCK_SIZE': '9'}: 0.125`
-
-Further Reading
---------------
-- `xxx <yyy>`

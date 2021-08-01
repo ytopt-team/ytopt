@@ -354,7 +354,3 @@ Look up the best configuration (found so far) and its value by inspecting the fo
 In this run, the best configuration and its runtime is obtained:
 
 `{'p0': '6', 'p1': '64', 'p2': ' '}: 62.711`
-
-Further Reading
---------------
-- `xxx <yyy>`
