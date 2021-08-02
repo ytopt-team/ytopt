@@ -37,9 +37,9 @@ conda create --name ytune python=3.7
 conda activate ytune
 ```
 
-* Install [scikit-optimize](https://github.com/pbalapra/scikit-optimize.git):
+* Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
 ```
-git clone https://github.com/pbalapra/scikit-optimize.git
+git clone https://github.com/deephyper/scikit-optimize.git
 cd scikit-optimize
 pip install -e .
 ```
