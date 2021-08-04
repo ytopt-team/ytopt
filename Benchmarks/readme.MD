@@ -6,11 +6,13 @@
 
 The package Benchmarks includes the following directories:
 
-DL    (deep learning mnist)
+DL    (deep learning mnist) mnist and mnist-omp
 
 xsbench-omp (openmp version of XSBench https://github.com/ANL-CESAR/XSBench)
 
 xsbench-mpi-omp (hybrid MPI/OpenMP version of XSBench https://github.com/ANL-CESAR/XSBench)
+
+rsbench-omp (openmp version of RSBench https://github.com/ANL-CESAR/RSBench)
 
 ...
 
