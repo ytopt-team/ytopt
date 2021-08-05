@@ -53,7 +53,7 @@ pip install -e .
 
 * Install [ytopt](https://github.com/ytopt-team/ytopt.git):
 ```
-git clone https://github.com/ytopt-team/ytopt.git
+git clone -b tutorial https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
 ```
