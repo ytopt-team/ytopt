@@ -56,9 +56,9 @@ class Plopper:
         kernel_dir = self.sourcefile[:kernel_idx]
 
         gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
-		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
-                + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm" + " -L${CONDA_PREFIX}/lib"
+        " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
+        + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
+        " -lm" + " -L${CONDA_PREFIX}/lib"
         run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
 
         #Find the compilation status using subprocess
