@@ -28,13 +28,20 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: Ytopt, scikit-optimize, and autotune. 
+The autotuning framework requires the following components: ConfigSpace, scikit-optimize, autotune, and ytopt. 
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
 conda create --name ytune python=3.7
 conda activate ytune
+```
+
+* Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
+```
+git clone https://github.com/deephyper/ConfigSpace.git configspace
+cd configspace
+pip install -e .
 ```
 
 * Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
@@ -55,13 +62,6 @@ pip install -e .
 ```
 git clone -b tutorial https://github.com/ytopt-team/ytopt.git
 cd ytopt
-pip install -e .
-```
-
-* Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
-```
-git clone https://github.com/deephyper/ConfigSpace.git configspace
-cd configspace
 pip install -e .
 ```
 
