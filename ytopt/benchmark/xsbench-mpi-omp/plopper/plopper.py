@@ -58,7 +58,7 @@ class Plopper:
         gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
 		" -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
                 + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-                " -lm -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
+                " -lm" + " -L${CONDA_PREFIX}/lib"
         run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
 
         #Find the compilation status using subprocess

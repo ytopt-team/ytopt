@@ -5,7 +5,7 @@ This tutorial describes how to define autotuning problem and an evaluating metho
 
 We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md). 
 
-You can install openmp openmpi openmpi-mpicc for this example: `conda install -c conda-forge openmp openmpi openmpi-mpicc`
+You can install openmp openmpi for this example: `conda install -c conda-forge openmp openmpi`
 
 Indentifying a problem to autotune 
 -----------------------
@@ -225,7 +225,7 @@ def findRuntime(self, x, params):
     gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
     " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
     + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-    " -lm -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
+    " -lm" + " -L${CONDA_PREFIX}/lib"
     run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
 
     #Find the compilation status using subprocess
