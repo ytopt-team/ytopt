@@ -1,0 +1,11 @@
+#!/bin/bash
+#HN="$1"
+#shift
+#if [[ "$HN" == "lassen" ]] ; then
+#    ssh -t lassen env WD="$(pwd)" ~/scikit-optimize/autotune/omp-example/convolution-3d/fix_env bsub -nnodes 1 -Is -q pbatch -W 20 "$@"
+#could add differen machines in here
+
+#else # assume current machine for now
+srun -t 20 ~/scikit-optimize/autotune/omp-example/convolution-3d/fix_env "$@"
+
+#fi

@@ -1,0 +1,116 @@
+2020-06-26 13:41:06,064	INFO resource_spec.py:212 -- Starting Ray with 68.6 GiB memory available for workers and up to 33.39 GiB for objects. You can adjust these settings with ray.init(memory=<bytes>, object_store_memory=<bytes>).
+2020-06-26 13:41:06,680	INFO services.py:1170 -- View the Ray dashboard at [1m[32mlocalhost:8265[39m[22m
+2020-06-26 13:41:08,388	WARNING worker.py:1090 -- The dashboard on node pascal83 failed with the following error:
+Traceback (most recent call last):
+  File "/g/g90/hippo/.conda/envs/ytune/lib/python3.7/site-packages/ray/dashboard/dashboard.py", line 1220, in <module>
+    dashboard.run()
+  File "/g/g90/hippo/.conda/envs/ytune/lib/python3.7/site-packages/ray/dashboard/dashboard.py", line 590, in run
+    self.log_dashboard_url()
+  File "/g/g90/hippo/.conda/envs/ytune/lib/python3.7/site-packages/ray/dashboard/dashboard.py", line 585, in log_dashboard_url
+    with open(os.path.join(self.temp_dir, "dashboard_url"), "w") as f:
+PermissionError: [Errno 13] Permission denied: '/tmp/ray/dashboard_url'
+
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P3 private(j)  parallel for #P4 #P6 #P7 simd dist_schedule(static, #P11) schedule(#P10, #P11)  collapse(#P13)  dynamic 8 8 3 256  simd  schedule(#P22, #P23)  collapse(#P25) thread_limit(#P26) static 8 4 3 64
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8856.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8856 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8856 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8856.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m hello we are here 5.07409
+[2m[36m(pid=66051)[0m OUTPUT:%f 5.07409
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES:   #pragma omp target teams distribute #P15 #P17 map(to:A[0:ni-1][0:nj-1]) map(from:B[0:ni-1][0:nj-1]) private(j) parallel for #P4 #P6 #P7 simd  schedule(#P10)  collapse(#P13) thread_limit(#P14) static 1 16 2 256  simd  schedule(#P22) num_threads(#P24) collapse(#P25) thread_limit(#P26) static 16 28 1 64
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8022.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8022 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8022 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8022.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P3 private(j)  parallel for #P4 #P6 #P7 simd dist_schedule(static, #P11) schedule(#P10, #P11) num_threads(#P12)   static 8 28 3 256   dist_schedule(static, #P23) schedule(#P22)  collapse(#P25)  dynamic 16 16 3 32
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1657.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1657 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1657 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1657.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m hello we are here 22.57294833
+[2m[36m(pid=66051)[0m OUTPUT:%f 22.57294833
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES:      simd  schedule(#P10) num_threads(#P12) collapse(#P13) thread_limit(#P14) dynamic 1 2 1 32 parallel for #P16 #P18 #P19  dist_schedule(static, #P23)   collapse(#P25) thread_limit(#P26) static 16 2 2 128
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9269.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9269 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9269 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9269.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES: #pragma omp target teams distribute #P3 #P5 map(to:A[0:ni-1][0:nj-1]) map(from:B[0:ni-1][0:nj-1]) private(j) #pragma omp #P15 private(j) parallel for #P4 #P6 #P7 simd  schedule(#P10)  collapse(#P13)  static 8 8 3 256   dist_schedule(static, #P23) schedule(#P22, #P23) num_threads(#P24) collapse(#P25)  dynamic 16 8 3 32
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9423.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9423 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9423 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/9423.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m hello we are here 24.133033
+[2m[36m(pid=66051)[0m OUTPUT:%f 24.133033
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P3 private(j)  parallel for #P4 #P6 #P7   dist_schedule(static, #P11) schedule(#P10, #P11)  collapse(#P13)  dynamic 16 2 3 128 parallel for #P16 #P18 #P19 simd dist_schedule(static, #P23)     dynamic 8 2 1 256
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/7482.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/7482 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/7482 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/7482.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m hello we are here 3.39835066
+[2m[36m(pid=66051)[0m OUTPUT:%f 3.39835066
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m VALUES: #pragma omp target teams distribute #P3 #P5 map(to:A[0:ni-1][0:nj-1]) map(from:B[0:ni-1][0:nj-1]) private(j) #pragma omp target teams distribute #P15 #P17 map(to:A[0:ni-1][0:nj-1]) map(from:B[0:ni-1][0:nj-1]) private(j) parallel for #P4 #P6 #P7 simd  schedule(#P10) num_threads(#P12) collapse(#P13) thread_limit(#P14) static 8 2 1 32  simd  schedule(#P22) num_threads(#P24) collapse(#P25) thread_limit(#P26) dynamic 1 16 3 64
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1537.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1537 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1537 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/1537.c:
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m Connection to lassen closed.
+[2m[36m(pid=66051)[0m hello we are here 29.59961166
+[2m[36m(pid=66051)[0m OUTPUT:%f 29.59961166
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P4 #pragma omp target teams distribute #P15 #P17 map(to:A[0:ni-1][0:nj-1]) map(from:B[0:ni-1][0:nj-1]) private(j)     dist_schedule(static, #P11) schedule(#P10, #P11)   thread_limit(#P14) dynamic 16 14 3 128 parallel for #P16 #P18 #P19 simd dist_schedule(static, #P23) schedule(#P22, #P23)    static 1 8 2 64
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501.c:
+[2m[36m(pid=66051)[0m [1m/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501.c:70:16: [0m[0;1;31merror: [0m[1m
+[2m[36m(pid=66051)[0m       expected an OpenMP directive[0m
+[2m[36m(pid=66051)[0m   #pragma omp  
+[2m[36m(pid=66051)[0m [0;1;32m               ^
+[2m[36m(pid=66051)[0m [0m1 error generated.
+[2m[36m(pid=66051)[0m Error while processing /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/6501.c.
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m b'Connection to lassen closed.\r\n'
+[2m[36m(pid=66051)[0m compile failed
+[2m[36m(pid=66051)[0m OUTPUT:%f 1
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P4 #pragma omp #P15 private(j) parallel for #P4 #P6 #P7   dist_schedule(static, #P11) schedule(#P10, #P11)  collapse(#P13) thread_limit(#P14) dynamic 1 8 2 256 parallel for #P16 #P18 #P19 simd dist_schedule(static, #P23)   collapse(#P25)  static 8 14 1 128
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914.c:
+[2m[36m(pid=66051)[0m [1m/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914.c:70:16: [0m[0;1;31merror: [0m[1m
+[2m[36m(pid=66051)[0m       expected an OpenMP directive[0m
+[2m[36m(pid=66051)[0m   #pragma omp  
+[2m[36m(pid=66051)[0m [0;1;32m               ^
+[2m[36m(pid=66051)[0m [0m1 error generated.
+[2m[36m(pid=66051)[0m Error while processing /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/8914.c.
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m b'Connection to lassen closed.\r\n'
+[2m[36m(pid=66051)[0m compile failed
+[2m[36m(pid=66051)[0m OUTPUT:%f 1
+[2m[36m(pid=66051)[0m VALUES: #pragma omp #P4 #pragma omp #P16     dist_schedule(static, #P11) schedule(#P10, #P11)  collapse(#P13) thread_limit(#P14) dynamic 16 4 1 32  simd  schedule(#P22, #P23)    static 1 2 1 256
+[2m[36m(pid=66051)[0m ssh -t lassen bash --login -c '"module load xl/2020.03.18; cd scikit-optimize/autotune/omp-example/convolution-2d-tree ; /usr/tce/packages/xl/xl-2020.03.18/bin/xlc++ -std=c++11 -qsmp -qoffload -qtgtarch=sm_70 -g -DLARGE_DATASET -DPOLYBENCH_TIME -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities -I/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321.c /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c -o /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321 -lm "' 
+[2m[36m(pid=66051)[0m invoke_test lassen /usr/tcetmp/bin/bsub -nnodes 1 -Is -q pbatch -W 15 /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/time_benchmark.sh /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321 
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321.c:
+[2m[36m(pid=66051)[0m [1m/g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321.c:70:16: [0m[0;1;31merror: [0m[1m
+[2m[36m(pid=66051)[0m       expected an OpenMP directive[0m
+[2m[36m(pid=66051)[0m   #pragma omp  
+[2m[36m(pid=66051)[0m [0;1;32m               ^
+[2m[36m(pid=66051)[0m [0m1 error generated.
+[2m[36m(pid=66051)[0m Error while processing /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/tmp_files/3321.c.
+[2m[36m(pid=66051)[0m /g/g90/hippo/scikit-optimize/autotune/omp-example/convolution-2d-tree/utilities/polybench.c:
+[2m[36m(pid=66051)[0m logout
+[2m[36m(pid=66051)[0m b'Connection to lassen closed.\r\n'
+[2m[36m(pid=66051)[0m compile failed
+[2m[36m(pid=66051)[0m OUTPUT:%f 1
