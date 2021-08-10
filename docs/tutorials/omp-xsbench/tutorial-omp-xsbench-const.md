@@ -296,43 +296,85 @@ Once autotuning kick off, ytopt.log, results.csv, and results.json will be rende
 We can track the results of each run configuration from `ytopt.log` shows the following (output lines are truncated for readability here): 
 
 ```
-2021-08-09 18:55:39|9744|INFO|ytopt.search.search:53] Created "ray" evaluator
-2021-08-09 18:55:39|9744|INFO|ytopt.search.search:54] Evaluator: num_workers is 1
-2021-08-09 18:55:39|9744|INFO|ytopt.search.hps.ambs:47] Initializing AMBS
-2021-08-09 18:55:39|9744|INFO|ytopt.search.hps.optimizer.optimizer:51] Using skopt.Optimizer with RF base_estimator
-2021-08-09 18:55:39|9744|INFO|ytopt.search.hps.ambs:79] Generating 1 initial points...
-2021-08-09 18:55:40|9744|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '80'}
-2021-08-09 18:56:00|9744|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "dynamic,#P3", "p2": " ", "p3": "80"} --> 18.845
-2021-08-09 18:56:00|9744|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '80'} y: 18.845
-2021-08-09 18:56:00|9744|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-08-09 18:56:00|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '80'} --> (7, 'dynamic,#P3', ' ', '80'): evaluated objective: 18.845
-2021-08-09 18:56:00|9744|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-08-09 18:56:01|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [7, 'static,#P3', '#pragma omp parallel for', '128'] lie: 18.845
-2021-08-09 18:56:01|9744|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '128'}
-2021-08-09 18:56:22|9744|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "static,#P3", "p2": "#pragma omp parallel for", "p3": "128"} --> 20.571
-2021-08-09 18:56:22|9744|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '128'} y: 20.571
-2021-08-09 18:56:22|9744|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-08-09 18:56:22|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '128'} --> (7, 'static,#P3', '#pragma omp parallel for', '128'): evaluated objective: 20.571
-2021-08-09 18:56:22|9744|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-08-09 18:56:22|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [4, 'static,#P3', ' ', '200'] lie: 20.571
-2021-08-09 18:56:22|9744|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 4, 'p1': 'static,#P3', 'p2': ' ', 'p3': '200'}
-2021-08-09 18:56:44|9744|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 4, "p1": "static,#P3", "p2": " ", "p3": "200"} --> 21.16
-2021-08-09 18:56:44|9744|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 4, 'p1': 'static,#P3', 'p2': ' ', 'p3': '200'} y: 21.16
-2021-08-09 18:56:44|9744|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
-2021-08-09 18:56:44|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 4, 'p1': 'static,#P3', 'p2': ' ', 'p3': '200'} --> (4, 'static,#P3', ' ', '200'): evaluated objective: 21.16
-2021-08-09 18:56:45|9744|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
-2021-08-09 18:56:45|9744|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [4, 'static,#P3', '#pragma omp parallel for', '100'] lie: 21.16
-2021-08-09 18:56:45|9744|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 4, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '100'}
-2021-08-09 18:57:07|9744|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 4, "p1": "static,#P3", "p2": "#pragma omp parallel for", "p3": "100"} --> 20.868
-2021-08-09 18:57:07|9744|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 4, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '100'} y: 20.868
-2021-08-09 18:57:07|9744|INFO|ytopt.search.hps.ambs:101] Hyperopt driver finishing
+2021-08-09 22:25:37|12273|INFO|ytopt.search.search:53] Created "ray" evaluator
+2021-08-09 22:25:37|12273|INFO|ytopt.search.search:54] Evaluator: num_workers is 1
+2021-08-09 22:25:37|12273|INFO|ytopt.search.hps.ambs:47] Initializing AMBS
+2021-08-09 22:25:37|12273|INFO|ytopt.search.hps.optimizer.optimizer:51] Using skopt.Optimizer with RF base_estimator
+2021-08-09 22:25:37|12273|INFO|ytopt.search.hps.ambs:79] Generating 1 initial points...
+2021-08-09 22:25:37|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'}
+2021-08-09 22:26:02|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "dynamic,#P3", "p2": " ", "p3": "100"} --> 21.744
+2021-08-09 22:26:02|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'} y: 21.744
+2021-08-09 22:26:02|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:26:02|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'} --> (7, 'dynamic,#P3', ' ', '100'): evaluated objective: 21.744
+2021-08-09 22:26:02|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:26:02|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [8, 'static', '#pragma omp parallel for', 'NA'] lie: 21.744
+2021-08-09 22:26:02|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 8, 'p1': 'static', 'p2': '#pragma omp parallel for', 'p3': 'NA'}
+2021-08-09 22:26:22|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 8, "p1": "static", "p2": "#pragma omp parallel for", "p3": "NA"} --> 18.326
+2021-08-09 22:26:22|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'static', 'p2': '#pragma omp parallel for', 'p3': 'NA'} y: 18.326
+2021-08-09 22:26:22|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:26:22|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 8, 'p1': 'static', 'p2': '#pragma omp parallel for', 'p3': 'NA'} --> (8, 'static', '#pragma omp parallel for', 'NA'): evaluated objective: 18.326
+2021-08-09 22:26:22|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:26:22|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [7, 'dynamic,#P3', '#pragma omp parallel for', '80'] lie: 21.744
+2021-08-09 22:26:22|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'}
+2021-08-09 22:26:44|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "dynamic,#P3", "p2": "#pragma omp parallel for", "p3": "80"} --> 19.374
+2021-08-09 22:26:44|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} y: 19.374
+2021-08-09 22:26:44|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:26:44|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} --> (7, 'dynamic,#P3', '#pragma omp parallel for', '80'): evaluated objective: 19.374
+2021-08-09 22:26:44|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:26:44|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [7, 'static,#P3', ' ', '100'] lie: 21.744
+2021-08-09 22:26:44|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'static,#P3', 'p2': ' ', 'p3': '100'}
+2021-08-09 22:27:06|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "static,#P3", "p2": " ", "p3": "100"} --> 20.506
+2021-08-09 22:27:06|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'static,#P3', 'p2': ' ', 'p3': '100'} y: 20.506
+2021-08-09 22:27:06|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:27:06|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'static,#P3', 'p2': ' ', 'p3': '100'} --> (7, 'static,#P3', ' ', '100'): evaluated objective: 20.506
+2021-08-09 22:27:06|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:27:06|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [8, 'dynamic,#P3', ' ', '100'] lie: 21.744
+2021-08-09 22:27:06|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 8, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'}
+2021-08-09 22:27:26|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 8, "p1": "dynamic,#P3", "p2": " ", "p3": "100"} --> 18.749
+2021-08-09 22:27:26|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'} y: 18.749
+2021-08-09 22:27:26|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:27:26|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 8, 'p1': 'dynamic,#P3', 'p2': ' ', 'p3': '100'} --> (8, 'dynamic,#P3', ' ', '100'): evaluated objective: 18.749
+2021-08-09 22:27:26|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:27:26|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [7, 'static,#P3', '#pragma omp parallel for', '80'] lie: 21.744
+2021-08-09 22:27:26|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'}
+2021-08-09 22:27:46|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 7, "p1": "static,#P3", "p2": "#pragma omp parallel for", "p3": "80"} --> 18.964
+2021-08-09 22:27:46|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} y: 18.964
+2021-08-09 22:27:46|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:27:46|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 7, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} --> (7, 'static,#P3', '#pragma omp parallel for', '80'): evaluated objective: 18.964
+2021-08-09 22:27:46|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:27:46|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [8, 'dynamic', '#pragma omp parallel for', 'NA'] lie: 21.744
+2021-08-09 22:27:46|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 8, 'p1': 'dynamic', 'p2': '#pragma omp parallel for', 'p3': 'NA'}
+2021-08-09 22:28:06|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 8, "p1": "dynamic", "p2": "#pragma omp parallel for", "p3": "NA"} --> 18.48
+2021-08-09 22:28:06|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'dynamic', 'p2': '#pragma omp parallel for', 'p3': 'NA'} y: 18.48
+2021-08-09 22:28:06|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:28:06|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 8, 'p1': 'dynamic', 'p2': '#pragma omp parallel for', 'p3': 'NA'} --> (8, 'dynamic', '#pragma omp parallel for', 'NA'): evaluated objective: 18.48
+2021-08-09 22:28:06|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:28:06|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [8, 'static,#P3', '#pragma omp parallel for', '80'] lie: 21.744
+2021-08-09 22:28:06|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 8, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'}
+2021-08-09 22:28:26|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 8, "p1": "static,#P3", "p2": "#pragma omp parallel for", "p3": "80"} --> 18.691
+2021-08-09 22:28:26|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} y: 18.691
+2021-08-09 22:28:26|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:28:26|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 8, 'p1': 'static,#P3', 'p2': '#pragma omp parallel for', 'p3': '80'} --> (8, 'static,#P3', '#pragma omp parallel for', '80'): evaluated objective: 18.691
+2021-08-09 22:28:26|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:28:26|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:84] _ask: [8, 'dynamic,#P3', '#pragma omp parallel for', '100'] lie: 21.744
+2021-08-09 22:28:26|12273|INFO|ytopt.evaluator.evaluate:104] Submitted new eval of {'p0': 8, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '100'}
+2021-08-09 22:28:46|12273|INFO|ytopt.evaluator.evaluate:206] New eval finished: {"p0": 8, "p1": "dynamic,#P3", "p2": "#pragma omp parallel for", "p3": "100"} --> 18.446
+2021-08-09 22:28:46|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '100'} y: 18.446
+2021-08-09 22:28:46|12273|INFO|ytopt.search.hps.ambs:92] Refitting model with batch of 1 evals
+2021-08-09 22:28:46|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:119] tell: {'p0': 8, 'p1': 'dynamic,#P3', 'p2': '#pragma omp parallel for', 'p3': '100'} --> (8, 'dynamic,#P3', '#pragma omp parallel for', '100'): evaluated objective: 18.446
+2021-08-09 22:28:46|12273|INFO|ytopt.search.hps.ambs:94] Drawing 1 points with strategy cl_max
+2021-08-09 22:28:46|12273|DEBUG|ytopt.search.hps.optimizer.optimizer:86] Duplicate _ask: [8, 'dynamic', '#pragma omp parallel for', 'NA'] lie: 21.744
+2021-08-09 22:28:46|12273|INFO|ytopt.evaluator.evaluate:101] UID: {"p0": 8, "p1": "dynamic", "p2": "#pragma omp parallel for", "p3": "NA"} already evaluated; skipping execution
+2021-08-09 22:28:48|12273|INFO|ytopt.search.hps.ambs:85] Elapsed time: 00:03:10.20
+2021-08-09 22:28:48|12273|INFO|ytopt.evaluator.evaluate:217] Requested eval x: {'p0': 8, 'p1': 'dynamic', 'p2': '#pragma omp parallel for', 'p3': 'NA'} y: 18.48
+2021-08-09 22:28:48|12273|INFO|ytopt.search.hps.ambs:101] Hyperopt driver finishing
 ```
 
 Look up the best configuration (found so far) and its value by inspecting the following created file: `results.csv` and `results.json`. 
 
 In this run, the best configuration and its runtime is obtained:
 
-`{"p0": 7, "p1": "dynamic,#P3", "p2": " ", "p3": "80"}: 18.845`
+`{'p0': 8, 'p1': 'static', 'p2': '#pragma omp parallel for', 'p3': 'NA'}: 18.326`
 
 
 ```python
