@@ -37,14 +37,14 @@ import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
 ```
 
-Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: choice for openmp static/dynamic schedule, 3) `p2`: turn on/off omp parallel, 4) `p3`: block size for openmp static/dynamic schedule.  
+Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: choice for openmp static/dynamic schedule types, 3) `p2`: turn on/off omp parallel, 4) `p3`: block size for openmp static/dynamic schedule.  
 
 
 ```python
 cs = CS.ConfigurationSpace(seed=1234)
 # number of threads
 p0= CSH.UniformIntegerHyperparameter(name='p0', lower=4, upper=8, default_value=8)
-# choice for openmp static/dynamic schedule
+# choice for openmp static/dynamic schedule types
 p1 = CSH.CategoricalHyperparameter(name='p1', choices=['dynamic,#P3','static,#P3','dynamic','static'], default_value='dynamic,#P3')
 #omp parallel
 p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
@@ -55,7 +55,7 @@ cs.add_hyperparameters([p0, p1, p2, p3])
 
 Then, we define a constraint to decide block size for static and dynamic schedule. 
 
-`p1` specifies types of omp scheduling types. If either `dynamic` or `static` is chosen, we do not specify block-size so that OpenMP divides loop iterations approximately equal in size. If either `dynamic,#P3` or `static,#P3`, we need another parameter `p3` to specify block-size for static/dynamic schedule. 
+`p1` specifies omp scheduling types. If either `dynamic` or `static` is chosen, we do not specify block-size so that OpenMP divides loop iterations approximately equal in size. If either `dynamic,#P3` or `static,#P3` is chosen, we need another parameter `p3` to specify a block-size for static/dynamic schedule. 
 
 We can add this constraint such as follows:
 
