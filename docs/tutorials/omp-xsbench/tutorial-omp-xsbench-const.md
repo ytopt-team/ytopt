@@ -20,7 +20,7 @@ In this exmaple, we introduce a constraint on parameters for openmp schedule typ
 
 Defining autotuning problem
 -----------------------
-We describe how to define your search problem `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem.py>`
+We describe how to define your search problem `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem_cons.py>`
 
 --------------
 First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`.
