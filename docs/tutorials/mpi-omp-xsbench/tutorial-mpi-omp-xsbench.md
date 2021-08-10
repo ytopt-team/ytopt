@@ -54,7 +54,7 @@ output_space = Space([Real(0.0, inf, name="time")])
 ```
 
 --------------
-Then, we need to define the objective function to evaluate a point in the search space. 
+Then, we need to define the objective function `myobj` to evaluate a point in the search space. 
 
 In this example, we define an evaluating method (Plopper) for code generation and compilation. 
 Plopper take source code and output directory and return an execution time. 

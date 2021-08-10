@@ -13,7 +13,7 @@ In this tutorial, we target to autotune ECP XSBench app `<https://github.com/ANL
 
 XSBench is a mini-app representing a key computational kernel of the Monte Carlo neutron transport algorithm [(reference)](https://github.com/ANL-CESAR/XSBench). Save the related source and header files in the seprate folder: `mmp_cons.c`, `Main.c`, `Materials.c`, `XSutils.c`, `XSbench_header.h`, `make.bat`. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-omp/xsbench>`. 
 
-In the `mmp_cons.c`, we replace Markers for the related paramters from the source file of the unconstrained problem `mmp.c` as follows (`mmp.c`⮕`mmp_cons.c`): 
+In this exmaple, we introduce a constraint on parameters for openmp schedule types and block sizes. In the `mmp_cons.c`, we replace markers for the related paramters from the source file of the unconstrained problem `mmp.c` as follows (`mmp.c`⮕`mmp_cons.c`): 
 
 `#pragma omp parallel for schedule(dynamic,#P1) reduction(+:verification)` ⮕ `#pragma omp parallel for schedule(#P1) reduction(+:verification)`
 `#pragma omp parallel for schedule(dynamic, #P1)` ⮕ `#pragma omp parallel for schedule(#P1)`
@@ -25,6 +25,8 @@ We describe how to define your search problem `<https://github.com/ytopt-team/yt
 --------------
 First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`.
 
+
+```python
 # import required library
 import os, sys, time, json, math
 import numpy as np
@@ -33,6 +35,7 @@ from autotune.space import *
 import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
+```
 
 Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: choice for openmp static/dynamic schedule types, 3) `p2`: turn on/off omp parallel, 4) `p3`: block size for openmp static/dynamic schedule.  
 
@@ -70,7 +73,7 @@ output_space = Space([Real(0.0, inf, name="time")])
 ```
 
 --------------
-Then, we need to define the objective function to evaluate a point in the search space. 
+Then, we need to define the objective function `myobj` to evaluate a point in the search space. 
 
 In this example, we define an evaluating method (Plopper) for code generation and compilation. 
 Plopper take source code and output directory and return an execution time. 
