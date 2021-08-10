@@ -377,8 +377,3 @@ Look up the best configuration (found so far) and its value by inspecting the fo
 In this run, the best configuration and its runtime is obtained:
 
 `{'p0': 8, 'p1': 'static', 'p2': '#pragma omp parallel for', 'p3': 'NA'}: 18.326`
-
-
-```python
-
-```
