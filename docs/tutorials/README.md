@@ -4,9 +4,9 @@ A tutorial to autotune the block matrix multiplication is given in [/docs/tutori
 
 * You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [/docs/tutorials/mmm-block/tutorial-mmm-block.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/tutorial-mmm-block.md) for this tutorial. 
 
-* You can define your search problem such as [ytopt/benchmark/mmm-block/mmm_problem/problem.py](https://github.com/ytopt-team/ytopt/tree/ytopt/benchmark/mmm-block/mmm_problem/problem.py) for the following search space:
+* You can define your search problem such as [ytopt/benchmark/mmm-block/mmm_problem/problem.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/mmm-block/mmm_problem/problem.py) for the following search space:
 
-* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/mmm-block/plopper/plopper.py](https://github.com/ytopt-team/ytopt/tree/ytopt/benchmark/mmm-block/plopper/plopper.py) for code generation and compiling.
+* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/mmm-block/plopper/plopper.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/mmm-block/plopper/plopper.py) for code generation and compiling.
 
 * Bayesian optimization with random forest model:
 ```
@@ -14,13 +14,13 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.mmm-block.
 ```
 * Then, ytopt.log, results.csv, and results.json will be rendered. 
 
-A tutorial to autotune the OpenMP version of XSBench is given in [/docs/tutorials/omp-xsbench](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/)
+A tutorial to autotune the OpenMP version of XSBench is given in [/docs/tutorials/omp-xsbench](https://github.com/ytopt-team/ytopt/tutorial/tutorial/docs/tutorials/omp-xsbench/)
 
 * You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md) for this tutorial. 
 
-* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/ytopt-team/ytopt/tree/ytopt/benchmark/xsbench-omp/xsbench/problem.py) for the following search space:
+* You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem.py) for the following search space:
 
-* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/ytopt-team/ytopt/tree/ytopt/benchmark/xsbench-omp/plopper/plopper.py) for code generation and compiling.
+* You can define the method to evaluate a point in the search space such as [ytopt/benchmark/xsbench-omp/plopper/plopper.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/xsbench-omp/plopper/plopper.py) for code generation and compiling.
 
 * Note that you can install openmpi openmpi-mpicc openmp for this example:
 ```
@@ -39,7 +39,7 @@ An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [yto
 
 An example to autotune the OpenMP version of XSBench with constraint is given in [ytopt/benchmark/xsbench-omp/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-omp)
 
-* You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-omp-xsbench-const.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md) for this tutorial. 
+* You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md) for this tutorial. 
 
 <!--
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
