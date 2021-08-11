@@ -13,20 +13,17 @@ from plopper import Plopper
 # create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
 # number of threads
-# p0= CSH.OrdinalHyperparameter(name='p0', sequence=['4','5','6','7','8'], default_value='8')
 p0= CSH.UniformIntegerHyperparameter(name='p0', lower=4, upper=8, default_value=8)
-# p0= CSH.UniformIntegerHyperparameter(name='p0', lower=7, upper=8, default_value=8)
 # choice for openmp static/dynamic schedule
-p1 = CSH.CategoricalHyperparameter(name='p1', choices=['dynamic,#P3','static,#P3','dynamic','static'], default_value='dynamic,#P3')
+p1 = CSH.CategoricalHyperparameter(name='p1', choices=['dynamic,#P3','guided,#P3','static,#P3','auto'], default_value='dynamic,#P3')
 #omp parallel
 p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
 #block size for openmp static/dynamic schedule
-# p3= CSH.OrdinalHyperparameter(name='p3', sequence=['80','100'], default_value='100')
 p3= CSH.OrdinalHyperparameter(name='p3', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
 cs.add_hyperparameters([p0, p1, p2, p3])
 
 # add condition
-cond1 = CS.InCondition(p3, p1, ['dynamic,#P3','static,#P3'])
+cond1 = CS.InCondition(p3, p1, ['dynamic,#P3','static,#P3','guided,#P3'])
 cs.add_conditions([cond1])
 
 # problem space
