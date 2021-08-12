@@ -244,7 +244,7 @@ def findRuntime(self, x, params):
 ```
 
 Note: 
-- `exe.pl` computes average the execution time over 5 runs. 
+- `exe.pl` computes average the execution time over multiple runs. We execute once in this example to save time.  
 
 --------------
 Last, we create an object of the autotuning problem. The problem will be called in the commandline implementation. 

@@ -267,7 +267,7 @@ def findRuntime(self, x, params):
 
 Note: 
 - For macOS it may need to compile it with `clang`. You can change `gcc` to `clang` such that `gcc_cmd = "clang -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \`. 
-- `exe.pl` computes average the execution time over 5 runs. 
+- `exe.pl` computes average the execution time over multiple runs. We execute once in this example to save time.  
 
 --------------
 Last, we create an object of the autotuning problem. The problem will be called in the commandline implementation. 
