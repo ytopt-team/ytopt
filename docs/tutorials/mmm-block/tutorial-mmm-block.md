@@ -229,7 +229,7 @@ Then, it finds the compilation status using subprocess; finds the execution time
 ```
 
 Note: 
-- `exe.pl` computes average the execution time over multiple runs. We execute once in this example to save time.  
+- `exe.pl` computes average the execution time over 5 runs. 
 
 --------------
 Last, we create an object of the autotuning problem. The problem will be called in the commandline implementation. 

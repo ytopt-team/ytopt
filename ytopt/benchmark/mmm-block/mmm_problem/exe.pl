@@ -9,7 +9,7 @@ use Time::HiRes qw(gettimeofday);
 foreach $filename (@ARGV) {
  #  print "Start to preprocess ", $filename, "...\n";
    $ssum = 0.0;
-   $nmax = 1;
+   $nmax = 5;
    @nn = (1..$nmax);
    for(@nn) {
     $retval = gettimeofday( ); 
