@@ -159,14 +159,6 @@ class Plopper:
             dictVal[p] = v
         return(dictVal)
 
-    def p2check(self, inputfile):
-        with open(inputfile, "r") as f1:
-            buf = f1.readlines()
-            for line in buf: #check if we are using cuda. If yes, collect the parameters.
-                if "#P2" in line:
-                    return True
-        return False
-
     #Replace the Markers in the source file with the corresponding Pragma values
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
@@ -276,15 +268,6 @@ If `static` is chosen for `p1`, `#pragma omp parallel for schedule(#P1)` in `mmp
 
 
 ```python
-def p2check(self, inputfile):
-    with open(inputfile, "r") as f1:
-        buf = f1.readlines()
-        for line in buf: #check if we are using cuda. If yes, collect the parameters.
-            if "#P2" in line:
-                return True
-    return False
-
-#Replace the Markers in the source file with the corresponding Pragma values
 def plotValues(self, dictVal, inputfile, outputfile):
     with open(inputfile, "r") as f1:
         buf = f1.readlines()
