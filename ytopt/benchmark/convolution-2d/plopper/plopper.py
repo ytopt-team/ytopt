@@ -81,7 +81,7 @@ class Plopper:
         gcc_cmd = f"""clang -O2 -fopenmp -fopenmp-targets=nvptx64 -Xopenmp-target -march=sm_75 {commonflags} -I/soft/compilers/cuda/cuda-11.4.0/include -L/soft/compilers/cuda/cuda-11.4.0/lib64 -Wl,-rpath=/soft/compilers/cuda/cuda-11.4.0/lib64 -lcudart_static -ldl -lrt -pthread"""
         
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
-        print (run_cmd)
+#         print (run_cmd)
         #Find the compilation status using subprocess
         compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
