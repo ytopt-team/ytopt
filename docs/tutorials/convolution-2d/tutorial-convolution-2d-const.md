@@ -26,6 +26,11 @@ Build cuda_11.4.r11.4/compiler.30033411_0
 Quadro RTX 8000
 ```
 
+<!--
+module load cuda/11.4.0
+module load llvm/release-12.0.1
+-->
+
 Indentifying a problem to autotune 
 -----------------------
 In this tutorial, we target to autotune PolyBench convolution-2d kernel `<https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP>`.
