@@ -271,7 +271,7 @@ def createDict(self, x, params):
 `plotValues()` replaces the Markers in the source file with the corresponding prameter values of the parameter dictionary. 
 For example, a sampled value for number of threads `p1` replaces `#P1` in line 66 of `convolution-2d.c` that is the original source file. 
 
-If `#pragma omp #P4` is chosen for `p1` along with `simd` for `p4`,`#pragma omp simd` in the `convolution-2d.c`. 
+If `#pragma omp #P4` is chosen for `p1` along with `simd` for `p4`,`#pragma omp simd` is written in the `convolution-2d.c`. 
 
 
 ```python
