@@ -72,16 +72,16 @@ cs = CS.ConfigurationSpace(seed=1234)
 p1 = CSH.CategoricalHyperparameter(name='p1', choices=[' ','#pragma omp #P3','#pragma omp target teams distribute #P3 #P5 #P9 is_device_ptr(A, B)','#pragma omp #P4'], default_value=' ')
 p3 = CSH.CategoricalHyperparameter(name='p3', choices=[' ','parallel for #P4 #P8 #P6 #P7'])
 p4 = CSH.CategoricalHyperparameter(name='p4', choices=[' ', 'simd'])
-p5 = CSH.CategoricalHyperparameter(choices=[' ', 'dist_schedule(static, #P11)'],name='p5') #make a different second param 64 - 512
-p6 = CSH.CategoricalHyperparameter(choices=[' ', 'schedule(#P10, #P11)', 'schedule(#P10)'],name='p6')
-p7 = CSH.CategoricalHyperparameter(choices=[' ', 'num_threads(#P12)'],name='p7')
-p8 = CSH.CategoricalHyperparameter(choices=[' ', 'collapse(2)'],name='p8')
-p9 = CSH.CategoricalHyperparameter(choices=[' ', 'thread_limit(#P14)'],name='p9')
-p10 = CSH.CategoricalHyperparameter(choices=['static','dynamic'], name='p10')
-p11 = CSH.OrdinalHyperparameter(sequence=['1', '2', '4', '8', '16'], name = 'p11') #n(size of data)/num thrads. maybe 2 and 4?
-p12 = CSH.OrdinalHyperparameter(sequence=['8',  '16', '32', '64', '72', '128', '176'], name='p12') #need to make it higher, maybe get rid of the low ones
-p14 = CSH.OrdinalHyperparameter(sequence=['32', '64', '128', '256'], name='p14')
-#p2 (check if cuda is available): exists in convolution-2d.c since it is a cuda example.
+p5 = CSH.CategoricalHyperparameter(name='p5', choices=[' ', 'dist_schedule(static, #P11)']) 
+p6 = CSH.CategoricalHyperparameter(name='p6', choices=[' ', 'schedule(#P10, #P11)', 'schedule(#P10)'])
+p7 = CSH.CategoricalHyperparameter(name='p7', choices=[' ', 'num_threads(#P12)'])
+p8 = CSH.CategoricalHyperparameter(name='p8', choices=[' ', 'collapse(2)'])
+p9 = CSH.CategoricalHyperparameter(name='p9', choices=[' ', 'thread_limit(#P14)'])
+p10 = CSH.CategoricalHyperparameter(name='p10', choices=['static','dynamic'])
+p11 = CSH.OrdinalHyperparameter(name = 'p11', sequence=['1', '2', '4', '8', '16']) #n(size of data)/num thrads.
+p12 = CSH.OrdinalHyperparameter(name='p12', sequence=['8',  '16', '32', '64', '72', '128', '176']) 
+p14 = CSH.OrdinalHyperparameter(name='p14', sequence=['32', '64', '128', '256'])
+#p2 (check if cuda is available): already exists in convolution-2d.c since it is a cuda example.
 cs.add_hyperparameters([p1,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p14])
 ```
 
