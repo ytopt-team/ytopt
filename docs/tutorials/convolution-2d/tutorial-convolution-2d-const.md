@@ -23,7 +23,7 @@ Indentifying a problem to autotune
 -----------------------
 In this tutorial, we target to autotune PolyBench convolution-2d kernel `<https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP>`.
 
-PolyBench convolution-2d kernel is one of the famous exmples of stencil computation [(reference)](https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP). Save the related source and header files in the seprate folder: `convolution-2d.c`, `convolution-2d.h`, `polybench.c`, `polybench.h`, `polybench.h-cuda`. 
+PolyBench convolution-2d kernel is one of the famous exmples of stencil computation [(reference)](https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP). Save the related source and header files in the seprate folder: `convolution-2d.c`, `convolution-2d.h`, `polybench.c`, `polybench.h`. 
 
 We omit presenting the files for space. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/convolution-2d>`. 
 
