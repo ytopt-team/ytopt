@@ -22,12 +22,12 @@ class Plopper:
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
-            param = "" #string to hold the parameters in case we cuda is used
-            global cuda
-            cuda = False
-            for line in buf: #check if we are using cuda. If yes, collect the parameters.
-                if "POLYBENCH_2D_ARRAY_DECL_CUDA" or "POLYBENCH_3D_ARRAY_DECL_CUDA" or "POLYBENCH_1D_ARRAY_DECL_CUDA"in line:
-                    cuda = True
+#             param = "" #string to hold the parameters in case we cuda is used
+#             global cuda
+#             cuda = False
+#             for line in buf: #check if we are using cuda. If yes, collect the parameters.
+#                 if "POLYBENCH_2D_ARRAY_DECL_CUDA" or "POLYBENCH_3D_ARRAY_DECL_CUDA" or "POLYBENCH_1D_ARRAY_DECL_CUDA"in line:
+#                     cuda = True
 
         with open(outputfile, "w") as f2:
             for line in buf:

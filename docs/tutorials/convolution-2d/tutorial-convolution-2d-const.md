@@ -5,7 +5,14 @@ This tutorial describes how to define autotuning problem and an evaluating metho
 
 We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md). 
 
-This example requies cuda and gpu. We implemnet this example with the following settings:
+This example requies clang, cuda and gpu. We implemnet this example with the following settings:
+- clang:
+``` 
+clang version 12.0.1 (https://github.com/llvm/llvm-project.git fed41342a82f5a3a9201819a82bf7a48313e296b)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /soft/compilers/llvm/release-12.0.1/bin
+```
 - cuda: 
 ```
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -169,12 +176,6 @@ class Plopper:
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
-            param = "" #string to hold the parameters in case we cuda is used
-            global cuda
-            cuda = False
-            for line in buf: #check if we are using cuda. If yes, collect the parameters.
-                if "POLYBENCH_2D_ARRAY_DECL_CUDA" or "POLYBENCH_3D_ARRAY_DECL_CUDA" or "POLYBENCH_1D_ARRAY_DECL_CUDA"in line:
-                    cuda = True
 
         with open(outputfile, "w") as f2:
             for line in buf:
@@ -272,12 +273,6 @@ If `#pragma omp #P4` is chosen for `p1` along with `simd` for `p4`,`#pragma omp 
 def plotValues(self, dictVal, inputfile, outputfile):
     with open(inputfile, "r") as f1:
         buf = f1.readlines()
-        param = "" #string to hold the parameters in case we cuda is used
-        global cuda
-        cuda = False
-        for line in buf: #check if we are using cuda. If yes, collect the parameters.
-            if "POLYBENCH_2D_ARRAY_DECL_CUDA" or "POLYBENCH_3D_ARRAY_DECL_CUDA" or "POLYBENCH_1D_ARRAY_DECL_CUDA"in line:
-                cuda = True
 
     with open(outputfile, "w") as f2:
         for line in buf:
@@ -325,9 +320,7 @@ def findRuntime(self, x, params):
     utilities_dir = kernel_dir+"/utilities"
 
     commonflags = f"""-DEXTRALARGE_DATASET -DPOLYBENCH_TIME -I{utilities_dir} -I{kernel_dir} {interimfile} {utilities_dir}/polybench.c -o {tmpbinary} -lm -g """
-
     gcc_cmd = f"""clang -O2 -fopenmp -fopenmp-targets=nvptx64 -Xopenmp-target -march=sm_75 {commonflags} -I/soft/compilers/cuda/cuda-11.4.0/include -L/soft/compilers/cuda/cuda-11.4.0/lib64 -Wl,-rpath=/soft/compilers/cuda/cuda-11.4.0/lib64 -lcudart_static -ldl -lrt -pthread"""
-
     run_cmd = kernel_dir + "/exe.pl " + tmpbinary
 
     #Find the compilation status using subprocess
