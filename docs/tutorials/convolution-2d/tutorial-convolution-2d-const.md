@@ -23,7 +23,7 @@ Indentifying a problem to autotune
 -----------------------
 In this tutorial, we target to autotune PolyBench convolution-2d kernel `<https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP>`.
 
-PolyBench convolution-2d kernel is a  [(reference)](https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP). Save the related source and header files in the seprate folder: `convolution-2d.c`, `convolution-2d.h`, `polybench.c`, `polybench.h`, `polybench.h-cuda`. 
+PolyBench convolution-2d kernel is one of the famous exmples of stencil computation [(reference)](https://github.com/cavazos-lab/PolyBench-ACC/tree/master/OpenMP). Save the related source and header files in the seprate folder: `convolution-2d.c`, `convolution-2d.h`, `polybench.c`, `polybench.h`, `polybench.h-cuda`. 
 
 We omit presenting the files for space. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/convolution-2d>`. 
 
@@ -52,7 +52,7 @@ import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
 ```
 
-Our search space can be visualized such as:
+Our search space with constraints can be visualized such as:
 
 ![convolution-2d_cons](convolution-2d_cons.png)
 
@@ -86,7 +86,7 @@ Then, we define a constraint to decide block size for static and dynamic schedul
 
 -->
 
-We can add the constraint such as follows:
+We can add the constraints such as follows:
 
 
 ```python
