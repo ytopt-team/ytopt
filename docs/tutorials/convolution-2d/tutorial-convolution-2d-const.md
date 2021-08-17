@@ -74,7 +74,7 @@ p10 = CSH.CategoricalHyperparameter(choices=['static','dynamic'], name='p10')
 p11 = CSH.OrdinalHyperparameter(sequence=['1', '2', '4', '8', '16'], name = 'p11') #n(size of data)/num thrads. maybe 2 and 4?
 p12 = CSH.OrdinalHyperparameter(sequence=['8',  '16', '32', '64', '72', '128', '176'], name='p12') #need to make it higher, maybe get rid of the low ones
 p14 = CSH.OrdinalHyperparameter(sequence=['32', '64', '128', '256'], name='p14')
-#p1 always there, so add it, then check if p2 exists
+#p2 (check if cuda is available): exists in convolution-2d.c since it is a cuda example.
 cs.add_hyperparameters([p1,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p14])
 ```
 
@@ -201,7 +201,6 @@ class Plopper:
         interimfile = ""
         exetime = 1
         counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
-
         interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
 
         # Generate intermediate file
@@ -216,11 +215,9 @@ class Plopper:
         utilities_dir = kernel_dir+"/utilities"
 
         commonflags = f"""-DEXTRALARGE_DATASET -DPOLYBENCH_TIME -I{utilities_dir} -I{kernel_dir} {interimfile} {utilities_dir}/polybench.c -o {tmpbinary} -lm -g """
-        
         gcc_cmd = f"""clang -O2 -fopenmp -fopenmp-targets=nvptx64 -Xopenmp-target -march=sm_75 {commonflags} -I/soft/compilers/cuda/cuda-11.4.0/include -L/soft/compilers/cuda/cuda-11.4.0/lib64 -Wl,-rpath=/soft/compilers/cuda/cuda-11.4.0/lib64 -lcudart_static -ldl -lrt -pthread"""
-        
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
-#         print (run_cmd)
+
         #Find the compilation status using subprocess
         compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
@@ -266,11 +263,9 @@ def createDict(self, x, params):
 ```
 
 `plotValues()` replaces the Markers in the source file with the corresponding prameter values of the parameter dictionary. 
-For example, a sampled value for number of threads `p0` replaces `#P0` in line 349 `input.nthreads = #P0` of `mmp_cons.c` that is the original source file. 
+For example, a sampled value for number of threads `p1` replaces `#P1` in line 66 of `convolution-2d.c` that is the original source file. 
 
-If `dynamic,#P3` is chosen for `p1` along with `100` for `p3`, `#pragma omp parallel for schedule(#P1)` in `mmp_cons.c` is written as `#pragma omp parallel for schedule(dynamic,100)`. 
-
-If `static` is chosen for `p1`, `#pragma omp parallel for schedule(#P1)` in `mmp_cons.c` is written as `#pragma omp parallel for schedule(static)`. Note that no value is chosen for `p3` by the constraint.  
+If `#pragma omp #P4` is chosen for `p1` along with `simd` for `p4`,`#pragma omp simd` in the `convolution-2d.c`. 
 
 
 ```python
