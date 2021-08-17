@@ -52,7 +52,11 @@ import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
 ```
 
-Our search space contains three parameters: 1) `p0`: x, 2) `p1`: x, 3) `p2`: x, 4) `p3`: x.  
+Our search space can be visualized such as:
+
+![convolution-2d_cons](convolution-2d_cons.png)
+
+Each parameter is defined as:
 
 
 ```python
@@ -74,11 +78,13 @@ p14 = CSH.OrdinalHyperparameter(sequence=['32', '64', '128', '256'], name='p14')
 cs.add_hyperparameters([p1,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p14])
 ```
 
+<!--
 Then, we define a constraint to decide block size for static and dynamic schedule. 
+
 
 `p1` specifies omp scheduling types. If either `dynamic` or `static` is chosen, we do not specify block-size so that OpenMP divides loop iterations approximately equal in size for `static` and selects a default size one for `dynamic`. If either `dynamic,#P3` or `static,#P3` is chosen, we need another parameter `p3` to specify a block-size for static/dynamic schedule. This can be visualized such as:
 
-![xsbench constraint](xsbench_cons.png)
+-->
 
 We can add the constraint such as follows:
 
