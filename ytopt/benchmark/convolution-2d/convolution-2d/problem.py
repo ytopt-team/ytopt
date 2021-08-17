@@ -24,7 +24,7 @@ p10 = CSH.CategoricalHyperparameter(choices=['static','dynamic'], name='p10')
 p11 = CSH.OrdinalHyperparameter(sequence=['1', '2', '4', '8', '16'], name = 'p11') #n(size of data)/num thrads. maybe 2 and 4?
 p12 = CSH.OrdinalHyperparameter(sequence=['8',  '16', '32', '64', '72', '128', '176'], name='p12') #need to make it higher, maybe get rid of the low ones
 p14 = CSH.OrdinalHyperparameter(sequence=['32', '64', '128', '256'], name='p14')
-#p1 always there, so add it, then check if p2 exists
+#p2 (check if cuda is available): exists in convolution-2d.c since it is a cuda example.
 cs.add_hyperparameters([p1,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p14])
 
 cond0 = CS.InCondition(p3, p1, ['#pragma omp #P3','#pragma omp target teams distribute #P3 #P5 #P9 is_device_ptr(A, B)'])
