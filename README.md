@@ -37,11 +37,18 @@ conda create --name ytune python=3.7
 conda activate ytune
 ```
 
+* Create a directory for ytopt tutorial as follows:
+```
+mkdir ytopt
+cd ytopt
+```
+
 * Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
 ```
 git clone https://github.com/deephyper/ConfigSpace.git configspace
 cd configspace
 pip install -e .
+cd ..
 ```
 
 * Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
@@ -49,6 +56,7 @@ pip install -e .
 git clone https://github.com/deephyper/scikit-optimize.git
 cd scikit-optimize
 pip install -e .
+cd ..
 ```
 
 * Install [autotune](https://github.com/ytopt-team/autotune.git):
@@ -56,6 +64,7 @@ pip install -e .
 git clone -b version1 https://github.com/ytopt-team/autotune.git
 cd autotune
 pip install -e . 
+cd ..
 ```
 
 * Install [ytopt](https://github.com/ytopt-team/ytopt.git):
@@ -63,6 +72,7 @@ pip install -e .
 git clone -b tutorial https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
+cd ..
 ```
 
 If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
