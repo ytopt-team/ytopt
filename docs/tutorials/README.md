@@ -1,8 +1,8 @@
 ## Autotuning tutorials
 
-A tutorial to autotune the block matrix multiplication is given in [/docs/tutorials/mmm-block](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/). (This example including the source code is borrowed from [http://opentuner.org/tutorial/gettingstarted/](http://opentuner.org/tutorial/gettingstarted/).)
+A tutorial to autotune the block matrix multiplication is given in [docs/tutorials/mmm-block](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/). (This example including the source code is borrowed from [http://opentuner.org/tutorial/gettingstarted/](http://opentuner.org/tutorial/gettingstarted/).)
 
-* You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [/docs/tutorials/mmm-block/tutorial-mmm-block.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/tutorial-mmm-block.md) for this tutorial. 
+* You can follow the [docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [docs/tutorials/mmm-block/tutorial-mmm-block.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/tutorial-mmm-block.md) for this tutorial. 
 
 * You can define your search problem such as [ytopt/benchmark/mmm-block/mmm_problem/problem.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/mmm-block/mmm_problem/problem.py) for the following search space:
 
@@ -14,9 +14,9 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.mmm-block.
 ```
 * Then, ytopt.log, results.csv, and results.json will be rendered. 
 
-A tutorial to autotune the OpenMP version of XSBench is given in [/docs/tutorials/omp-xsbench](https://github.com/ytopt-team/ytopt/tutorial/tutorial/docs/tutorials/omp-xsbench/)
+A tutorial to autotune the OpenMP version of XSBench is given in [docs/tutorials/omp-xsbench](https://github.com/ytopt-team/ytopt/tutorial/tutorial/docs/tutorials/omp-xsbench/)
 
-* You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md) for this tutorial. 
+* You can follow the [docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.ipynb) or the [docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md) for this tutorial. 
 
 * You can define your search problem such as [ytopt/benchmark/xsbench-omp/xsbench/problem.py](https://github.com/ytopt-team/ytopt/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem.py) for the following search space:
 
@@ -35,15 +35,15 @@ python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-om
 
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-mpi-omp)
 
-* You can follow the [/docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.md) for this tutorial. 
+* You can follow the [docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.ipynb) or the [docs/tutorials/omp-xsbench/tutorial-mpi-omp-xsbench.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.md) for this tutorial. 
 
 An example to autotune the OpenMP version of XSBench with constraint is given in [ytopt/benchmark/xsbench-omp/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-omp)
 
-* You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md) for this tutorial. 
+* You can follow the [docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb) or the [docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md) for this tutorial. 
 
 An example to autotune the OpenMP version of convolution-2d with constraint is given in [ytopt/benchmark/convolution-2d/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/convolution-2d)
 
-* You can follow the [/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb) or the [/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-convolution-2d-const.md) for this tutorial. 
+* You can follow the [docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb) or the [docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md) for this tutorial. 
 
 <!--
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
