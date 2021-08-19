@@ -41,6 +41,10 @@ An example to autotune the OpenMP version of XSBench with constraint is given in
 
 * You can follow the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.ipynb) or the [/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-omp-xsbench-const.md) for this tutorial. 
 
+An example to autotune the OpenMP version of convolution-2d with constraint is given in [ytopt/benchmark/convolution-2d/](https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/convolution-2d)
+
+* You can follow the [/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.ipynb) or the [/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/omp-xsbench/tutorial-convolution-2d-const.md) for this tutorial. 
+
 <!--
 An example to autotune the hybrid MPI/OpenMP version of XSBench is given in [ytopt/benchmark/xsbench-mpi-omp/xsbench/](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/xsbench-mpi-omp/xsbench/).
 
