@@ -69,6 +69,9 @@ Our search space with constraints can be visualized such as:
 ![convolution-2d_cons](convolution-2d_cons.png)
 
 Each parameter is defined as:
+<!--
+#p2 (check if cuda is available): already exists in convolution-2d.c since it is a cuda example.
+-->
 
 
 ```python
@@ -86,7 +89,7 @@ p10 = CSH.CategoricalHyperparameter(name='p10', choices=['static','dynamic'])
 p11 = CSH.OrdinalHyperparameter(name = 'p11', sequence=['1', '2', '4', '8', '16']) #n(size of data)/num thrads.
 p12 = CSH.OrdinalHyperparameter(name='p12', sequence=['8',  '16', '32', '64', '72', '128', '176']) 
 p14 = CSH.OrdinalHyperparameter(name='p14', sequence=['32', '64', '128', '256'])
-#p2 (check if cuda is available): already exists in convolution-2d.c since it is a cuda example.
+#p2 (check if cuda is available): already exists in convolution-2d.c for a cuda example.
 cs.add_hyperparameters([p1,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p14])
 ```
 
@@ -375,7 +378,7 @@ cd ytopt/benchmark/convolution-2d/convolution-2d
 `
 - Start search
 
-`python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF
+`python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF`
 
 
 --------------

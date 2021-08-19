@@ -72,7 +72,6 @@ cd ..
 git clone -b tutorial https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
-cd ..
 ```
 
 If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
