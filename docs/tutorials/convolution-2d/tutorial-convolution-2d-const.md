@@ -365,11 +365,18 @@ Problem = TuningProblem(
 Running and viewing Results
 -----------------------
 
-Now, we can run the following command to autotune our program: 
+Now, we can run the following command to autotune the program: 
 --evaluator flag sets which object used to evaluate models, --problem flag sets path to the Problem instance you want to use for the search, --max-evals flag sets the maximum number of evaluations, --learner flag sets the type of learner (surrogate model).
 
-`python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.convolution-2d.convolution-2d.problem.Problem --max-evals=10 --learner RF
+- Go to where `problem.py` such as:
+
 `
+cd ytopt/benchmark/convolution-2d/convolution-2d 
+`
+- Start search
+
+`python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF
+
 
 --------------
 Once autotuning kick off, ytopt.log, results.csv, and results.json will be rendered.

@@ -290,10 +290,17 @@ Problem = TuningProblem(
 Running and viewing Results
 -----------------------
 
-Now, we can run the following command to autotune our program: 
+Now, we can run the following command to autotune the program: 
 --evaluator flag sets which object used to evaluate models, --problem flag sets path to the Problem instance you want to use for the search, --max-evals flag sets the maximum number of evaluations, --learner flag sets the type of learner (surrogate model).
 
-`python -m ytopt.search.ambs --evaluator ray --problem ytopt.benchmark.xsbench-mpi-omp.xsbench.problem_cons.Problem --max-evals=10 --learner RF
+- Go to where `problem_cons.py` such as
+
+`
+cd ytopt/benchmark/xsbench-mpi-omp/xsbench
+`
+- Start search
+
+`python -m ytopt.search.ambs --evaluator ray --problem problem_cons.Problem --max-evals=10 --learner RF
 `
 
 --------------
@@ -380,8 +387,3 @@ Look up the best configuration (found so far) and its value by inspecting the fo
 In this run, the best configuration and its runtime is obtained:
 
 `{'p0': 7, 'p1': 'static,#P3', 'p2': ' ', 'p3': '160'}: 24.607`
-
-
-```python
-
-```
