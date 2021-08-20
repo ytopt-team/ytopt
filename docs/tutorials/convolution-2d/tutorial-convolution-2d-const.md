@@ -26,6 +26,8 @@ Build cuda_11.4.r11.4/compiler.30033411_0
 Quadro RTX 8000
 ```
 
+This example includes source and python scripts contributed by David Fridlander `davidfrid2@gmail.com`.  
+
 <!--
 module load cuda/11.4.0
 module load llvm/release-12.0.1
