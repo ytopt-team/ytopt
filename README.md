@@ -92,11 +92,11 @@ pip install -e .
 * [Autotuning the hybrid MPI/OpenMP version of XSBench with constraints](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench-const.md)
 * [Autotuning the OpenMP version of convolution-2d with constraints](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md)
 
-# How do I learn more?
+<!--# How do I learn more?
 
-<!-- * Documentation: https://ytopt.readthedocs.io -->
+* Documentation: https://ytopt.readthedocs.io 
 
-* GitHub repository: https://github.com/ytopt-team/ytopt
+* GitHub repository: https://github.com/ytopt-team/ytopt -->
 
 
 # Who is responsible?
