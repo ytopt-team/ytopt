@@ -2,7 +2,7 @@
 <img src="docs/_static/logo/medium.png">
 </p>
 
-[![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)
+<!-- [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)-->
 
 # What is ytopt?
 ``ytopt`` is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations,
@@ -109,7 +109,7 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Xingfu Wu <xingfu.wu@anl.gov>
 * Jaehoon Koo <jkoo@anl.gov>
 
-# How can I participate?
+<!--# How can I participate?
 
 Questions, comments, feature requests, bug reports, etc. can be directed to:
 
@@ -121,7 +121,7 @@ Patches are much appreciated on the software itself as well as documentation.
 Optionally, please include in your first patch a credit for yourself in the
 list above.
 
-The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/).
+The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/).-->
 
 # Acknowledgements
 
