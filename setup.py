@@ -29,7 +29,7 @@ REQUIRED = [
     #'scikit-optimize',
     'scikit-learn==0.23.1',
     'tqdm',
-    'tensorflow==1.14.0',
+    'tensorflow==2.5.1',
     'keras',
     # nas
     'gym',
