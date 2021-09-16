@@ -29,7 +29,7 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, scikit-optimize, autotune, and ytopt. 
+The autotuning framework requires the following components: ConfigSpace, CConfigSpace, scikit-optimize, autotune, and ytopt.
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -51,6 +51,43 @@ cd configspace
 pip install -e .
 cd ..
 ```
+
+* Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+    * Prerequisites: `autotools` and the `gsl`
+        * Ubuntu
+          ```
+          sudo apt-get install autoconf automake libtool libgsl-dev
+          ```
+
+        * MacOS
+          ```
+          brew install autoconf automake libtool gsl
+          ```
+    * Build and Install the library and python bindings:
+      the `configure` command can take an optional `--prefix=` parameter to specify a
+      different install path than the default one (`/usr/local`). Depending on the
+      chosen location you may need elevated previleges to run `make install`.
+      ```
+      git clone git@github.com:argonne-lcf/CCS.git
+      cd CCS
+      ./autogen.sh
+      mkdir build
+      cd build
+      ../configure
+      make
+      make install
+      cd ../bindings/python
+      pip install parglare==0.12.0
+      pip install -e .
+      ```
+    * Setup environment:
+      in order for the python binding to find the CConfigSpace library, the path to
+      the library install location (`/usr/local/lib` by default) must be appended
+      to the `LD_LIBRARY_PATH` environment variable on Linux, while on MacOS the
+      `DYLD_LIBRARY_PATH` environment variable serves the same purpose. Alternatively
+      the `LIBCCONFIGSPACE_SO_` environment variable can be made to point to the installed
+      `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
+      on MacOS.
 
 * Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
 ```
