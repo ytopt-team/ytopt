@@ -89,9 +89,9 @@ cd ..
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
       on MacOS.
 
-* Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
+* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
-git clone https://github.com/deephyper/scikit-optimize.git
+git clone https://github.com/ytopt-team/scikit-optimize.git
 cd scikit-optimize
 pip install -e .
 cd ..
