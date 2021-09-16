@@ -29,10 +29,10 @@ REQUIRED = [
     #'scikit-optimize',
     'scikit-learn==0.23.1',
     'tqdm',
-    'tensorflow==1.14.0',
-    'keras',
+    #'tensorflow==1.14.0',
+    #'keras',
     # nas
-    'gym',
+    #'gym',
     'joblib',
     'deap',
     'ray[debug]',
