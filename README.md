@@ -110,7 +110,11 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Xingfu Wu <xingfu.wu@anl.gov>
 * Jaehoon Koo <jkoo@anl.gov>
 
-<!--# How can I participate?
+<!--Modules, patches (code, documentation, etc.) contributed by:
+
+* David Fridlander <davidfrid2@gmail.com>
+
+# How can I participate?
 
 Questions, comments, feature requests, bug reports, etc. can be directed to:
 
