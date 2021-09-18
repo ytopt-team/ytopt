@@ -1,5 +1,4 @@
 import os, sys, subprocess, random, re
-random.seed(1234)
 
 class Plopper:
     def __init__(self,sourcefile,outputdir):
