@@ -126,7 +126,7 @@ Patches are much appreciated on the software itself as well as documentation.
 Optionally, please include in your first patch a credit for yourself in the
 list above.
 
-The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/).-->
+The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Acknowledgements
 
