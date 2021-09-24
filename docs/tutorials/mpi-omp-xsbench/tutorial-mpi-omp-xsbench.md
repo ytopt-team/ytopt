@@ -32,6 +32,10 @@ from autotune.space import *
 import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
+from plopper import Plopper
 ```
 
 Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: block size for openmp dynamic schedule, 3) `p2`: turn on/off omp parallel.  
@@ -86,7 +90,6 @@ The following describes our evaluating function, Plopper. You can find it `<http
 
 ```python
 import os, sys, subprocess, random
-random.seed(1234)
 
 class Plopper:
     def __init__(self,sourcefile,outputdir):

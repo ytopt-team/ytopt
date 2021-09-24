@@ -35,6 +35,10 @@ from autotune.space import *
 import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
+from plopper import Plopper
 ```
 
 Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: choice for openmp static/dynamic schedule types, 3) `p2`: turn on/off omp parallel, 4) `p3`: block size for openmp static/dynamic schedule.  
@@ -73,7 +77,7 @@ output_space = Space([Real(0.0, inf, name="time")])
 ```
 
 --------------
-Then, we need to define the objective function `myobj` to evaluate a point in the search space and . 
+Then, we need to define the objective function `myobj` to evaluate a point in the search space. In this example, we define an evaluating method (Plopper) for code generation and compilation. Plopper take source code and output directory and return an execution time. 
 
 This part is explained in the example of [Autotuning the OpenMP version of XSBench](https://github.com/ytopt-team/ytopt/blob/main/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md). Please follow details in `<https://github.com/ytopt-team/ytopt/blob/main/docs/tutorials/omp-xsbench/tutorial-omp-xsbench.md>` 
 
