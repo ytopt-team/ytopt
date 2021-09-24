@@ -1,4 +1,4 @@
-Tutorial: Autotune the hybrid MPI/OpenMP version of XSBench 
+Tutorial: Autotune the hybrid MPI/OpenMP version of XSBench with constraints 
 ===================
 
 This tutorial describes how to define autotuning problem and an evaluating method for autotuning ECP XSBench app. 

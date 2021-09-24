@@ -1,4 +1,4 @@
-Tutorial: Autotune the OpenMP version of convolution-2d 
+Tutorial: Autotune the OpenMP version of convolution-2d with constraints
 ===================
 
 This tutorial describes how to define autotuning problem and an evaluating method for autotuning PolyBench convolution-2d. 
