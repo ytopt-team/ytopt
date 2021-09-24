@@ -82,8 +82,6 @@ Then, we need to define the objective function `myobj` to evaluate a point in th
 In this example, we define an evaluating method (Plopper) for code generation and compilation. 
 Plopper take source code and output directory and return an execution time. 
 
-This part is explained in the example of [Autotuning the hybrid MPI/OpenMP version of XSBench](https://github.com/ytopt-team/ytopt/blob/main/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench-const.md). Please follow details in `<https://github.com/ytopt-team/ytopt/blob/main/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench-const.md>` 
-
 
 ```python
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -105,6 +103,175 @@ def myobj(point: dict):
     print('OUTPUT:%f',results)
     return results
 ```
+
+The following describes our evaluating function, Plopper. You can find it `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-mpi-omp/plopper/plopper.py>`.  
+
+
+```python
+import os, sys, subprocess, random
+random.seed(1234)
+
+class Plopper:
+    def __init__(self,sourcefile,outputdir):
+        self.sourcefile = sourcefile
+        self.outputdir = outputdir+"/tmp_files"
+
+        if not os.path.exists(self.outputdir):
+            os.makedirs(self.outputdir)
+
+    def createDict(self, x, params):
+        dictVal = {}
+        for p, v in zip(params, x):
+            dictVal[p] = v
+        return(dictVal)
+
+    def plotValues(self, dictVal, inputfile, outputfile):
+        with open(inputfile, "r") as f1:
+            buf = f1.readlines()
+
+        with open(outputfile, "w") as f2:
+            for line in buf:
+                modify_line = line
+                for key, value in dictVal.items():
+                    if key in modify_line:
+                        if value != 'None': #For empty string options
+                            modify_line = modify_line.replace('#'+key, str(value))
+
+                if modify_line != line:
+                    f2.write(modify_line)
+                else:
+                    f2.write(line)
+
+    def findRuntime(self, x, params):
+        interimfile = ""
+        exetime = 1
+        counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
+        interimfile = self.outputdir+"/"+str(counter)+".c"
+
+        # Generate intermediate file
+        dictVal = self.createDict(x, params)
+        self.plotValues(dictVal, self.sourcefile, interimfile)
+
+        #compile and find the execution time
+        tmpbinary = interimfile[:-2]
+        kernel_idx = self.sourcefile.rfind('/')
+        kernel_dir = self.sourcefile[:kernel_idx]
+
+        gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
+        " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
+        + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
+        " -lm" + " -L${CONDA_PREFIX}/lib"
+        run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
+
+        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
+
+        #Find the execution time only when the compilation return code is zero, else return infinity
+        if compilation_status.returncode == 0 :
+            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
+            exetime = float(execution_status.stdout.decode('utf-8'))
+            if exetime == 0:
+                exetime = 1
+        else:
+            print(compilation_status.stderr)
+            print("compile failed")
+        return exetime #return execution time as cost 
+```
+
+This file consists of several components.
+
+`__init__()` takes paths of the source file and output directory, and creates the output directory if it does not exists.   
+
+
+```python
+def __init__(self,sourcefile,outputdir):
+    # Initilizing global variables
+    self.sourcefile = sourcefile
+    self.outputdir = outputdir+"/tmp_files"
+
+    if not os.path.exists(self.outputdir):
+        os.makedirs(self.outputdir)
+```
+
+`createDict()` generates a dictionary for parameter labels and values.
+
+
+```python
+def createDict(self, x, params):
+    dictVal = {}
+    for p, v in zip(params, x):
+        dictVal[p] = v
+    return(dictVal)
+```
+
+`plotValues()` replaces the Markers in the source file with the corresponding prameter values of the parameter dictionary. 
+For example, a sampled value for number of threads `p0` replaces `#P0` in line 349 `input.nthreads = #P0` of `mmp_cons.c` that is the original source file. 
+
+If `dynamic,#P3` is chosen for `p1` along with `100` for `p3`, `#pragma omp parallel for schedule(#P1)` in `mmp_cons.c` is written as `#pragma omp parallel for schedule(dynamic,100)`. 
+
+If `auto` is chosen for `p1`, `#pragma omp parallel for schedule(#P1)` in `mmp_cons.c` is written as `#pragma omp parallel for schedule(auto)`. Note that no value is chosen for `p3` by the constraint. 
+
+
+```python
+def plotValues(self, dictVal, inputfile, outputfile):
+    with open(inputfile, "r") as f1:
+        buf = f1.readlines()
+    with open(outputfile, "w") as f2:
+        for line in buf:
+            modify_line = line
+            for key, value in dictVal.items():
+                if key in modify_line:
+                    if value != 'None': #For empty string options
+                        modify_line = modify_line.replace('#'+key, str(value))
+            if modify_line != line:
+                f2.write(modify_line)
+            else:
+                f2.write(line)  #To avoid writing the Marker
+```
+
+`findRuntime()` first calls `createDict()` to obatain configuration values and `plotValues()` to modify the original source code. 
+After that, it generates the commandline `gcc_cmd` for compiling the modified source code and the commandline `run_cmd` for executing the compiled code. 
+Then, it finds the compilation status using subprocess; finds the execution time of the compiled code; and returns the execution time as cost to the search module. 
+
+
+```python
+def findRuntime(self, x, params):
+    interimfile = ""
+    exetime = 1
+    counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals          
+    interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
+
+    # Generate intermediate file
+    dictVal = self.createDict(x, params)
+    self.plotValues(dictVal, self.sourcefile, interimfile)
+
+    #compile and find the execution time
+    tmpbinary = interimfile[:-2]
+    kernel_idx = self.sourcefile.rfind('/')
+    kernel_dir = self.sourcefile[:kernel_idx]
+
+    gcc_cmd = "mpicc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -DMPI -O3 "  + \
+    " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
+    + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
+    " -lm" + " -L${CONDA_PREFIX}/lib"
+    run_cmd = kernel_dir + "/exe.pl " +  tmpbinary
+
+    #Find the compilation status using subprocess
+    compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
+
+    #Find the execution time only when the compilation return code is zero, else return infinity
+    if compilation_status.returncode == 0 :
+        execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
+        exetime = float(execution_status.stdout.decode('utf-8'))
+        if exetime == 0:
+            exetime = 1
+    else:
+        print(compilation_status.stderr)
+        print("compile failed")
+    return exetime #return execution time as cost
+```
+
+Note: 
+- `exe.pl` computes average the execution time over multiple runs. We execute once in this example to save time. 
 
 --------------
 Last, we create an object of the autotuning problem. The problem will be called in the commandline implementation. 
