@@ -279,6 +279,8 @@ cd ytopt/benchmark/xsbench-omp/xsbench
 `python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF
 `
 
+Note that use `python3` if your environment is built with python3. 
+
 --------------
 Once autotuning kick off, ytopt.log, results.csv, and results.json will be rendered.
 

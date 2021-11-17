@@ -9,7 +9,9 @@ This example including the source code is borrowed from [http://opentuner.org/tu
 
 Indentifying a problem to autotune 
 -----------------------
-In this tutorial, we target to autotune the block size for matrix multiplication. Save the related source files in the seprate folder: `mmm_block.cpp`. We have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/mmm-block/mmm_problem/mmm_block.cpp>`.
+In this tutorial, we target to autotune the block size for matrix multiplication. Blocking is used to improve the temporal locality of inner loops such that data structures in a program are orgarnized into chunks, i.e. blocks (ref: [https://csapp.cs.cmu.edu/public/waside/waside-blocking.pdf](https://csapp.cs.cmu.edu/public/waside/waside-blocking.pdf)). We want to find the block size that gives the minimal execution time. 
+
+Save the related source files in the seprate folder: `mmm_block.cpp`. We have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/mmm-block/mmm_problem/mmm_block.cpp>`.
 
 
 ```python
@@ -261,8 +263,10 @@ cd ytopt/benchmark/mmm-block/mmm_problem
 `
 - Start search
 
-`python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=5 --learner RF
+`python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=5 --learner RF 
 `
+
+Note that use `python3` if your environment is built with python3. 
 
 --------------
 Once autotuning kick off, ytopt.log, results.csv, and results.json will be rendered.
