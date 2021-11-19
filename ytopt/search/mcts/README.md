@@ -4,7 +4,7 @@
 
 #Nov 10, 2021
 
-## Pubplicaiton
+## Publication
 [J Koo, P Balaprakash, M Kruse, X Wu, P Hovland, M Hall, Customized Monte Carlo Tree Search for LLVM/Polly's Composable Loop Optimization Transformations, PMBS21](https://scwpub21:conf21%2f%2f@conferences.computer.org/scwpub/pdfs/PMBS2021-vSqRXl4nJSV5KT4jWO5cW/111800a082/111800a082.pdf)
 
 ## Install instructions for mcts 
