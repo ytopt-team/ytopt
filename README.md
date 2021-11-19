@@ -99,7 +99,7 @@ pip install -e .
 
 ## Tree search space 
 * Check out first [Readme for Tree space](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/search/mcts/README.md)
-* [Autotuning PolyBench GEMM Kernel](https://github.com/ytopt-team/ytopt/blob/mcts/tutorial/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
+* [Autotuning PolyBench GEMM Kernel](https://github.com/ytopt-team/ytopt/blob/mcts/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
 
 <!--# How do I learn more?
 
