@@ -42,19 +42,19 @@ import pickle
 from statistics import median
 from csv import reader, writer
 
-##### import DT 
-import pandas as pd
-from sklearn import preprocessing
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor # Import Decision Tree Classifier
-from sklearn.model_selection import train_test_split # Import train_test_split function
-from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
-from sklearn import tree
-from sklearn.datasets import *
-from sklearn import tree
-from dtreeviz.trees import *
-from IPython.core.display import SVG
-import cairosvg
-import collections 
+# ##### import DT 
+# import pandas as pd
+# from sklearn import preprocessing
+# from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor # Import Decision Tree Classifier
+# from sklearn.model_selection import train_test_split # Import train_test_split function
+# from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
+# from sklearn import tree
+# from sklearn.datasets import *
+# from sklearn import tree
+# from dtreeviz.trees import *
+# from IPython.core.display import SVG
+# import cairosvg
+# import collections 
 
 ##### MCTS Environment
 _TTTB = namedtuple("Environment", "tup terminal depth parent ids trajectory")
@@ -246,7 +246,7 @@ if __name__ == "__main__":
     if args.keep:
         d = tempfile.mkdtemp(dir=outdir, prefix='mctree-')
     else:
-        d = stack.enter_context(tempfile.TemporaryDirectory(dir=outdir, prefix='mctree-'))
+        d = tempfile.mkdtemp(dir=outdir, prefix='mctree-')
     d = mkpath(d)     
           
     #### MCTS run commands     

@@ -4,13 +4,13 @@ set -e
 SCRIPTPATH=`realpath --no-symlinks $(dirname $0)`
 BASENAME=`basename "${SCRIPTPATH}"`
 ROOTPATH=`realpath --no-symlinks "${SCRIPTPATH}/../.."`
-SAVEPATH="/gpfs/jlse-fs0/users/jkoo/exp"
-if [ -d "${SAVEPATH}/${BASENAME}_bf" ] 
+SAVEPATH="${SCRIPTPATH}/exp"
+if [ -d "${SAVEPATH}/${BASENAME}_rs" ] 
 then
     echo "Directory exists." 
 else
     echo "Error: Directory does not exists."
-    mkdir "${SAVEPATH}/${BASENAME}_bf"
+    mkdir "${SAVEPATH}/${BASENAME}_rs"
 fi
 
 if [[ -z "${CLANG_PREFIX}" ]]; then
@@ -19,7 +19,7 @@ if [[ -z "${CLANG_PREFIX}" ]]; then
 fi
 
 
-(cd "${SCRIPTPATH}" && python3 "${ROOTPATH}/mctree_bf.py" --packing-arrays=A,B,C autotune --outdir="${SAVEPATH}/${BASENAME}_bf" --polybench-time \
+(cd "${SCRIPTPATH}" && python3 "${ROOTPATH}/mctree_rs.py" --packing-arrays=A,B,C autotune --outdir="${SAVEPATH}/${BASENAME}_rs" --polybench-time \
   --ld-library-path="${CLANG_PREFIX}/lib:${CLANG_PREFIX}/runtimes/runtimes-bins/openmp/runtime/src" \
   "${CLANG_PREFIX}/bin/clang" -I"${CLANG_PREFIX}/projects/openmp/runtime/src" -I"${CLANG_PREFIX}/runtimes/runtimes-bins/openmp/runtime/src" -L"${CLANG_PREFIX}/runtimes/runtimes-bins/openmp/runtime/src" \
   -flegacy-pass-manager -mllvm -polly-position=early -O3 -march=native \
