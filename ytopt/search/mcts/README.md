@@ -2,7 +2,7 @@
 
 #MCS, ANL
 
-#Nov 10, 2021
+#Nov 19, 2021
 
 ## Publication
 [J Koo, P Balaprakash, M Kruse, X Wu, P Hovland, M Hall, Customized Monte Carlo Tree Search for LLVM/Polly's Composable Loop Optimization Transformations, PMBS21](https://scwpub21:conf21%2f%2f@conferences.computer.org/scwpub/pdfs/PMBS2021-vSqRXl4nJSV5KT4jWO5cW/111800a082/111800a082.pdf)
@@ -30,9 +30,11 @@ pip install dtreeviz[lightgbm]   # install LightGBM related dependency
 ## Quick start
 * Run autotuning with search algorithms 
 ```
+cd path/to/ytopt/ytopt/search/mcts
 CLANG_PREFIX=/path/to/clang ./benchmarks/[kernel]/autotune_mcts.sh  
 ```
 * Select ``[kernel]`` one in [benchmarks](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/search/mcts/benchmarks/)
+* E.g. ``CLANG_PREFIX=/usr/local/opt/llvm ./benchmarks/gemm/autotune_mcts.sh ``
 <!-- * Select ``[search algorithm]`` one of  ``mcts``, ``gg``, ``rs``, ``bs`` -->
 
 ## Tutorials
