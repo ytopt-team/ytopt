@@ -1,0 +1,2 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/heat-3d && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/lib:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/runtimes/runtimes-bins/openmp/runtime/src /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/heat-3d/heat-3d_o3p)
+Exit with code -11 in 0:00:00.433336

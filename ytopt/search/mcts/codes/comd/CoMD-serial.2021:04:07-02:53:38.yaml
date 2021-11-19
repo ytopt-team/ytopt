@@ -1,0 +1,36 @@
+
+Mini-Application Name    : CoMD-serial
+Mini-Application Version : 1.1
+Platform:
+  hostname: hostname
+  kernel name: OS
+  kernel release: release
+  processor: x86_64
+Build:
+  CC: clang
+  compiler version: pragma-clang-loop
+  CFLAGS: -O3 -mllvm -polly
+  LDFLAGS: 
+  using MPI: false
+  Threading: none
+  Double Precision: true
+Run Date/Time: 2021-04-07, 02:53:38
+
+Command Line Parameters:
+  doeam: 0
+  potDir: pots
+  potName: Cu_u6.eam
+  potType: funcfl
+  nx: 100
+  ny: 100
+  nz: 100
+  xproc: 1
+  yproc: 1
+  zproc: 1
+  Lattice constant: -1 Angstroms
+  nSteps: 100
+  printRate: 10
+  Time step: 1 fs
+  Initial Temperature: 600 K
+  Initial Delta: 0 Angstroms
+

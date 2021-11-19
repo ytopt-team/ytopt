@@ -1,0 +1,84 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/comd && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/lib:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/runtimes/runtimes-bins/openmp/runtime/src /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/comd/comd_o3p --nx 72 --ny 64 --nz 64)
+[stdout] Wed Apr  7 23:41:05 2021: Starting Initialization
+[stdout] 
+[stdout] 
+[stdout] Mini-Application Name    : CoMD-serial
+[stdout] Mini-Application Version : 1.1
+[stdout] Platform:
+[stdout]   hostname: hostname
+[stdout]   kernel name: OS
+[stdout]   kernel release: release
+[stdout]   processor: x86_64
+[stdout] Build:
+[stdout]   CC: clang
+[stdout]   compiler version: pragma-clang-loop
+[stdout]   CFLAGS: -O3 -mllvm -polly
+[stdout]   LDFLAGS: 
+[stdout]   using MPI: false
+[stdout]   Threading: none
+[stdout]   Double Precision: true
+[stdout] Run Date/Time: 2021-04-07, 23:41:05
+[stdout] 
+[stdout] Command Line Parameters:
+[stdout]   doeam: 0
+[stdout]   potDir: pots
+[stdout]   potName: Cu_u6.eam
+[stdout]   potType: funcfl
+[stdout]   nx: 72
+[stdout]   ny: 64
+[stdout]   nz: 64
+[stdout]   xproc: 1
+[stdout]   yproc: 1
+[stdout]   zproc: 1
+[stdout]   Lattice constant: -1 Angstroms
+[stdout]   nSteps: 100
+[stdout]   printRate: 10
+[stdout]   Time step: 1 fs
+[stdout]   Initial Temperature: 600 K
+[stdout]   Initial Delta: 0 Angstroms
+[stdout] 
+[stdout] nLocalBoxes=66924 nMaxAtoms=32 nMaxNbrBoxes=27 MAXATOMS=64
+[stdout] Simulation data: 
+[stdout]   Total atoms        : 1179648
+[stdout]   Min global bounds  : [   0.0000000000,   0.0000000000,   0.0000000000 ]
+[stdout]   Max global bounds  : [ 260.2800000000, 231.3600000000, 231.3600000000 ]
+[stdout] 
+[stdout] Decomposition data: 
+[stdout]   Processors         :      1,     1,     1
+[stdout]   Local boxes        :     44,    39,    39 =    66924
+[stdout]   Box size           : [   5.9154545455,   5.9323076923,   5.9323076923 ]
+[stdout]   Box factor         : [   1.0221087768,   1.0250207676,   1.0250207676 ] 
+[stdout]   Max Link Cell Occupancy: 32 of 64
+[stdout] 
+[stdout] Potential data: 
+[stdout]   Potential type   : Lennard-Jones
+[stdout]   Species name     : Cu
+[stdout]   Atomic number    : 29
+[stdout]   Mass             : 63.55 amu
+[stdout]   Lattice Type     : FCC
+[stdout]   Lattice spacing  : 3.615 Angstroms
+[stdout]   Cutoff           : 5.7875 Angstroms
+[stdout]   Epsilon          : 0.167 eV
+[stdout]   Sigma            : 2.315 Angstroms
+[stdout] 
+[stdout] Memory data: 
+[stdout]   Intrinsic atom footprint =   88 B/atom 
+[stdout]   Total atom footprint     =  99.000 MB ( 99.00 MB/node)
+[stdout]   Link cell atom footprint = 359.455 MB/node
+[stdout]   Link cell atom footprint = 415.325 MB/node (including halo cell data
+[stdout] 
+[stdout] 
+[stdout] Initial energy : 0.077555991600, atom count : 1179648 
+[stdout] 
+[stdout] Wed Apr  7 23:41:06 2021: Initialization Finished
+[stdout] 
+[stdout] Wed Apr  7 23:41:06 2021: Starting simulation
+[stdout] 
+[stdout] #                                                                                         Performance
+[stdout] #  Loop   Time(fs)       Total Energy   Potential Energy     Kinetic Energy  Temperature   (us/atom)     # Atoms
+[stdout]       0       0.00     0.077555991600     0.000000000000     0.077555991600     600.0000     0.0000      1179648
+[stdout] nLocalBoxes=66924 nMaxAtoms=32 nMaxNbrBoxes=27 MAXATOMS=64
+[stdout] nLocalBoxes=66924 nMaxAtoms=32 nMaxNbrBoxes=27 MAXATOMS=64
+[stdout] nLocalBoxes=66924 nMaxAtoms=32 nMaxNbrBoxes=27 MAXATOMS=64
+[stdout] 0.056983
+Exit with code 0 in 0:00:01.195601

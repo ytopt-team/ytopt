@@ -1,0 +1,12 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/miniAMR && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/lib:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/runtimes/runtimes-bins/openmp/runtime/src /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/miniAMR/miniAMR_o3p --nx 94 --ny 94 --nz 94 --max_blocks 128 --uniform_refine 1 --num_refine 2)
+[stdout] Number of blocks at level 0 at timestep 0 is 0
+[stdout] Number of blocks at level 1 at timestep 0 is 0
+[stdout] Number of blocks at level 2 at timestep 0 is 64
+[stdout] Total number of blocks at timestep 0 is 64
+[stdout] 
+[stdout] var=0 num_indices=64 z_size=96 z_size=96 z_size=96
+[stdout] var=1 num_indices=64 z_size=96 z_size=96 z_size=96
+[stdout] var=2 num_indices=64 z_size=96 z_size=96 z_size=96
+[stdout] var=3 num_indices=64 z_size=96 z_size=96 z_size=96
+[stdout] 0.228957
+Exit with code 0 in 0:00:08.272416

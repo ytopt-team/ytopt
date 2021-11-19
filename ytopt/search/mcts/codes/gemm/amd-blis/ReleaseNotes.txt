@@ -1,0 +1,54 @@
+Copyright (C) 2021, Advanced Micro Devices, Inc.
+
+Copyright (C) 2014, The University of Texas at Austin
+
+AMD BLIS - Release Notes - version 3.0
+--------------------------------------------
+
+BLIS is a portable software framework for instantiating high-performance 
+BLAS-like dense linear algebra libraries. The framework was designed to isolate 
+essential kernels of computation that, when optimized, enable optimized 
+implementations of most of its commonly used and computationally intensive 
+operations. Some of these essential kernels have been optimized for the AMD 
+EPYC processor family by AMD and others. The optimizations are done for single 
+and double precision routines.  
+
+Highlights of AMD BLIS 3.0
+---------------------------
+- Added support for AMD's zen3 architecture, build can auto detect if it is 
+  running on zen3 and enable features and optimizations specific to zen3 architecture
+
+- Added support for following copy transposition routines
+
+    ?imatcopy:    Performs scaling and in-place transposition/copying matrices
+    ?omatcopy:    Performs scaling and out-place transposition/copying matrices
+    ?omatcopy2:   Performs two-strided scaling and out-of-place transposition/copying matrices 
+    ?omatadd:     Scales and sums two matrices including in addition to out-of-place transposition
+
+- Added support for following BLAS extension API's
+
+    cblas_?cabs1
+    cblas_i?amin
+    cblas_?axpby
+    cblas_?gemm_batch
+    cblas_?gemm3m
+
+- Debug trace and input logging support added for following APIs
+
+    amax, asum, axpby, axpy, copy, dot, gemm, gemm3m, gemmt, gemv
+    ger, hemm, hemv, her, her2, her2k, herk, imatcopy, nrm2, omatadd
+    omatcopy, omatcopy2, scal, swap, symm, symv, syr, syr2, syr2k, syrk
+    trmm, trmv, trsm, trsv
+
+- Added Performance optimizations of ?dotv, ?gemv, ?axpyv for complex and double complex datatypes.
+
+
+AMD Optimized BLIS libraries are validated on a variety of platforms:
+
+-   Ubuntu 20.04, openMP-4.5, glibc 2.31, with both GCC-9.3.0 and AOCC-3.0
+-   Centos 8, openMP-4.5, glibc 2.28, with both GCC-9.2.0 and AOCC-3.0
+-   Sles 15, openMP-4.5, glibc 2.28, with both GCC-9.2.0 and AOCC-3.0
+-   RHEL 8.2, openMP-4.5, glibc 2.28, with both GCC-8.3.1 and AOCC-3.0
+
+The package contains BLIS Library binaries which includes optimizations for 
+the AMD EPYC processor family, header files and examples.

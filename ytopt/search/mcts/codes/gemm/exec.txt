@@ -1,0 +1,3 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/gemm && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/home/jkoo/anaconda3/envs/ytune_mc/lib /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/gemm/gemm_mkl)
+[stdout] 0.005553
+Exit with code 0 in 0:00:00.071105

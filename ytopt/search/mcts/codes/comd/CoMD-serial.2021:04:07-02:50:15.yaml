@@ -1,0 +1,64 @@
+
+Mini-Application Name    : CoMD-serial
+Mini-Application Version : 1.1
+Platform:
+  hostname: hostname
+  kernel name: OS
+  kernel release: release
+  processor: x86_64
+Build:
+  CC: clang
+  compiler version: pragma-clang-loop
+  CFLAGS: -O3 -mllvm -polly
+  LDFLAGS: 
+  using MPI: false
+  Threading: none
+  Double Precision: true
+Run Date/Time: 2021-04-07, 02:50:15
+
+Command Line Parameters:
+  doeam: 0
+  potDir: pots
+  potName: Cu_u6.eam
+  potType: funcfl
+  nx: 72
+  ny: 64
+  nz: 64
+  xproc: 1
+  yproc: 1
+  zproc: 1
+  Lattice constant: -1 Angstroms
+  nSteps: 100
+  printRate: 10
+  Time step: 1 fs
+  Initial Temperature: 600 K
+  Initial Delta: 0 Angstroms
+
+Simulation data: 
+  Total atoms        : 1179648
+  Min global bounds  : [   0.0000000000,   0.0000000000,   0.0000000000 ]
+  Max global bounds  : [ 260.2800000000, 231.3600000000, 231.3600000000 ]
+
+Decomposition data: 
+  Processors         :      1,     1,     1
+  Local boxes        :     44,    39,    39 =    66924
+  Box size           : [   5.9154545455,   5.9323076923,   5.9323076923 ]
+  Box factor         : [   1.0221087768,   1.0250207676,   1.0250207676 ] 
+  Max Link Cell Occupancy: 32 of 64
+
+Potential data: 
+  Potential type   : Lennard-Jones
+  Species name     : Cu
+  Atomic number    : 29
+  Mass             : 63.55 amu
+  Lattice Type     : FCC
+  Lattice spacing  : 3.615 Angstroms
+  Cutoff           : 5.7875 Angstroms
+  Epsilon          : 0.167 eV
+  Sigma            : 2.315 Angstroms
+
+Memory data: 
+  Intrinsic atom footprint =   88 B/atom 
+  Total atom footprint     =  99.000 MB ( 99.00 MB/node)
+  Link cell atom footprint = 359.455 MB/node
+  Link cell atom footprint = 415.325 MB/node (including halo cell data

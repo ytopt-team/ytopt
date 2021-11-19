@@ -1,0 +1,31 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/sw4lite && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/lib:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2/llvm-project/release_pragma-clang-loop/runtimes/runtimes-bins/openmp/runtime/src:/soft/libraries/mpi/openmpi/2.1.6/lib:/home/jkoo/anaconda3/envs/ytune_mc/lib /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/sw4lite/sw4lite_o3p /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/sw4lite/LOH.1-h100.in)
+[stdout] 
+[stdout] * Processing the grid command...
+[stdout] * Setting nx to 301 to be consistent with h=100
+[stdout] * Setting ny to 301 to be consistent with h=100
+[stdout] * Setting nz to 171 to be consistent with h=100
+[stdout] 
+[stdout] Global grid sizes (without ghost points)
+[stdout] Grid         h        Nx        Ny        Nz       Points
+[stdout]    0       100       301       301       171     15492771
+[stdout] Total number of grid points (without ghost points): 1.54928e+07
+[stdout] 
+[stdout] Done reading input file 
+[stdout]  no GPUs found
+[stdout] ----------------------------------------------------
+[stdout]  Making Output Directory: loh1-h100-results/
+[stdout] 		
+[stdout] ... Done!
+[stdout] ----------------------------------------------------
+[stdout] number of grid point  sources = 216
+[stdout] number of unique g.p. sources = 216
+[stdout] setup of sources done
+[stdout] Running on 1 MPI tasks
+[stdout] starting at time 0 at cycle 1
+[stdout] ifirst=-1 jfirst=-1 kfirst=-1 ni=305 J=305 K=175
+[stdout] ifirst=-1 jfirst=-1 kfirst=-1 ni=305 J=305 K=175
+[stdout] Time step 1 t= 0.0166667
+[stdout] ifirst=-1 jfirst=-1 kfirst=-1 ni=305 J=305 K=175
+[stdout] ifirst=-1 jfirst=-1 kfirst=-1 ni=305 J=305 K=175
+[stdout] 0.888992
+Exit with code 0 in 0:00:04.553416

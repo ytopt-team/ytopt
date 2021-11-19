@@ -1,0 +1,3 @@
+(cd /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/doitgen && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2a/llvm-project/release_pragma-clang-loop/lib:/gpfs/jlse-fs0/users/jkoo/sw/clang13.2a/llvm-project/release_pragma-clang-loop/runtimes/runtimes-bins/openmp/runtime/src /gpfs/jlse-fs0/users/jkoo/run/mctree/codes/doitgen/doitgen_o3p_ast)
+[stdout] 0.060537
+Exit with code 0 in 0:00:00.203097
