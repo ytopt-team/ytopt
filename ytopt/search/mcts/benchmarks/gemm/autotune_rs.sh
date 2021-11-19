@@ -4,7 +4,7 @@ set -e
 SCRIPTPATH=`realpath --no-symlinks $(dirname $0)`
 BASENAME=`basename "${SCRIPTPATH}"`
 ROOTPATH=`realpath --no-symlinks "${SCRIPTPATH}/../.."`
-SAVEPATH="${SCRIPTPATH}/exp"
+SAVEPATH="${SCRIPTPATH}"
 if [ -d "${SAVEPATH}/${BASENAME}_rs" ] 
 then
     echo "Directory exists." 

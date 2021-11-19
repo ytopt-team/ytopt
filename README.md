@@ -98,8 +98,8 @@ pip install -e .
 * [Autotuning the OpenMP version of convolution-2d with constraints](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md)
 
 ## Tree search space 
-* Check out first [Readme for Tree space]
-* [Autotuning PolyBench GEMM Kernel](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
+* Check out first [Readme for Tree space](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/search/mcts/README.md)
+* [Autotuning PolyBench GEMM Kernel](https://github.com/ytopt-team/ytopt/blob/mcts/tutorial/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
 
 <!--# How do I learn more?
 
