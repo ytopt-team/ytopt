@@ -7,8 +7,8 @@
 ## Publication
 [J Koo, P Balaprakash, M Kruse, X Wu, P Hovland, M Hall, Customized Monte Carlo Tree Search for LLVM/Polly's Composable Loop Optimization Transformations, PMBS21](https://scwpub21:conf21%2f%2f@conferences.computer.org/scwpub/pdfs/PMBS2021-vSqRXl4nJSV5KT4jWO5cW/111800a082/111800a082.pdf)
 
-## Install instructions for mcts 
-* Post analysis requires installing ``python =>3.8``, ``pandas``, ``ipython``, ``dtreeviz``, ``graphviz``
+## Install instructions for tree space 
+* Implementing tree space autotuning requires installing ``python =>3.8``, ``pandas``, ``ipython``, ``dtreeviz``, ``graphviz``
 * Install ``python=3.8`` on top of ytopt: 
 ```
 conda install -c anaconda python=3.8
@@ -28,7 +28,7 @@ pip install dtreeviz[lightgbm]   # install LightGBM related dependency
 ```
 
 ## Quick start
-* Run autotuning with search algorithms 
+* Run autotuning with Monte Carlo Tree Search algorithm 
 ```
 cd path/to/ytopt/ytopt/search/mcts
 CLANG_PREFIX=/path/to/clang ./benchmarks/[kernel]/autotune_mcts.sh  
