@@ -54,7 +54,7 @@ from csv import reader, writer
 # from dtreeviz.trees import *
 # from IPython.core.display import SVG
 # import cairosvg
-# import collections 
+import collections 
 
 ##### MCTS Environment
 _TTTB = namedtuple("Environment", "tup terminal depth parent ids trajectory")
