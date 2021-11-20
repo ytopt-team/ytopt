@@ -38,7 +38,7 @@ CLANG_PREFIX=/path/to/clang ./benchmarks/[kernel]/autotune_mcts.sh
 <!-- * Select ``[search algorithm]`` one of  ``mcts``, ``gg``, ``rs``, ``bs`` -->
 
 ## Tutorials
-* [Autotuning PolyBench GEMM Kernel](https://github.com/ytopt-team/ytopt/blob/mcts/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
+* [Autotuning tree space version of GEMM](https://github.com/ytopt-team/ytopt/blob/mcts/docs/tutorials/mcts-gemm/tutorial-mcts-gemm.md)
 
 ## Reference
 * This repository is built based on Loop transformation search space generator [https://github.com/Meinersbur/mctree.git](https://github.com/Meinersbur/mctree.git)
