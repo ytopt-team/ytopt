@@ -32,7 +32,7 @@ class Optimizer:
 
         n_init = inf if learner=='DUMMY' else num_workers
 
-        if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active & isinstance(self.space, CCS.ConfigurationSpace)):
+        if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active and isinstance(self.space, CCS.ConfigurationSpace)):
             self._optimizer = SkOptimizer(
                 dimensions=self.space,
                 base_estimator=self.learner,
@@ -77,7 +77,7 @@ class Optimizer:
             for i in range(len(x)):
                 res[hps_names[i]] = x [i]
             return res
-        elif ccs_active & isinstance(self.space, CCS.ConfigurationSpace):
+        elif ccs_active and isinstance(self.space, CCS.ConfigurationSpace):
             res = {}
             hps = self.space.hyperparameters
             for i in range(len(x)):
