@@ -44,10 +44,10 @@ mkdir ytopt
 cd ytopt
 ```
 
-* Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
+* Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
 ```
-git clone https://github.com/deephyper/ConfigSpace.git configspace
-cd configspace
+git clone https://github.com/ytopt-team/ConfigSpace.git
+cd ConfigSpace
 pip install -e .
 cd ..
 ```
