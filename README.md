@@ -52,6 +52,7 @@ pip install -e .
 cd ..
 ```
 
+<!--
 * Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: `autotools` and the `gsl`
         * Ubuntu
@@ -87,7 +88,7 @@ cd ..
       `DYLD_LIBRARY_PATH` environment variable serves the same purpose. Alternatively
       the `LIBCCONFIGSPACE_SO_` environment variable can be made to point to the installed
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
-      on MacOS.
+      on MacOS. -->
 
 * Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
@@ -146,6 +147,7 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Paul Hovland <hovland@anl.gov>
 * Xingfu Wu <xingfu.wu@anl.gov>
 * Jaehoon Koo <jkoo@anl.gov>
+* Brice Videau <bvideau@anl.gov>
 
 The convolution-2d tutorial (source and python scripts) is contributed by:
 * David Fridlander <davidfrid2@gmail.com>
@@ -167,6 +169,13 @@ Optionally, please include in your first patch a credit for yourself in the
 list above.
 
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
+
+# Publications
+* J. Koo, P. Balaprakash, M. Kruse, X. Wu, P. Hovland, and M. Hall, "Customized Monte Carlo Tree Search for LLVM/Polly's Composable Loop Optimization Transformations," in Proceedings of 12th IEEE International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS21), pages 83–93, 2021. DOI: [DOI 10.1109/PMBS54543.2021.00015](https://scwpub21:conf21%2f%2f@conferences.computer.org/scwpub/pdfs/PMBS2021-vSqRXl4nJSV5KT4jWO5cW/111800a082/111800a082.pdf)
+* X. Wu, M. Kruse, P. Balaprakash, H. Finkel, P. Hovland, V. Taylor, and M. Hall, "Autotuning PolyBench Benchmarks with LLVM Clang/Polly Loop Optimization Pragmas Using Bayesian Optimization," in Proceedings of 11th IEEE International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS20), pages 83–93, 2021. DOI: [10.1109/PMBS51919.2020.00012](https://ieeexplore.ieee.org/document/9307884) 
+* X. Wu, M. Kruse, P. Balaprakash, H. Finkel, P. Hovland, V. Taylor, and M. Hall, "Autotuning PolyBench Benchmarks with LLVM Clang/Polly Loop Optimization Pragmas Using Bayesian Optimization," in Proceedings of 11th IEEE International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS20), pages 83–93, 2021. DOI: [10.1109/PMBS51919.2020.00012](https://ieeexplore.ieee.org/document/9307884) 
+* P. Balaprakash, J. Dongarra, T. Gamblin, M. Hall, J. K. Hollingsworth, B. Norris, and R. Vuduc, "Autotuning in High-Performance Computing Applications," Proceedings of the IEEE, vol. 106, no. 11, 2018. DOI: [10.1109/JPROC.2018.2841200](https://ieeexplore.ieee.org/document/8423171) 
+*  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
 

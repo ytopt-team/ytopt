@@ -7,7 +7,7 @@ from skopt import Optimizer as SkOptimizer
 from ytopt.search import util
 
 import ConfigSpace as CS
-import cconfigspace as CCS
+# import cconfigspace as CCS
 
 logger = util.conf_logger('ytopt.search.hps.optimizer.optimizer')
 
