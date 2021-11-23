@@ -76,7 +76,7 @@ class Optimizer:
             for i in range(len(x)):
                 res[hps_names[i]] = x [i]
             return res
-        elif ccs_active && isinstance(self.space, CCS.ConfigurationSpace):
+        elif ccs_active & isinstance(self.space, CCS.ConfigurationSpace):
             res = {}
             hps = self.space.hyperparameters
             for i in range(len(x)):
