@@ -52,8 +52,39 @@ pip install -e .
 cd ..
 ```
 
-<!--
-* Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
+```
+git clone https://github.com/ytopt-team/scikit-optimize.git
+cd scikit-optimize
+pip install -e .
+cd ..
+```
+
+* Install [autotune](https://github.com/ytopt-team/autotune.git):
+```
+git clone -b version1 https://github.com/ytopt-team/autotune.git
+cd autotune
+pip install -e . 
+cd ..
+```
+
+* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
+```
+git clone -b main https://github.com/ytopt-team/ytopt.git
+cd ytopt
+pip install -e .
+```
+
+* If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
+```
+conda install -c conda-forge psutil
+conda install -c conda-forge setproctitle
+conda install -c conda-forge mpich
+conda install -c conda-forge mpi4py
+pip install -e .
+```
+
+* [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: `autotools` and the `gsl`
         * Ubuntu
           ```
@@ -88,39 +119,7 @@ cd ..
       `DYLD_LIBRARY_PATH` environment variable serves the same purpose. Alternatively
       the `LIBCCONFIGSPACE_SO_` environment variable can be made to point to the installed
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
-      on MacOS. -->
-
-* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
-```
-git clone https://github.com/ytopt-team/scikit-optimize.git
-cd scikit-optimize
-pip install -e .
-cd ..
-```
-
-* Install [autotune](https://github.com/ytopt-team/autotune.git):
-```
-git clone -b version1 https://github.com/ytopt-team/autotune.git
-cd autotune
-pip install -e . 
-cd ..
-```
-
-* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
-```
-git clone -b main https://github.com/ytopt-team/ytopt.git
-cd ytopt
-pip install -e .
-```
-
-If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
-```
-conda install -c conda-forge psutil
-conda install -c conda-forge setproctitle
-conda install -c conda-forge mpich
-conda install -c conda-forge mpi4py
-pip install -e .
-```
+      on MacOS. 
 
 # Tutorials
 
