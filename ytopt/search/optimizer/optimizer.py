@@ -31,7 +31,7 @@ class Optimizer:
 
         n_init = inf if learner=='DUMMY' else num_workers
 
-        if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active && isinstance(self.space, CCS.ConfigurationSpace)):
+        if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active & isinstance(self.space, CCS.ConfigurationSpace)):
             self._optimizer = SkOptimizer(
                 dimensions=self.space,
                 base_estimator=self.learner,
