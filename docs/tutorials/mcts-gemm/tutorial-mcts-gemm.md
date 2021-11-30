@@ -15,9 +15,15 @@ We omit presenting the files for space. For your convenience, we have the files 
 
 Defining search space
 -----------------------
-We describe how to define search space.
+We describe how to define search space. 
 
-Our search space conists of six loop trnsformations: 1) loop tiling, 2) loop interchange, 3) thread parallelization, 3) loop unrolling, 4) loop reversal, and 5) array packing. 
+Our search space is constructed as tree.
+- Root node: a configuration without any transformation 
+- Child node: a new configuration by adding more transformations 
+
+![tree_search_space](tree_search_space.png)
+
+In this tutorial, we have six loop trnsformations: 1) loop tiling, 2) loop interchange, 3) thread parallelization, 3) loop unrolling, 4) loop reversal, and 5) array packing. 
 
 A search space generator is defined in [mctree_generator.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/algorithms/mctree_generator.py)
 
@@ -28,9 +34,21 @@ Customized Monte Carlo Tree Search Algorithm (MCTS)
 -----------------------
 We describe our customized MCTS:
 
-A base MCTS algorithm that runs four steps of selection, expansion, simulation, and backpropagation is defined in [monte_carlo_tree_search_v1.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/algorithms/monte_carlo_tree_search_v1.py)
+- A base MCTS algorithm that runs four steps of selection, expansion, simulation, and backpropagation is defined in [monte_carlo_tree_search_v1.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/algorithms/monte_carlo_tree_search_v1.py)
+  - Selection: finds a path from the root to the leaf node. 
+  - Expansion: creates a child node from the leaf node. 
+  - Simulation: conducts simulation from the expanded node until it reaches a terminal node and produces an outcome.
+  - Backpropagation: the simulation result is backpropagated through the selected nodes, which is used for the subse- quent selection.
 
-The customized MCTS featueres with random walk, restart, and transfer learning. This is defined in [mctree_mcts.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/mctree_mcts.py)
+![mcts](mcts_1.png)
+
+- The customized MCTS featueres with random walk, restart, and transfer learning. This is defined in [mctree_mcts.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/mctree_mcts.py)
+  - Random walk: Every node can be a leaf node, which requires learning promising depths to search. 
+    - Explore configs at the different depths of the tree to identify promising depths 
+  - Restart strategy: MCTS can get trapped in a local solution. 
+    - Restart search once convergnce of search is detected 
+  - Transfer learning: The restart mechanism erases the memory of the search. 
+    - Leverage what it learns in the previous restart.
 
 <!-- --------------
 First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`. -->
