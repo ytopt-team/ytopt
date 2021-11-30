@@ -1,9 +1,39 @@
 Tutorial: Autotune tree space version of GEMM 
 ===================
 
-This tutorial describes how to define autotuning problem and an evaluating method for autotuning PolyBench GEMM kenel. 
+This tutorial describes how to define autotuning problem and an evaluating method for autotuning [PolyBench](https://web.cse.ohio-state.edu/~pouchet.2/software/polybench/) GEMM kenel. 
 
 We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md) and [Install instructions for tree space](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/README.md). 
+
+Indentifying a problem to autotune 
+-----------------------
+In this tutorial, we target to autotune PolyBench GEMM kernel.
+
+GEMM is a benchmark kernel for linear-algebra blas task; matrix-multiply C=alpha.A.B+beta.C [(reference)](https://github.com/MatthiasJReisinger/PolyBenchC-4.2.1/tree/master/linear-algebra/blas/gemm). Save the related source and header files in the seprate folder: `gemm.c`, `gemm.h`, `polybench.c`, and `polybench.h`.
+
+We omit presenting the files for space. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/benchmarks/gemm>`. 
+
+Defining search space
+-----------------------
+We describe how to define search space.
+
+Our search space conists of six loop trnsformations: 1) loop tiling, 2) loop interchange, 3) thread parallelization, 3) loop unrolling, 4) loop reversal, and 5) array packing. 
+
+A search space generator is defined in [mctree_generator.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/algorithms/mctree_generator.py)
+
+<!-- --------------
+First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`. -->
+
+Customized Monte Carlo Tree Search Algorithm (MCTS)
+-----------------------
+We describe our customized MCTS:
+
+A base MCTS algorithm that runs four steps of selection, expansion, simulation, and backpropagation is defined in [monte_carlo_tree_search_v1.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/algorithms/monte_carlo_tree_search_v1.py)
+
+The customized MCTS featueres with random walk, restart, and transfer learning. This is defined in [mctree_mcts.py](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/mctree_mcts.py)
+
+<!-- --------------
+First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`. -->
 
 Run the following
 -----------------------
@@ -62,14 +92,6 @@ Experiment 2
 ```
 
 
-
-
-
-
-
-
-
-
 ```python
 
 ```
@@ -112,156 +134,6 @@ Experiment 2
 
 ```python
 
-```
-
-Indentifying a problem to autotune 
------------------------
-In this tutorial, we target to autotune ECP XSBench app `<https://github.com/ANL-CESAR/XSBench>`.
-
-XSBench is a mini-app representing a key computational kernel of the Monte Carlo neutron transport algorithm [(reference)](https://github.com/ANL-CESAR/XSBench). Save the related source and header files in the seprate folder: `mmp.c`, `Main.c`, `Materials.c`, `XSutils.c`, `XSbench_header.h`, `make.bat`. 
-
-We omit presenting the files for space. For your convenience, we have the files in `<https://github.com/ytopt-team/ytopt/tree/tutorial/ytopt/benchmark/xsbench-omp/xsbench>`. 
-
-Defining autotuning problem
------------------------
-We describe how to define your search problem `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/xsbench/problem.py>`
-
---------------
-First, we first define search space using ConfigSpace that is a python library `<https://automl.github.io/ConfigSpace/master/>`.
-
-
-```python
-# import required library
-import os, sys, time, json, math
-import numpy as np
-from autotune import TuningProblem
-from autotune.space import *
-import ConfigSpace as CS
-import ConfigSpace.hyperparameters as CSH
-from skopt.space import Real, Integer, Categorical
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
-from plopper import Plopper
-```
-
-Our search space contains three parameters: 1) `p0`: number of threads, 2) `p1`: block size for openmp dynamic schedule, 3) `p2`: turn on/off omp parallel.  
-
-
-```python
-# create an object of ConfigSpace 
-cs = CS.ConfigurationSpace(seed=1234)
-# number of threads
-p0= CSH.UniformIntegerHyperparameter(name='p0', lower=4, upper=8, default_value=8)
-#block size for openmp dynamic schedule
-p1= CSH.OrdinalHyperparameter(name='p1', sequence=['10','20','40','64','80','100','128','160','200'], default_value='100')
-#omp parallel
-p2= CSH.CategoricalHyperparameter(name='p2', choices=["#pragma omp parallel for", " "], default_value=' ')
-#add parameters to search space object
-cs.add_hyperparameters([p0, p1, p2])
-# problem space
-input_space = cs
-output_space = Space([Real(0.0, inf, name="time")])
-```
-
---------------
-Then, we need to define the objective function `myobj` to evaluate a point in the search space. 
-
-In this example, we define an evaluating method (Plopper) for code generation and compilation. 
-Plopper take source code and output directory and return an execution time. 
-
-
-```python
-dir_path = os.path.dirname(os.path.realpath(__file__))
-kernel_idx = dir_path.rfind('/')
-kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmp.c',dir_path)
-
-x1=['p0','p1','p2']
-def myobj(point: dict):
-    def plopper_func(x):
-        x = np.asarray_chkfinite(x)  # ValueError if any NaN or Inf
-        value = [point[x1[0]],point[x1[1]],point[x1[2]]]
-        print('CONFIG:',point)
-        params = ["P0","P1","P2"]
-        result = obj.findRuntime(value, params)
-        return result
-    x = np.array([point[f'p{i}'] for i in range(len(point))])
-    results = plopper_func(x)
-    print('OUTPUT:%f',results)
-    return results
-```
-
-The following describes our evaluating function, Plopper. You can find it `<https://github.com/ytopt-team/ytopt/blob/tutorial/ytopt/benchmark/xsbench-omp/plopper/plopper.py>`.  
-
-
-```python
-import os, sys, subprocess, random
-
-class Plopper:
-    def __init__(self,sourcefile,outputdir):
-        self.sourcefile = sourcefile
-        self.outputdir = outputdir+"/tmp_files"
-
-        if not os.path.exists(self.outputdir):
-            os.makedirs(self.outputdir)
-
-    def createDict(self, x, params):
-        dictVal = {}
-        for p, v in zip(params, x):
-            dictVal[p] = v
-        return(dictVal)
-
-    def plotValues(self, dictVal, inputfile, outputfile):
-        with open(inputfile, "r") as f1:
-            buf = f1.readlines()
-
-        with open(outputfile, "w") as f2:
-            for line in buf:
-                modify_line = line
-                for key, value in dictVal.items():
-                    if key in modify_line:
-                        if value != 'None': 
-                            modify_line = modify_line.replace('#'+key, str(value))
-
-                if modify_line != line:
-                    f2.write(modify_line)
-                else:
-                    f2.write(line)     
-
-    def findRuntime(self, x, params):
-        interimfile = ""
-        exetime = 1
-        counter = random.randint(1, 10001)         
-        interimfile = self.outputdir+"/tmp_"+str(counter)+".c"
-        
-        # Generate intermediate file
-        dictVal = self.createDict(x, params)
-        self.plotValues(dictVal, self.sourcefile, interimfile)
-
-        #compile and find the execution time
-        tmpbinary = interimfile[:-2]
-        kernel_idx = self.sourcefile.rfind('/')
-        kernel_dir = self.sourcefile[:kernel_idx]
-        gcc_cmd = "gcc -std=gnu99 -Wall -flto  -fopenmp -DOPENMP -O3 " + \
-        " -o " + tmpbinary + " " + interimfile +" " + kernel_dir + "/Materials.c " \
-        + kernel_dir + "/XSutils.c " + " -I" + kernel_dir + \
-        " -lm" + " -L${CONDA_PREFIX}/lib"
-        run_cmd = kernel_dir + "/exe.pl " + tmpbinary
-        
-        #Find the compilation status using subprocess
-        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
-
-        #Find the execution time only when the compilation return code is zero, else return infinity
-        if compilation_status.returncode == 0 :
-            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
-            exetime = float(execution_status.stdout.decode('utf-8'))
-            if exetime == 0:
-                exetime = 1
-        else:
-            print(compilation_status.stderr)
-            print("compile failed")
-        return exetime 
 ```
 
 This file consists of several components.
