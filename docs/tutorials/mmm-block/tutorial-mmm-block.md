@@ -147,7 +147,7 @@ class Plopper:
         dictVal = self.createDict(x, params)
 
         #compile and find the execution time
-        tmpbinary = self.outputdir + '/tmp.bin'
+        tmpbinary = self.outputdir + '/tmp_'+str(uuid.uuid4())+'.bin'
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
         gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
