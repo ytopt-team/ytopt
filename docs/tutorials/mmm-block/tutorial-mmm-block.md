@@ -123,7 +123,7 @@ The following describes our evaluating function, Plopper. You can find it `<http
 
 
 ```python
-import os, sys, subprocess, random
+import os, sys, subprocess, random, uuid
 
 class Plopper:
     def __init__(self,sourcefile,outputdir):
@@ -210,7 +210,7 @@ Then, it finds the compilation status using subprocess; finds the execution time
         dictVal = self.createDict(x, params)
 
         #compile and find the execution time
-        tmpbinary = self.outputdir + '/tmp.bin'
+        tmpbinary = self.outputdir + '/tmp_'+str(uuid.uuid4())+'.bin'
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
         gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '

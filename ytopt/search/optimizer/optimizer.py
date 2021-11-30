@@ -7,6 +7,13 @@ from skopt import Optimizer as SkOptimizer
 from ytopt.search import util
 
 import ConfigSpace as CS
+ccs_active = False
+try:
+    import cconfigspace as CCS
+    ccs_active = True
+except (ImportError, OSError) as a:
+    import warnings
+    warnings.warn("CCS could not be loaded and is deactivated: " + str(a), category=ImportWarning)
 
 logger = util.conf_logger('ytopt.search.hps.optimizer.optimizer')
 
@@ -25,7 +32,7 @@ class Optimizer:
 
         n_init = inf if learner=='DUMMY' else num_workers
 
-        if isinstance(self.space, CS.ConfigurationSpace):
+        if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active and isinstance(self.space, CCS.ConfigurationSpace)):
             self._optimizer = SkOptimizer(
                 dimensions=self.space,
                 base_estimator=self.learner,
@@ -69,6 +76,12 @@ class Optimizer:
             hps_names = self.space.get_hyperparameter_names()
             for i in range(len(x)):
                 res[hps_names[i]] = x [i]
+            return res
+        elif ccs_active and isinstance(self.space, CCS.ConfigurationSpace):
+            res = {}
+            hps = self.space.hyperparameters
+            for i in range(len(x)):
+                res[hps[i].name] = x [i]
             return res
         else:
             return self.space.to_dict(x)

@@ -31,7 +31,7 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, scikit-optimize, autotune, and ytopt. 
+The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), scikit-optimize, autotune, and ytopt.
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -46,17 +46,17 @@ mkdir ytopt
 cd ytopt
 ```
 
-* Install [ConfigSpace](https://github.com/deephyper/ConfigSpace.git):
+* Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
 ```
-git clone https://github.com/deephyper/ConfigSpace.git configspace
-cd configspace
+git clone https://github.com/ytopt-team/ConfigSpace.git
+cd ConfigSpace
 pip install -e .
 cd ..
 ```
 
-* Install [scikit-optimize](https://github.com/deephyper/scikit-optimize.git):
+* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
-git clone https://github.com/deephyper/scikit-optimize.git
+git clone https://github.com/ytopt-team/scikit-optimize.git
 cd scikit-optimize
 pip install -e .
 cd ..
@@ -77,7 +77,7 @@ cd ytopt
 pip install -e .
 ```
 
-If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
+* If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
@@ -85,6 +85,43 @@ conda install -c conda-forge mpich
 conda install -c conda-forge mpi4py
 pip install -e .
 ```
+
+* [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+    * Prerequisites: `autotools` and the `gsl`
+        * Ubuntu
+          ```
+          sudo apt-get install autoconf automake libtool libgsl-dev
+          ```
+
+        * MacOS
+          ```
+          brew install autoconf automake libtool gsl
+          ```
+    * Build and Install the library and python bindings:
+      the `configure` command can take an optional `--prefix=` parameter to specify a
+      different install path than the default one (`/usr/local`). Depending on the
+      chosen location you may need elevated previleges to run `make install`.
+      ```
+      git clone git@github.com:argonne-lcf/CCS.git
+      cd CCS
+      ./autogen.sh
+      mkdir build
+      cd build
+      ../configure
+      make
+      make install
+      cd ../bindings/python
+      pip install parglare==0.12.0
+      pip install -e .
+      ```
+    * Setup environment:
+      in order for the python binding to find the CConfigSpace library, the path to
+      the library install location (`/usr/local/lib` by default) must be appended
+      to the `LD_LIBRARY_PATH` environment variable on Linux, while on MacOS the
+      `DYLD_LIBRARY_PATH` environment variable serves the same purpose. Alternatively
+      the `LIBCCONFIGSPACE_SO_` environment variable can be made to point to the installed
+      `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
+      on MacOS. 
 
 # Tutorials
 
@@ -117,6 +154,7 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 * Paul Hovland <hovland@anl.gov>
 * Xingfu Wu <xingfu.wu@anl.gov>
 * Jaehoon Koo <jkoo@anl.gov>
+* Brice Videau <bvideau@anl.gov>
 
 The convolution-2d tutorial (source and python scripts) is contributed by:
 * David Fridlander <davidfrid2@gmail.com>
@@ -138,6 +176,13 @@ Optionally, please include in your first patch a credit for yourself in the
 list above.
 
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
+
+# Publications
+* J. Koo, P. Balaprakash, M. Kruse, X. Wu, P. Hovland, and M. Hall, "Customized Monte Carlo Tree Search for LLVM/Polly's Composable Loop Optimization Transformations," in Proceedings of 12th IEEE International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS21), pages 82–93, 2021. DOI: [DOI 10.1109/PMBS54543.2021.00015](https://scwpub21:conf21%2f%2f@conferences.computer.org/scwpub/pdfs/PMBS2021-vSqRXl4nJSV5KT4jWO5cW/111800a082/111800a082.pdf)
+* X. Wu, M. Kruse, P. Balaprakash, H. Finkel, P. Hovland, V. Taylor, and M. Hall, "Autotuning polybench benchmarks64with llvm clang/polly loop optimization pragmas using bayesian optimization (extended version)," Concurrency and Computation. Practice and Experience, vol. 11, 2021. ISSN 1532-0626 DOI: [10.1002/cpe.6683](https://doi.org/10.1002/cpe.6683) 
+* X. Wu, M. Kruse, P. Balaprakash, H. Finkel, P. Hovland, V. Taylor, and M. Hall, "Autotuning PolyBench Benchmarks with LLVM Clang/Polly Loop Optimization Pragmas Using Bayesian Optimization," in Proceedings of 11th IEEE International Workshop on Performance Modeling, Benchmarking and Simulation of High Performance Computer Systems (PMBS20), pages 61–70, 2020. DOI: [10.1109/PMBS51919.2020.00012](https://ieeexplore.ieee.org/document/9307884) 
+* P. Balaprakash, J. Dongarra, T. Gamblin, M. Hall, J. K. Hollingsworth, B. Norris, and R. Vuduc, "Autotuning in High-Performance Computing Applications," Proceedings of the IEEE, vol. 106, no. 11, 2018. DOI: [10.1109/JPROC.2018.2841200](https://ieeexplore.ieee.org/document/8423171) 
+*  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
 
