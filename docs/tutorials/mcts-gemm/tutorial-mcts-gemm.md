@@ -3,11 +3,18 @@ Tutorial: Autotune tree space version of GEMM
 
 This tutorial describes how to define autotuning problem and an evaluating method for autotuning PolyBench GEMM kenel. 
 
-We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md) and [Install instructions for tree space](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/search/mcts/README.md). 
+We assume that you have checked out a copy of `ytopt`. For guidelines on how to get ytopt set up, refer [Install instructions](https://github.com/ytopt-team/ytopt/blob/tutorial/README.md) and [Install instructions for tree space](https://github.com/ytopt-team/ytopt/blob/mcts/ytopt/cmcts/README.md). 
 
 Run the following
 -----------------------
-`CLANG_PREFIX=/scratch/jkoo/sw/clang13/llvm-project/build/ ./benchmarks/gemm/autotune_mcts.sh`
+- Go to where `problem.py` such as
+
+`
+cd ytopt/cmcts/benchmarks/gemm
+`
+- Start search
+
+`CLANG_PREFIX=/scratch/jkoo/sw/clang13/llvm-project/build/ ./autotune_mcts.sh`
 
 Outputs look like
 -----------------------
@@ -52,6 +59,24 @@ best_depth: [inf, inf, inf, inf, inf] 2
 Run next experiment in /home/jkoo/github/ytopt-mcts/ytune/ytopt/ytopt/search/mcts/benchmarks/gemm/gemm_mcts/mctree-frh3o5ab/experiment2
 Experiment 2
  --> 20.577
+```
+
+
+
+
+
+
+
+
+
+
+```python
+
+```
+
+
+```python
+
 ```
 
 
