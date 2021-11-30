@@ -67,11 +67,7 @@ class MCTS:
         self.N = defaultdict(int)  # total visit count for each node
         self.O = defaultdict(int)  # total visit count for each node
         self.children = dict()  # children of each node 
-#         self.exploration_weight = exploration_weight
-#         self.resultsList = []
-#         self.resultsList_current = []  
         self.start_time = None
-#         self.unexp = 0.5
         self.visit = dict()
         self.thresh = []
         self.target = 1.0
@@ -80,8 +76,7 @@ class MCTS:
         self.worst_path = None
         self.worst_sofar = 0
         self.worst_path_candi = collections.deque(maxlen=100)
-        self.fail_path_candi = collections.deque(maxlen=100)
-#         self.searched = dict()      
+        self.fail_path_candi = collections.deque(maxlen=100)     
         
     def choose(self, node):
         "Choose the best successor of node. (Choose a move in the game)"
@@ -313,15 +308,11 @@ class MCTS:
         for i in range(len(feature_cols)):
             mystring = 'D'+str(i+1)+'_'
             feature_name.extend(  [mystring+s for s in list(le.categories_[i])])
-        # X_new = X.toarray()[1]  # random sample from training
         viz = dtreeviz(clf,
                        X.toarray(),
                        y,
                        target_name='speedup',
                        feature_names=feature_name)
-        #                X=X_new, 
-        #               show_just_path=True,
-        #               fancy=False)
         viz.save(dir_path+save_name)
         cairosvg.svg2png(url=dir_path+save_name, write_to=dir_path+save_name+'.png',scale=2.0)
         # find leaf 

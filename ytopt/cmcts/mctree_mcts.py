@@ -18,16 +18,16 @@ import tool.invoke as invoke
 from tool.support import *
 from graphviz import Digraph
 import time
-from  datetime import timedelta
+from datetime import timedelta
 from datetime import datetime as DD
 
 ##### MCTS: Environment
 
 import numpy as np 
-import random,os,sys,time
+import random
 from collections import namedtuple
 from random import choice
-from monte_carlo_tree_search_v1 import MCTS, Node
+from algorithms.monte_carlo_tree_search_v1 import MCTS, Node
 import matplotlib.pyplot as plt
 
 random.seed(30)
@@ -35,7 +35,7 @@ random.seed(30)
 N_repeat = 5
 
 ##### import mctree
-import mctree_mcts_base as mctree
+import algorithms.mctree_mcts_base as mctree
 import tool.invoke as invoke
 from multiprocessing import Process
 import pickle
@@ -559,8 +559,6 @@ if __name__ == "__main__":
         tree.write_graph(save_dir,n_run,env_output=env.outputs,run_idx='_'+str(run_count)) 
         tree.dump_evals(save_dir)
         tree.write_graph(save_dir,n_run,env_output=env.outputs)       
-        #tree.run_dt(save_dir=save_dir, run_idx='_'+str(run_count) ,feature_cols_=feature_col,root_time=ROOT_TIME,dt_depth=3)
-        #tree.run_dt(save_dir=save_dir, run_idx='_all',feature_cols_=feature_col,root_time=ROOT_TIME,dt_depth=3)
         ## find/update best&worst config 
         alpha = 0.95
         tree.best_alpha = [] 
