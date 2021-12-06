@@ -35,7 +35,7 @@ random.seed(30)
 N_repeat = 5
 
 ##### import mctree
-import algorithms.mctree_generator as mctree
+import space.mctree_generator as mctree
 import tool.invoke as invoke
 from multiprocessing import Process
 import pickle
