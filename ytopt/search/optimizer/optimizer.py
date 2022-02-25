@@ -21,7 +21,7 @@ class Optimizer:
     SEED = 12345
     KAPPA = 1.96
 
-    def __init__(self, num_workers: int, space, learner, acq_func, liar_strategy, **kwargs):
+    def __init__(self, num_workers: int, space, learner, acq_func, liar_strategy, set_KAPPA, set_SEED, **kwargs):
         assert learner in ["RF", "ET", "GBRT", "GP", "DUMMY"], f"Unknown scikit-optimize base_estimator: {learner}"
         assert liar_strategy in "cl_min cl_mean cl_max".split()
 
@@ -29,6 +29,12 @@ class Optimizer:
         self.learner = learner
         self.acq_func = acq_func
         self.liar_strategy = liar_strategy
+        self.KAPPA = set_KAPPA
+        self.SEED  = set_SEED
+        print ('............self.KAPPA',self.KAPPA)
+        print ('............self.learner',self.learner)
+        print ('............self.acq_func',self.acq_func)
+        print ('............self.SEED',self.SEED)
 
         n_init = inf if learner=='DUMMY' else num_workers
 
