@@ -154,6 +154,7 @@ class Evaluator:
 
     @property
     def _executable(self):
+        print ('======',self.problem)
         return f'time -p {self.problem.app_exe}'
 
     def await_evals(self, to_read, timeout=None):

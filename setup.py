@@ -27,7 +27,7 @@ REQUIRED = [
     # 'requests', 'maya', 'records',
     'numpy',
     #'scikit-optimize',
-    'scikit-learn==0.23.1',
+    'scikit-learn>=1.0.0',
     'tqdm',
     #'tensorflow==1.14.0',
     #'keras',

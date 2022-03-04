@@ -92,7 +92,8 @@ class SubprocessEvaluator(Evaluator):
         super().__init__(problem, cache_key)
         self.num_workers = self.WORKERS_PER_NODE
         logger.info(
-            f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
+            f"Subprocess Evaluator will execute: '{self.problem.objective}'")
+        print ('=========================',self.problem)
 
     def _eval_exec(self, x):
         assert isinstance(x, dict)

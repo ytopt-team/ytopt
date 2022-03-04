@@ -20,7 +20,7 @@ class Problem:
             threads_per_core=None,
             cpu_binding=None,
             env=None)
-
+        print ('=======================',self.args_template,self.app_exe)
     def __str__(self):
         return repr(self)
 

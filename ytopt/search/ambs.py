@@ -41,7 +41,7 @@ def on_exit(signum, stack):
     EXIT_FLAG = True
 
 class AMBS(Search):
-    def __init__(self, learner='RF', liar_strategy='cl_max', acq_func='gp_hedge', set_KAPPA=1.96, set_SEED=12345, **kwargs):
+    def __init__(self, learner='RF', liar_strategy='cl_max', acq_func='gp_hedge', set_KAPPA=1.96, set_SEED=12345, set_NI=10, **kwargs):
         super().__init__(**kwargs)
 
         logger.info("Initializing AMBS")
@@ -53,6 +53,7 @@ class AMBS(Search):
             liar_strategy=liar_strategy,
             set_KAPPA=set_KAPPA,
             set_SEED=set_SEED,
+            set_NI=set_NI,
         )
 
     @staticmethod
@@ -75,14 +76,17 @@ class AMBS(Search):
         parser.add_argument('--set-KAPPA',
             default=1.96,
             type = float,
-#             choices=["LCB", "EI", "PI","gp_hedge"],
             help='Acquisition function kappa'
         )
         parser.add_argument('--set-SEED',
             default=12345,
             type = int,
-#             choices=["LCB", "EI", "PI","gp_hedge"],
             help='Seed random_state'
+        )
+        parser.add_argument('--set-NI',
+            default=10,
+            type = int,
+            help='Set n inital points'
         )
         return parser
 
