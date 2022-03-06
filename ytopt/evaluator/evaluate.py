@@ -36,7 +36,9 @@ class Encoder(json.JSONEncoder):
 class Evaluator:
     FAIL_RETURN_VALUE = sys.float_info.max
     WORKERS_PER_NODE = int(os.environ.get('YTOPT_WORKERS_PER_NODE', 1))
-
+    PYTHON_EXE = os.environ.get('YTOPT_PYTHON_BACKEND', sys.executable)
+    assert os.path.isfile(PYTHON_EXE)
+    
     def __init__(self, problem, cache_key=None):
         self.pending_evals = {}  # uid --> Future
         self.finished_evals = OrderedDict()  # uid --> scalar
@@ -68,7 +70,7 @@ class Evaluator:
             from ytopt.evaluator.balsam_evaluator import BalsamEvaluator
             Eval = BalsamEvaluator(problem, cache_key=cache_key)
         elif method == "subprocess":
-            from ytopt.evaluator.subprocess_evaluator import SubprocessEvaluator
+            from ytopt.evaluator.subprocess_evaluator_ import SubprocessEvaluator
             Eval = SubprocessEvaluator(problem, cache_key=cache_key)
         elif method == "ray":
             from ytopt.evaluator.ray_evaluator import RayEvaluator
@@ -119,43 +121,35 @@ class Evaluator:
 
     @staticmethod
     def _parse(run_stdout):
-
-        pattern1 = re.compile("real (.*)")
-        pattern2 = re.compile("DH-OUTPUT: (.*)")
-        timing = None
-
+        y = sys.float_info.max
         for line in run_stdout.split('\n'):
-
-            # if pattern1.search(line) is not None:
-
-            #     res = re.findall(pattern1, line)
-            #     try:
-            #         timing = float(res[0])
-            #     except:
-            #         logger.info('Failed to converte parsed time {res} to float.')
-            #         timing = Evaluator.FAIL_RETURN_VALUE
-            #     break
-
-            if pattern2.search(line) is not None:
-
-                res = re.findall(pattern2, line)
+            if "DH-OUTPUT:" in line.upper():
                 try:
-                    timing = float(res[0])
-                except:
-                    logger.info('Failed to converte parsed time {res} to float.')
-                    timing = Evaluator.FAIL_RETURN_VALUE
+                    y = float(line.split()[-1])
+                except ValueError:
+                    logger.exception("Could not parse DH-OUTPUT line:\n"+line)
+                    y = sys.float_info.max
                 break
-
-        if timing is None:
-
-            timing = Evaluator.FAIL_RETURN_VALUE
-
-        return timing
+        if isnan(y):
+            y = sys.float_info.max
+        return y
+       
+#     @property
+#     def _executable(self):
+# #         print ('======',self.problem)
+#         return f'time -p {self.problem.app_exe}'
 
     @property
-    def _executable(self):
-        print ('======',self.problem)
-        return f'time -p {self.problem.app_exe}'
+    def _runner_executable(self):
+        funcName   = self.problem.objective.__name__
+        moduleName = self.problem.objective.__module__
+        assert moduleName != '__main__'
+        module = sys.modules[moduleName]
+        modulePath = os.path.dirname(os.path.abspath(module.__file__))
+        runnerPath = os.path.abspath(runner.__file__)
+        runner_exec = ' '.join((self.PYTHON_EXE, runnerPath, modulePath, moduleName,
+                                funcName))
+        return runner_exec  
 
     def await_evals(self, to_read, timeout=None):
         """Waiting for a collection of tasks.
@@ -250,3 +244,5 @@ class Evaluator:
             writer = csv.DictWriter(fp, columns)
             writer.writeheader()
             writer.writerows(resultsList)
+         
+            
