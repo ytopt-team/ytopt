@@ -2,17 +2,24 @@ import logging
 import subprocess
 import time
 from collections import defaultdict, namedtuple
-import sys
+import sys, os
+import asyncio
+import inspect
 
 from ytopt.evaluator.evaluate import Evaluator
 
 logger = logging.getLogger(__name__)
 
+# @compute_objective
+def compute_objective(func, x):
+    yield str(func(x))
+
 class PopenFuture:
     FAIL_RETURN_VALUE = Evaluator.FAIL_RETURN_VALUE
 
-    def __init__(self, args, parse_fxn):
-        self.proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE,
+    def __init__(self, func, x, parse_fxn):
+        
+        self.proc = subprocess.Popen(compute_objective(func, x), shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT, encoding='utf-8')
         self._state = 'active'
         self._result = None
@@ -24,7 +31,7 @@ class PopenFuture:
         retcode = self.proc.poll()
         if retcode is None:
             self._state = 'active'
-            stdout, stderr_data = self.proc.communicate()
+            stdout, _ = self.proc.communicate()
             tmp_res = self._parse(stdout)
             if tmp_res != sys.float_info.max:
                 self._result = tmp_res
@@ -37,16 +44,13 @@ class PopenFuture:
         if self._result is not None:
             return self._result
         self.proc.wait()
-        stdout, stderr_data = self.proc.communicate()
         if self.done:
+            stdout, _ = self.proc.communicate()
             self._result = self._parse(stdout)
         else:
+            stdout, _ = self.proc.communicate()
             self._result = self.FAIL_RETURN_VALUE
             logger.error(f"Eval failed: {stdout}")
-        #####
-        if stdout:
-            print (stdout)#.split('\n')[:-2])#)[:-1])
-        #####   
         return self._result
 
     def cancel(self):
@@ -98,24 +102,13 @@ class SubprocessEvaluator(Evaluator):
 #             f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
 #         print ('=========================',self.problem)
 
-    def _args(self, x):
-        exe = self._runner_executable
-        cmd = ' '.join((exe, f"'{self.encode(x)}'"))
-        return cmd
-
-    def _eval_exec(self, x):
+    def _eval_exec(self, x: dict):
         assert isinstance(x, dict)
-        cmd = self._args(x)
-#         print ('===========================',cmd)
-        future = PopenFuture(cmd, self._parse)
-        return future
-
-#     def _eval_exec(self, x):
-#         assert isinstance(x, dict)
+        future = PopenFuture(self.problem.objective, x, self._parse2)
 #         cmd = f'{self._executable} {self.problem.args_format(x.values())}'
 #         logger.info(f'executing: {cmd}')
 #         future = PopenFuture(cmd, self._parse)
-#         return future
+        return future
 
     @staticmethod
     def _timer(timeout):
