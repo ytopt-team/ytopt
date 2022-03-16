@@ -96,7 +96,7 @@ class AMBS(Search):
         num_evals = 0
 
         logger.info(f"Generating {self.num_workers} initial points...")
-        XX = self.optimizer.ask_initial(n_points=self.num_workers)       
+        XX = self.optimizer.ask_initial(n_points=self.num_workers)
         self.evaluator.add_eval_batch(XX)
 
         # MAIN LOOP
