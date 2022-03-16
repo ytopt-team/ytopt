@@ -70,7 +70,7 @@ class Evaluator:
             from ytopt.evaluator.balsam_evaluator import BalsamEvaluator
             Eval = BalsamEvaluator(problem, cache_key=cache_key)
         elif method == "subprocess":
-            from ytopt.evaluator.subprocess_evaluator_ import SubprocessEvaluator
+            from ytopt.evaluator.subprocess_evaluator import SubprocessEvaluator
             Eval = SubprocessEvaluator(problem, cache_key=cache_key)
         elif method == "ray":
             from ytopt.evaluator.ray_evaluator import RayEvaluator

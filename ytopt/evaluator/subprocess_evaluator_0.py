@@ -2,24 +2,18 @@ import logging
 import subprocess
 import time
 from collections import defaultdict, namedtuple
-import sys, os
-import asyncio
-import inspect
+import sys
 
 from ytopt.evaluator.evaluate import Evaluator
 
 logger = logging.getLogger(__name__)
 
-# @compute_objective
-def compute_objective(func, x):
-    yield str(func(x))
 
 class PopenFuture:
     FAIL_RETURN_VALUE = Evaluator.FAIL_RETURN_VALUE
 
-    def __init__(self, func, x, parse_fxn):
-        
-        self.proc = subprocess.Popen(compute_objective(func, x), shell=True, stdout=subprocess.PIPE,
+    def __init__(self, args, parse_fxn):
+        self.proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT, encoding='utf-8')
         self._state = 'active'
         self._result = None
@@ -98,16 +92,14 @@ class SubprocessEvaluator(Evaluator):
         super().__init__(problem, cache_key)
         self.num_workers = self.WORKERS_PER_NODE
         logger.info(
-            f"Subprocess Evaluator will execute {self.problem.objective.__name__}() from module {self.problem.objective.__module__}")
-#             f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
+            f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
 #         print ('=========================',self.problem)
 
-    def _eval_exec(self, x: dict):
+    def _eval_exec(self, x):
         assert isinstance(x, dict)
-        future = PopenFuture(self.problem.objective, x, self._parse2)
-#         cmd = f'{self._executable} {self.problem.args_format(x.values())}'
-#         logger.info(f'executing: {cmd}')
-#         future = PopenFuture(cmd, self._parse)
+        cmd = f'{self._executable} {self.problem.args_format(x.values())}'
+        logger.info(f'executing: {cmd}')
+        future = PopenFuture(cmd, self._parse)
         return future
 
     @staticmethod
