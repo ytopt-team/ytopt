@@ -99,8 +99,9 @@ class RayEvaluator(Evaluator):
         else:
             infos = ray.init()
 
-
-
+        
+        print ('RayEvaluator.ray.nodes()',ray.nodes())
+        print ('RayEvaluator.ray.nodes():len(ray.nodes()',len(ray.nodes()))
         self.num_workers = len(ray.nodes())
 
         logger.info(f"RAY Evaluator will execute: '{self.problem.objective}', proc_info: {infos}")
