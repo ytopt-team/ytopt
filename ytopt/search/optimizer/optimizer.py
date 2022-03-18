@@ -31,13 +31,14 @@ class Optimizer:
         self.liar_strategy = liar_strategy
         self.KAPPA = set_KAPPA
         self.SEED  = set_SEED
+        self.NI    = set_NI
 #         n_init = set_NI 
         print ('............self.KAPPA',self.KAPPA)
         print ('............self.learner',self.learner)
         print ('............self.acq_func',self.acq_func)
         print ('............self.SEED',self.SEED)
 
-        n_init = inf if learner=='DUMMY' else set_NI #num_workers
+        n_init = inf if learner=='DUMMY' else self.NI #num_workers
         print ('............n_init',n_init)        
         if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active and isinstance(self.space, CCS.ConfigurationSpace)):
             self._optimizer = SkOptimizer(

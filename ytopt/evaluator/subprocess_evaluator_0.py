@@ -8,13 +8,13 @@ from ytopt.evaluator.evaluate import Evaluator
 
 logger = logging.getLogger(__name__)
 
+
 class PopenFuture:
     FAIL_RETURN_VALUE = Evaluator.FAIL_RETURN_VALUE
 
     def __init__(self, args, parse_fxn):
         self.proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT, encoding='utf-8')
-        
         self._state = 'active'
         self._result = None
         self._parse = parse_fxn
@@ -25,7 +25,7 @@ class PopenFuture:
         retcode = self.proc.poll()
         if retcode is None:
             self._state = 'active'
-            stdout, stderr_data = self.proc.communicate()
+            stdout, _ = self.proc.communicate()
             tmp_res = self._parse(stdout)
             if tmp_res != sys.float_info.max:
                 self._result = tmp_res
@@ -38,16 +38,13 @@ class PopenFuture:
         if self._result is not None:
             return self._result
         self.proc.wait()
-        stdout, stderr_data = self.proc.communicate()
         if self.done:
+            stdout, _ = self.proc.communicate()
             self._result = self._parse(stdout)
         else:
+            stdout, _ = self.proc.communicate()
             self._result = self.FAIL_RETURN_VALUE
             logger.error(f"Eval failed: {stdout}")
-        ####
-#         if stdout:
-#             print (stdout)#.split('\n')[:-2])#)[:-1])
-        ####   
         return self._result
 
     def cancel(self):
@@ -95,27 +92,15 @@ class SubprocessEvaluator(Evaluator):
         super().__init__(problem, cache_key)
         self.num_workers = self.WORKERS_PER_NODE
         logger.info(
-            f"Subprocess Evaluator will execute {self.problem.objective.__name__}() from module {self.problem.objective.__module__}")
-#             f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
+            f"Subprocess Evaluator will execute: '{self.problem.app_exe} {self.problem.args_template}'")
 #         print ('=========================',self.problem)
-
-    def _args(self, x):
-        exe = self._runner_executable
-        cmd = ' '.join((exe, f"'{self.encode(x)}'"))
-        return cmd
 
     def _eval_exec(self, x):
         assert isinstance(x, dict)
-        cmd = self._args(x)
+        cmd = f'{self._executable} {self.problem.args_format(x.values())}'
+        logger.info(f'executing: {cmd}')
         future = PopenFuture(cmd, self._parse)
         return future
-
-#     def _eval_exec(self, x):
-#         assert isinstance(x, dict)
-#         cmd = f'{self._executable} {self.problem.args_format(x.values())}'
-#         logger.info(f'executing: {cmd}')
-#         future = PopenFuture(cmd, self._parse)
-#         return future
 
     @staticmethod
     def _timer(timeout):
