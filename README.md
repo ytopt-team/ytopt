@@ -127,6 +127,11 @@ pip install -e .
       ```
       pip install sdv
       ```
+    * Or install SDV an optional dependency:
+      ```
+      cd ytopt
+      pip install -e .[online]
+      ```
 
 # Tutorials
 
