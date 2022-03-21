@@ -121,6 +121,13 @@ pip install -e .
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
       on MacOS. 
 
+* [Optinal] Install Online tuning:
+    * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
+    * Install [SDV](https://github.com/sdv-dev/SDV.git):
+      ```
+      pip install sdv
+      ```
+
 # Tutorials
 
 * [Autotuning the block matrix multiplication](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/tutorial-mmm-block.md)
@@ -129,6 +136,7 @@ pip install -e .
 * [Autotuning the hybrid MPI/OpenMP version of XSBench](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench.md)
 * [Autotuning the hybrid MPI/OpenMP version of XSBench with constraints](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mpi-omp-xsbench/tutorial-mpi-omp-xsbench-const.md)
 * [Autotuning the OpenMP version of convolution-2d with constraints](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/convolution-2d/tutorial-convolution-2d-const.md)
+* [(Optinal) Autotuning the OpenMP version of XSBench online](https://github.com/ytopt-team/ytopt/blob/online/docs/tutorials/omp-xsbench-tl/tutorial-omp-xsbench-tl.md)
 
 <!--# How do I learn more?
 
