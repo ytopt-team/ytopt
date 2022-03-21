@@ -125,10 +125,6 @@ pip install -e .
     * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
     * Install [SDV](https://github.com/sdv-dev/SDV.git):
       ```
-      pip install sdv
-      ```
-    * Or install SDV an optional dependency:
-      ```
       cd ytopt
       pip install -e .[online]
       ```
