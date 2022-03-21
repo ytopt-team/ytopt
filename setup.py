@@ -56,7 +56,7 @@ EXTRAS = {
         'sphinx_rtd_theme',
         'sphinx_copybutton'
     ],
-    'online': ['sdv>=0.13.1']
+    'online': ['sdv>=0.13.1,<0.14.0']
 }
 
 # The rest you shouldn't have to touch too much :)
