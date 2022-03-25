@@ -12,7 +12,7 @@ The benchamrks include the following directories:
 
 [xsbench-mpi-omp](https://github.com/jke513/ytopt/tree/master/ytopt/benchmark/xsbench-mpi-omp) (hybrid MPI/OpenMP version of XSBench https://github.com/ANL-CESAR/XSBench)
 
-To autotune a benchmark, under the conda environment, use ```run.bat``` in the benchmark directory to test the autotuning framework. See the description of the framework in the pdf file [CCPE2021.pdf](https://github.com/jke513/ytopt/blob/master/ytopt/benchmark/reference/CCPE2021.pdf) for the details.
+To autotune a benchmark, under the conda environment, use ```run.bat``` in the benchmark directory to test the autotuning framework. See the description of the framework in the pdf file [CCPE2021.pdf](https://github.com/ytopt-team/ytopt/blob/main/ytopt/benchmark/reference/CCPE2021.pdf) for the details.
 
 The ```run.bat``` looks like:
 ```
