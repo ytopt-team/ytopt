@@ -43,7 +43,8 @@ print ('time...now', Time_start)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmm_block_500.cpp',dir_path)
+obj = Plopper(dir_path+'/mmm_block_'+TARGET_task+'.cpp',dir_path)
+
 
 x1=['BLOCK_SIZE']
 def myobj(point: dict):
