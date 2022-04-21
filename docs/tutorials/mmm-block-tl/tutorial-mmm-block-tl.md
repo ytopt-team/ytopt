@@ -92,7 +92,7 @@ It provides options: --max-evals flag sets the maximum number of evaluations, --
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmm_block_500.cpp',dir_path)
+obj = Plopper(dir_path+'/mmm_block_'+TARGET_task+'.cpp',dir_path)
 
 x1=['BLOCK_SIZE']
 def myobj(point: dict):
@@ -183,10 +183,23 @@ while eval_master < Max_evals:
 
 - Start search
 
-`python Run_online_TL.py --max_evals 10 --n_refit 10 --target xl --top 0.3`
+`python Run_online_TL.py --max_evals 10 --n_refit 10 --target 500 --top 0.3`
 
 Look up the best configuration (found so far) and its value by inspecting the following created file: `results_sdv.csv`
 
 The result shows search by and our model based online tuning. It shows tha our approach finds a high perfoming confiruation at the beginning of the search. 
 
 <!-- ![xsbench tl](xsbench_tl.png) -->
+
+### Please check out another example of the OpenMP version of XSBench online 
+- <https://github.com/ytopt-team/ytopt/blob/online/docs/tutorials/omp-xsbench-tl/tutorial-omp-xsbench-tl.md>
+
+
+```python
+
+```
+
+
+```python
+
+```
