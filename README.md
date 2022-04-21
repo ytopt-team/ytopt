@@ -128,6 +128,7 @@ pip install -e .
       cd ytopt
       pip install -e .[online]
       ```
+    * For macOS it may need to do: ``pip install -e ".[online]"``  
 
 # Tutorials
 
