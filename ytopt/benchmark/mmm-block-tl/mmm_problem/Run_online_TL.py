@@ -31,7 +31,7 @@ MAX_EVALS   = int(args.max_evals)
 N_REFIT     = int(args.n_refit)
 TOP         = float(args.top)
 RANDOM_SEED = int(args.seed)
-TARGET_task = int(args.target)
+TARGET_task = str(args.target)
 print ('max_evals',MAX_EVALS, 'number of refit', N_REFIT, 'how much to train', TOP, 'seed', RANDOM_SEED, 'target task', TARGET_task)
 
 np.random.seed(RANDOM_SEED)
