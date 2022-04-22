@@ -46,15 +46,15 @@ output_space = Space([Real(0.0, inf, name="time")])
 ```
 
 We define a search problem for each source task:
-- `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/xsbench/problem_s.py`
-- `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/xsbench/problem_m.py`  
-- `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/xsbench/problem_l.py`  
+- `https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/problem_s.py`
+- `https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/problem_m.py`  
+- `https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/problem_l.py`  
 
 and an evaluating method (Plopper) for code generation and compilation:
-- `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/plopper/plopper.py`
+- `https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/plopper/plopper.py`
 
 and a perl file to computes average the execution time:
-- `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/xsbench/exe.pl`
+- `https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/exe.pl`
  
  
 <!-- [Source task 1 (s): 100000 lookups](https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/xsbench-omp-tl/xsbench/problem_s.py)  
@@ -76,12 +76,12 @@ Once the search is finished, place the csv files in the same folder:
 - `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/mmm-block/results_rf_200.csv` 
 - `https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/mmm-block/results_rf_300.csv`
 
-`https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/mmm-block/run.sh` is the run file to do all searches. 
+`https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/run.sh` is the run file to do all searches. 
 
 Autotuning target task online
 -----------------------
 
-Now, we describe a standalone code to autotune a target task online `<https://github.com/ytopt-team/ytopt/blob/online/ytopt/benchmark/mmm-block-tl/mmm-block/Run_online_TL.py>` 
+Now, we describe a standalone code to autotune a target task online `<https://github.com/ytopt-team/ytopt/blob/online-mmm-block/ytopt/benchmark/mmm-block-tl/mmm_problem/Run_online_TL.py>` 
 
 It provides options: --max-evals flag sets the maximum number of evaluations, --n_refit flag sets how often to refit the generative model, --top flag sets how many of data from source tasks to use to train the generative model.
 

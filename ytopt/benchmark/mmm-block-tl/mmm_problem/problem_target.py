@@ -13,11 +13,8 @@ from plopper import Plopper
 # create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
 #block size for openmp dynamic schedule
-b_space = [] 
-for i in range(1,101):
-    b_space.append(str(i))
-p0= CSH.OrdinalHyperparameter(name='BLOCK_SIZE', sequence=b_space, default_value='5')
-# p0= CSH.UniformIntegerHyperparameter(name='BLOCK_SIZE', lower=1, upper=100, default_value=5)
+# p0= CSH.OrdinalHyperparameter(name='BLOCK_SIZE', sequence=['1','2','3','4','5','6','7','8','9','10'], default_value='5')
+p0= CSH.UniformIntegerHyperparameter(name='BLOCK_SIZE', lower=1, upper=100, default_value=5)
 cs.add_hyperparameters([p0])
 
 # problem space
@@ -30,7 +27,7 @@ output_space = Space([
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmm_block_100.cpp',dir_path)
+obj = Plopper(dir_path+'/mmm_block_500.cpp',dir_path)
 
 x1=['BLOCK_SIZE']
 def myobj(point: dict):
