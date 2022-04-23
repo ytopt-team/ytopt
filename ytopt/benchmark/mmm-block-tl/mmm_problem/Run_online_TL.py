@@ -53,7 +53,7 @@ def myobj(point: dict):
         value = [point[x1[0]]]
         print('CONFIG:',point)
         params = ["BLOCK_SIZE"]
-        result = obj.findRuntime(value, params)
+        result = obj.findRuntime(value, params, '/mmm_block_'+TARGET_task+'.cpp')
         return result
 
     x = np.array([point['BLOCK_SIZE']])
@@ -111,7 +111,7 @@ with open(filename, 'w') as csvfile:
     while eval_master < Max_evals:         
         # update model
         model.fit(real_data)
-        conditions = {'input': TARGET_task}
+        conditions = {'input': int(TARGET_task)}
         ss1 = model.sample(max(100,Max_evals),conditions=conditions)
         ss1 = ss1.drop_duplicates(subset='BLOCK_SIZE', keep="first")
         ss  = ss1.sort_values(by='runtime')#, ascending=False)

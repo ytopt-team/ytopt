@@ -36,7 +36,7 @@ def myobj(point: dict):
         value = [point[x1[0]]]
         print('CONFIG:',point)
         params = ["BLOCK_SIZE"]
-        result = obj.findRuntime(value, params)
+        result = obj.findRuntime(value, params, '/mmm_block_500.cpp')
         return result
 
     x = np.array([point['BLOCK_SIZE']])
