@@ -18,7 +18,7 @@ class Plopper:
         return(dictVal)
     
     # Function to find the execution time of the interim file, and return the execution time as cost to the search module
-    def findRuntime(self, x, params):
+    def findRuntime(self, x, params, d_size):
         interimfile = ""
         exetime = 1
         
@@ -26,11 +26,11 @@ class Plopper:
         dictVal = self.createDict(x, params)
 
         #compile and find the execution time
-#         tmpbinary = self.outputdir + '/tmp_'+str(uuid.uuid4())+'.bin'
-        tmpbinary = self.outputdir + '/tmp.bin'
+        tmpbinary = self.outputdir + '/tmp_'+str(uuid.uuid4())+'.bin'
+#         tmpbinary = self.outputdir + '/tmp.bin'
         kernel_idx = self.sourcefile.rfind('/')
         kernel_dir = self.sourcefile[:kernel_idx]
-        gcc_cmd = 'g++ ' + kernel_dir +'/mmm_block.cpp '
+        gcc_cmd = 'g++ ' + kernel_dir +d_size +' '
         gcc_cmd += ' -D{0}={1}'.format('BLOCK_SIZE', dictVal['BLOCK_SIZE'])
         gcc_cmd += ' -o ' + tmpbinary
         run_cmd = kernel_dir + "/exe.pl " + tmpbinary
@@ -48,4 +48,3 @@ class Plopper:
             print(compilation_status.stderr)
             print("compile failed")
         return exetime #return execution time as cost
-
