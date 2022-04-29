@@ -84,6 +84,12 @@ conda install -c conda-forge mpi4py
 pip install -e .
 ```
 
+* For notebook support, please install `ipython` and `jupyter`
+```
+pip install ipython
+pip install jupyter
+```
+
 * [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: `autotools` and the `gsl`
         * Ubuntu
