@@ -14,9 +14,9 @@ Autotuning refers to the process of generating a search space of possible implem
 
 Most tuners are designed for offline tuning. However, tuning online by using the auto-tuner in production is highly needed. 
 
-In the online tuning settings, how to gather prior knowledge on search space offline and leverage this on a target task real time are the key. To this end, we introduce a generative model that learns the prior information to autotuning a target task online. Procedure of our approach is as follows: 
-- Gather performances of different configurations on source tasks offline 
-- Given the online targe task, use a generative model to learn prior knowledge and suggest a promising configuration in production. 
+In the online tuning settings, how to gather prior knowledge on search space offline and leverage this on a target task real time are the key. To this end, we introduce a generative model that learns the prior information to autotune a target task online. Procedure of our approach is as follows: 
+- Collect performances of different configurations on source tasks offline 
+- Given the online target task, use a generative model to learn prior knowledge and suggest a promising configuration in production. 
 
 In this tutorial, we target to autotune the block size for matrix multiplication. Blocking is used to improve the temporal locality of inner loops such that data structures in a program are orgarnized into chunks, i.e. blocks (ref: [https://csapp.cs.cmu.edu/public/waside/waside-blocking.pdf](https://csapp.cs.cmu.edu/public/waside/waside-blocking.pdf)). We want to find the block size that gives the minimal execution time. 
 
