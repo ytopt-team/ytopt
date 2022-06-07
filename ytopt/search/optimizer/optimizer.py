@@ -33,10 +33,10 @@ class Optimizer:
         self.SEED  = set_SEED
         self.NI    = set_NI
 #         n_init = set_NI 
-        print ('............self.KAPPA',self.KAPPA)
-        print ('............self.learner',self.learner)
-        print ('............self.acq_func',self.acq_func)
-        print ('............self.SEED',self.SEED)
+#         print ('............self.KAPPA',self.KAPPA)
+#         print ('............self.learner',self.learner)
+#         print ('............self.acq_func',self.acq_func)
+#         print ('............self.SEED',self.SEED)
 
         n_init = inf if learner=='DUMMY' else self.NI #num_workers
         print ('............n_init',n_init)        
