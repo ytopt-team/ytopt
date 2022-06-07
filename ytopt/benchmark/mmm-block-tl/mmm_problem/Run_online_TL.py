@@ -17,6 +17,7 @@ from sdv.tabular import GaussianCopula
 from sdv.tabular import CopulaGAN
 from sdv.evaluation import evaluate
 from sdv.constraints import CustomConstraint, Between
+from sdv.sampling.tabular import Condition
 import random, argparse
 
 parser = argparse.ArgumentParser()
@@ -81,8 +82,8 @@ real_data   = pd.concat(frames)
 
 constraint_input = Between(
     column='input',
-    low=1,
-    high=500,
+    low=0,
+    high=501,
     )
 
 model = GaussianCopula(
@@ -111,8 +112,8 @@ with open(filename, 'w') as csvfile:
     while eval_master < Max_evals:         
         # update model
         model.fit(real_data)
-        conditions = {'input': int(TARGET_task)}
-        ss1 = model.sample(max(100,Max_evals),conditions=conditions)
+        conditions = Condition({'input': int(TARGET_task)}, num_rows=max(100, Max_evals))
+        ss1 = model.sample_conditions([conditions])
         ss1 = ss1.drop_duplicates(subset='BLOCK_SIZE', keep="first")
         ss  = ss1.sort_values(by='runtime')#, ascending=False)
         new_sdv = ss[:Max_evals]
