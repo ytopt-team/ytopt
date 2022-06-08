@@ -35,6 +35,7 @@ REQUIRED = [
     #'gym',
     'joblib',
     'deap',
+    "protobuf >= 3.15.3, <= 3.20.0",
     'ray[debug]',
     #'ConfigSpace',
 ]
