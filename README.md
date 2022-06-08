@@ -75,6 +75,11 @@ cd ytopt
 pip install -e .
 ```
 
+* Downgrade the protobuf package to 3.20.x or lower
+```
+pip install protobuf==3.20
+```
+
 * If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
