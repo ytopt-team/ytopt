@@ -79,6 +79,10 @@ pip install -e .
 ```
 pip install protobuf==3.20
 ```
+* If needed, install packaging 
+```
+pip install packaging
+```
 
 * If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
