@@ -121,7 +121,13 @@ class Optimizer:
                 yield batch
 
     def ask_initial(self, n_points):
-        XX = self._optimizer.ask(n_points=n_points)
+        default = self._optimizer.ask_default()
+        XX = []
+        if default is not None and n_points > 0:
+            XX.append(default)
+            n_points -= 1
+        if n_points > 0:
+            XX += self._optimizer.ask(n_points=n_points)
         for x in XX:
             y = self._get_lie()
             key = tuple(x)
