@@ -29,7 +29,7 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), scikit-optimize, autotune, and ytopt.
+The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), dh-scikit-optimize, autotune, and ytopt.
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -52,7 +52,7 @@ pip install -e .
 cd ..
 ```
 
-* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
+* Install [dh-scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
 git clone https://github.com/ytopt-team/scikit-optimize.git
 cd scikit-optimize
@@ -82,6 +82,11 @@ pip install protobuf==3.20
 * If needed, install packaging 
 ```
 pip install packaging
+```
+
+* If needed, uninstall scikit-optimize to prevent import confusion with dh-scikit-optimize
+```
+pip uninstall scikit-optimize
 ```
 
 * If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
