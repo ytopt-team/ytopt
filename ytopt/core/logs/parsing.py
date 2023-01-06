@@ -110,7 +110,7 @@ def main(path, *args, **kwargs):
             print('Exception: ', e)
             print('Failed to compute workload!...')
         else:
-            print('Workload has been computed successfuly!')
+            print('Workload has been computed successfully!')
 
     with open(data['fig']+'.json', 'w') as fjson:
         print(f'Create json file: {data["fig"]+".json"}')

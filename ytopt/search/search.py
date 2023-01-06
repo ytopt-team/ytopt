@@ -91,5 +91,5 @@ class Search:
                             help="The evaluator is an object used to run the model."
                             )
         parser.add_argument('--redis-address', type=str, default=None,
-                            help="The redis-address for Ray-Worker when ray evaluator is choosen")
+                            help="The redis-address for Ray-Worker when ray evaluator is chosen")
         return parser

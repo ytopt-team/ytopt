@@ -3,7 +3,7 @@ import os, sys, subprocess, random
 class Plopper:
     def __init__(self,sourcefile,outputdir):
 
-        # Initilizing global variables
+        # Initializing global variables
         self.sourcefile = sourcefile
         self.outputdir = outputdir+"/tmp_files"
 
@@ -17,7 +17,7 @@ class Plopper:
             dictVal[p] = v
         return(dictVal)
 
-    #Replace the Markers in the source file with the corresponding prameter values
+    #Replace the Markers in the source file with the corresponding parameter values
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
