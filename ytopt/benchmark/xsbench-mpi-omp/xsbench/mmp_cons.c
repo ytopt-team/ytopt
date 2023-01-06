@@ -1279,7 +1279,7 @@ void quickSort_parallel_d_i(double* key,int * value, int lenArray, int numThread
 // optimization is to allow for greatly improved cache locality, and XS indices
 // loaded from memory may be re-used for multiple lookups.
 //
-// As efficienct sorting is key for performance, we also must implement an
+// As efficient sorting is key for performance, we also must implement an
 // efficient key-value parallel sorting algorithm. We also experimented with using
 // the C++ version of thrust for these purposes, but found that our own implementation
 // was slightly faster than the thrust library version, so for speed and
