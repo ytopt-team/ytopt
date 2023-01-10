@@ -74,7 +74,7 @@ git clone -b main https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
 ```
-After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, ytopt is ready to use.
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
 * If needed, downgrade the protobuf package to 3.20.x or lower
 ```
