@@ -34,7 +34,7 @@ The autotuning framework requires the following components: ConfigSpace, CConfig
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create --name ytune python=3.7
+conda create --name ytune python=3.10
 conda activate ytune
 ```
 
