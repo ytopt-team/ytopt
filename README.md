@@ -85,12 +85,12 @@ pip install protobuf==3.20
 pip install packaging
 ```
 
-* If you encounter installtion error about the package grpcio (1.51.1), just install its old version, it should work.
+* If you encounter installation error about the package grpcio (1.51.1), just install its old version, it should work.
 ```
 pip install grpcio==1.43.0
 ```
 
-* If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
+* If you encounter installation error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
