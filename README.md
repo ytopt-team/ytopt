@@ -25,7 +25,7 @@ The autotuning framework requires the following components: ``ConfigSpace``, ``C
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create --name ytune python=3.8
+conda create --name ytune python=3.10
 conda activate ytune
 ```
 
@@ -65,6 +65,7 @@ git clone -b main https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
 ```
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
 * If needed, downgrade the ``protobuf`` package to 3.20.x or lower
 ```
@@ -75,7 +76,12 @@ pip install protobuf==3.20
 pip install packaging
 ```
 
-* If you encounter installation errors, install ``psutil``, ``setproctitle``, ``mpich``, ``mpi4py`` first as follows:
+* If you encounter installation error about the package grpcio (1.51.1), just install its old version, it should work.
+```
+pip install grpcio==1.43.0
+```
+
+* If you encounter installation error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
