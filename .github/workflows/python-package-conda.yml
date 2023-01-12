@@ -20,6 +20,7 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
     - name: Install dependencies
       run: |
+        source $CONDA/etc/profile.d/conda.sh
         conda create --name ytl python==3.10
     - name: Install ytopt and libensemble
       run: |
