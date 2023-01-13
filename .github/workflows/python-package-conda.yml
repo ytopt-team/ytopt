@@ -1,111 +1,29 @@
-name: libEnsemble-CI
-on: [pull_request]
+naname: Python Package using Conda
+
+on: [push]
+
 jobs:
-    test-libE:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest]
-                mpi-version: [mpich]
-                python-version: [3.8, 3.9, "3.10", "3.11"]
-                comms-type: [m, l]
-                include:
-                    - os: macos-latest
-                      python-version: 3.9
-                      mpi-version: "mpich"
-                      comms-type: m
-                    - os: macos-latest
-                      python-version: 3.9
-                      mpi-version: "mpich"
-                      comms-type: l
-                    - os: ubuntu-latest
-                      python-version: "3.10"
-                      mpi-version: "mpich"
-                      comms-type: t
-                    - os: ubuntu-latest
-                      mpi-version: "openmpi=4.1.2"
-                      python-version: "3.10"
-                      comms-type: l
-                    - os: ubuntu-latest
-                      python-version: "3.10"
-                      comms-type: l
-                      mpi-version: "mpich"
-                    # - os: windows-latest
-                    #   python-version: "3.10"
-                    #   comms-type: l
-                    #   mpi-version: "msmpi"
-                    # - os: windows-latest
-                    #   python-version: "3.10"
-                    #   comms-type: m
-                    #   mpi-version: "msmpi"
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
 
-        env:
-            HYDRA_LAUNCHER: "fork"
-            TERM: xterm-256color
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        defaults:
-            run:
-                shell: bash -l {0}
-
-        steps:
-        - uses: actions/checkout@v2
-        - name: Setup conda - Python ${{ matrix.python-version }}
-          uses: conda-incubator/setup-miniconda@v2
-          with:
-            activate-environment: condaenv
-            miniconda-version: "latest"
-            python-version: ${{ matrix.python-version }}
-            channels: conda-forge
-            channel-priority: flexible
-            auto-update-conda: true
-
-        - name: Force-update certifi
-          run: |
-            python --version
-            pip install -I --upgrade certifi
-        # - name: Windows - Add clang path to $PATH env
-        #   shell: bash
-        #   if: matrix.os == 'windows-latest'
-        #   run: |
-        #     echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
-        #     echo "PATH=$PATH:C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64" >> $GITHUB_ENV
-
-        - name: Install Ubuntu compilers
-          if: matrix.os == 'ubuntu-latest'
-          run: conda install gcc_linux-64
-
-        # Roundabout solution on macos for proper linking with mpicc
-        - name: Install macOS compilers and older SDK
-          if: matrix.os == 'macos-latest'
-          run: |
-            wget https://github.com/phracker/MacOSX-SDKs/releases/download/10.15/MacOSX10.14.sdk.tar.xz
-            mkdir ../sdk; tar xf MacOSX10.14.sdk.tar.xz -C ../sdk
-            conda install clang_osx-64=9.0.1
-        # - name: Setup MPI (${{ matrix.mpi-version }})
-        #   uses: mpi4py/setup-mpi@v1
-        #   if: matrix.os == 'windows-latest'
-        #   with:
-        #     mpi: ${{ matrix.mpi-version }}
-
-        # - name: Install mpi4py on Windows
-        #   if: matrix.os == 'windows-latest'
-        #   run: pip install mpi4py
-
-        - name: Install mpi4py and MPI from conda
-          if: matrix.python-version != '3.10' && matrix.os != 'windows-latest'
-          run: |
-            conda install ${{ matrix.mpi-version }}
-            conda install mpi4py
-        - name: Install mpi4py from pip, MPI from conda
-          if: matrix.python-version == '3.10' && matrix.os != 'windows-latest'
-          run: |
-            conda install ${{ matrix.mpi-version }}
-            pip install mpi4py
-        - name: Install generator dependencies
-          if: contains('3.8_3.9_3.10_3.11', matrix.python-version) && matrix.os != 'windows-latest'
-          run: |
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: |
+        source $CONDA/etc/profile.d/conda.sh
+        conda create --name ytl python==3.10
+    - name: Install ytopt and libensemble
+    run: |
             conda create --name ytl python==3.10
             conda activate ytl
             pip install scikit-learn==1.0.2
