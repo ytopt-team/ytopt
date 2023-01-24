@@ -27,7 +27,7 @@ REQUIRED = [
     # 'requests', 'maya', 'records',
     'numpy',
     #'scikit-optimize',
-    'scikit-learn>=1.0.0',
+    'scikit-learn==1.0.2',
     'tqdm',
     #'tensorflow==1.14.0',
     #'keras',
@@ -35,7 +35,7 @@ REQUIRED = [
     #'gym',
     'joblib',
     'deap',
-    'ray[debug]',
+    'ray',
     #'ConfigSpace',
 ]
 
