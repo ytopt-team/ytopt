@@ -1,0 +1,42 @@
+name: ytopt-CI
+on:
+  pull_request:
+    types:
+      - ready_for_review
+      - opened
+      - reopened
+      - synchronize
+jobs:
+    test-ytopt:
+        if: '! github.event.pull_request.draft'
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                python-version: [3.9, "3.10"]
+
+        env:
+            HYDRA_LAUNCHER: "fork"
+            TERM: xterm-256color
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        defaults:
+            run:
+                shell: bash -l {0}
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Setup conda - Python ${{ matrix.python-version }}
+          uses: conda-incubator/setup-miniconda@v2
+          with:
+            activate-environment: condaenv
+            miniconda-version: "latest"
+            python-version: ${{ matrix.python-version }}
+            channels: conda-forge
+            channel-priority: flexible
+            auto-update-conda: true
+
+        - name: Install ytopt, test
+          run: |
+            pip install -e .
+            cd test/benchmarks; python run_tests.py
