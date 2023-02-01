@@ -33,7 +33,7 @@ class BasePlopper:
         self.sourcefile = Path(sourcefile)
         self.outputdir = outputdir + "/tmp_files"
         self.sourcefile_type = self.sourcefile.suffix
-        self.compiler = compiler  # "gcc or mpicc"
+        self.compiler = compiler  # gcc or mpicc or xl
 
         if not os.path.exists(self.outputdir):
             os.makedirs(self.outputdir)
@@ -47,9 +47,7 @@ class BasePlopper:
     def p2check(self, inputfile):
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
-            for (
-                line
-            ) in buf:
+            for line in buf:
                 if "#P2" in line:
                     return True
         return False
@@ -71,79 +69,10 @@ class BasePlopper:
                 else:
                     f2.write(line)
 
-    def plotValues_conv(self, dictVal, inputfile, outputfile):
-        with open(inputfile, "r") as f1:
-            buf = f1.readlines()
-
-        with open(outputfile, "w") as f2:
-            for line in buf:
-                stop = False
-                modify_line = line
-                try:
-                    while not stop:
-                        if not re.search(r"#P([0-9]+)", modify_line):
-                            stop = True
-                        for m in re.finditer(r"#P([0-9]+)", modify_line):
-                            modify_line = re.sub(
-                                r"#P" + m.group(1),
-                                dictVal["P" + m.group(1)],
-                                modify_line,
-                            )
-                except Exception as e:
-                    print("we got exception", e)
-                    print(dictVal)
-                    sys.exit(1)
-                if modify_line != line:
-                    f2.write(modify_line)
-                else:
-                    # To avoid writing the Marker
-                    f2.write(line)
-
-    def plotValues_conv2d0(self, dictVal, inputfile, outputfile):
-        with open(inputfile, "r") as f1:
-            buf = f1.readlines()
-            param = ""  # string to hold the parameters in case we cuda is used
-            global cuda
-            cuda = False
-            for (
-                line
-            ) in buf:  # check if we are using cuda. If yes, collect the parameters.
-                if (
-                    "POLYBENCH_2D_ARRAY_DECL_CUDA"
-                    or "POLYBENCH_3D_ARRAY_DECL_CUDA"
-                    or "POLYBENCH_1D_ARRAY_DECL_CUDA" in line
-                ):
-                    cuda = True
-
-        with open(outputfile, "w") as f2:
-            for line in buf:
-                stop = False
-                modify_line = line
-                try:
-                    while not stop:
-                        if not re.search(r"#P([0-9]+)", modify_line):
-                            stop = True
-                        for m in re.finditer(r"#P([0-9]+)", modify_line):
-                            modify_line = re.sub(
-                                r"#P" + m.group(1),
-                                dictVal["P" + m.group(1)],
-                                modify_line,
-                            )
-                except Exception as e:
-                    print("we got exception", e)
-                    print(dictVal)
-                    sys.exit(1)
-                if modify_line != line:
-                    f2.write(modify_line)
-                else:
-                    f2.write(line)
-
     def findRuntime(self, x, params):
         interimfile = ""
         exetime = 1
-        counter = random.randint(
-            1, 10001
-        )
+        counter = random.randint(1, 10001)
         interimfile = self.outputdir + "/tmp_" + str(counter) + self.sourcefile_type
         dictVal = self.createDict(x, params)
         self.plotValues(dictVal, self.sourcefile, interimfile)
@@ -256,3 +185,42 @@ class BasePlopper:
             print(compilation_status.stderr)
             print("compile failed")
         return exetime
+
+    def _check_cuda(self, inputfile):
+        self.cuda = False
+        with open(inputfile, "r") as f1:
+            buf = f1.readlines()
+            for line in buf:  # check if we are using cuda. If yes, collect the parameters.
+                if (
+                    "POLYBENCH_2D_ARRAY_DECL_CUDA"
+                    or "POLYBENCH_3D_ARRAY_DECL_CUDA"
+                    or "POLYBENCH_1D_ARRAY_DECL_CUDA" in line
+                ):
+                    self.cuda = True
+        return buf
+
+    def plotValues_conv(self, dictVal, inputfile, outputfile):
+        buf = self._check_cuda(inputfile)
+
+        with open(outputfile, "w") as f2:
+            for line in buf:
+                stop = False
+                modify_line = line
+                try:
+                    while not stop:
+                        if not re.search(r"#P([0-9]+)", modify_line):
+                            stop = True
+                        for m in re.finditer(r"#P([0-9]+)", modify_line):
+                            modify_line = re.sub(
+                                r"#P" + m.group(1),
+                                dictVal["P" + m.group(1)],
+                                modify_line,
+                            )
+                except Exception as e:
+                    print("we got exception", e)
+                    print(dictVal)
+                    sys.exit(1)
+                if modify_line != line:
+                    f2.write(modify_line)
+                else:
+                    f2.write(line)
