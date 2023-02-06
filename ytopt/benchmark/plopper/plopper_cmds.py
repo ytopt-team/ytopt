@@ -1,6 +1,6 @@
 MAT_GCC_CMD = (
     "{compiler} -std=gnu99 -Wall -flto  -fopenmp -DOPENMP {mpi_macro} -O3"
-    + " -o {tmpbinary} {interimfile} {kernel_dir} /Materials.c {kernel_dir}/XSutils.c -I{kernel_dir} -lm -L${CONDA_PREFIX}/lib"
+    + " -o {tmpbinary} {interimfile} {kernel_dir}/Materials.c {kernel_dir}/XSutils.c -I{kernel_dir} -lm -L{CONDA_PREFIX}/lib"
 )
 
 CONV_CLANG_CMD = (

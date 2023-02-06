@@ -3,7 +3,7 @@ import sys
 import subprocess
 import random
 from pathlib import Path
-from plopper_cmds import (
+from ytopt.benchmark.plopper.plopper_cmds import (
     COMMON_FLAGS,
     CONV_CLANG_CMD,
     CLANG_CUDA_CMD,
@@ -14,7 +14,7 @@ from plopper_cmds import (
     GPP_BLOCK_CMD,
 )
 
-# COMMON_FLAGS.format(utilities_dir, kernel_dir, interimfile, utilities_dir, tmpbinary)
+# COMMON_FLAGS.format(utilities_dir, kernel_dir, interimfile, utilities_dir, self.tmpbinary)
 
 # CLANG_CUDA_CMD.format(
 #     system, gpuarch, COMMON_FLAGS, CUDA_FLAGS
@@ -31,8 +31,8 @@ from plopper_cmds import (
 # elif system == "lassen":  # LLNL machine
 #     gpuarch = "sm_70"
 
-# # CMD2.format(system, utilities_dir, tmpbinary)
-# CMD2.format(utilities_dir, tmpbinary)
+# # CMD2.format(system, utilities_dir, self.tmpbinary)
+# CMD2.format(utilities_dir, self.tmpbinary)
 
 # CLANG_CUDA_NVPT_CMD.format(COMMON_FLAGS)
 
@@ -41,7 +41,7 @@ class BasePlopper:
     def __init__(self, sourcefile: Path, outputdir: Path):
 
         self.sourcefile = Path(sourcefile)
-        self.outputdir = outputdir / "tmp_files"
+        self.outputdir = Path(outputdir) / "tmp_files"
         self.sourcefile_type = self.sourcefile.suffix
         self.kernel_dir = self.sourcefile.parent
         self.utilities_dir = self.kernel_dir / "utilities"
@@ -56,7 +56,9 @@ class BasePlopper:
         return dictVal
 
     def get_interimfile(self):
-        return self.outputdir / ("tmp_" + str(random.randint(1, 10001)) + self.sourcefile_type)
+        return self.outputdir / (
+            "tmp_" + str(random.randint(1, 10001)) + self.sourcefile_type
+        )
 
     def plotValues(self, dictVal, inputfile, outputfile):
         with open(inputfile, "r") as f1:
@@ -77,46 +79,68 @@ class BasePlopper:
 
 
 class CompilePlopper(BasePlopper):
-    def __init__(self, sourcefile, outputdir, compiler: str = "mpicc", do_cuda: bool = False):
+    def __init__(
+        self,
+        sourcefile,
+        outputdir,
+        compiler: str = "mpicc",
+        do_cuda: bool = False,
+        system="local",
+        gpuarch: str = None,
+    ):
         self.compiler = compiler  # clang or xl or mpicc
-        assert compiler in ["clang", "xl", "mpicc", "gcc"], \
-             "specify compiler as one of clang, xl, mpicc, or gcc"
+        assert compiler in [
+            "clang",
+            "xl",
+            "mpicc",
+            "gcc",
+        ], "specify compiler as one of clang, xl, mpicc, or gcc"
         self.do_cuda = do_cuda
+        self.system = system
+        self.gpuarch = gpuarch
         super().__init__(sourcefile, outputdir)
 
-    def set_compile_command(command:str):
+    def set_compile_command(self, command: str):
         self.compile_cmd = command
 
-    def run_compile():
-        pass
+    def run_compile(self):
+        dmpi = "-DMPI" if self.compiler == "mpicc" else ""
+        options = {
+            "compiler": self.compiler,
+            "mpi_macro": dmpi,
+            "tmpbinary": self.tmpbinary,
+            "interimfile": self.interimfile,
+            "kernel_dir": self.kernel_dir,
+            "utilities_dir": self.utilities_dir,
+            "system": self.system,
+            "block_size": self.dictVal.get("BLOCK_SIZE", 0),
+            "gpuarch": self.gpuarch,
+            "cuda_flags": CUDA_FLAGS,
+            "CONDA_PREFIX": os.environ.get("CONDA_PREFIX")
+        }
+        common_flags = COMMON_FLAGS.format(**options)
+        options["common_flags"] = common_flags
+        fmt_compile_cmd = self.compile_cmd.format(**options)
+        import ipdb; ipdb.set_trace()
+        compilerun = subprocess.run(fmt_compile_cmd, shell=True, stderr=subprocess.PIPE)
+        return compilerun.returncode
 
-    def run_tmpbinary():
+    def run_tmpbinary(self):
         pass
 
     def findRuntime(self, x, params):
-        interimfile = self.get_interimfile()
-        dictVal = self.createDict(x, params)
-        self.plotValues(dictVal, self.sourcefile, interimfile)
-        tmpbinary = interimfile[:-2]
+        self.dictVal = self.createDict(x, params)
+        self.interimfile = self.get_interimfile()
+        self.plotValues(self.dictVal, self.sourcefile, self.interimfile)
+        self.tmpbinary = str(self.interimfile)[:-2]
 
-        dmpi = "-DMPI" if self.compiler == "mpicc" else ""
-        gcc_cmd = MAT_GCC_CMD.format(
-            self.compiler,
-            dmpi,
-            tmpbinary,
-            interimfile,
-            self.kernel_dir,
-            self.kernel_dir,
-            self.kernel_dir,
-        )
-        CONV_CLANG_CMD.format(utilities_dir, kernel_dir, interimfile, utilities_dir, tmpbinary)
-        GPP_BLOCK_CMD.format(kernel_dir, dictval["BLOCK_SIZE"], tmpbinary)
-        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE).returncode
-
-        run_cmd = self.kernel_dir + "/exe.pl " + tmpbinary
+        compilation_status = self.run_compile()
+        run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
 
         if compilation_status == 0:
-            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
+            execution_status = subprocess.run(
+                run_cmd, shell=True, stdout=subprocess.PIPE
+            )
             exetime = float(execution_status.stdout.decode("utf-8"))
             if exetime == 0:
                 exetime = 1
@@ -127,15 +151,19 @@ class CompilePlopper(BasePlopper):
         return exetime  # return execution time as cost
 
     def findRuntime_block(self, x, params):
-        dictVal = self.createDict(x, params)
-        tmpbinary = self.outputdir + "/tmp_" + str(uuid.uuid4()) + ".bin"
-        gcc_cmd = GPP_BLOCK_CMD.format(kernel_dir, "BLOCK_SIZE", dictVal["BLOCK_SIZE"], tmpbinary)
-        run_cmd = self.kernel_dir + "/exe.pl " + tmpbinary
+        self.dictVal = self.createDict(x, params)
+        self.tmpbinary = self.outputdir + "/tmp_" + str(uuid.uuid4()) + ".bin"
+        gcc_cmd = GPP_BLOCK_CMD.format(
+            kernel_dir, "BLOCK_SIZE", self.dictVal["BLOCK_SIZE"], self.tmpbinary
+        )
+        run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
 
         compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
 
         if compilation_status.returncode == 0:
-            execution_status = subprocess.run(run_cmd, shell=True, stdout=subprocess.PIPE)
+            execution_status = subprocess.run(
+                run_cmd, shell=True, stdout=subprocess.PIPE
+            )
             exetime = float(execution_status.stdout.decode("utf-8"))
             if exetime == 0:
                 exetime = 1
@@ -151,21 +179,22 @@ class PyPlopper(BasePlopper):
 
     def findRuntime(self, x, params):
         exetime = 1
-        interimfile = self.get_interimfile()
-        dictVal = self.createDict(x, params)
-        self.plotValues(dictVal, self.sourcefile, interimfile)
-        tmpbinary = interimfile[:-2]
+        self.dictVal = self.createDict(x, params)
+        self.plotValues(self.dictVal, self.sourcefile, interimfile)
+        self.tmpbinary = interimfile[:-2]
 
-        compilation_status = subprocess.run(cmd1, shell=True, stderr=subprocess.PIPE)
+        compilation_status = self.run_compile()
 
-        if compilation_status.returncode == 0:
+        if compilation_status == 0:
 
             x = 0
             arr = []
             while x < 2:
                 x = x + 1
-                execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
-                with open(f"{tmpbinary}.out") as cmd2out:
+                execution_status = subprocess.run(
+                    cmd2, shell=True, stdout=subprocess.PIPE
+                )
+                with open(f"{self.tmpbinary}.out") as cmd2out:
                     exetime = float(cmd2out.read())
                     print("hello we are here", exetime)
                     arr.append(exetime)
@@ -189,7 +218,9 @@ class PyPlopper(BasePlopper):
         self.cuda = False
         with open(inputfile, "r") as f1:
             buf = f1.readlines()
-            for line in buf:  # check if we are using cuda. If yes, collect the parameters.
+            for (
+                line
+            ) in buf:  # check if we are using cuda. If yes, collect the parameters.
                 if (
                     "POLYBENCH_2D_ARRAY_DECL_CUDA"
                     or "POLYBENCH_3D_ARRAY_DECL_CUDA"

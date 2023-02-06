@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from plublic_plopper import BasePlopper, PyPlopper, CompilePlopper
+from ytopt.benchmark.plopper.plublic_plopper import BasePlopper, PyPlopper, CompilePlopper
 
 this = Path(__file__)
 
