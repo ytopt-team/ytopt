@@ -1,8 +1,10 @@
 import os
 from pathlib import Path
-from ytopt.benchmark.plopper.plublic_plopper import BasePlopper, PyPlopper, CompilePlopper
+from ytopt.benchmark.plopper import BasePlopper, PyPlopper, CompilePlopper
+from ytopt.benchmark.plopper.cmds import *
 
 this = Path(__file__)
+srcfile = Path(this.parent / "xsbench-mpi-omp/xsbench/mmp.c")
 
 def test_base_init():
     obj = BasePlopper(this, this.parent)
@@ -20,10 +22,22 @@ def test_get_interimfile():
     assert "tmp_files" in str(ifile), "interimfile isn't within tmp_files"    
 
 def test_compiler_init():
-    pass
+    obj = CompilePlopper(srcfile, this.parent)
+    assert obj.compiler == "mpicc", "default compiler not set"
+    flag = 1
+    try:
+        obj = CompilePlopper(srcfile, this.parent, "nocompile")
+        flag = 0
+    except AssertionError:
+        flag = 1
+    assert flag == 1, "Plopper didn't error on accepting invalid compiler"
+    assert obj.sourcefile == srcfile, "CompilePlopper didn't init superclass"
 
 def test_compiler_runtime():
-    pass
+    obj = CompilePlopper(srcfile, this.parent)
+    obj.set_compile_command(MAT_GCC_CMD)
+    assert obj.compile_cmd == MAT_GCC_CMD, "Compile command not set to plopper"
+    flag = obj.run_compile()
 
 def test_py_init():
     pass

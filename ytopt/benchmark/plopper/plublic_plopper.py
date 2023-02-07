@@ -23,6 +23,9 @@ class BasePlopper:
         self.kernel_dir = self.sourcefile.parent
         self.utilities_dir = self.kernel_dir / "utilities"
 
+        assert self.sourcefile.is_file(), \
+            "Unable to find or access sourcefile"
+
         if not os.path.exists(self.outputdir):
             os.makedirs(self.outputdir)
 
@@ -80,7 +83,7 @@ class CompilePlopper(BasePlopper):
     def set_compile_command(self, command: str):
         self.compile_cmd = command
 
-    def run_compile(self):
+    def _run_compile(self):
         dmpi = "-DMPI" if self.compiler == "mpicc" else ""
         options = {
             "compiler": self.compiler,
@@ -107,7 +110,7 @@ class CompilePlopper(BasePlopper):
         self.plotValues(self.dictVal, self.sourcefile, self.interimfile)
         self.tmpbinary = str(self.interimfile)[:-2]
 
-        compilation_status = self.run_compile()
+        compilation_status = self._run_compile()
         run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
         
         if compilation_status == 0:
@@ -134,7 +137,7 @@ class PyPlopper(BasePlopper):
         self.plotValues(self.dictVal, self.sourcefile, interimfile)
         self.tmpbinary = interimfile[:-2]
 
-        compilation_status = self.run_compile()
+        compilation_status = self._run_compile() #?
 
         if compilation_status == 0:
 
