@@ -3,7 +3,7 @@ import sys
 import subprocess
 import random
 from pathlib import Path
-from ytopt.benchmark.plopper.plopper_cmds import (
+from ytopt.benchmark.plopper.cmds import (
     COMMON_FLAGS,
     CONV_CLANG_CMD,
     CLANG_CUDA_CMD,
@@ -13,29 +13,6 @@ from ytopt.benchmark.plopper.plopper_cmds import (
     XL_CUDA_FLAGS,
     GPP_BLOCK_CMD,
 )
-
-# COMMON_FLAGS.format(utilities_dir, kernel_dir, interimfile, utilities_dir, self.tmpbinary)
-
-# CLANG_CUDA_CMD.format(
-#     system, gpuarch, COMMON_FLAGS, CUDA_FLAGS
-# )  # if compiler == "clang" and cuda: else:
-# CLANG_CUDA_CMD.format(system, gpuarch, COMMON_FLAGS, "")
-
-# XL_CUDA_CMD.format(
-#     system, gpuarch, COMMON_FLAGS, XL_CUDA_FLAGS
-# )  # if compiler == "clang" and cuda: else:
-# XL_CUDA_CMD.format(system, gpuarch, COMMON_FLAGS, "")
-
-# if system == "pascal":  # LLNL machine or Utah machine
-#     gpuarch = "sm_60"
-# elif system == "lassen":  # LLNL machine
-#     gpuarch = "sm_70"
-
-# # CMD2.format(system, utilities_dir, self.tmpbinary)
-# CMD2.format(utilities_dir, self.tmpbinary)
-
-# CLANG_CUDA_NVPT_CMD.format(COMMON_FLAGS)
-
 
 class BasePlopper:
     def __init__(self, sourcefile: Path, outputdir: Path):
@@ -121,12 +98,8 @@ class CompilePlopper(BasePlopper):
         common_flags = COMMON_FLAGS.format(**options)
         options["common_flags"] = common_flags
         fmt_compile_cmd = self.compile_cmd.format(**options)
-        import ipdb; ipdb.set_trace()
         compilerun = subprocess.run(fmt_compile_cmd, shell=True, stderr=subprocess.PIPE)
         return compilerun.returncode
-
-    def run_tmpbinary(self):
-        pass
 
     def findRuntime(self, x, params):
         self.dictVal = self.createDict(x, params)
@@ -136,7 +109,7 @@ class CompilePlopper(BasePlopper):
 
         compilation_status = self.run_compile()
         run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
-
+        
         if compilation_status == 0:
             execution_status = subprocess.run(
                 run_cmd, shell=True, stdout=subprocess.PIPE
@@ -149,28 +122,6 @@ class CompilePlopper(BasePlopper):
             print("compile failed")
             exetime = 1
         return exetime  # return execution time as cost
-
-    def findRuntime_block(self, x, params):
-        self.dictVal = self.createDict(x, params)
-        self.tmpbinary = self.outputdir + "/tmp_" + str(uuid.uuid4()) + ".bin"
-        gcc_cmd = GPP_BLOCK_CMD.format(
-            kernel_dir, "BLOCK_SIZE", self.dictVal["BLOCK_SIZE"], self.tmpbinary
-        )
-        run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
-
-        compilation_status = subprocess.run(gcc_cmd, shell=True, stderr=subprocess.PIPE)
-
-        if compilation_status.returncode == 0:
-            execution_status = subprocess.run(
-                run_cmd, shell=True, stdout=subprocess.PIPE
-            )
-            exetime = float(execution_status.stdout.decode("utf-8"))
-            if exetime == 0:
-                exetime = 1
-        else:
-            print(compilation_status.stderr)
-            print("compile failed")
-        return exetime
 
 
 class PyPlopper(BasePlopper):

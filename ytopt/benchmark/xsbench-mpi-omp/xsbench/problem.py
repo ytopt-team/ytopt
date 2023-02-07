@@ -8,9 +8,8 @@ from skopt.space import Real, Integer, Categorical
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
-from plopper import Plopper
 from ytopt.benchmark.plopper.plublic_plopper import CompilePlopper
-from ytopt.benchmark.plopper.plopper_cmds import MAT_GCC_CMD
+from ytopt.benchmark.plopper.cmds import MAT_GCC_CMD
 
 # create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)

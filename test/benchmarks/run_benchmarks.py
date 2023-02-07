@@ -30,23 +30,26 @@ def run_test(testdir, margs):
         search = AMBS(**vars(margs))
         search.main()
 
-@mock.patch("ytopt.benchmark.dl.mnist.problem.Plopper")
-def test_dl(fake_plopper):
+def test_dl():
+    print("test_dl")
     path = Path("dl") / "mnist"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
 
 def test_xsbench_mpi_omp():
+    print("test_xsbench_mpi_omp")
     path = Path("xsbench-mpi-omp") / "xsbench"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
 
 def test_xsbench_omp():
+    print("test_xsbench_omp")
     path = Path("xsbench-omp") / "xsbench"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
 
 if __name__ == "__main__":
-    # test_dl()
+    test_dl()
     test_xsbench_mpi_omp()
-    # test_xsbench_omp()
+    test_xsbench_omp()
+    print("Done!")
