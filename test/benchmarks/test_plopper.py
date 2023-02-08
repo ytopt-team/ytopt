@@ -37,7 +37,8 @@ def test_compiler_runtime():
     obj = CompilePlopper(srcfile, this.parent)
     obj.set_compile_command(MAT_GCC_CMD)
     assert obj.compile_cmd == MAT_GCC_CMD, "Compile command not set to plopper"
-    flag = obj.run_compile()
+    exetime = obj.findRuntime([4, '64', ' '],['P0', 'P1', 'P2'])
+    assert exetime != 1, "exetime wasn't found as non-default value"
 
 def test_py_init():
     pass

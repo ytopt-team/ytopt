@@ -111,7 +111,7 @@ class CompilePlopper(BasePlopper):
         self.tmpbinary = str(self.interimfile)[:-2]
 
         compilation_status = self._run_compile()
-        run_cmd = self.kernel_dir + "/exe.pl " + self.tmpbinary
+        run_cmd = str(self.kernel_dir) + "/exe.pl " + self.tmpbinary
         
         if compilation_status == 0:
             execution_status = subprocess.run(
