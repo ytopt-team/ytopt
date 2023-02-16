@@ -28,11 +28,11 @@ Installation
 Build
 -----
 
-To build the documentation you just need to be in the ``ytopt/docs`` directory and run ``make html`` assuming you have MakeFile installed on your computer. 
-Then you can see the build documentation inside the ``docs/_build`` folder just by opening the ``index.html`` file with your web browser.
+To build the documentation, change to the ``ytopt/docs`` directory and run ``make html``, assuming you have ``make`` installed on your computer.
+The results can be viewed in a browser with ``open _build/html/index.html``.
 
-Useful information
-------------------
+Documentation Architecture
+--------------------------
 
 The documentation is made with Sphinx and the following extensions:
 

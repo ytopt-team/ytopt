@@ -17,6 +17,7 @@ Machine-learning-based search methods for autotuning
    :maxdepth: 2
    :caption: Quick Start
 
+   Introduction<quickstart/introduction>
    quickstart/installation
    quickstart/local
 
