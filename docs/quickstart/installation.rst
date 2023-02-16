@@ -1,14 +1,14 @@
-Installation
-************
+Additional Installation Instructions
+************************************
 
 Local
 =====
 
-ytopt can be installed on your local machine using conda.
+``ytopt`` can be installed on your local machine using pip. Doing this in a virtual environment is highly
+recommended:
 
-::
-    conda create -n ytopt -c anaconda python=3.6
-    source activate ytopt
+.. code-block:: bash
+
     git clone https://github.com/ytopt-team/ytopt.git
     cd ytopt/
     pip install -e .
@@ -18,7 +18,9 @@ Contribute to documentation
 
 Installation
 ------------
-::
+
+.. code-block:: bash
+
     source activate ENV_NAME
     pip install -U Sphinx
     pip install sphinx_bootstrap_theme
@@ -29,10 +31,10 @@ Build
 To build the documentation you just need to be in the ``ytopt/docs`` directory and run ``make html`` assuming you have MakeFile installed on your computer. 
 Then you can see the build documentation inside the ``docs/_build`` folder just by opening the ``index.html`` file with your web browser.
 
-Useful informations
--------------------
+Useful information
+------------------
 
-The documentation is made with Sphinx and the following extensions are used:
+The documentation is made with Sphinx and the following extensions:
 
 ============= =============
  Extensions
