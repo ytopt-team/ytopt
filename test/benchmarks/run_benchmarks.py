@@ -9,8 +9,8 @@ from ytopt.search import Search
 from ytopt.search import util
 from ytopt.search.ambs import AMBS
 
-class Changer:
 
+class Changer:
     def __init__(self, testdir, home=os.getcwd()):
         self.testdir = testdir
         self.home = home
@@ -21,8 +21,10 @@ class Changer:
     def __exit__(self, etype, value, traceback):
         os.chdir(self.home)
 
+
 def get_problem(path):
     return f"ytopt.benchmark.{str(path).replace('/', '.')}.problem.Problem"
+
 
 def run_test(testdir, margs):
     with Changer(testdir):
@@ -30,11 +32,13 @@ def run_test(testdir, margs):
         search = AMBS(**vars(margs))
         search.main()
 
+
 def test_dl():
     print("test_dl")
     path = Path("dl") / "mnist"
     args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
+
 
 def test_xsbench_mpi_omp():
     print("test_xsbench_mpi_omp")
@@ -42,11 +46,13 @@ def test_xsbench_mpi_omp():
     args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
 
+
 def test_xsbench_omp():
     print("test_xsbench_omp")
     path = Path("xsbench-omp") / "xsbench"
     args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
     run_test(path, args)
+
 
 if __name__ == "__main__":
     test_dl()
