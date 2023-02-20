@@ -42,4 +42,6 @@ jobs:
             git clone https://github.com/ytopt-team/scikit-optimize.git
             cd scikit-optimize; pip install -e .; cd -
             pip install -e .
-            cd test/benchmarks; python run_benchmarks.py
+            cd test/benchmarks
+            python test_plopper.py
+            python run_benchmarks.py

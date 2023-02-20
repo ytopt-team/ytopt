@@ -167,8 +167,7 @@ class CompilePlopper(BasePlopper):
             if exetime == 0:
                 exetime = 1
         else:
-            print(compilation_status.stderr)
-            print("compile failed")
+            print("compile failed. errcode: ", compilation_status)
             exetime = 1
         return exetime  # return execution time as cost
 
