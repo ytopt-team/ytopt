@@ -18,7 +18,7 @@ Machine-learning-based search methods for autotuning
    :caption: Quick Start
 
    quickstart/installation
-   quickstart/local
+   quickstart/basicuse
 
 
 .. toctree::

@@ -158,7 +158,9 @@ method above was further customized by specifying the ``RF`` learning strategy.
 
 See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic information on getting started with creating a ``TuningProblem`` instance.
 
-See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance
+See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
+
+Otherwise, browse the ``ytopt/benchmark`` directory for an extensive collection of examples.
 
 # Tutorials
 
