@@ -141,6 +141,25 @@ ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ```
 
+# Basic Usage
+
+``ytopt`` is typically run from the command-line in the following example manner:
+
+``python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF``
+
+Where:
+  * The *search* variant is one of ``ambs`` (*Asynchronous Model-Based Search*) or ``async_search`` (run as an MPI process).
+  * The *evaluator* is the method of concurrent evaluations, and can be ``ray`` or ``subprocess``.
+  * The *problem* is typically an ``autotune.TuningProblem`` instance. Specify the module path and instance name.
+  * ``--max-evals`` is self explanatory.
+
+Depending on the *search* variant chosen, other command-line options may be provided. For example, the ``ytopt.search.ambs`` search
+method above was further customized by specifying the ``RF`` learning strategy.
+
+See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic information on getting started with creating a ``TuningProblem`` instance.
+
+See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance
+
 # Tutorials
 
 * [Autotuning the block matrix multiplication](https://github.com/ytopt-team/ytopt/tree/tutorial/docs/tutorials/mmm-block/tutorial-mmm-block.md)
