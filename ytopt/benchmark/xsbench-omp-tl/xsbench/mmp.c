@@ -640,7 +640,7 @@ unsigned long long run_event_based_simulation(Inputs in, SimulationData SD, int 
 	////////////////////////////////////////////////////////////////////////////////
 	// SUMMARY: Simulation Data Structure Manifest for "SD" Object
 	// Here we list all heap arrays (and lengths) in SD that would need to be
-	// offloaded manually if using an accelerator with a seperate memory space
+	// offloaded manually if using an accelerator with a separate memory space
 	////////////////////////////////////////////////////////////////////////////////
 	// int * num_nucs;                     // Length = length_num_nucs;
 	// double * concs;                     // Length = length_concs
@@ -727,7 +727,7 @@ unsigned long long run_history_based_simulation(Inputs in, SimulationData SD, in
 	////////////////////////////////////////////////////////////////////////////////
 	// SUMMARY: Simulation Data Structure Manifest for "SD" Object
 	// Here we list all heap arrays (and lengths) in SD that would need to be
-	// offloaded manually if using an accelerator with a seperate memory space
+	// offloaded manually if using an accelerator with a separate memory space
 	////////////////////////////////////////////////////////////////////////////////
 	// int * num_nucs;                     // Length = length_num_nucs;
 	// double * concs;                     // Length = length_concs
@@ -902,7 +902,7 @@ void calculate_micro_xs(   double p_energy, int nuc, long n_isotopes,
 	// Elastic XS
 	xs_vector[1] = high->elastic_xs - f * (high->elastic_xs - low->elastic_xs);
 	
-	// Absorbtion XS
+	// Absorption XS
 	xs_vector[2] = high->absorbtion_xs - f * (high->absorbtion_xs - low->absorbtion_xs);
 	
 	// Fission XS
@@ -950,7 +950,7 @@ void calculate_macro_xs( double p_energy, int mat, long n_isotopes,
 	// in the material, and added to the total macro XS array.
 	// (Independent -- though if parallelizing, must use atomic operations
 	//  or otherwise control access to the xs_vector and macro_xs_vector to
-	//  avoid simulataneous writing to the same data structure)
+	//  avoid simultaneous writing to the same data structure)
 	for( int j = 0; j < num_nucs[mat]; j++ )
 	{
 		double xs_vector[5];
@@ -1193,7 +1193,7 @@ void quickSort_parallel_internal_i_d(int* key,double * value, int left, int righ
 
 void quickSort_parallel_i_d(int* key,double * value, int lenArray, int numThreads){
 
-	// Set minumum problem size to still spawn threads for
+	// Set minimum problem size to still spawn threads for
 	int cutoff = 10000;
 
 	// For this problem size, more than 16 threads on CPU is not helpful
@@ -1251,7 +1251,7 @@ void quickSort_parallel_internal_d_i(double* key,int * value, int left, int righ
 
 void quickSort_parallel_d_i(double* key,int * value, int lenArray, int numThreads){
 
-	// Set minumum problem size to still spawn threads for
+	// Set minimum problem size to still spawn threads for
 	int cutoff = 10000;
 
 	// For this problem size, more than 16 threads on CPU is not helpful
@@ -1277,9 +1277,9 @@ void quickSort_parallel_d_i(double* key,int * value, int lenArray, int numThread
 // optimization is to allow for greatly improved cache locality, and XS indices
 // loaded from memory may be re-used for multiple lookups.
 //
-// As efficienct sorting is key for performance, we also must implement an
+// As efficient sorting is key for performance, we also must implement an
 // efficient key-value parallel sorting algorithm. We also experimented with using
-// the C++ version of thrust for these purposes, but found that our own implemtation
+// the C++ version of thrust for these purposes, but found that our own implementation
 // was slightly faster than the thrust library version, so for speed and
 // simplicity we will do not add the thrust dependency.
 ////////////////////////////////////////////////////////////////////////////////////
@@ -1459,7 +1459,7 @@ SimulationData grid_init_do_not_profile( Inputs in, int mype )
 	// Initialize Nuclide Grids
 	////////////////////////////////////////////////////////////////////
 	
-	if(mype == 0) printf("Intializing nuclide grids...\n");
+	if(mype == 0) printf("Initializing nuclide grids...\n");
 
 	// First, we need to initialize our nuclide grid. This comes in the form
 	// of a flattened 2D array that hold all the information we need to define
@@ -1516,7 +1516,7 @@ SimulationData grid_init_do_not_profile( Inputs in, int mype )
 	
 	if( in.grid_type == UNIONIZED )
 	{
-		if(mype == 0) printf("Intializing unionized grid...\n");
+		if(mype == 0) printf("Initializing unionized grid...\n");
 
 		// Allocate space to hold the union of all nuclide energy data
 		SD.length_unionized_energy_array = in.n_isotopes * in.n_gridpoints;
@@ -1572,7 +1572,7 @@ SimulationData grid_init_do_not_profile( Inputs in, int mype )
 
 	if( in.grid_type == HASH )
 	{
-		if(mype == 0) printf("Intializing hash grid...\n");
+		if(mype == 0) printf("Initializing hash grid...\n");
 		SD.length_unionized_energy_array = 0;
 		SD.length_index_grid  = in.hash_bins * in.n_isotopes;
 		SD.index_grid = (int *) malloc( SD.length_index_grid * sizeof(int)); 
@@ -1598,27 +1598,27 @@ SimulationData grid_init_do_not_profile( Inputs in, int mype )
 	////////////////////////////////////////////////////////////////////
 	// Initialize Materials and Concentrations
 	////////////////////////////////////////////////////////////////////
-	if(mype == 0) printf("Intializing material data...\n");
+	if(mype == 0) printf("Initializing material data...\n");
 	
 	// Set the number of nuclides in each material
 	SD.num_nucs  = load_num_nucs(in.n_isotopes);
 	SD.length_num_nucs = 12; // There are always 12 materials in XSBench
 
-	// Intialize the flattened 2D grid of material data. The grid holds
+	// Initialize the flattened 2D grid of material data. The grid holds
 	// a list of nuclide indices for each of the 12 material types. The
 	// grid is allocated as a full square grid, even though not all
 	// materials have the same number of nuclides.
 	SD.mats = load_mats(SD.num_nucs, in.n_isotopes, &SD.max_num_nucs);
 	SD.length_mats = SD.length_num_nucs * SD.max_num_nucs;
 
-	// Intialize the flattened 2D grid of nuclide concentration data. The grid holds
+	// Initialize the flattened 2D grid of nuclide concentration data. The grid holds
 	// a list of nuclide concentrations for each of the 12 material types. The
 	// grid is allocated as a full square grid, even though not all
 	// materials have the same number of nuclides.
 	SD.concs = load_concs(SD.num_nucs, SD.max_num_nucs);
 	SD.length_concs = SD.length_mats;
 
-	if(mype == 0) printf("Intialization complete. Allocated %.0lf MB of data.\n", nbytes/1024.0/1024.0 );
+	if(mype == 0) printf("Initialization complete. Allocated %.0lf MB of data.\n", nbytes/1024.0/1024.0 );
 
 	return SD;
 

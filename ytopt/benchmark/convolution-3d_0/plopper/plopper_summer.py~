@@ -7,7 +7,7 @@ import re
 class Plopper:
     def __init__(self,sourcefile,outputdir):
 
-        # Initilizing global variables
+        # Initializing global variables
         self.sourcefile = sourcefile
         self.outputdir = outputdir+"/tmp_files"
 
@@ -147,7 +147,7 @@ class Plopper:
         #check output code, not required.
         """
         with open(f"{path}S.txt", 'r') as file1: #will need to generate.
-            with open(f"{path}P.txt", 'r') as file2: #will be regeneraded everytime we run
+            with open(f"{path}P.txt", 'r') as file2: #will be regeneraded every time we run
                 diff = set(file1).difference(file2)
 
         if len(diff):

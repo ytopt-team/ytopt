@@ -7,7 +7,7 @@ import re
 class Plopper:
     def __init__(self,sourcefile,outputdir):
 
-        # Initilizing global variables
+        # Initializing global variables
         self.sourcefile = sourcefile
         self.outputdir = outputdir+"/tmp_files"
 
