@@ -9,15 +9,6 @@
 
 ``ytopt`` is a machine learning-based autotuning software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application. It takes a user-defined code evaluation function wrapper that measures the performance of the input parameter configration, as well as the corresponding search space, as input. By evaluating a small number of input configurations, it gradually builds a surrogate model of the input-output space. The process continues until the user-specified time or the maximum number of evaluations is reached. The software can handle both unconstrained and constrained optimization problems and uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. The search is asynchronous, which enables the software to avoid waiting for all evaluation results before proceeding to the next iteration, allowing it to adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
 
-<!--
-``ytopt`` is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations,
-evaluating them, and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
-evaluations. The package provides two different class of methods: Bayesian Optimization and Reinforcement Learning.
-The software is designed to operate in the manager-worker computational paradigm, where one manager node fits 
-the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and 
-return the outputs to the manager node.
-The asynchronous aspect of the search allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
-soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the promising configurations. -->
 # Directory structure
 ```
 docs/	
@@ -31,7 +22,7 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), scikit-optimize, autotune, and ytopt.
+The autotuning framework requires the following components: ``ConfigSpace``, ``CConfigSpace`` (optional), ``scikit-optimize``, ``autotune``, and ``ytopt``.
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -40,7 +31,7 @@ conda create --name ytune python=3.10
 conda activate ytune
 ```
 
-* Create a directory for ytopt tutorial as follows:
+* Create a directory for ``ytopt``:
 ```
 mkdir ytopt
 cd ytopt
@@ -78,7 +69,7 @@ pip install -e .
 ```
 After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
-* If needed, downgrade the protobuf package to 3.20.x or lower
+* If needed, downgrade the ``protobuf`` package to 3.20.x or lower
 ```
 pip install protobuf==3.20
 ```
@@ -101,8 +92,8 @@ conda install -c conda-forge mpi4py
 pip install -e .
 ```
 
-* [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
-    * Prerequisites: `autotools` and the `gsl`
+* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+    * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
           ```
           sudo apt-get install autoconf automake libtool libgsl-dev
@@ -138,7 +129,7 @@ pip install -e .
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
       on MacOS. 
 
-* [Optinal] Install Online tuning:
+* [Optional] Install Online tuning:
     * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
     * Install [SDV](https://github.com/sdv-dev/SDV.git):
       ```

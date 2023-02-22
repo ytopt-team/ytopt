@@ -4,7 +4,7 @@
 
 #July 15, 2021
 
-The benchamrks include the following directories:
+The benchmarks include the following directories:
 
 [dl](https://github.com/jke513/ytopt/tree/master/ytopt/benchmark/dl) (deep learning mnist)
 

@@ -33,7 +33,6 @@ REQUIRED = [
     #'keras',
     # nas
     #'gym',
-    'joblib',
     'deap',
     'ray',
     #'ConfigSpace',
