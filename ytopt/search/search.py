@@ -24,7 +24,7 @@ class Search:
     Args:
         problem (str): Module path to the Problem instance you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.Problem).
         run (str): Module path to the run function you want to use for the search (e.g. ytopt.benchmark.hps.polynome2.run).
-        evaluator (str): value in ['balsam', 'subprocess', 'processPool', 'threadPool'].
+        evaluator (str): value in ['subprocess', 'processPool', 'threadPool'].
     """
 
     def __init__(self, problem, evaluator, cache_key=None, max_evals=100, eval_timeout_minutes=None, redis_address=None, **kwargs):
@@ -87,7 +87,7 @@ class Search:
                             )
         parser.add_argument('--evaluator',
                             default='subprocess',
-                            choices=['balsam', 'subprocess', 'ray'],
+                            choices=['subprocess', 'ray'],
                             help="The evaluator is an object used to run the model."
                             )
         parser.add_argument('--redis-address', type=str, default=None,

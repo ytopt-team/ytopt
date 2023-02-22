@@ -5,28 +5,11 @@ import os
 import sys
 from shutil import copyfile
 
-try:
-    from balsam.core.models import (
-        BalsamJob, process_job_times, utilization_report)
-    BALSAM_EXIST = True
-    print('Module: \'balsam\' has been loaded successfully!')
-except ModuleNotFoundError as err:
-    BALSAM_EXIST = False
-    print('Module: \'balsam\' was not found!')
 
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 now = '_'.join(str(datetime.datetime.now(
     datetime.timezone.utc)).split(":")[0].split(" "))
-
-
-def get_workload(wf_name):
-    qs = BalsamJob.objects.filter(workflow=wf_name)
-    time_data = process_job_times(qs)
-    times, num_running = utilization_report(time_data)
-    times = [str(t) for t in times]
-    num_running = [int(n) for n in num_running]
-    return times, num_running
 
 
 def parseline_json(line, data):
@@ -77,7 +60,7 @@ def add_subparser(subparsers):
 
     parser_parse = subparsers.add_parser(
         subparser_name, help='Tool to parse "ytopt.log" and produce a JSON file.')
-    parser_parse.add_argument('path', type=str, help=f'The parsing script takes only 1 argument: the relative path to the log file. If you want to compute the workload data with \'balsam\' you should specify a path starting at least from the workload parent directory, eg. \'nas_exp1/nas_exp1_ue28s2k0/ytopt.log\' where \'nas_exp1\' is the workload.')
+    parser_parse.add_argument('path', type=str, help=f'The parsing script takes only 1 argument: the relative path to the log file.')
 
     return subparser_name, function_to_call
 
@@ -100,17 +83,6 @@ def main(path, *args, **kwargs):
         print('File has been opened')
         parsing(flog, data)
     print('File closed')
-
-    if BALSAM_EXIST and workload_in_path:
-        try:
-            print('Computing workload!')
-            times, num_running = get_workload(path.split('/')[-3])
-            data['workload'] = dict(times=times, num_running=num_running)
-        except Exception as e:
-            print('Exception: ', e)
-            print('Failed to compute workload!...')
-        else:
-            print('Workload has been computed successfully!')
 
     with open(data['fig']+'.json', 'w') as fjson:
         print(f'Create json file: {data["fig"]+".json"}')
