@@ -38,6 +38,7 @@ jobs:
 
         - name: Install ytopt, test
           run: |
+            conda install mpich
             pip install ConfigSpace
             git clone https://github.com/ytopt-team/scikit-optimize.git
             cd scikit-optimize; pip install -e .; cd -
