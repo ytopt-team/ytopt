@@ -1,5 +1,5 @@
 import os
-import mock
+from unittest import mock
 from pathlib import Path
 from ytopt.benchmark.plopper import BasePlopper, PyPlopper, CompilePlopper
 from ytopt.benchmark.plopper.cmds import *
