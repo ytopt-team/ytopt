@@ -7,6 +7,7 @@
 # What is ytopt?
 
 
+
 ``ytopt`` is a machine learning-based autotuning software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application.
 
 ``ytopt`` accepts as input:
@@ -23,7 +24,8 @@ Internally, ``ytopt`` uses a manager-worker computational paradigm, where one no
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/).
 
 # Install instructions
-``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``scikit-optimize``, and ``autotune``.
+``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``dh-scikit-optimize``, and ``autotune``.
+
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -32,7 +34,7 @@ conda create --name ytune python=3.10
 conda activate ytune
 ```
 
-* Create a directory for ytopt tutorial as follows:
+* Create a directory for ``ytopt``:
 ```
 mkdir ytopt
 cd ytopt
@@ -46,7 +48,7 @@ pip install -e .
 cd ..
 ```
 
-* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
+* Install [dh-scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
 git clone https://github.com/ytopt-team/scikit-optimize.git
 cd scikit-optimize
@@ -69,12 +71,30 @@ cd ytopt
 pip install -e .
 ```
 
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
+
+* If needed, downgrade the ``protobuf`` package to 3.20.x or lower
+```
+pip install protobuf==3.20
+```
+* If needed, install packaging 
+```
+pip install packaging
+```
+
+* If needed, uninstall scikit-optimize to prevent import confusion with dh-scikit-optimize
+```
+pip uninstall scikit-optimize
+```
+
 * If you encounter installation error about the package grpcio (1.51.1), just install its old version, it should work.
 ```
 pip install grpcio==1.43.0
 ```
 
+
 * If you encounter installation errors, install psutil, setproctitle, mpich, mpi4py first as follows:
+
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
@@ -83,8 +103,8 @@ conda install -c conda-forge mpi4py
 pip install -e .
 ```
 
-* [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
-    * Prerequisites: `autotools` and the `gsl`
+* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+    * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
           ```
           sudo apt-get install autoconf automake libtool libgsl-dev
@@ -120,7 +140,7 @@ pip install -e .
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
       on MacOS. 
 
-* [Optinal] Install Online tuning:
+* [Optional] Install Online tuning:
     * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
     * Install [SDV](https://github.com/sdv-dev/SDV.git):
       ```
@@ -183,7 +203,7 @@ Otherwise, browse the ``ytopt/benchmark`` directory for an extensive collection 
 
 The core ``ytopt`` team is at Argonne National Laboratory:
 
-* Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
+* Prasanna Balaprakash <pbalapra@anl.gov>
 * Romain Egele <regele@anl.gov>
 * Paul Hovland <hovland@anl.gov>
 * Xingfu Wu <xingfu.wu@anl.gov>
@@ -219,11 +239,8 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 *  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
-
-* YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2017--Present) 
-* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
 * PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--Present)
+* YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2016--2018) 
+* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
 
-# Copyright and license
 
-TBD

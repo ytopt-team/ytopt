@@ -8,7 +8,8 @@ from skopt.space import Real, Integer, Categorical
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
-from plopper import Plopper
+from ytopt.benchmark.plopper.plublic_plopper import CompilePlopper
+from ytopt.benchmark.plopper.cmds import MAT_GCC_CMD
 
 # create an object of ConfigSpace
 cs = CS.ConfigurationSpace(seed=1234)
@@ -32,7 +33,8 @@ output_space = Space([
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/mmp.c',dir_path)
+obj = CompilePlopper(dir_path+'/mmp.c', dir_path, "mpicc")
+obj.set_compile_command(MAT_GCC_CMD)
 
 x1=['p0','p1','p2']
 

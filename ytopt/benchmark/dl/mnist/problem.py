@@ -14,7 +14,7 @@ from skopt.space import Real, Integer, Categorical
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
-from plopper import Plopper
+from ytopt.benchmark.plopper.plublic_plopper import PyPlopper
 nparams = 4
 
 cs = CS.ConfigurationSpace(seed=1234)
@@ -41,7 +41,7 @@ output_space = Space([
 dir_path = os.path.dirname(os.path.realpath(__file__))
 kernel_idx = dir_path.rfind('/')
 kernel = dir_path[kernel_idx+1:]
-obj = Plopper(dir_path+'/dlp.py',dir_path)
+obj = PyPlopper(dir_path+'/dlp.py',dir_path)
 
 x1=['p0','p1','p2','p3']
 
