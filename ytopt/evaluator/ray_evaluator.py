@@ -83,6 +83,9 @@ class RayEvaluator(Evaluator):
 
         logger.info(f'RAY Evaluator init: redis-address={redis_address}')
 
+        if ray.is_initialized():
+            ray.shutdown()  # avoid issues with running multiple ray evaluations back-to-back
+
         if redis_address is not None:
             sleep_time = 5
             infos = None

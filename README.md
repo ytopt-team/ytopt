@@ -5,7 +5,9 @@
 <!-- [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)-->
 
 # What is ytopt?
-``ytopt`` is a machine-learning-based search software package that samples a small number of input parameter configurations, evaluates them, and progressively fits a surrogate model over the input-output space until exhausting a user-defined time or a maximum number of evaluations. The package is inspired by Bayesian optimization methods and is especially useful when the objective function is expensive to evaluate. It can address both unconstrained and constrained problems. ``ytopt`` operates in a manager-worker computational paradigm, where one manager node fits the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and return the outputs to the manager node. The asynchronous aspect of the search avoids waiting for batches of evaluations to complete before proceeding to the next iteration. As each evaluation completes, its data is used to retrain the surrogate model to bias future evaluations toward promising configurations. 
+
+
+``ytopt`` is a machine learning-based autotuning software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application. It takes a user-defined code evaluation function wrapper that measures the performance of the input parameter configration, as well as the corresponding search space, as input. By evaluating a small number of input configurations, it gradually builds a surrogate model of the input-output space. The process continues until the user-specified time or the maximum number of evaluations is reached. The software can handle both unconstrained and constrained optimization problems and uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. The search is asynchronous, which enables the software to avoid waiting for all evaluation results before proceeding to the next iteration, allowing it to adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
 
 # Directory structure
 ```
@@ -163,7 +165,7 @@ pip install -e .
 
 The core ``ytopt`` team is at Argonne National Laboratory:
 
-* Prasanna Balaprakash <pbalapra@anl.gov>, Lead and founder
+* Prasanna Balaprakash <pbalapra@anl.gov>
 * Romain Egele <regele@anl.gov>
 * Paul Hovland <hovland@anl.gov>
 * Xingfu Wu <xingfu.wu@anl.gov>
@@ -199,11 +201,12 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 *  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
-
-* YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2017--Present) 
-* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
 * PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--Present)
+* YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2016--2018) 
+* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
 
+<!--
 # Copyright and license
 
 TBD
+-->
