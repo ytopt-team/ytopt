@@ -79,7 +79,7 @@ class PopenFuture:
 class SubprocessEvaluator(Evaluator):
     """Evaluator using subprocess.
 
-        The ``SubprocessEvaluator`` use the ``subprocess`` package. The generated processes have a fresh memory independant from their parent process. All the imports are going to be repeated.
+        The ``SubprocessEvaluator`` use the ``subprocess`` package. The generated processes have a fresh memory independent from their parent process. All the imports are going to be repeated.
 
         Args:
             run_function (func): takes one parameter of type dict and returns a scalar value.

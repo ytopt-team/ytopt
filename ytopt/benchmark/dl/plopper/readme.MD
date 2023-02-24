@@ -1,1 +1,1 @@
-plopper function entails code generation and exeuction. 
+plopper function entails code generation and execution. 

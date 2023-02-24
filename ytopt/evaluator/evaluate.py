@@ -64,12 +64,9 @@ class Evaluator:
 
 
     @staticmethod
-    def create(problem, cache_key=None, method='balsam', redis_address=None):
-        assert method in ['balsam', 'subprocess', 'ray']
-        if method == "balsam":
-            from ytopt.evaluator.balsam_evaluator import BalsamEvaluator
-            Eval = BalsamEvaluator(problem, cache_key=cache_key)
-        elif method == "subprocess":
+    def create(problem, cache_key=None, method='ray', redis_address=None):
+        assert method in ['subprocess', 'ray']
+        if method == "subprocess":
             from ytopt.evaluator.subprocess_evaluator import SubprocessEvaluator
             Eval = SubprocessEvaluator(problem, cache_key=cache_key)
         elif method == "ray":
