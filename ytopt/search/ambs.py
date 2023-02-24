@@ -86,7 +86,7 @@ class AMBS(Search):
         parser.add_argument('--set-NI',
             default=10,
             type = int,
-            help='Set n inital points'
+            help='Set n initial points'
         )
         return parser
 

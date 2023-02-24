@@ -5,17 +5,8 @@
 <!-- [![Documentation Status](https://readthedocs.org/projects/ytopt/badge/?version=latest)](https://ytopt.readthedocs.io/en/latest/?badge=latest)-->
 
 # What is ytopt?
-``ytopt`` is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations, evaluating them, and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or the maximum number of evaluations. The package is built based on Bayesian Optimization that solves any optimization problem and is especially useful when the objective function is difficult to evaluate. It provides an interface that deals with unconstrained and constrained problems. The software is designed to operate in the manager-worker computational paradigm, where one manager node fits the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and return the outputs to the manager node. The asynchronous aspect of the search allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the promising configurations. 
+``ytopt`` is a machine-learning-based search software package that samples a small number of input parameter configurations, evaluates them, and progressively fits a surrogate model over the input-output space until exhausting a user-defined time or a maximum number of evaluations. The package is inspired by Bayesian optimization methods and is especially useful when the objective function is expensive to evaluate. It can address both unconstrained and constrained problems. ``ytopt`` operates in a manager-worker computational paradigm, where one manager node fits the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and return the outputs to the manager node. The asynchronous aspect of the search avoids waiting for batches of evaluations to complete before proceeding to the next iteration. As each evaluation completes, its data is used to retrain the surrogate model to bias future evaluations toward promising configurations. 
 
-<!--
-``ytopt`` is a machine-learning-based search software package that consists of sampling a small number of input parameter configurations,
-evaluating them, and progressively fitting a surrogate model over the input-output space until exhausting the user-defined time or maximum number of 
-evaluations. The package provides two different class of methods: Bayesian Optimization and Reinforcement Learning.
-The software is designed to operate in the manager-worker computational paradigm, where one manager node fits 
-the surrogate model and generates promising input configurations and worker nodes perform the computationally expensive evaluations and 
-return the outputs to the manager node.
-The asynchronous aspect of the search allows the search to avoid waiting for all the evaluation results before proceeding to the next iteration. As 
-soon as an evaluation is finished, the data is used to retrain the surrogate model, which is then used to bias the search toward the promising configurations. -->
 # Directory structure
 ```
 docs/	
@@ -29,16 +20,16 @@ ytopt/benchmark/
 ```
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), scikit-optimize, autotune, and ytopt.
+The autotuning framework requires the following components: ``ConfigSpace``, ``CConfigSpace`` (optional), ``scikit-optimize``, ``autotune``, and ``ytopt``.
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create --name ytune python=3.7
+conda create --name ytune python=3.10
 conda activate ytune
 ```
 
-* Create a directory for ytopt tutorial as follows:
+* Create a directory for ``ytopt``:
 ```
 mkdir ytopt
 cd ytopt
@@ -74,8 +65,9 @@ git clone -b main https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
 ```
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
-* If needed, downgrade the protobuf package to 3.20.x or lower
+* If needed, downgrade the ``protobuf`` package to 3.20.x or lower
 ```
 pip install protobuf==3.20
 ```
@@ -84,7 +76,12 @@ pip install protobuf==3.20
 pip install packaging
 ```
 
-* If you encounter installtion error, install psutil, setproctitle, mpich, mpi4py first as follows:
+* If you encounter installation error about the package grpcio (1.51.1), just install its old version, it should work.
+```
+pip install grpcio==1.43.0
+```
+
+* If you encounter installation error, install psutil, setproctitle, mpich, mpi4py first as follows:
 ```
 conda install -c conda-forge psutil
 conda install -c conda-forge setproctitle
@@ -93,8 +90,8 @@ conda install -c conda-forge mpi4py
 pip install -e .
 ```
 
-* [Optinal] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
-    * Prerequisites: `autotools` and the `gsl`
+* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+    * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
           ```
           sudo apt-get install autoconf automake libtool libgsl-dev
@@ -130,7 +127,7 @@ pip install -e .
       `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
       on MacOS. 
 
-* [Optinal] Install Online tuning:
+* [Optional] Install Online tuning:
     * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
     * Install [SDV](https://github.com/sdv-dev/SDV.git):
       ```
