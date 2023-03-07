@@ -54,7 +54,7 @@ def myobj(point: dict):
 
     x = np.array([point[f'p{i}'] for i in range(len(point))])
     results = plopper_func(x)
-    print('OUTPUT:%f',results)
+    print('OUTPUT: ',results)
     return results
 
 Problem = TuningProblem(
