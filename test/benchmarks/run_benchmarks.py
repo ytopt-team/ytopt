@@ -1,5 +1,7 @@
 import os
+import time
 import pytest
+import signal
 import importlib
 import subprocess
 from unittest import mock
@@ -9,6 +11,9 @@ from ytopt.search import Search
 from ytopt.search import util
 from ytopt.search.ambs import AMBS
 
+def on_exit(signum, stack):
+    global EXIT_FLAG
+    EXIT_FLAG = True
 
 class Changer:
     def __init__(self, testdir, home=os.getcwd()):
@@ -30,6 +35,8 @@ def run_test(testdir, margs):
     with Changer(testdir):
         margs = AMBS.parse_args(margs.split())
         search = AMBS(**vars(margs))
+        signal.signal(signal.SIGINT, on_exit)
+        signal.signal(signal.SIGTERM, on_exit)
         search.main()
 
 
@@ -56,6 +63,8 @@ def test_xsbench_omp():
 
 if __name__ == "__main__":
     test_dl()
+    time.sleep(1)
     test_xsbench_mpi_omp()
+    time.sleep(1)
     test_xsbench_omp()
     print("Done!", flush=True)
