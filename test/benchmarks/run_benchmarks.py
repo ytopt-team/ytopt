@@ -1,5 +1,4 @@
 import os
-import time
 import pytest
 import signal
 import importlib
@@ -63,8 +62,6 @@ def test_xsbench_omp():
 
 if __name__ == "__main__":
     test_dl()
-    time.sleep(1)
     test_xsbench_mpi_omp()
-    time.sleep(1)
-    test_xsbench_omp()
+    # test_xsbench_omp()
     print("Done!", flush=True)
