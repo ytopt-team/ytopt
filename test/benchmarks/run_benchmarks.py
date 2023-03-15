@@ -63,7 +63,7 @@ def test_xsbench_omp():
 
 if __name__ == "__main__":
     test_dl()
-    # test_xsbench_mpi_omp()
+    test_xsbench_mpi_omp()
     test_xsbench_omp()
     print("Done!", flush=True)
     sys.exit()
