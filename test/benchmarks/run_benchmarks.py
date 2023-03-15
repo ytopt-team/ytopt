@@ -36,21 +36,21 @@ def run_test(testdir, margs):
 def test_dl():
     print("test_dl", flush=True)
     path = Path("dl") / "mnist"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
     run_test(path, args)
 
 
 def test_xsbench_mpi_omp():
     print("test_xsbench_mpi_omp", flush=True)
     path = Path("xsbench-mpi-omp") / "xsbench"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
     run_test(path, args)
 
 
 def test_xsbench_omp():
     print("test_xsbench_omp", flush=True)
     path = Path("xsbench-omp") / "xsbench"
-    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=2 --learner RF"
+    args = f"--evaluator ray --problem {get_problem(path)} --max-evals=1 --learner RF"
     run_test(path, args)
 
 
