@@ -7,22 +7,25 @@
 # What is ytopt?
 
 
-``ytopt`` is a machine learning-based autotuning software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application. It takes a user-defined code evaluation function wrapper that measures the performance of the input parameter configration, as well as the corresponding search space, as input. By evaluating a small number of input configurations, it gradually builds a surrogate model of the input-output space. The process continues until the user-specified time or the maximum number of evaluations is reached. The software can handle both unconstrained and constrained optimization problems and uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. The search is asynchronous, which enables the software to avoid waiting for all evaluation results before proceeding to the next iteration, allowing it to adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
 
-# Directory structure
-```
-docs/	
-    Sphinx documentation files
-test/
-    scipts for running benchmark problems in the problems directory
-ytopt/	
-    scripts that contain the search implementations  
-ytopt/benchmark/	
-    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
-```
+``ytopt`` is a machine learning-based autotuning software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application.
+
+``ytopt`` accepts as input:
+
+  1. A code-evaluation wrapper for performance measurement
+  2. The corresponding search space
+
+By sampling and evaluating a small number of input configurations, ``ytopt`` gradually builds a surrogate model of the input-output space. This process continues until the user-specified time or the maximum number of evaluations is reached.
+
+``ytopt`` handles both unconstrained and constrained optimization problems, searches asynchronously, and can look-ahead on iterations to more effectively adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
+
+Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node.
+
+Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/).
 
 # Install instructions
-The autotuning framework requires the following components: ConfigSpace, CConfigSpace (optional), dh-scikit-optimize, autotune, and ytopt.
+``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``dh-scikit-optimize``, and ``autotune``.
+
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
@@ -67,6 +70,7 @@ git clone -b main https://github.com/ytopt-team/ytopt.git
 cd ytopt
 pip install -e .
 ```
+
 After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
 * If needed, downgrade the ``protobuf`` package to 3.20.x or lower
@@ -88,7 +92,8 @@ pip uninstall scikit-optimize
 pip install grpcio==1.43.0
 ```
 
-* If you encounter installation error, install psutil, setproctitle, mpich, mpi4py first as follows:
+
+* If you encounter installation errors, install psutil, setproctitle, mpich, mpi4py first as follows:
 
 ```
 conda install -c conda-forge psutil
@@ -143,6 +148,39 @@ pip install -e .
       pip install -e .[online]
       ```
     * For macOS it may need to do: ``pip install -e ".[online]"``  
+
+# Directory structure
+```
+docs/
+    Sphinx documentation files
+test/
+    scipts for running benchmark problems in the problems directory
+ytopt/
+    scripts that contain the search implementations
+ytopt/benchmark/
+    a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
+```
+
+# Basic Usage
+
+``ytopt`` is typically run from the command-line in the following example manner:
+
+``python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF``
+
+Where:
+  * The *search* variant is one of ``ambs`` (*Asynchronous Model-Based Search*) or ``async_search`` (run as an MPI process).
+  * The *evaluator* is the method of concurrent evaluations, and can be ``ray`` or ``subprocess``.
+  * The *problem* is typically an ``autotune.TuningProblem`` instance. Specify the module path and instance name.
+  * ``--max-evals`` is self explanatory.
+
+Depending on the *search* variant chosen, other command-line options may be provided. For example, the ``ytopt.search.ambs`` search
+method above was further customized by specifying the ``RF`` learning strategy.
+
+See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic information on getting started with creating a ``TuningProblem`` instance.
+
+See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
+
+Otherwise, browse the ``ytopt/benchmark`` directory for an extensive collection of examples.
 
 # Tutorials
 
@@ -205,8 +243,4 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 * YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2016--2018) 
 * Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
 
-<!--
-# Copyright and license
 
-TBD
--->

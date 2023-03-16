@@ -10,19 +10,15 @@ ytopt
 Machine-learning-based search methods for autotuning
 ----------------------------------------------------
 
-.. image:: _static/logo/medium.png
-   :scale: 100%
-   :alt: logo
-   :align: center
-
 .. automodule:: ytopt
+   :members:
 
 .. toctree::
    :maxdepth: 2
    :caption: Quick Start
 
    quickstart/installation
-   quickstart/local
+   quickstart/basicuse
 
 
 .. toctree::
