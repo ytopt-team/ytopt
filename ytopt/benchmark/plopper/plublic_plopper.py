@@ -35,7 +35,7 @@ class BasePlopper:
         """sets x's as values to params in a new dictionary"""
         dictVal = {}
         for p, v in zip(params, x):
-            dictVal[p] = v
+            dictVal[p] = str(v)
         return dictVal
 
     def _get_interimfile(self) -> Path:
@@ -113,9 +113,10 @@ class CompilePlopper(BasePlopper):
                         if not re.search(r"#P([0-9]+)", modify_line):
                             stop = True
                         for m in re.finditer(r"#P([0-9]+)", modify_line):
+                            plabel = str(m.group(1))
                             modify_line = re.sub(
-                                r"#P" + m.group(1),
-                                dictVal["P" + m.group(1)],
+                                r"#P" + plabel,
+                                dictVal["P" + plabel],
                                 modify_line,
                             )
                 except Exception as e:

@@ -41,7 +41,7 @@ def myobj(point: dict):
 
     x = np.array([point['BLOCK_SIZE']])
     results = plopper_func(x)
-    print('OUTPUT:%f',results)
+    print('OUTPUT: ',results)
     return results
 
 Problem = TuningProblem(

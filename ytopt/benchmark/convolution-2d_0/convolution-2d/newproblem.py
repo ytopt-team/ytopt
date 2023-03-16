@@ -168,7 +168,7 @@ def myobj(point: dict):
   #print(point)
   x = np.array(list(point.values())) #len(point) = 13 or 26
   results = plopper_func(x)
-  print('OUTPUT:%f',results)
+  print('OUTPUT: ',results)
 
   return results
 

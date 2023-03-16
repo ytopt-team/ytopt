@@ -36,9 +36,9 @@ jobs:
             channel-priority: flexible
             auto-update-conda: true
 
-        - name: Install ytopt, test
+        - name: Install ytopt and dependencies
           run: |
-            pip install mock pytest
+            pip install mock pytest tensorflow keras
             conda install gcc mpich
             pip install ConfigSpace
             git clone https://github.com/ytopt-team/scikit-optimize.git
@@ -46,6 +46,14 @@ jobs:
             git clone -b version1 https://github.com/ytopt-team/autotune.git
             cd autotune; pip install -e .; cd -
             pip install -e .
+
+        - name: Test Plopper
+          run: |
             cd test/benchmarks
             python test_plopper.py
+            cd -
+
+        - name: Run benchmarks
+          run: |
+            cd test/benchmarks
             python run_benchmarks.py

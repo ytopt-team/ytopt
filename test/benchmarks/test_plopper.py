@@ -10,7 +10,7 @@ pysrcfile = Path(this.parent / "dl/mnist/dlp.py")
 
 
 def test_base_init():
-    print("test_base_init")
+    print("test_base_init", flush=True)
     obj = BasePlopper(this, this.parent)
     assert obj.sourcefile == this, "Sourcefile not passed through to plopper"
     assert obj.outputdir == this.parent / "tmp_files", "Outputdir not set to plopper"
@@ -26,7 +26,7 @@ def test_base_init():
 
 
 def test_get_interimfile():
-    print("test_get_interimfile")
+    print("test_get_interimfile", flush=True)
     obj = BasePlopper(this, this.parent)
     ifile = obj._get_interimfile()
     assert isinstance(ifile, Path), "plopper didn't return path to a file"
@@ -35,7 +35,7 @@ def test_get_interimfile():
 
 
 def test_compiler_init():
-    print("test_compiler_init")
+    print("test_compiler_init", flush=True)
     obj = CompilePlopper(srcfile, this.parent)
     assert obj.compiler == "mpicc", "default compiler not set"
     flag = 1
@@ -49,7 +49,7 @@ def test_compiler_init():
 
 
 def test_compiler_runtime():
-    print("test_compiler_runtime")
+    print("test_compiler_runtime", flush=True)
     obj = CompilePlopper(srcfile, this.parent)
     obj.set_compile_command(MAT_GCC_CMD)
     assert obj.compile_cmd == MAT_GCC_CMD, "Compile command not set to plopper"
@@ -71,7 +71,7 @@ def test_compiler_runtime():
 
 
 def test_py_init():
-    print("test_py_init")
+    print("test_py_init", flush=True)
     obj = PyPlopper(pysrcfile, this.parent)
     assert (
         obj.sourcefile_type == ".py"
@@ -79,7 +79,7 @@ def test_py_init():
 
 
 def test_py_runtime():
-    print("test_py_runtime")
+    print("test_py_runtime", flush=True)
     obj = PyPlopper(pysrcfile, this.parent)
     with mock.patch("ytopt.benchmark.plopper.plublic_plopper.subprocess") as apprun:
         apprun.run.return_value.stdout = (
@@ -103,4 +103,4 @@ if __name__ == "__main__":
     test_compiler_runtime()
     test_py_init()
     test_py_runtime()
-    print("Done!")
+    print("Done!", flush=True)
