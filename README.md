@@ -13,7 +13,8 @@
 ``ytopt`` accepts as input:
 
   1. A code-evaluation wrapper for performance measurement
-  2. The corresponding search space
+  2. Tunable system parameters
+  3. The corresponding search space
 
 By sampling and evaluating a small number of input configurations, ``ytopt`` gradually builds a surrogate model of the input-output space. This process continues until the user-specified time or the maximum number of evaluations is reached.
 
