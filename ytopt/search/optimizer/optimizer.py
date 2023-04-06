@@ -87,9 +87,9 @@ class Optimizer:
             return res
         elif ccs_active and isinstance(self.space, CCS.ConfigurationSpace):
             res = {}
-            hps = self.space.hyperparameters
+            ps = self.space.parameters
             for i in range(len(x)):
-                res[hps[i].name] = x [i]
+                res[ps[i].name] = x [i]
             return res
         else:
             return self.space.to_dict(x)

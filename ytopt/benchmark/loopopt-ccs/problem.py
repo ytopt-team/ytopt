@@ -11,17 +11,17 @@ cs = CCS.ConfigurationSpace(name = "loopopt-ccs")
 cs.rng.seed = 1234
 
 
-p1  = CCS.CategoricalHyperparameter(name='p1',  values=['None', '#pragma omp #p3', '#pragma omp target #p3', '#pragma omp target #p5', '#pragma omp #p4'])
-p3  = CCS.CategoricalHyperparameter(name='p3',  values=['None', '#parallel for #p4', '#parallel for #p6', '#parallel for #p7'])
-p4  = CCS.CategoricalHyperparameter(name='p4',  values=['None', 'simd'])
-p5  = CCS.CategoricalHyperparameter(name='p5',  values=['None', '#dist_schedule static', '#dist_schedule #p11'])
-p6  = CCS.CategoricalHyperparameter(name='p6',  values=['None', '#schedule #p10', '#schedule #p11'])
-p7  = CCS.CategoricalHyperparameter(name='p7',  values=['None', '#numthreads #p12'])
-p10 = CCS.CategoricalHyperparameter(name='p10', values=['static', 'dynamic'])
-p11 = CCS.OrdinalHyperparameter(name='p11', values=['1', '8', '16'])
-p12 = CCS.OrdinalHyperparameter(name='p12', values=['1', '8', '16'])
+p1  = CCS.CategoricalParameter(name='p1',  values=['None', '#pragma omp #p3', '#pragma omp target #p3', '#pragma omp target #p5', '#pragma omp #p4'])
+p3  = CCS.CategoricalParameter(name='p3',  values=['None', '#parallel for #p4', '#parallel for #p6', '#parallel for #p7'])
+p4  = CCS.CategoricalParameter(name='p4',  values=['None', 'simd'])
+p5  = CCS.CategoricalParameter(name='p5',  values=['None', '#dist_schedule static', '#dist_schedule #p11'])
+p6  = CCS.CategoricalParameter(name='p6',  values=['None', '#schedule #p10', '#schedule #p11'])
+p7  = CCS.CategoricalParameter(name='p7',  values=['None', '#numthreads #p12'])
+p10 = CCS.CategoricalParameter(name='p10', values=['static', 'dynamic'])
+p11 = CCS.OrdinalParameter(name='p11', values=['1', '8', '16'])
+p12 = CCS.OrdinalParameter(name='p12', values=['1', '8', '16'])
 
-cs.add_hyperparameters([p1, p3, p4, p5, p6, p7, p10, p11, p12])
+cs.add_parameters([p1, p3, p4, p5, p6, p7, p10, p11, p12])
 
 #make p3 an active parameter when p1 value is ...
 cs.set_condition(p3,  "p1 # ['#pragma omp #p3', '#pragma omp target #p3']")
