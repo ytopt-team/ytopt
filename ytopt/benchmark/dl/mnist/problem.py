@@ -12,8 +12,8 @@ import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 from skopt.space import Real, Integer, Categorical
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
+#HERE = os.path.dirname(os.path.abspath(__file__))
+#sys.path.insert(1, os.path.dirname(HERE)+ '/plopper')
 from ytopt.benchmark.plopper.plublic_plopper import PyPlopper
 nparams = 4
 
