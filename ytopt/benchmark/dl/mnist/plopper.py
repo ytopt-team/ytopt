@@ -69,6 +69,6 @@ class Plopper:
         execution_status = subprocess.run(cmd2, shell=True, stdout=subprocess.PIPE)
         exetime = float(execution_status.stdout.decode('utf-8'))
         if exetime == 0:
-           exetime = 1
+           exetime = -1
         return exetime #return execution time as cost
 
