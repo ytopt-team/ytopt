@@ -11,9 +11,9 @@ cs = CCS.ConfigurationSpace(name = "numerical-constraints-ccs")
 cs.rng.seed = 1234
 
 
-p1 = CCS.NumericalParameter.int(0, 200, name='x1')
-p2 = CCS.NumericalParameter.int(0, 200, name='x2', default=1)
-p3 = CCS.NumericalParameter.int(0, 200, name='x3')
+p1 = CCS.NumericalParameter.Int(lower = 0, upper = 200, name='x1')
+p2 = CCS.NumericalParameter.Int(lower = 0, upper = 200, name='x2', default=1)
+p3 = CCS.NumericalParameter.Int(lower = 0, upper = 200, name='x3')
 
 cs.add_parameters([p1, p2, p3])
 
