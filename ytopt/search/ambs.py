@@ -43,6 +43,10 @@ def on_exit(signum, stack):
 class AMBS(Search):
     def __init__(self, learner='RF', liar_strategy='cl_max', acq_func='gp_hedge', set_KAPPA=1.96, set_SEED=12345, set_NI=10, **kwargs):
         super().__init__(**kwargs)
+        if hasattr(self.problem, 'nan_transformation'):
+            self.transforms_nans = True
+        else:
+            self.transforms_nans = False
 
         logger.info("Initializing AMBS")
         self.optimizer = Optimizer(
@@ -54,6 +58,7 @@ class AMBS(Search):
             set_KAPPA=set_KAPPA,
             set_SEED=set_SEED,
             set_NI=set_NI,
+            nan_transformation=None if not self.transforms_nans else self.problem.nan_transformation,
         )
 
     @staticmethod
@@ -122,6 +127,8 @@ class AMBS(Search):
 
 if __name__ == "__main__":
     args = AMBS.parse_args()
+    import pdb
+    pdb.set_trace()
     search = AMBS(**vars(args))
     signal.signal(signal.SIGINT, on_exit)
     signal.signal(signal.SIGTERM, on_exit)

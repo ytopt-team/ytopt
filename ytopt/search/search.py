@@ -33,8 +33,6 @@ class Search:
         settings['evaluator'] = evaluator
         settings['cache_key'] = cache_key
 
-
-
         self.problem = util.generic_loader(problem, 'Problem')
 
         if cache_key is None:
