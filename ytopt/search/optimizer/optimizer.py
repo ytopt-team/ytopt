@@ -61,12 +61,6 @@ class Optimizer:
                 n_initial_points=n_init
             )           
 
-        if 'nan_transformation' in kwargs and kwargs['nan_transformation'] is not None:
-            self.transforms_nans = True
-            self.nan_transformation = kwargs['nan_transformation']
-        else:
-            self.transforms_nans = False
-
         self.evals = {}
         self.counter = 0
         logger.info("Using skopt.Optimizer with %s base_estimator" % self.learner)
@@ -136,8 +130,6 @@ class Optimizer:
             XX += self._optimizer.ask(n_points=n_points)
         for x in XX:
             y = self._get_lie()
-            if self.transforms_nans:
-                x = self.nan_transformation(x)
             key = tuple(x)
             if key not in self.evals:
                 self.counter += 1
@@ -149,8 +141,6 @@ class Optimizer:
         assert isinstance(xy_data, list), f"where type(xy_data)=={type(xy_data)}"
         maxval = max(self._optimizer.yi) if self._optimizer.yi else 0.0
         for x,y in xy_data:
-            if self.transforms_nans:
-                x = self.nan_transformation(x)
             key = tuple(x.values()) # * tuple(x[k] for k in self.space)
             assert key in self.evals, f"where key=={key} and self.evals=={self.evals}"
             logger.debug(f'tell: {x} --> {key}: evaluated objective: {y}')
