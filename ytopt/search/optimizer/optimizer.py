@@ -66,18 +66,21 @@ class Optimizer:
         logger.info("Using skopt.Optimizer with %s base_estimator" % self.learner)
 
     def make_key(self, key):
+        # Nan values are troublesome, but can be necessary for semantic correctness
+        # In order to guarantee that Ytopt can recognize tuples that contain nan values,
+        # EVERY nan value must be np.nan; it must explicitly NOT be represented by float('nan').
+        # This is due to the hashing semantics of __contains__() and key lookups in Ytopt's
+        # evaluations dictionary, which will differentiate two instances of float('nan') when hashing.
+        #
+        # np.nan does not have these issues and preserves the necessary semantic properties for
+        # scikit-optimize and other downstream applications to function as expected.
         li = []
         if not hasattr(key, '__iter__'):
-            li.append(key)
+            if key != key and np.isnan(key):
+                li.append(np.nan)
+            else:
+                li.append(key)
         else:
-            # Nan values are troublesome, but can be necessary for semantic correctness
-            # In order to guarantee that Ytopt can recognize tuples that contain nan values,
-            # EVERY nan value must be np.nan; it must especially not be float('nan').
-            # This is due to the hashing semantics of __contains__() and key lookups in Ytopt's
-            # evaluations dictionary, which will differentiate two instances of float('nan') when hashing.
-            #
-            # np.nan does not have these issues and preserves the necessary semantic properties for
-            # scikit-optimize and other downstream applications to function as expected.
             for entry in key:
                 if entry != entry and np.isnan(entry):
                     entry = np.nan
