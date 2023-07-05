@@ -32,14 +32,14 @@ class Optimizer:
         self.KAPPA = set_KAPPA
         self.SEED  = set_SEED
         self.NI    = set_NI
-#         n_init = set_NI 
+#         n_init = set_NI
 #         print ('............self.KAPPA',self.KAPPA)
 #         print ('............self.learner',self.learner)
 #         print ('............self.acq_func',self.acq_func)
 #         print ('............self.SEED',self.SEED)
 
         n_init = inf if learner=='DUMMY' else self.NI #num_workers
-#         print ('............n_init',n_init)        
+#         print ('............n_init',n_init)
         if isinstance(self.space, CS.ConfigurationSpace) or (ccs_active and isinstance(self.space, CCS.ConfigurationSpace)):
             self._optimizer = SkOptimizer(
                 dimensions=self.space,
@@ -59,11 +59,30 @@ class Optimizer:
                 acq_func_kwargs={'kappa':self.KAPPA},
                 random_state=self.SEED,
                 n_initial_points=n_init
-            )           
+            )
 
         self.evals = {}
         self.counter = 0
         logger.info("Using skopt.Optimizer with %s base_estimator" % self.learner)
+
+    def make_key(self, key):
+        li = []
+        if not hasattr(key, '__iter__'):
+            li.append(key)
+        else:
+            # Nan values are troublesome, but can be necessary for semantic correctness
+            # In order to guarantee that Ytopt can recognize tuples that contain nan values,
+            # EVERY nan value must be np.nan; it must especially not be float('nan').
+            # This is due to the hashing semantics of __contains__() and key lookups in Ytopt's
+            # evaluations dictionary, which will differentiate two instances of float('nan') when hashing.
+            #
+            # np.nan does not have these issues and preserves the necessary semantic properties for
+            # scikit-optimize and other downstream applications to function as expected.
+            for entry in key:
+                if entry != entry and np.isnan(entry):
+                    entry = np.nan
+                li.append(entry)
+        return tuple(li)
 
     def _get_lie(self):
         if self.liar_strategy == "cl_min":
@@ -97,7 +116,7 @@ class Optimizer:
     def _ask(self):
         x = self._optimizer.ask()
         y = self._get_lie()
-        key = tuple(x)
+        key = self.make_key(x)
         if key not in self.evals:
             self.counter += 1
             self._optimizer.tell(x,y)
@@ -130,7 +149,7 @@ class Optimizer:
             XX += self._optimizer.ask(n_points=n_points)
         for x in XX:
             y = self._get_lie()
-            key = tuple(x)
+            key = self.make_key(x)
             if key not in self.evals:
                 self.counter += 1
                 self._optimizer.tell(x,y)
@@ -141,7 +160,7 @@ class Optimizer:
         assert isinstance(xy_data, list), f"where type(xy_data)=={type(xy_data)}"
         maxval = max(self._optimizer.yi) if self._optimizer.yi else 0.0
         for x,y in xy_data:
-            key = tuple(x.values()) # * tuple(x[k] for k in self.space)
+            key = self.make_key(x.values())
             assert key in self.evals, f"where key=={key} and self.evals=={self.evals}"
             logger.debug(f'tell: {x} --> {key}: evaluated objective: {y}')
             self.evals[key] = (y if y < float_info.max else maxval)
