@@ -47,6 +47,7 @@ git clone https://github.com/ytopt-team/ConfigSpace.git
 cd ConfigSpace
 pip install -e .
 cd ..
+pip install configspace==0.7.1
 ```
 
 * Install [dh-scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
@@ -74,34 +75,9 @@ pip install -e .
 
 After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
 
-* If needed, downgrade the ``protobuf`` package to 3.20.x or lower
-```
-pip install protobuf==3.20
-```
-* If needed, install packaging 
-```
-pip install packaging
-```
-
 * If needed, uninstall scikit-optimize to prevent import confusion with dh-scikit-optimize
 ```
 pip uninstall scikit-optimize
-```
-
-* If you encounter installation error about the package grpcio (1.51.1), just install its old version, it should work.
-```
-pip install grpcio==1.43.0
-```
-
-
-* If you encounter installation errors, install psutil, setproctitle, mpich, mpi4py first as follows:
-
-```
-conda install -c conda-forge psutil
-conda install -c conda-forge setproctitle
-conda install -c conda-forge mpich
-conda install -c conda-forge mpi4py
-pip install -e .
 ```
 
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
@@ -233,6 +209,7 @@ list above.
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Publications
+* X. Wu, P. Paramasivam, and V. Taylor, Autotuning Apache TVM-based Scientific Applications Using Bayesian Optimization, SC23 Workshop on Artificial Intelligence and Machine Learning for Scientific Applications (AI4S’23), Nov. 13, 2023, Denver, CO. https://arxiv.org/pdf/2309.07235.pdf.
 * T. Randall, J. Koo, B. Videau, M. Kruse, X. Wu, P. Hovland, M. Hall, R. Ge, and P. Balaprakash. "Transfer-Learning-Based Autotuning Using Gaussian Copula". In 2023 International Conference on Supercomputing (ICS ’23), June 21–23, 2023, Orlando, FL, USA. ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/3577193.3593712.
 * X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Cray User Group Conference 2023 (CUG’23), Helsinki, Finland, May 7-11, 2023. DOI: [10.48550/arXiv.2303.16245](https://doi.org/10.48550/arXiv.2303.16245)
 * X. Wu, M. Kruse, P. Balaprakash, H. Finkel, P. Hovland, V. Taylor, and M. Hall, "Autotuning PolyBench benchmarks with LLVM Clang/Polly loop optimization pragmas using Bayesian optimization (extended version)," Concurrency and Computation. Practice and Experience, Volume 34, Issue 20, 2022. ISSN 1532-0626 DOI: [10.1002/cpe.6683](https://doi.org/10.1002/cpe.6683) 
