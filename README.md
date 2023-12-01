@@ -43,10 +43,6 @@ cd ytopt
 
 * Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
 ```
-git clone https://github.com/ytopt-team/ConfigSpace.git
-cd ConfigSpace
-pip install -e .
-cd ..
 pip install configspace==0.7.1
 ```
 
