@@ -24,7 +24,7 @@ Internally, ``ytopt`` uses a manager-worker computational paradigm, where one no
 
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/).
 
-# Install instructions
+# Installation instructions
 ``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``dh-scikit-optimize``, and ``autotune``.
 
 
