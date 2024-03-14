@@ -216,6 +216,7 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 *  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
+* SciDAC RAPIDS and OASIS, U.S. Department of Energy ASCR (2024--present)
 * PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--2023)
 * YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2016--2018) 
 * Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--2023)
