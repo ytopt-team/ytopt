@@ -205,6 +205,7 @@ list above.
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Publications
+* X. Wu, J. R. Tramm, J. Larson, J.-L. Navarro, P. Balaprakash, B. Videau, M. Kruse, P. Hovland, V. Taylor, and M. Hall, "Integrating ytopt and libEnsemble to Autotune OpenMC", DOI: [10.48550/arXiv.2402.09222](https://doi.org/10.48550/arXiv.2402.09222)
 * X. Wu, P. Paramasivam, and V. Taylor, Autotuning Apache TVM-based Scientific Applications Using Bayesian Optimization, SC23 Workshop on Artificial Intelligence and Machine Learning for Scientific Applications (AI4S’23), Nov. 13, 2023, Denver, CO. https://arxiv.org/pdf/2309.07235.pdf.
 * T. Randall, J. Koo, B. Videau, M. Kruse, X. Wu, P. Hovland, M. Hall, R. Ge, and P. Balaprakash. "Transfer-Learning-Based Autotuning Using Gaussian Copula". In 2023 International Conference on Supercomputing (ICS ’23), June 21–23, 2023, Orlando, FL, USA. ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/3577193.3593712.
 * X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Cray User Group Conference 2023 (CUG’23), Helsinki, Finland, May 7-11, 2023. DOI: [10.48550/arXiv.2303.16245](https://doi.org/10.48550/arXiv.2303.16245)
@@ -215,8 +216,8 @@ The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](
 *  T. Nelson, A. Rivera, P. Balaprakash, M. Hall, P. Hovland, E. Jessup, and B. Norris, "Generating efficient tensor contractions for GPUs," in Proceedings of 44th International Conference on Parallel Processing, pages 969–978, 2015. DOI: [10.1109/ICPP.2015.106](https://ieeexplore.ieee.org/document/7349652) 
 
 # Acknowledgements
-* PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--Present)
+* PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--2023)
 * YTune: Autotuning Compiler Technology for Cross-Architecture Transformation and Code Generation, U.S. Department of Energy Exascale Computing Project (2016--2018) 
-* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--Present)
+* Scalable Data-Efficient Learning for Scientific Domains, U.S. Department of Energy 2018 Early Career Award funded by the Advanced Scientific Computing Research program within the DOE Office of Science (2018--2023)
 
 
