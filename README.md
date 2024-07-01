@@ -176,12 +176,12 @@ Otherwise, browse the ``ytopt/benchmark`` directory for an extensive collection 
 
 The core ``ytopt`` team is at Argonne National Laboratory:
 
-* Prasanna Balaprakash <pbalapra@anl.gov>
-* Romain Egele <regele@anl.gov>
-* Paul Hovland <hovland@anl.gov>
 * Xingfu Wu <xingfu.wu@anl.gov>
-* Jaehoon Koo <jkoo@anl.gov>
+* Prasanna Balaprakash <pbalapra@anl.gov>
 * Brice Videau <bvideau@anl.gov>
+* Paul Hovland <hovland@anl.gov>
+* Romain Egele <regele@anl.gov>
+* Jaehoon Koo <jkoo@anl.gov>
 
 The convolution-2d tutorial (source and python scripts) is contributed by:
 * David Fridlander <davidfrid2@gmail.com>
