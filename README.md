@@ -69,7 +69,7 @@ cd ytopt
 pip install -e .
 ```
 
-After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use.
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 * If needed, uninstall scikit-optimize to prevent import confusion with dh-scikit-optimize
 ```
