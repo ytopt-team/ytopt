@@ -22,7 +22,7 @@ By sampling and evaluating a small number of input configurations, ``ytopt`` gra
 
 Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node.
 
-Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/).
+Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features and development.
 
 # Installation instructions
 ``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``dh-scikit-optimize``, and ``autotune``.
