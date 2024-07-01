@@ -205,7 +205,7 @@ list above.
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Publications
-* Xingfu Wu and Tupendra Oli and ustin H. Qian and Valerie Taylor and Mark C. Hersam and Vinod K. Sangwan, "An Autotuning-based Optimization Framework for Mixed-kernel SVM Classifications in Smart Pixel Datasets and Heterojunction Transistors", DOI: [10.48550/arXiv.2406.18445] (https://arxiv.org/pdf/2406.18445), 2024.
+* Xingfu Wu and Tupendra Oli and ustin H. Qian and Valerie Taylor and Mark C. Hersam and Vinod K. Sangwan, "An Autotuning-based Optimization Framework for Mixed-kernel SVM Classifications in Smart Pixel Datasets and Heterojunction Transistors", DOI: [10.48550/arXiv.2406.18445](https://arxiv.org/pdf/2406.18445), 2024.
 * X. Wu, J. R. Tramm, J. Larson, J.-L. Navarro, P. Balaprakash, B. Videau, M. Kruse, P. Hovland, V. Taylor, and M. Hall, "Integrating ytopt and libEnsemble to Autotune OpenMC", DOI: [10.48550/arXiv.2402.09222](https://doi.org/10.48550/arXiv.2402.09222), 2024.
 * X. Wu, P. Paramasivam, and V. Taylor, "Autotuning Apache TVM-based Scientific Applications Using Bayesian Optimization", SC23 Workshop on Artificial Intelligence and Machine Learning for Scientific Applications (AI4S’23), Nov. 13, 2023, Denver, CO. https://arxiv.org/pdf/2309.07235.pdf.
 * T. Randall, J. Koo, B. Videau, M. Kruse, X. Wu, P. Hovland, M. Hall, R. Ge, and P. Balaprakash. "Transfer-Learning-Based Autotuning Using Gaussian Copula". In 2023 International Conference on Supercomputing (ICS ’23), June 21–23, 2023, Orlando, FL, USA. ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/3577193.3593712.
