@@ -31,7 +31,7 @@ Additional documentation is available on [Read the Docs](https://ytopt.readthedo
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create --name ytune python=3.10
+conda create --name ytune python=3.11
 conda activate ytune
 ```
 
@@ -70,11 +70,6 @@ pip install -e .
 ```
 
 After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
-
-* If needed, uninstall scikit-optimize to prevent import confusion with dh-scikit-optimize
-```
-pip uninstall scikit-optimize
-```
 
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: ``autotools`` and ``gsl``
