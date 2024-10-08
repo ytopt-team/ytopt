@@ -44,6 +44,8 @@ cd ytopt
 * Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
 ```
 pip install configspace==0.7.1
+
+Note: For lower version of python (< 3.10), please use "conda install configspace"
 ```
 
 * Install [dh-scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
