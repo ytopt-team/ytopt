@@ -31,7 +31,7 @@ Additional documentation is available on [Read the Docs](https://ytopt.readthedo
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
 
 ```
-conda create --name ytune python=3.11
+conda create --name ytune python=3.10
 conda activate ytune
 ```
 
