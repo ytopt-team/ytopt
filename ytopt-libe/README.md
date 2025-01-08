@@ -59,14 +59,6 @@ pip install -e .
 cd ..
 ```
 
-* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
-```
-git clone https://github.com/ytopt-team/ytopt.git
-cd ytopt
-pip install -e .
-cd ..
-```
-
 * Install [libensemble](https://github.com/ytopt-team/libensemble.git):
 ```
 git clone https://github.com/ytopt-team/libensemble.git
@@ -75,10 +67,12 @@ pip install -e .
 cd ..
 ```
 
-* Install examples of [ytopt-libe](https://github.com/ytopt-team/ytopt-libensemble.git):
+* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
 ```
-git clone https://github.com/ytopt-team/ytopt-libensemble.git
-cd ytopt-libensemble
+git clone https://github.com/ytopt-team/ytopt.git
+cd ytopt
+pip install -e .
+cd ..
 ```
 
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
@@ -86,7 +80,8 @@ If you have some issues about ConfigSpace, just downgrade configspace by the fol
 
 * Example: Using ytopt-libe to autotune the  MPI/OpenMP version of XSBench:
 ```
-cd ytopt-libe-xsbench
+cd ytopt
+cd ytopt-libe/xsbench
 cd laptop
 * If you want to change the compiler mpicc (default), edit the file plopper.py. 
 * Make sure to create the conda environemnt ytune before running a test
@@ -101,17 +96,5 @@ Note: For the diagnosis purpose, look at the log files (*.log) or text files (*.
 # Tutorials
 
 * [Autotuning the MPI/OpenMP version of XSBench](https://github.com/ytopt-team/ytopt-libensemble/tree/main/ytopt-libe-xsbench)
-* [Autotuning the GPU version of OpenMC](https://github.com/ytopt-team/ytopt-libensemble/tree/main/ytopt-libe-openmc)
 * [Autotuning Deep Learning Applications](https://github.com/ytopt-team/ytopt-libensemble/tree/develop1/ytopt-libe-deeplearning)
-
-# Publications
-* X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Concurrency and Computation: Practice and Experience, Oct. 2024. DOI: [10.1002/cpe.8322](https://onlinelibrary.wiley.com/doi/10.1002/cpe.8322).
- 
-* X. Wu, J. R. Tramm, J. Larson, J.-L. Navarro, P. Balaprakash, B. Videau, M. Kruse, P. Hovland, V. Taylor, and M. Hall, "Integrating ytopt and libEnsemble to Autotune OpenMC", DOI: [10.48550/arXiv.2402.09222](https://doi.org/10.48550/arXiv.2402.09222),  International Journal of High Performance Computing Applications, DOI: [10.1177/10943420241286476](https://journals.sagepub.com/doi/10.1177/10943420241286476), Oct. 2024.
-* X. Wu and T. Oli and J. H. Qian and V. Taylor and M. C. Hersam and V. K. Sangwan, "An Autotuning-based Optimization Framework for Mixed-kernel SVM Classifications in Smart Pixel Datasets and Heterojunction Transistors", DOI: [10.48550/arXiv.2406.18445](https://arxiv.org/pdf/2406.18445), 2024.
-* X. Wu, P. Paramasivam, and V. Taylor, "Autotuning Apache TVM-based Scientific Applications Using Bayesian Optimization", SC23 Workshop on Artificial Intelligence and Machine Learning for Scientific Applications (AI4S’23), Nov. 13, 2023, Denver, CO. https://arxiv.org/pdf/2309.07235.pdf.
-
-# Acknowledgements
-* SciDAC RAPIDS and OASIS, U.S. Department of Energy ASCR (2024--present)
-* PROTEAS-TUNE, U.S. Department of Energy ASCR Exascale Computing Project (2018--2023)
 
