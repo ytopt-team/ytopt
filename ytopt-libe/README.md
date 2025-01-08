@@ -22,59 +22,6 @@ svms/
     Autotuning SVM (Support Vector Machine)-based scientific simulations
 ```
 
-# Installation instructions
-The autotuning framework ytopt-libe requires the following components: ConfigSpace,scikit-optimize, autotune, ytopt, and libensemble.
-
-* We recommend creating isolated Python environments (python >=3.7) on your local machine using an up to date [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
-
-```
-conda create --name ytune python=3.10
-conda activate ytune
-```
-
-* Create a directory for installing all required packages for ytopt-libe as follows:
-```
-mkdir ytune
-cd ytune
-```
-
-* Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
-```
-pip install configspace==0.7.1
-```
-
-* Install [scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
-```
-git clone https://github.com/ytopt-team/scikit-optimize.git
-cd scikit-optimize
-pip install -e .
-cd ..
-```
-
-* Install [autotune](https://github.com/ytopt-team/autotune.git):
-```
-git clone -b version1 https://github.com/ytopt-team/autotune.git
-cd autotune
-pip install -e .
-cd ..
-```
-
-* Install [libensemble](https://github.com/ytopt-team/libensemble.git):
-```
-git clone https://github.com/ytopt-team/libensemble.git
-cd libensemble
-pip install -e .
-cd ..
-```
-
-* Install [ytopt](https://github.com/ytopt-team/ytopt.git):
-```
-git clone https://github.com/ytopt-team/ytopt.git
-cd ytopt
-pip install -e .
-cd ..
-```
-
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
 If you have some issues about ConfigSpace, just downgrade configspace by the following command line "pip install configspace==0.7.1" in your conda environment to solve these issues.
 

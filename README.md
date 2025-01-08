@@ -64,6 +64,14 @@ pip install -e .
 cd ..
 ```
 
+* Install [libensemble](https://github.com/ytopt-team/libensemble.git):
+```
+git clone https://github.com/ytopt-team/libensemble.git
+cd libensemble
+pip install -e .
+cd ..
+```
+
 * Install [ytopt](https://github.com/ytopt-team/ytopt.git):
 ```
 git clone -b main https://github.com/ytopt-team/ytopt.git
@@ -73,6 +81,7 @@ pip install -e .
 
 After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
+```
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
@@ -118,6 +127,8 @@ After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully,
       pip install -e .[online]
       ```
     * For macOS it may need to do: ``pip install -e ".[online]"``  
+
+```
 
 # Directory structure
 ```
