@@ -1,0 +1,11 @@
+Manager     : Starting ensemble at: 2024-10-17 19:36:25.400
+Worker     4: sim_id     2: sim Time: 87.747 Start: 2024-10-17 19:36:26.323 End: 2024-10-17 19:37:54.070 Status: Not set
+Worker     5: sim_id     3: sim Time: 94.426 Start: 2024-10-17 19:36:26.323 End: 2024-10-17 19:38:00.749 Status: Not set
+Worker     3: sim_id     1: sim Time: 94.464 Start: 2024-10-17 19:36:26.323 End: 2024-10-17 19:38:00.787 Status: Not set
+Worker     2: sim_id     0: sim Time: 99.512 Start: 2024-10-17 19:36:26.323 End: 2024-10-17 19:38:05.835 Status: Not set
+Worker     1: Gen no     1: gen Time: 101.286 Start: 2024-10-17 19:36:25.404 End: 2024-10-17 19:38:06.690 Status: Persis gen finished
+Worker     4: sim_id     4: sim Time: 53.876 Start: 2024-10-17 19:37:54.528 End: 2024-10-17 19:38:48.404 Status: Not set
+Worker     5: sim_id     6: sim Time: 57.779 Start: 2024-10-17 19:38:03.325 End: 2024-10-17 19:39:01.104 Status: Not set
+Worker     3: sim_id     5: sim Time: 61.858 Start: 2024-10-17 19:38:01.942 End: 2024-10-17 19:39:03.800 Status: Not set
+Worker     2: sim_id     7: sim Time: 57.437 Start: 2024-10-17 19:38:06.691 End: 2024-10-17 19:39:04.128 Status: Not set
+Manager     : Exiting ensemble at: 2024-10-17 19:39:04.142 Time Taken: 158.742
