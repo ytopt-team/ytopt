@@ -79,7 +79,7 @@ cd ytopt
 pip install -e .
 ```
 
-After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access ytopt-libe or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 ```
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
@@ -213,8 +213,8 @@ list above.
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Publications
-* X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Concurrency and Computation: Practice and Experience, Oct. 2024. DOI: [10.1002/cpe.8322](https://onlinelibrary.wiley.com/doi/10.1002/cpe.8322).
-* X. Wu, J. R. Tramm, J. Larson, J.-L. Navarro, P. Balaprakash, B. Videau, M. Kruse, P. Hovland, V. Taylor, and M. Hall, "Integrating ytopt and libEnsemble to Autotune OpenMC", DOI: [10.48550/arXiv.2402.09222](https://doi.org/10.48550/arXiv.2402.09222),  International Journal of High Performance Computing Applications, DOI: [10.1177/10943420241286476](https://journals.sagepub.com/doi/10.1177/10943420241286476), Oct. 2024.
+* X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Concurrency and Computation: Practice and Experience, Vol. 37 (1): e8322, Jan. 2025.  DOI: [10.1002/cpe.8322](https://onlinelibrary.wiley.com/doi/10.1002/cpe.8322).
+* X. Wu, J. R. Tramm, J. Larson, J.-L. Navarro, P. Balaprakash, B. Videau, M. Kruse, P. Hovland, V. Taylor, and M. Hall, "Integrating ytopt and libEnsemble to Autotune OpenMC", DOI: [10.48550/arXiv.2402.09222](https://doi.org/10.48550/arXiv.2402.09222),  International Journal of High Performance Computing Applications, Vol. 39, No. 1, 79-103, Jan. 2025. DOI: [10.1177/10943420241286476](https://journals.sagepub.com/doi/10.1177/10943420241286476).
 * X. Wu and T. Oli and J. H. Qian and V. Taylor and M. C. Hersam and V. K. Sangwan, "An Autotuning-based Optimization Framework for Mixed-kernel SVM Classifications in Smart Pixel Datasets and Heterojunction Transistors", DOI: [10.48550/arXiv.2406.18445](https://arxiv.org/pdf/2406.18445), 2024.
 * X. Wu, P. Paramasivam, and V. Taylor, "Autotuning Apache TVM-based Scientific Applications Using Bayesian Optimization", SC23 Workshop on Artificial Intelligence and Machine Learning for Scientific Applications (AI4S’23), Nov. 13, 2023, Denver, CO. https://arxiv.org/pdf/2309.07235.pdf.
 * T. Randall, J. Koo, B. Videau, M. Kruse, X. Wu, P. Hovland, M. Hall, R. Ge, and P. Balaprakash. "Transfer-Learning-Based Autotuning Using Gaussian Copula". In 2023 International Conference on Supercomputing (ICS ’23), June 21–23, 2023, Orlando, FL, USA. ACM, New York, NY, USA, 13 pages. https://doi.org/10.1145/3577193.3593712.
