@@ -79,7 +79,7 @@ cd ytopt
 pip install -e .
 ```
 
-After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access ytopt-libe or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+After installing ConfigSpace, Scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 ```
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
@@ -140,6 +140,8 @@ ytopt/
     scripts that contain the search implementations
 ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
+ytopt-libe/
+    scripts and a set of examples for using ytopt-libe with some tutorials 
 ```
 
 # Basic Usage
