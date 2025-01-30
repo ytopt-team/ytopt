@@ -2,11 +2,11 @@
 #This script is for running an app on a laptop using mpirun without any scheduler
 
 # set the number of nodes (for a single node, total number of MPI processes)
-let nnds=4
+let nnds=2
 # set the number of nodes for the MPI ranks per run (for a single node, number of MPI ranks)
 let nranks=1
 # set the number of workers (nnds/nranks plus 1)
-let nws=5
+let nws=3
 # set the maximum application runtime(s) as timeout baseline for each evaluation
 let appto=500
 
