@@ -83,7 +83,7 @@ cd ytopt
 pip install -e .
 ```
 
-After installing ConfigSpace, Scikit-optimize, autotune, libensemble, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or encourage to access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+After installing ConfigSpace, Scikit-optimize, autotune, libensemble, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 ```
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
@@ -145,7 +145,7 @@ ytopt/
 ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ytopt-libe/
-    scripts and a set of examples for using ytopt-libe with some tutorials 
+    scripts and a set of examples for using ytopt-libe with new features 
 ```
 
 # Basic Usage
@@ -167,7 +167,7 @@ See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic in
 
 See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
 
-Otherwise, browse the ``ytopt/benchmark`` directory for an extensive collection of examples, or access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+Otherwise, access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new featuresencourage to access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 # Tutorials
 
