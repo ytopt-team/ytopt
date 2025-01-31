@@ -167,7 +167,7 @@ See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic in
 
 See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
 
-Otherwise, access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new featuresencourage to access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+Otherwise, access the subdirectory ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
 
 # Tutorials
 
