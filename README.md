@@ -66,6 +66,10 @@ cd ..
 
 * Install [libensemble](https://github.com/ytopt-team/libensemble.git):
 ```
+pip install libensemble
+```
+or follow the instruction: 
+```
 git clone https://github.com/ytopt-team/libensemble.git
 cd libensemble
 pip install -e .
