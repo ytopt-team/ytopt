@@ -20,7 +20,7 @@ By sampling and evaluating a small number of input configurations, ``ytopt`` gra
 
 ``ytopt`` handles both unconstrained and constrained optimization problems, searches asynchronously, and can look-ahead on iterations to more effectively adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
 
-Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. This is implemented in two ways: using ray for ``ytopt/benchmark`` in sequential processing and  using libensemble for ``ytopt-libe`` in parallel processing.
+Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. This is implemented in two ways: using [ray](https://github.com/ray-project/ray) for ``ytopt/benchmark`` in sequential processing and  using [libensemble](https://github.com/Libensemble/libensemble) for ``ytopt-libe`` in parallel processing.
 
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features and development.
 
