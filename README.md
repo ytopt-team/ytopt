@@ -8,7 +8,7 @@
 
 
 
-``ytopt`` is a machine learning-based autotuning and hyperparameter optimization software package that uses Bayesian Optimization to find the best input parameter configurations for a given kernel, miniapp, or application with the best system configurations for a given HPC system.
+``ytopt`` is a machine learning-based autotuning and hyperparameter optimization software package that uses Bayesian Optimization to find the best input parameter/hyperparameter configurations for a given kernel, miniapp, or application with the best system configurations for a given HPC system.
 
 ``ytopt`` accepts as input:
 
