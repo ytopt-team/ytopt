@@ -10,6 +10,8 @@ By integrating libensemble with ytopt, the autotuning framework ytopt-libe not o
 This directory includes the ECP apps, ECP proxy apps, and deep learning applications in pytorch/tensorflow autotuned using ytopt-libe and ytopt only.
 
 ```
+hpo/
+    Hyperparameter optimization with 7 and 17 hyperparameters
 deeplearning/
     Autotuning deep learning applications 
 xsbench/

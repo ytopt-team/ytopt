@@ -142,6 +142,8 @@ test/
     scipts for running benchmark problems in the problems directory
 ytopt/
     scripts that contain the search implementations
+ytopt/hpo/
+    Hyperparameter optimization with 7 and 17 hyperparameters
 ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ytopt-libe/
