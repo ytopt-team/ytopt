@@ -148,6 +148,8 @@ ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
 ytopt-libe/
     scripts and a set of examples for using ytopt-libe with new features 
+ytopt-libe/hpo/
+    Hyperparameter optimization with 7 and 17 hyperparameters
 ```
 
 # Basic Usage
