@@ -25,7 +25,7 @@ Internally, ``ytopt`` uses a manager-worker computational paradigm, where one no
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access ``ytopt-libe`` or [ytopt-libe](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features and development.
 
 # Installation instructions
-``ytopt`` requires the following components: ``ConfigSpace``, CConfigSpace (optional), ``dh-scikit-optimize``, and ``autotune``.
+``ytopt`` requires the following components: ``ConfigSpace``, ``dh-scikit-optimize``, ``autotune``, and ``libensemble``.
 
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
@@ -41,13 +41,6 @@ mkdir ytune
 cd ytune
 ```
 
-* Install [ConfigSpace](https://github.com/ytopt-team/ConfigSpace.git):
-```
-pip install configspace==0.7.1
-
-Note: For lower version of python (< 3.10), please use "conda install configspace"
-```
-
 * Install [dh-scikit-optimize](https://github.com/ytopt-team/scikit-optimize.git):
 ```
 git clone https://github.com/ytopt-team/scikit-optimize.git
@@ -61,18 +54,6 @@ cd ..
 git clone -b version1 https://github.com/ytopt-team/autotune.git
 cd autotune
 pip install -e . 
-cd ..
-```
-
-* Install [libensemble](https://github.com/ytopt-team/libensemble.git):
-```
-pip install libensemble
-```
-or follow the instruction: 
-```
-git clone https://github.com/ytopt-team/libensemble.git
-cd libensemble
-pip install -e .
 cd ..
 ```
 
