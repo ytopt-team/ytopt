@@ -29,16 +29,16 @@ REQUIRED = [
     #'scikit-optimize',
     'scikit-learn',
     #'scikit-learn==1.0.2',
-    'pandas==1.5.3',
+    'pandas',
     #'pandas==1.5.3',
     'tqdm',
-    #'tensorflow==1.14.0',
     #'keras',
     # nas
     #'gym',
     'deap',
     'ray',
-    #'ConfigSpace',
+    'ConfigSpace',
+    'libensemble',
 ]
 
 if not on_rtd:
