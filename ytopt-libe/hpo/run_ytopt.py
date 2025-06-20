@@ -72,17 +72,17 @@ sim_specs = {
 
 cs = CS.ConfigurationSpace(seed=1234)
 #batch_size
-p0 = CSH.UniformIntegerHyperparameter(name='p0', lower=256, upper=20000, default_value=20000, q=8)
+p0 = CSH.UniformIntegerHyperparameter(name='p0', lower=256, upper=20000, default_value=20000)
 #epochs
-p1= CSH.UniformIntegerHyperparameter(name='p1', lower=100, upper=500, default_value=100, q=10)
+p1= CSH.UniformIntegerHyperparameter(name='p1', lower=100, upper=500, default_value=100)
 #learning rate
-p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.000001, upper=0.1, q=0.000001, default_value=0.0005)
+p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.000001, upper=0.1, default_value=0.0005)
 #dropout rate
-p3= CSH.UniformFloatHyperparameter(name='p3', lower=0.0, upper=0.5, q=0.01, default_value=0.2)
+p3= CSH.UniformFloatHyperparameter(name='p3', lower=0.0, upper=0.5, default_value=0.2)
 #optimizer
 p4= CSH.CategoricalHyperparameter(name='p4', choices=['RMSprop','Adam','SGD'], default_value='Adam')
 #L2 Weight Decay
-p5= CSH.UniformFloatHyperparameter(name='p5', lower=0.000001, upper=0.01, q=0.000001, default_value=0.0001)
+p5= CSH.UniformFloatHyperparameter(name='p5', lower=0.000001, upper=0.01, default_value=0.0001)
 # Weight Initialization
 p6= CSH.CategoricalHyperparameter(name='p6', choices=['xavier','he','uniform'], default_value='xavier')
 # Activation Functions L1
@@ -96,15 +96,15 @@ p10= CSH.CategoricalHyperparameter(name='p10', choices=['tanh','sigmoid','ELU','
 # Activation Functions L5
 p11= CSH.CategoricalHyperparameter(name='p11', choices=['tanh','sigmoid','ELU','SiLU','softmax'], default_value='tanh')
 #number of nodes L1
-p12= CSH.UniformIntegerHyperparameter(name='p12', lower=400, upper=1000, default_value=800, q=10)
+p12= CSH.UniformIntegerHyperparameter(name='p12', lower=400, upper=1000, default_value=800)
 #number of nodes L2
-p13= CSH.UniformIntegerHyperparameter(name='p13', lower=100, upper=400, default_value=200, q=10)
+p13= CSH.UniformIntegerHyperparameter(name='p13', lower=100, upper=400, default_value=200)
 #number of nodes L3
-p14= CSH.UniformIntegerHyperparameter(name='p14', lower=40, upper=100, default_value=40, q=10)
+p14= CSH.UniformIntegerHyperparameter(name='p14', lower=40, upper=100, default_value=40)
 #number of nodes L4
-p15= CSH.UniformIntegerHyperparameter(name='p15', lower=20, upper=40, default_value=20, q=2)
+p15= CSH.UniformIntegerHyperparameter(name='p15', lower=20, upper=40, default_value=20)
 #number of nodes L5
-p16= CSH.UniformIntegerHyperparameter(name='p16', lower=2, upper=20, default_value=10, q=2)
+p16= CSH.UniformIntegerHyperparameter(name='p16', lower=2, upper=20, default_value=10)
 
 cs.add_hyperparameters([p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16])
 
