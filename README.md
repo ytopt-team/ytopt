@@ -22,7 +22,7 @@ By sampling and evaluating a small number of input configurations, ``ytopt`` gra
 
 Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. This is implemented in two ways: using [ray](https://github.com/ray-project/ray) for ``ytopt/benchmark`` in sequential processing and  using [libensemble](https://github.com/Libensemble/libensemble) for ``ytopt-libe`` in parallel processing.
 
-Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access ``ytopt-libe`` or [ytopt-libe](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features and development.
+Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access ``ytopt-libe`` for the latest examples with new features and development.
 
 # Installation instructions
 ``ytopt`` requires the following components: ``ConfigSpace``, ``dh-scikit-optimize``, ``autotune``, and ``libensemble``.
@@ -64,7 +64,7 @@ cd ytopt
 pip install -e .
 ```
 
-After installing ConfigSpace, Scikit-optimize, autotune, libensemble, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+After installing scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` for the latest examples with new features.
 
 ```
 * [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
