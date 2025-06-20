@@ -106,7 +106,8 @@ p15= CSH.UniformIntegerHyperparameter(name='p15', lower=20, upper=40, default_va
 #number of nodes L5
 p16= CSH.UniformIntegerHyperparameter(name='p16', lower=2, upper=20, default_value=10)
 
-cs.add_hyperparameters([p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16])
+#cs.add_hyperparameters([p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16])
+cs.add([p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16])
 
 ytoptimizer = Optimizer(
     num_workers=num_sim_workers,
