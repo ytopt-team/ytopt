@@ -17,9 +17,9 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 NAME = 'ytopt'
 DESCRIPTION = 'Model-based search software for autotuning.'
 URL = 'https://github.com/ytopt-team/ytopt'
-EMAIL = 'pbalapra@anl.gov'
-AUTHOR = 'Prasanna Balaprakash'
-REQUIRES_PYTHON = '>=3.6.0'
+EMAIL = 'xingfu.wu@anl.gov'
+AUTHOR = 'Xingfu Wu'
+REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
 # What packages are required for this module to be executed?
