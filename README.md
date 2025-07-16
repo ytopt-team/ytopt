@@ -25,7 +25,7 @@ Internally, ``ytopt`` uses a manager-worker computational paradigm, where one no
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access ``ytopt-libe`` for the latest examples with new features and development.
 
 # Installation instructions
-``ytopt`` requires the following components: ``ConfigSpace``, ``dh-scikit-optimize``, ``autotune``, and ``libensemble``.
+``ytopt`` requires the following components: ``dh-scikit-optimize``, ``autotune``, and ``ConfigSpace``. When ytopt is being installed, ``ConfigSpace`` and ``LibEnsemble`` are required to be installed automatically.
 
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
