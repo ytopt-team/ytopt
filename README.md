@@ -131,6 +131,8 @@ ytopt-libe/
     scripts and a set of examples for using ytopt-libe with new features 
 ytopt-libe/hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters using libensemble
+hpo4llm/
+    Hyperparameter optimization for a loss function for LLM training
 ```
 
 # Basic Usage
