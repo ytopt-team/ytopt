@@ -12,6 +12,8 @@ This directory includes the ECP apps, ECP proxy apps, and deep learning applicat
 ```
 hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters
+hpo4llm/
+    Hyperparameter optimization for a loss function for LLM training
 deeplearning/
     Autotuning deep learning applications 
 xsbench/
