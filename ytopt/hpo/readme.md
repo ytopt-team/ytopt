@@ -19,4 +19,4 @@ you have to use the following format:
 
 #P+number+blank space
 
-For example, replace "m=11" with "m=#P11 "; "n=1" with "n=#P1 ". In this way, when ytopt searches the parameter in the code mold to replace "#P1 ", it will only replace the one in "n=#P1 ". Otherwise, it causes the error.
+For example, replace "m=11" with "m=#P11 "; "n=1" with "n=#P1 ". In this way, when ytopt searches the parameter in the code mold to replace p1, it will only replace the one in "n=#P1 ". Otherwise, it causes the error.
