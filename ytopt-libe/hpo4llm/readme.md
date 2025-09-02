@@ -1,6 +1,6 @@
-Hyperparameter Optimization for LLM training loss benchmark using ytopt-libe
+Hyperparameter Optimization for LLM training loss benchmark with different scaling laws  using ytopt-libe
 
-This benchmark is modeled after the llm/loss benchmark in ytopt and the HPO/libE benchmarks. It is designed to be used with libEnsemble for hyperparameter optimization of an LLM loss function. See its details in the paper (https://arxiv.org/pdf/2508.06617).
+This benchmark is modeled after the llm/loss benchmark in ytopt and the HPO/libE benchmarks. It is designed to be used with libEnsemble for hyperparameter optimization of an LLM loss function for a given scaling law. See its details in the paper (https://arxiv.org/pdf/2508.06617).
 
 Files:
 - dlp.py: The main model/training script (code mold) with parameter markers (#P0, #P1, ...)
