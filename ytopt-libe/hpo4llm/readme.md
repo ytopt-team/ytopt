@@ -6,7 +6,7 @@ Files:
 - dlp.py: The main model/training script with parameter markers (#P0, #P1, ...)
 - plopper.py: Handles parameter substitution and execution
 - exe.pl: Runs the generated Python script and extracts the loss
-- problem.py: Defines the TuningProblem for ytopt
+- run_ytopt.py: Defines the TuningProblem and parameter space for ytopt
 - ytopt_obj.py: libEnsemble-compatible objective wrapper
 - run-laptop.sh: a batch file to configure and run the HPO on a laptop
 
