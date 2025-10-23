@@ -67,7 +67,7 @@ pip install -e .
 After installing scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` for the latest examples with new features.
 
 ```
-# [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
           ```
