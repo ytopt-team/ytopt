@@ -1,0 +1,2 @@
+aprun: Apid 25263501: Caught signal Terminated, sending to application
+_pmiu_daemon(SIGCHLD): [NID 03829] [c7-1c2s13n1] [Mon Feb 28 22:29:17 2022] PE RANK 0 exit signal Terminated

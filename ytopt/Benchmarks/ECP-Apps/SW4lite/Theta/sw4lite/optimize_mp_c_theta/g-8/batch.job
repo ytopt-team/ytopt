@@ -1,0 +1,15 @@
+#!/bin/bash
+#COBALT -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP
+
+export OMP_NUM_THREADS=64
+
+module use -a /projects/intel/geopm-home/modulefiles
+module unload darshan
+module load geopm/1.x
+
+           geopmlaunch aprun -n 8 -N 1 --geopm-ctl=pthread --geopm-report gm.report -- ../sw4lite loh1/LOH.1-h50.in >out.txt
+           geopmlaunch aprun -n 8 -N 1 --geopm-ctl=pthread --geopm-report gm2.report -- ../sw4lite loh1/LOH.1-h50.in >out2.txt
+           geopmlaunch aprun -n 8 -N 1 --geopm-ctl=pthread --geopm-report gm3.report -- ../sw4lite loh1/LOH.1-h50.in >out3.txt
+           geopmlaunch aprun -n 8 -N 1 --geopm-ctl=pthread --geopm-report gm4.report -- ../sw4lite loh1/LOH.1-h50.in >out4.txt
+           geopmlaunch aprun -n 8 -N 1 --geopm-ctl=pthread --geopm-report gm5.report -- ../sw4lite loh1/LOH.1-h50.in >out5.txt
+

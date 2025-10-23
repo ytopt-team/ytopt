@@ -1,0 +1,759 @@
+
+Code Description
+
+A. General description:
+
+AMG2013 is a parallel algebraic multigrid solver for linear systems arising from
+problems on unstructured grids.
+
+See the following papers for details on the algorithm and its parallel
+implementation/performance:
+
+Van Emden Henson and Ulrike Meier Yang, "BoomerAMG: A Parallel Algebraic
+Multigrid Solver and Preconditioner", Appl. Num. Math. 41 (2002),
+pp. 155-177. Also available as LLNL technical report UCRL-JC-141495.
+
+Hans De Sterck, Ulrike Meier Yang and Jeffrey Heys, "Reducing Complexity in
+Parallel Algebraic Multigrid Preconditioners", SIAM Journal on Matrix Analysis
+and Applications 27 (2006), pp. 1019-1039. Also available as LLNL technical
+reports UCRL-JRNL-206780.
+
+Hans De Sterck, Robert D. Falgout, Josh W. Nolting and Ulrike Meier Yang, 
+"Distance-Two Interpolation for Parallel Algebraic Multigrid", Numerical 
+Linear Algebra with Applications 15 (2008), pp. 115-139. Also available as 
+LLNL technical report UCRL-JRNL-230844.
+
+U. M. Yang, "On Long Range Interpolation Operators for Aggressive Coarsening",
+Numer. Linear Algebra Appl.,  17 (2010), pp. 453-472. LLNL-JRNL-417371.
+
+A. H. Baker, R. D. Falgout, T. V. Kolev, and U. M. Yang, "Multigrid Smoothers 
+for Ultraparallel Computing", SIAM J. Sci. Comput., 33 (2011), pp. 2864-2887. 
+LLNL-JRNL-47319
+
+The driver provided with AMG2013 builds linear systems for various 
+3-dimensional problems, which are described in Section D.
+
+To determine when the solver has converged, the driver uses the
+relative-residual stopping criteria,
+
+  ||r_k||_2 / ||b||_2 < tol
+
+with tol = 10^-6.
+
+B. Coding:
+
+AMG2013 is written in ISO-C.  It is an SPMD code which uses MPI.  Parallelism is
+achieved by data decomposition.  The driver provided with AMG2013 achieves this
+decomposition by simply subdividing the grid into logical P x Q x R (in 3D)
+chunks of equal size.
+
+C. Parallelism:
+
+AMG2013 is a highly synchronous code.  The communications and computations
+patterns exhibit the surface-to-volume relationship common to many parallel
+scientific codes.  Hence, parallel efficiency is largely determined by the size
+of the data "chunks" mentioned above, and the speed of communications and
+computations on the machine.  AMG2013 is also memory-access bound, doing only
+about 1-2 computations per memory access, so memory-access speeds will also have
+a large impact on performance.
+
+D. Test problems
+
+Problem 1 (default): The default problem is a Laplace type problem on an
+unstructured domain with an anisotropy in one part.  A 2-dimensional projection
+of the grid with the corresponding 2-dimensional stencils is illustrated in the
+file 'mg_grid_labels.pdf'.  The problem is made 3-dimensional by extending the
+domain uniformly in z-direction. The default problem size is 384 unknowns, but 
+this is easily refined on the amg2013 command line (see "Running the Code" for details);
+Suggestions for test runs are given in Section "Suggested Test Runs".
+
+Problem 2 (-laplace): Solves
+
+  - cx u_xx - cy u_yy - cz u_zz = (1/h)^2
+
+with Dirichlet boundary conditions of u = 0, where h is the mesh spacing in each
+direction on the unit cube.  Standard finite differences are used to discretize
+the equations yielding 7-pt stencils in 3D.  This problem can also be used to
+generate 2D or 1D problems by setting the length in one or two of the directions
+(<nx>, <ny> or <nz>) to 1.
+
+Problem 3 (-27pt): Solves a Laplace type problem using a 27-point stencil.
+
+Problem 4 (-jumps): Solves the PDE
+
+  - a(x,y,z)(u_xx + u_yy = u_zz) = (1/h)^2
+
+with Dirichlet boundary conditions of u=0 on the unit cube, and
+
+  a(x,y,z) =  1000   on [0.1,0.9] x [0.1,0.9] x [0.1,0.9]
+           =  0.01   on the 8 corner cubes of size 0.1 x 0.1 x 0.1 
+           =  1      elsewhere
+
+%==========================================================================
+%==========================================================================
+
+Important Kernels in this Distribution
+
+Here the important files that are used for the linear solver,
+both preconditioner and solver, are listed.  Files that don't
+take much time such as wrappers (files starting with HYPRE_,
+files that are not used during the suggested runs or files that are 
+used for the generation of the problems are not included here.
+A complete listing of all directories and files 
+as well as a short description of each  directory
+can be found in the next section.
+
+
+In the 'krylov' directory:
+
+pcg.c			functions for the conjugate gradient algorithm
+gmres.c			functions for the GMRES algorithm
+
+In the 'parcsr_ls' directory:
+
+par_amg.c		Setup phase of the AMG preconditioner
+par_amg_setup.c		Setup phase of the AMG preconditioner
+par_coarsen.c		various coarsening algorithms
+par_strength.c		computes a strength matrix for coarsening and
+			interpolation
+par_indepset.c		independent set function needed for coarsening
+par_interp.c		interpolation algorithms for solvers 0 and 3
+par_lr_interp.c		interpolation algorithms for solvers 1 and 4
+aux_interp.c		auxiliary functions needed in par_lr_interp.c
+par_multi_interp.c 	interpolation algorithm for fine level 
+			in solvers 1 and 4
+par_rap.c		generates coarse grid operator
+par_rap_communication.c sets up communication in par_rap.c
+par_amg_solve.c 	Solve phase of the AMG preconditioner
+par_cycle.c		AMG cycle
+par_relax.c		AMG smoothers
+
+In the 'parcsr_mv' directory:
+
+par_csr_communication.c	communication routines for global partitioning
+new_commpkg.c		communication routines for assumed partitioning
+par_csr_assumed_part.c	communication routines for assumed partitioning
+par_csr_matrix.c	basic parallel matrix operations
+par_csr_matvec.c	parallel matrix vector multiplication
+par_csr_matop.c		additional parallel matrix operations
+par_vector.c		basic vector operations
+
+In the 'seq_mv' directory:
+
+big_csr_matrix.c	basic sequential matrix operations
+csr_matrix.c		basic sequential matrix operations
+csr_matvec.c		sequential matrix vector multiplications
+csr_matop.c		additional sequential matrix operations
+vector.c		basic sequential vector operations
+
+%==========================================================================
+%==========================================================================
+
+Files in this Distribution
+
+NOTE: The AMG2013 code is derived directly from the hypre library, a large
+linear solver library that is being developed in the Center for Applied
+Scientific Computing (CASC) at LLNL.
+
+In the amg2013 directory the following files are included:
+
+COPYING_LESSER
+COPYRIGHT
+HYPRE.h
+Makefile
+Makefile.include
+
+The following subdirectories are also included:
+
+docs			Documentation
+IJ_mv			Linear algebraic interface routines 
+krylov			Krylov solvers, such as PCG and GMRES
+parcsr_ls		routines needed to generate solvers and preconditioners
+			as well as Problems 2-4
+parcsr_mv		parallel matrix and vector routines 
+			(ParCSR data structure)
+seq_mv			sequential matrix and vector routines
+sstruct_mv		semistructured matrix and vector routines - included
+			to generate Problem 1
+struct_mv		structured matrix and vector routines - included to
+			generate Problem 1
+test			driver and input file for Problem 1
+utilities		functions for memory allocation, timing, error codes,
+			sorting, searching, etc.
+
+In the 'docs' directory the following files are included:
+
+amg2013.readme
+mg_grid_labels.pdf
+
+In the 'IJ_mv' directory the following files are included:
+
+aux_parcsr_matrix.c
+aux_parcsr_matrix.h
+aux_par_vector.c  
+aux_par_vector.h
+headers.h
+HYPRE_IJMatrix.c
+HYPRE_IJ_mv.h
+HYPRE_IJVector.c   
+IJMatrix.c 
+IJ_matrix.h            
+IJMatrix_parcsr.c  
+IJ_mv.h           
+IJVector.c   
+IJ_vector.h       
+IJVector_parcsr.c      
+Makefile 
+
+In the 'krylov' directory the following files are included:
+
+all_krylov.h  
+gmres.c 
+gmres.h  
+HYPRE_gmres.c  
+HYPRE_MatvecFunctions.h  
+HYPRE_pcg.c
+krylov.h
+Makefile
+pcg.c 
+pcg.h
+
+In the 'parcsr_ls' directory the following files are included:
+
+aux_interp.c
+aux_interp.h
+gen_redcs_mat.c
+headers.h
+HYPRE_parcsr_amg.c
+HYPRE_parcsr_gmres.c
+HYPRE_parcsr_ls.h
+HYPRE_parcsr_pcg.c
+Makefile
+par_amg.c
+par_amg.h
+par_amg_setup.c
+par_amg_solve.c
+par_cg_relax_wt.c
+par_coarsen.c
+par_coarse_parms.c
+parcsr_ls.h
+par_cycle.c
+par_difconv.c
+par_indepset.c
+par_interp.c
+par_jacobi_interp.c
+par_laplace_27pt.c
+par_laplace.c
+par_lr_interp.c
+par_multi_interp.c
+par_nodal_systems.c
+par_rap.c
+par_rap_communication.c
+par_relax.c
+par_relax_interface.c
+par_relax_more.c
+par_scaled_matnorm.c
+par_stats.c
+par_strength.c
+partial.c
+par_vardifconv.c
+pcg_par.c
+
+In the 'parcsr_mv' directory the following files are included:
+
+headers.h
+HYPRE_parcsr_matrix.c
+HYPRE_parcsr_mv.h
+HYPRE_parcsr_vector.c
+Makefile
+new_commpkg.c
+new_commpkg.h
+par_csr_assumed_part.c
+par_csr_assumed_part.h
+par_csr_communication.c
+par_csr_communication.h
+par_csr_matop.c
+par_csr_matop_marked.c
+par_csr_matrix.c
+par_csr_matrix.h
+par_csr_matvec.c
+parcsr_mv.h
+par_vector.c
+par_vector.h
+
+In the 'seq_mv' directory the following files are included:
+
+big_csr_matrix.c
+csr_matop.c
+csr_matrix.c
+csr_matrix.h
+csr_matvec.c
+genpart.c
+headers.h
+HYPRE_csr_matrix.c
+HYPRE_seq_mv.h
+HYPRE_vector.c
+Makefile
+seq_mv.h
+vector.c
+vector.h
+
+In the 'sstruct_mv' directory the following files are included:
+
+box_map.c
+box_map.h
+headers.h
+HYPRE_sstruct_graph.c
+HYPRE_sstruct_grid.c
+HYPRE_sstruct_matrix.c
+HYPRE_sstruct_mv.h
+HYPRE_sstruct_stencil.c
+HYPRE_sstruct_vector.c
+Makefile
+sstruct_axpy.c
+sstruct_copy.c
+sstruct_graph.c
+sstruct_graph.h
+sstruct_grid.c
+sstruct_grid.h
+sstruct_innerprod.c
+sstruct_matrix.c
+sstruct_matrix.h
+sstruct_matvec.c
+sstruct_mv.h
+sstruct_overlap_innerprod.c
+sstruct_scale.c
+sstruct_stencil.c
+sstruct_stencil.h
+sstruct_vector.c
+sstruct_vector.h
+
+In the 'struct_mv' directory the following files are included:
+
+assumed_part.c
+assumed_part.h
+box_algebra.c
+box_alloc.c
+box_boundary.c
+box.c
+box.h
+box_manager.c
+box_manager.h
+box_neighbors.c
+box_neighbors.h
+box_pthreads.h
+communication_info.c
+computation.c
+computation.h
+grow.c
+headers.h
+HYPRE_struct_grid.c
+HYPRE_struct_matrix.c
+HYPRE_struct_mv.h
+HYPRE_struct_stencil.c
+HYPRE_struct_vector.c
+Makefile
+new_assemble.c
+new_box_neighbors.c
+project.c
+struct_axpy.c
+struct_communication.c
+struct_communication.h
+struct_copy.c
+struct_grid.c
+struct_grid.h
+struct_innerprod.c
+struct_io.c
+struct_matrix.c
+struct_matrix.h
+struct_matrix_mask.c
+struct_matvec.c
+struct_mv.h
+struct_overlap_innerprod.c
+struct_scale.c
+struct_stencil.c
+struct_stencil.h
+struct_vector.c
+struct_vector.h
+
+In the 'test' directory the following files are included:
+
+amg2013.c  
+Makefile  
+sstruct.in.MG.FD
+
+In the 'utilities' directory the following files are included:
+
+amg_linklist.c
+amg_linklist.h
+binsearch.c
+exchange_data.c
+exchange_data.h
+exchange_data.README
+general.h
+hypre_error.c
+hypre_error.h
+hypre_memory.c
+hypre_memory.h
+hypre_qsort.c
+hypre_smp_forloop.h
+HYPRE_utilities.h
+Makefile
+memory_dmalloc.c
+mpistubs.c
+mpistubs.h
+qsplit.c
+random.c
+threading.c
+threading.h
+thread_mpistubs.c
+thread_mpistubs.h
+timer.c
+timing.c
+timing.h
+umalloc_local.c
+umalloc_local.h
+utilities.h
+
+%==========================================================================
+%==========================================================================
+
+Building the Code
+
+AMG2013 uses a simple Makefile system for building the code.  All compiler and
+link options are set by modifying the file 'amg2013/Makefile.include'
+appropriately.  This file is then included in each of the following makefiles:
+
+  krylov/Makefile
+  IJ_mv/Makefile
+  parcsr_ls/Makefile
+  parcsr_mv/Makefile
+  seq_mv/Makefile
+  sstruct_mv/Makefile
+  struct_mv/Makefile
+  test/Makefile
+  utilities/Makefile
+
+To build the code, first modify the 'Makefile.include' file appropriately, then
+type (in the amg2013 directory)
+
+  make
+
+Other available targets are
+
+  make clean        (deletes .o files)
+  make veryclean    (deletes .o files, libraries, and executables)
+
+To configure the code to run with:
+
+1 - MPI only , add '-DTIMER_USE_MPI' to the 'INCLUDE_CFLAGS' line 
+    in the 'Makefile.include' file and use a valid MPI.
+2 - OpenMP with MPI, add vendor dependent compilation flag for OMP
+3 - to use the assumed partition (recommended for several thousand
+    processors or more), add '-DHYPRE_NO_GLOBAL_PARTITION' 
+4 - to be able to solve problems that are larger than 2^31-1,
+    add '-DHYPRE_LONG_LONG'
+
+%==========================================================================
+%==========================================================================
+
+Optimization and Improvement Challenges
+
+This code is memory-access bound.  We believe it would be very difficult to
+obtain "good" cache reuse with an optimized version of the code.
+
+%==========================================================================
+%==========================================================================
+
+Parallelism and Scalability Expectations
+
+AMG2013 has been run on the following platforms:
+
+  BG/Q                 - up to over 1,000,000 MPI processes
+  BG/P                 - up to 125,000 MPI processes
+  Sierra               - up to 13,824 MPI processes
+  and more
+
+Consider increasing both problem size and number of processors in tandem.
+On scalable architectures, time-to-solution for AMG2013 will initially
+increase, then it will level off at a modest numbers of processors,
+remaining roughly constant for larger numbers of processors.  Iteration
+counts will also increase slightly for small to modest sized problems,
+then level off at a roughly constant number for larger problem sizes.
+
+For example, we get the following timing results (in seconds) for a 3D Laplace
+problem with cx = cy = cz = 1.0, distributed on a logical P x Q x R processor 
+topology, with fixed local problem size per process given as 40 x 40 x 40:
+
+  P x Q x R     procs    solver similar to solver 0
+  ---------------------------------------------------------------
+  16x16x16       4096          5.75
+  20x20x20       8000          6.88
+  32x32x32      32768          8.11
+  44x44x44      91125         10.48
+  50x50x50     125000         10.54
+
+These results were obtained on BG/P using the assumed partition option
+-DHYPRE_NO_GLOBAL_PARTITION and -DHYPRE_LONG_LONG.
+
+%==========================================================================
+%==========================================================================
+
+Running the Code
+
+The driver for AMG2013 is called `amg2013', and is located in the amg2013/test
+subdirectory.  Type
+
+   mpirun -np 1 amg2013 -help
+
+to get usage information.  This prints out the following:
+
+Usage: amg2013 [<options>]
+ 
+  -in <filename> : input file (default is `sstruct.in.AMG.FD')
+ 
+  -P <Px> <Py> <Pz>   : define processor topology per part
+                        Note that for test problem 1, which has 8 parts
+			this leads to 8*Px*Py*Pz MPI processes!
+			For all other test problems, the total amount of
+			MPI processes is Px*Py*Pz.
+
+  -pooldist <p>       : pool distribution to use
+
+  -r <rx> <ry> <rz>   : refine part(s) for default problem
+  -b <bx> <by> <bz>   : refine and block part(s) for default problem
+
+  -n <nx> <ny> <nz>   : define size per processor for problems on cube
+  -c <cx> <cy> <cz>   : define anisotropies for Laplace problem
+
+  -laplace            : 3D Laplace problem on a cube
+  -27pt               : Problem with 27-point stencil on a cube
+  -jumps              : PDE with jumps on a cube
+
+  -solver <ID>        : solver ID (default = 0)
+                        0 - PCG with AMG precond
+                        1 - PCG with diagonal scaling
+                        2 - GMRES(10) with AMG precond
+                        3 - GMRES(10) with diagonal scaling
+ 
+  -printstats         : print out detailed info on AMG preconditioner
+ 
+  -printsystem        : print out the system
+ 
+  -rhsfromcosine      : solution is cosine function (default), can be used for
+                        default problem only
+  -rhsone             : rhs is vector with unit components
+
+All of the arguments are optional.  The most important option for the AMG2013
+compact application is the `-P' option. It specifies the MPI process topology 
+on which to run.  
+
+For the default problem, there are two possible pool distributions, which 
+lead to different partitionings of the problem. Pool distribution 0 will
+give each process a portion of one of the 8 parts of the test problem, thus
+assigning disjoint subdomains to each process. Pool distribution 1 uses a
+more natural partitioning, assigning each process a subdomain in one of
+the 8 parts, and therefore requires the total number of processes to be a
+multiple of 8, i.e. it needs to be run as follows:
+mpirun -np <N> amg2013 -pooldist 1 -P <Px> <Py> <Pz> ...
+with <N> = 8*<Px>*<Py>*<Pz>.
+Both partitionings lead to a load balanced distribution of the original problem.
+The problem size per MPI process can be increased using the `-r' option, 
+which defines the refinement factor for the grid on each process in each 
+direction, or the '-b' option, which increases the number of blocks per process.  
+
+
+For the other three problems (laplace, 27pt and jumps) the `-n' option allows 
+one to specify the local problem size per MPI process, leading to a global 
+problem size of <Px>*<nx> by <Py>*<ny> by <Pz>*<nz>.
+
+%==========================================================================
+%==========================================================================
+
+Timing Issues
+
+If using MPI, the whole code is timed using the MPI timers.  If not using MPI,
+standard system timers are used.  Timing results are printed to standard out,
+and are divided into "Setup Phase" times and "Solve Phase" times. Timings for a
+few individual routines are also printed out.
+
+%==========================================================================
+%==========================================================================
+
+Memory Needed
+
+AMG2013 's memory needs are somewhat complicated to describe.  They are very
+dependent on the type of problem solved and the AMG options used.  In general,
+solver 1 and solver 4 will need less memory than solver 0 and 3.  When turning
+on the '-printstats' option, operator complexities <oc> are displayed, which are
+defined by the sum of nonzeros of the original matrix and all coarse grid
+matrices divided by the number of nonzeros of the original matrix, i.e. for
+original matrix and coarse grid operators about <oc> times as much space is
+needed as for the original matrix.  However this does not include memory needed
+for interpolation operators, communication, etc.
+
+%==========================================================================
+%==========================================================================
+
+About the Data
+
+AMG2013 requires one input file to generate the default problem, which is
+located in the test directory.  Apart from this all control is on the command
+line.
+
+%==========================================================================
+%==========================================================================
+
+Expected Results
+
+Consider the following run, which was compiled using options -DTIMER_USE_MPI -DHYPRE_USING_OPENMP,
+linking with OpenMP and setting OMP_NUM_THREADS to 2:
+
+  mpirun -np 8 amg2013 -pooldist 1 P 1 1 1 -r 4 4 4 -printstats
+
+This is what AMG2013 prints out:
+
+=============================================
+SStruct Interface:
+=============================================
+SStruct Interface:
+SStruct Interface  wall clock time = 0.014211 seconds
+SStruct Interface  cpu clock time  = 0.010000 seconds
+
+Number of MPI processes: 8 , Number of OpenMP threads: 2
+
+BoomerAMG SETUP PARAMETERS:
+
+ Max levels = 25
+ Num levels = 6
+
+ Strength Threshold = 0.250000
+ Interpolation Truncation Factor = 0.000000
+ Maximum Row Sum Threshold for Dependency Weakening = 0.900000
+
+ Coarsening Type = HMIS 
+ Hybrid Coarsening (switch to CLJP when coarsening slows)
+ measures are determined locally
+
+ no. of levels of aggressive coarsening: 1
+
+ Interpolation = extended+i interpolation
+
+Operator Matrix Information:
+
+            nonzero         entries per row        row sums
+lev   rows  entries  sparse  min  max   avg       min         max
+===================================================================
+ 0   82944   648936  0.000     4    9   7.8  -4.274e-15   3.000e+02
+ 1    8985   159896  0.002     4   45  17.8  -2.069e-13   9.293e+02
+ 2    2763    72864  0.010     6  121  26.4  -2.487e-14   1.668e+03
+ 3    1001    21100  0.021     3  167  21.1   8.298e-02   3.147e+03
+ 4     320     8354  0.082     2   79  26.1   1.938e-01   1.098e+02
+ 5      21      171  0.388     4   12   8.1   5.854e+00   6.784e+00
+
+
+Interpolation Matrix Information:
+
+                 entries/row    min     max         row sums
+lev  rows cols    min max     weight   weight     min       max 
+=================================================================
+ 0 82944 x 8985    1  10   1.488e-02 9.980e-01 1.759e-01 1.000e+00
+ 1  8985 x 2763    1   4   8.769e-03 1.000e+00 1.624e-01 1.000e+00
+ 2  2763 x 1001    0   4   2.076e-03 1.000e+00 0.000e+00 1.000e+00
+ 3  1001 x 320     0   4  -4.281e-01 1.452e+00 -7.104e-03 1.000e+00
+ 4   320 x 21      0   4   2.627e-03 5.150e-02 0.000e+00 1.000e+00
+
+
+     Complexity:    grid = 1.157817
+                operator = 1.404331
+
+
+
+
+BoomerAMG SOLVER PARAMETERS:
+
+  Maximum number of cycles:         1 
+  Stopping Tolerance:               0.000000e+00 
+  Cycle type (1 = V, 2 = W, etc.):  1
+
+  Relaxation Parameters:
+   Visiting Grid:                     down   up  coarse
+            Number of partial sweeps:    1    1     1 
+   Type 0=Jac, 3=hGS, 6=hSGS, 9=GE:      8    8     8 
+   Point types, partial sweeps (1=C, -1=F):
+                  Pre-CG relaxation (down):   0
+                   Post-CG relaxation (up):   0
+                             Coarsest grid:   0
+
+=============================================
+Setup phase times:
+=============================================
+PCG Setup:
+PCG Setup  wall clock time = 0.066036 seconds
+PCG Setup  cpu clock time  = 0.090000 seconds
+
+System Size / Setup Phase Time: 1.674723e+06
+
+=============================================
+Solve phase times:
+=============================================
+PCG Solve:
+PCG Solve  wall clock time = 0.103601 seconds
+PCG Solve  cpu clock time  = 0.140000 seconds
+
+AMG2013 Benchmark version 1.0
+Iterations = 8
+Final Relative Residual Norm = 6.945422e-07
+
+System Size * Iterations / Solve Phase Time: 8.539842e+06
+
+%==========================================================================
+%==========================================================================
+
+Suggested Test Runs
+
+1. For the default problem:
+
+mpirun -np <8*px*py*pz> amg2013 -pooldist 1 -r 12 12 12 -P px py pz 
+
+This will generate a problem with 82,944 variables per MPI process leading to 
+a total system size of 663,552*px*py*pz.
+
+mpirun -np <8*px*py*pz> amg2013 -pooldist 1 -r 24 24 24 -P px py pz 
+
+This will generate a problem with 663,552 variables per process leading to 
+a total system size of 5,308,416*px*py*pz and solve it using conjugate gradient
+preconditioned with AMG. If one wants to use AMG-GMRES(10) append -solver 2 .
+
+The domain (for a 2-dimensional projection of the domain see mg_grid_labels.pdf) 
+can be scaled up by increasing the values for px, py and pz. 
+
+2. For the 7pt 3D Laplace problem:
+
+mpirun -np <px*py*pz> amg2013 -laplace -n 40 40 40 -P px py pz
+
+This will generate a problem with 64,000 grid points per MPI process
+with a domain of the size 40*px x 40*py x 40*pz .
+
+mpirun -np <px*py*pz> amg2013 -laplace -n 80 80 80 -P px py pz
+
+This will generate a problem with 512,000 grid points per MPI process
+with a domain of the size 80*px x 80*py x 80*pz .
+
+%==========================================================================
+%==========================================================================
+
+For further information on AMG2013 contact
+Ulrike Yang
+ph: (925)422-2850
+email: umyang@llnl.gov
+
+%==========================================================================
+%==========================================================================
+
+Release and Modification Record
+
+LLNL code release number: UCRL-CODE-222953.
+
+See the files COPYRIGHT and COPYING.LESSER for a complete copyright notice, 
+additional contact information, disclaimer and license.

@@ -1,0 +1,25 @@
+
+* Processing the grid command...
+* Setting nx to 601 to be consistent with h=50
+* Setting ny to 601 to be consistent with h=50
+* Setting nz to 341 to be consistent with h=50
+
+Global grid sizes (without ghost points)
+Grid         h        Nx        Ny        Nz       Points
+   0        50       601       601       341    123169541
+Total number of grid points (without ghost points): 1.2317e+08
+
+Done reading input file 
+ no GPUs found
+----------------------------------------------------
+ Making Output Directory: loh1-h50-results/
+		
+... Done!
+----------------------------------------------------
+number of grid point  sources = 216
+number of unique g.p. sources = 216
+setup of sources done
+Running on 48 MPI tasks
+Using OpenMP with 168 threads per MPI task
+starting at time 0 at cycle 1
+Time step 1 t= 0.0083877

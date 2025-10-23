@@ -1,0 +1,12 @@
+#!/bin/bash
+#COBALT -A EE-ECP -n 8 -t 60 -O runs8x1x64 -qdebug-cache-quad  
+
+export OMP_NUM_THREADS=64
+
+           aprun -n 8 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 512 > out.txt
+           aprun -n 8 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 512 > out2.txt
+           aprun -n 8 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 512 > out3.txt
+           aprun -n 8 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 512 > out4.txt
+           aprun -n 8 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 512 > out5.txt
+
+

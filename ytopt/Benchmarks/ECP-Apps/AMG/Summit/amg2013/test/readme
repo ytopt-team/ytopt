@@ -1,0 +1,30 @@
+Suggested Test Runs
+
+1. For the default problem:
+
+mpirun -np <8*px*py*pz> amg2013 -pooldist 1 -r 12 12 12 -P px py pz
+
+This will generate a problem with 82,944 variables per MPI process leading to
+a total system size of 663,552*px*py*pz.
+
+mpirun -np <8*px*py*pz> amg2013 -pooldist 1 -r 24 24 24 -P px py pz
+
+This will generate a problem with 663,552 variables per process leading to
+a total system size of 5,308,416*px*py*pz and solve it using conjugate gradient
+preconditioned with AMG. If one wants to use AMG-GMRES(10) append -solver 2 .
+
+The domain (for a 2-dimensional projection of the domain see mg_grid_labels.pdf)
+can be scaled up by increasing the values for px, py and pz.
+
+2. For the 7pt 3D Laplace problem:
+
+mpirun -np <px*py*pz> amg2013 -laplace -n 40 40 40 -P px py pz
+
+This will generate a problem with 64,000 grid points per MPI process
+with a domain of the size 40*px x 40*py x 40*pz .
+
+mpirun -np <px*py*pz> amg2013 -laplace -n 80 80 80 -P px py pz
+
+This will generate a problem with 512,000 grid points per MPI process
+with a domain of the size 80*px x 80*py x 80*pz .
+

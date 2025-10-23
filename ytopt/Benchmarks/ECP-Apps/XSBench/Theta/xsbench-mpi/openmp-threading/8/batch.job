@@ -1,0 +1,16 @@
+#!/bin/bash
+#COBALT -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP
+
+export OMP_NUM_THREADS=64
+
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench > out.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench > out2.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench > out3.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench > out4.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench > out5.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench -m event > mout.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench -m event > mout2.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench -m event > mout3.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench -m event > mout4.txt
+aprun -n 8 -N 1 --cc=depth -d 64 -j 1 ./XSBench -m event > mout5.txt
+

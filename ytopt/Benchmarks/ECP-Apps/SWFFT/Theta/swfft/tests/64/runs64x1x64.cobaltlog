@@ -1,0 +1,30 @@
+Jobid: 586256
+qsub --mode script -A CSC249ADOA01 -n 128 -t 30 -O runs64x1x64 --attrs mcdram=cache:numa=quad batch2.job
+Tue Mar 01 20:59:30 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/swfft/tests/64
+jobid 586256 submitted from terminal /dev/pts/19
+2022-03-01 21:00:12,022 INFO: Starting Resource_Prologue
+2022-03-01 21:00:12,032 DEBUG: no enabling attribute found
+2022-03-01 21:00:12,033 INFO: Resource_Prologue finished with exit code 0
+Tue Mar 01 21:00:33 2022 +0000 (UTC) 
+Tue Mar 01 21:00:33 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/swfft/tests/64/batch2.job'
+Tue Mar 01 21:00:33 2022 +0000 (UTC) 
+Tue Mar 01 21:00:33 2022 +0000 (UTC) Environment:
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_PARTCORES=64
+Tue Mar 01 21:00:33 2022 +0000 (UTC) SHELL=/bin/bash
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_PROJECT=CSC249ADOA01
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_PARTNAME=590-591,593,660-661,666,710-719,1060-1069,1260-1261,1263,1660-1669,1790,1799,2004-2009,2034,2176-2179,2574,2576-2599,2642-2647,2852,2910-2911,2914-2915,3023,3026,3033,3197,3420-3429,3550-3555,3557-3559,3901,4078,4177,4300-4301,4304,4410-4412,4414-4415,4417,4575,4577,4581-4583
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_JOBID=586256
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_STARTTIME=1646168390
+Tue Mar 01 21:00:33 2022 +0000 (UTC) LOGNAME=wuxf
+Tue Mar 01 21:00:33 2022 +0000 (UTC) USER=wuxf
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_ENDTIME=1646170190
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_PARTSIZE=128
+Tue Mar 01 21:00:33 2022 +0000 (UTC) HOME=/home/wuxf
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_JOBSIZE=128
+Tue Mar 01 21:00:33 2022 +0000 (UTC) COBALT_QUEUE=default
+Tue Mar 01 21:00:33 2022 +0000 (UTC) 
+Tue Mar 01 21:00:33 2022 +0000 (UTC) Info: stdin received from /dev/null
+Tue Mar 01 21:00:33 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/swfft/tests/64/runs64x1x64.output
+Tue Mar 01 21:00:33 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/swfft/tests/64/runs64x1x64.error
+Tue Mar 01 21:00:33 2022 +0000 (UTC) 
+Tue Mar 01 21:04:32 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

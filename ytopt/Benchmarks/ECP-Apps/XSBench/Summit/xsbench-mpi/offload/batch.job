@@ -1,0 +1,14 @@
+# Begin LSF Directives
+#BSUB -P AST136
+#BSUB -W 00:30
+#BSUB -nnodes 4096
+#BSUB -alloc_flags gpumps
+#BSUB -J ytopt
+#BSUB -o ytopt.%J.out
+#BSUB -e ytopt.%J.err
+
+module load ibm-wml-ce
+conda activate yt
+
+python3 -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=200 --learner RF
+

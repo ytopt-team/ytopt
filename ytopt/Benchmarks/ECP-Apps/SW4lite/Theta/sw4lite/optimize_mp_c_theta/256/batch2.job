@@ -1,0 +1,12 @@
+#!/bin/bash
+#COBALT -A EE-ECP -n 256 -t 60 -O runs256x1x64 --attrs mcdram=cache:numa=quad
+
+export OMP_NUM_THREADS=64
+
+           aprun -n 256 -N 1 -cc depth -d 64 -j 1 ../sw4lite loh1/LOH.1-h50.in >out.txt
+           aprun -n 256 -N 1 -cc depth -d 64 -j 1 ../sw4lite loh1/LOH.1-h50.in >out2.txt
+           aprun -n 256 -N 1 -cc depth -d 64 -j 1 ../sw4lite loh1/LOH.1-h50.in >out3.txt
+           aprun -n 256 -N 1 -cc depth -d 64 -j 1 ../sw4lite loh1/LOH.1-h50.in >out4.txt
+           aprun -n 256 -N 1 -cc depth -d 64 -j 1 ../sw4lite loh1/LOH.1-h50.in >out5.txt
+
+

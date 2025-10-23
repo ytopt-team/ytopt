@@ -1,0 +1,23 @@
+# Gaussian hill analytical topography
+
+developer corder=yes
+# corder=yes only works with the C-version of sw4lite
+
+grid x=1.28 y=1.28 z=5.0 h=0.02
+#
+fileio path=curvilinear-output
+#
+time t=0.5
+
+block vp=2 vs=1 r=1.5 
+
+supergrid gp=30
+
+source x=0.52 y=0.48 depth=0.2 mxy=0.87 t0=0.36 freq=16.6667 type=Gaussian
+
+topography order=6 input=gaussian zmax=2.0 gaussianAmp=0.1 gaussianXc=0.6 gaussianYc=0.4 gaussianLx=0.15 gaussianLy=0.10
+
+rec x=0.7 y=0.6 depth=0 file=sta01 usgsformat=1 sacformat=0
+rec x=0.5 y=0.3 depth=0 file=sta02 usgsformat=1 sacformat=0
+rec x=0.6 y=0.5 depth=0.3 file=sta03 usgsformat=1 sacformat=0
+

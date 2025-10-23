@@ -1,0 +1,47 @@
+
+* Processing the grid command...
+* Setting nx to 601 to be consistent with h=50
+* Setting ny to 601 to be consistent with h=50
+* Setting nz to 341 to be consistent with h=50
+
+Global grid sizes (without ghost points)
+Grid         h        Nx        Ny        Nz       Points
+   0        50       601       601       341    123169541
+Total number of grid points (without ghost points): 1.2317e+08
+
+Done reading input file 
+ no GPUs found
+----------------------------------------------------
+ Making Output Directory: loh1-h50-results/
+		
+... Done!
+----------------------------------------------------
+number of grid point  sources = 216
+number of unique g.p. sources = 216
+setup of sources done
+Running on 128 MPI tasks
+Using OpenMP with 168 threads per MPI task
+starting at time 0 at cycle 1
+Time step 1 t= 0.0083877
+Time step 101 t= 0.847158
+Time step 201 t= 1.68593
+Time step 301 t= 2.5247
+Time step 401 t= 3.36347
+Time step 501 t= 4.20224
+Time step 601 t= 5.04101
+Time step 701 t= 5.87978
+Time step 801 t= 6.71855
+Time step 901 t= 7.55732
+Writing ASCII USGS file, of size 1001: loh1-h50-results/sta10.txt
+Time step 1001 t= 8.39609
+Writing ASCII USGS file, of size 1074: loh1-h50-results/sta10.txt
+Time step 1073 t= 9
+   Execution time, solver phase 40.8833 seconds 
+
+----------------------------------------
+          Execution time summary 
+  Total      BC comm    BC phys    Scheme     Supergrid  Forcing 
+40.835     11.907     1.181      24.595     2.5524     0.58458    Clock tick is 1e-09 seconds
+----------------------------------------
+
+ Runtime(seconds): 40.9281

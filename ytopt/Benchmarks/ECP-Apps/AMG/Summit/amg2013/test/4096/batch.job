@@ -1,0 +1,16 @@
+# Begin LSF directives
+#BSUB -P MED106
+#BSUB -J ytopt
+#BSUB -o output.log
+#BSUB -e output.err
+#BSUB -alloc_flags gpumps
+#BSUB -W 30
+#BSUB -nnodes 4096
+
+export OMP_NUM_THREADS=168
+jsrun -n 4096 -a 1 -g 0 -c 42 -bpacked:42 -dpacked ../amg2013 -laplace -P 16 16 16 -n 100 100 100  > out.txt
+jsrun -n 4096 -a 1 -g 0 -c 42 -bpacked:42 -dpacked ../amg2013 -laplace -P 16 16 16 -n 100 100 100  > out2.txt
+jsrun -n 4096 -a 1 -g 0 -c 42 -bpacked:42 -dpacked ../amg2013 -laplace -P 16 16 16 -n 100 100 100  > out3.txt
+jsrun -n 4096 -a 1 -g 0 -c 42 -bpacked:42 -dpacked ../amg2013 -laplace -P 16 16 16 -n 100 100 100  > out4.txt
+jsrun -n 4096 -a 1 -g 0 -c 42 -bpacked:42 -dpacked ../amg2013 -laplace -P 16 16 16 -n 100 100 100  > out5.txt
+

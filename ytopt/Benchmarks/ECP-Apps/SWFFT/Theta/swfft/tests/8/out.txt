@@ -1,0 +1,47 @@
+Threads per process: 64
+Initializing redistribution using a pencil layout on 8 ranks.
+distribution 1D: [8:1:1]
+distribution 3D: [2:2:2]
+distribution 2z: [4:2:1]
+distribution 2x: [1:4:2]
+distribution 2y: [4:1:2]
+
+Hex representations of double precision floats
+0.000000e+00 = 0
+1.000000e+00 = 3ff0000000000000
+134217728.000000 = 41a0000000000000
+
+
+TESTING 0
+
+FORWARD     max 5.678e+00s  avg 5.197e+00s  min 4.715e+00s  dev 3.051e-01s
+
+k-space:
+real in [1.000000e+00,1.000000e+00] = [3ff0000000000000,3ff0000000000000]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+BACKWARD    max 5.561e+00s  avg 5.139e+00s  min 4.625e+00s  dev 2.872e-01s
+
+r-space:
+a[0,0,0] = (134217728.000000,0.000000) = (41a0000000000000,0)
+real in [0.000000e+00,0.000000e+00] = [0,0]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+
+TESTING 1
+
+FORWARD     max 5.276e+00s  avg 4.791e+00s  min 4.306e+00s  dev 3.080e-01s
+
+k-space:
+real in [1.000000e+00,1.000000e+00] = [3ff0000000000000,3ff0000000000000]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+BACKWARD    max 5.564e+00s  avg 5.135e+00s  min 4.591e+00s  dev 2.947e-01s
+
+r-space:
+a[0,0,0] = (134217728.000000,0.000000) = (41a0000000000000,0)
+real in [0.000000e+00,0.000000e+00] = [0,0]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+ Runtime(seconds): 24.051193
+Application 25312657 resources: utime ~1244s, stime ~137s, Rss ~821404, inblocks ~0, outblocks ~8

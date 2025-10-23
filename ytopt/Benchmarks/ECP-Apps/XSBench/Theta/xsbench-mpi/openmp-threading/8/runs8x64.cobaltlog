@@ -1,0 +1,60 @@
+Jobid: 585755
+qsub --mode script -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP batch.job
+Sun Feb 27 21:54:43 2022 +0000 (UTC) submitted with cwd set to: /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8
+jobid 585755 submitted from terminal /dev/pts/1
+2022-02-27 21:55:37,355 INFO: Starting Resource_Prologue
+2022-02-27 21:55:37,357 DEBUG: no enabling attribute found
+2022-02-27 21:55:37,358 INFO: Resource_Prologue finished with exit code 0
+Sun Feb 27 21:55:57 2022 +0000 (UTC) 
+Sun Feb 27 21:55:57 2022 +0000 (UTC) Command: '/gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/batch.job'
+Sun Feb 27 21:55:57 2022 +0000 (UTC) 
+Sun Feb 27 21:55:57 2022 +0000 (UTC) Environment:
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_PARTCORES=64
+Sun Feb 27 21:55:57 2022 +0000 (UTC) SHELL=/bin/bash
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_PARTNAME=3830,3832-3836,3838-3839
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_JOBID=585755
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_STARTTIME=1645998918
+Sun Feb 27 21:55:57 2022 +0000 (UTC) LOGNAME=wuxf
+Sun Feb 27 21:55:57 2022 +0000 (UTC) USER=wuxf
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_ENDTIME=1646002518
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_PARTSIZE=8
+Sun Feb 27 21:55:57 2022 +0000 (UTC) HOME=/home/wuxf
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_JOBSIZE=8
+Sun Feb 27 21:55:57 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Sun Feb 27 21:55:57 2022 +0000 (UTC) 
+Sun Feb 27 21:55:57 2022 +0000 (UTC) Info: stdin received from /dev/null
+Sun Feb 27 21:55:57 2022 +0000 (UTC) Info: stdout sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/runs8x64.output
+Sun Feb 27 21:55:57 2022 +0000 (UTC) Info: stderr sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/runs8x64.error
+Sun Feb 27 21:55:57 2022 +0000 (UTC) 
+Sun Feb 27 21:59:19 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal
+Jobid: 585756
+qsub --mode script -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP batch.job
+Sun Feb 27 22:04:38 2022 +0000 (UTC) submitted with cwd set to: /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8
+jobid 585756 submitted from terminal /dev/pts/1
+2022-02-27 22:05:31,082 INFO: Starting Resource_Prologue
+2022-02-27 22:05:31,100 DEBUG: no enabling attribute found
+2022-02-27 22:05:31,100 INFO: Resource_Prologue finished with exit code 0
+Sun Feb 27 22:05:53 2022 +0000 (UTC) 
+Sun Feb 27 22:05:53 2022 +0000 (UTC) Command: '/gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/batch.job'
+Sun Feb 27 22:05:53 2022 +0000 (UTC) 
+Sun Feb 27 22:05:53 2022 +0000 (UTC) Environment:
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_PARTCORES=64
+Sun Feb 27 22:05:53 2022 +0000 (UTC) SHELL=/bin/bash
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_PARTNAME=3830,3832-3836,3838-3839
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_JOBID=585756
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_STARTTIME=1645999512
+Sun Feb 27 22:05:53 2022 +0000 (UTC) LOGNAME=wuxf
+Sun Feb 27 22:05:53 2022 +0000 (UTC) USER=wuxf
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_ENDTIME=1646003112
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_PARTSIZE=8
+Sun Feb 27 22:05:53 2022 +0000 (UTC) HOME=/home/wuxf
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_JOBSIZE=8
+Sun Feb 27 22:05:53 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Sun Feb 27 22:05:53 2022 +0000 (UTC) 
+Sun Feb 27 22:05:53 2022 +0000 (UTC) Info: stdin received from /dev/null
+Sun Feb 27 22:05:53 2022 +0000 (UTC) Info: stdout sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/runs8x64.output
+Sun Feb 27 22:05:53 2022 +0000 (UTC) Info: stderr sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/8/runs8x64.error
+Sun Feb 27 22:05:53 2022 +0000 (UTC) 
+Sun Feb 27 22:11:16 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

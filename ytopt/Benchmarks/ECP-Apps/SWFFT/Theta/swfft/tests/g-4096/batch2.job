@@ -1,0 +1,17 @@
+#!/bin/bash
+#COBALT -A Intel -n 4096 -t 30 -O runs4096x1x64 --attrs mcdram=cache:numa=quad
+
+export OMP_NUM_THREADS=64
+
+module load intel
+module use -a /projects/intel/geopm-home/modulefiles
+module unload darshan
+module load geopm/1.x
+
+geopmlaunch aprun -n 4096 -N 1 --geopm-ctl=pthread --geopm-report gm.report -- ../TestDfft 2 4096 > out.txt
+geopmlaunch aprun -n 4096 -N 1 --geopm-ctl=pthread --geopm-report gm2.report -- ../TestDfft 2 4096 > out2.txt
+geopmlaunch aprun -n 4096 -N 1 --geopm-ctl=pthread --geopm-report gm3.report -- ../TestDfft 2 4096 > out3.txt
+geopmlaunch aprun -n 4096 -N 1 --geopm-ctl=pthread --geopm-report gm4.report -- ../TestDfft 2 4096 > out4.txt 
+geopmlaunch aprun -n 4096 -N 1 --geopm-ctl=pthread --geopm-report gm5.report -- ../TestDfft 2 4096 > out5.txt 
+
+

@@ -1,0 +1,18 @@
+# Begin LSF directives
+#BSUB -P MED106
+#BSUB -J ytopt
+#BSUB -o output.log
+#BSUB -e output.err
+#BSUB -alloc_flags gpumps
+#BSUB -W 30
+#BSUB -nnodes 8
+
+module load netlib-lapack
+
+export OMP_NUM_THREADS=168
+jsrun -n 8 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ../sw4lite loh1/LOH.1-h50.in > out.txt
+jsrun -n 8 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ../sw4lite loh1/LOH.1-h50.in > out2.txt
+jsrun -n 8 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ../sw4lite loh1/LOH.1-h50.in > out3.txt
+jsrun -n 8 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ../sw4lite loh1/LOH.1-h50.in > out4.txt
+jsrun -n 8 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ../sw4lite loh1/LOH.1-h50.in > out5.txt
+

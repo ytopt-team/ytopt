@@ -1,0 +1,13 @@
+#!/bin/bash
+#COBALT -A CSC249ADOA01 -n 128 -t 30 -O runs64x1x64 --attrs mcdram=cache:numa=quad
+
+export OMP_NUM_THREADS=64
+
+           aprun -n 64 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 1024 > out.t
+xt
+           aprun -n 64 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 1024 > out2.txt
+           aprun -n 64 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 1024 > out3.txt
+           aprun -n 64 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 1024 > out4.txt
+           aprun -n 64 -N 1 -cc depth -d 64 -j 1 ../TestDfft 2 1024 > out5.txt
+
+

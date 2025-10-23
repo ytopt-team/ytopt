@@ -1,0 +1,14 @@
+#!/bin/bash
+#COBALT -n 4096 -t 30 -O runs4096 --attrs mcdram=cache:numa=quad -A Intel
+
+module use -a /projects/intel/geopm-home/modulefiles
+module unload darshan
+module load geopm/1.x
+
+module load miniconda-3/latest
+source activate yt
+
+python3 -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=200 --learner RF
+
+conda deactivate
+

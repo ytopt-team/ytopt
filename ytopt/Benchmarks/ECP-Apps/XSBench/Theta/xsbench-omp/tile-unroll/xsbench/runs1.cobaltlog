@@ -1,0 +1,30 @@
+Jobid: 587521
+qsub --mode script -n 1 -t 60 -O runs1 -qdebug-cache-quad -A EE-ECP batch.job
+Tue Mar 08 15:55:20 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-omp/tile-unroll/xsbench
+jobid 587521 submitted from terminal /dev/pts/17
+2022-03-08 15:55:42,952 INFO: Starting Resource_Prologue
+2022-03-08 15:55:43,005 DEBUG: no enabling attribute found
+2022-03-08 15:55:43,005 INFO: Resource_Prologue finished with exit code 0
+Tue Mar 08 15:56:06 2022 +0000 (UTC) 
+Tue Mar 08 15:56:06 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-omp/tile-unroll/xsbench/batch.job'
+Tue Mar 08 15:56:06 2022 +0000 (UTC) 
+Tue Mar 08 15:56:06 2022 +0000 (UTC) Environment:
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_PARTCORES=64
+Tue Mar 08 15:56:06 2022 +0000 (UTC) SHELL=/bin/bash
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_PARTNAME=3834
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_JOBID=587521
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_STARTTIME=1646754931
+Tue Mar 08 15:56:06 2022 +0000 (UTC) LOGNAME=wuxf
+Tue Mar 08 15:56:06 2022 +0000 (UTC) USER=wuxf
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_ENDTIME=1646758531
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_PARTSIZE=1
+Tue Mar 08 15:56:06 2022 +0000 (UTC) HOME=/home/wuxf
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_JOBSIZE=1
+Tue Mar 08 15:56:06 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Tue Mar 08 15:56:06 2022 +0000 (UTC) 
+Tue Mar 08 15:56:06 2022 +0000 (UTC) Info: stdin received from /dev/null
+Tue Mar 08 15:56:06 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-omp/tile-unroll/xsbench/runs1.output
+Tue Mar 08 15:56:06 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-omp/tile-unroll/xsbench/runs1.error
+Tue Mar 08 15:56:06 2022 +0000 (UTC) 
+Tue Mar 08 16:56:11 2022 +0000 (UTC) Info: maximum execution time exceeded; initiating job termination

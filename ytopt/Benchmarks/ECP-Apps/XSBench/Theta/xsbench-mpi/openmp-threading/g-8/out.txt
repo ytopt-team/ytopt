@@ -1,0 +1,56 @@
+
+OMP_PROC_BIND=true MPICH_MAX_THREAD_SAFETY=multiple GEOPM_CTL=pthread GEOPM_PROFILE= GEOPM_REPORT=gm.report KMP_AFFINITY=disabled MV2_ENABLE_AFFINITY=0 KMP_WARNINGS=FALSE aprun -N 1 -n 8 --cpu-binding 0-63 -e LD_PRELOAD=libgeopm.so -- ../XSBench
+
+================================================================================
+                   __   __ ___________                 _                        
+                   \ \ / //  ___| ___ \               | |                       
+                    \ V / \ `--.| |_/ / ___ _ __   ___| |__                     
+                    /   \  `--. \ ___ \/ _ \ '_ \ / __| '_ \                    
+                   / /^\ \/\__/ / |_/ /  __/ | | | (__| | | |                   
+                   \/   \/\____/\____/ \___|_| |_|\___|_| |_|                   
+
+================================================================================
+                    Developed at Argonne National Laboratory
+                                   Version: 19
+================================================================================
+                                  INPUT SUMMARY
+================================================================================
+Simulation Method:            History Based
+Grid Type:                    Unionized Grid
+Materials:                    12
+H-M Benchmark Size:           large
+Total Nuclides:               355
+Gridpoints (per Nuclide):     11,303
+Unionized Energy Gridpoints:  4,012,565
+Particle Histories:           500,000
+XS Lookups per Particle:      34
+Total XS Lookups:             34
+MPI Ranks:                    8
+OMP Threads per MPI Rank:     256
+Mem Usage per MPI Rank (MB):  5,649
+Binary File Mode:             Off
+================================================================================
+                         INITIALIZATION - DO NOT PROFILE
+================================================================================
+Intializing nuclide grids...
+Intializing unionized grid...
+Intializing material data...
+Intialization complete. Allocated 5648 MB of data.
+
+================================================================================
+                                   SIMULATION
+================================================================================
+Beginning history based simulation...
+
+Simulation complete.
+================================================================================
+                                     RESULTS
+================================================================================
+Threads:     256
+MPI ranks:   8
+Runtime:     5.148 seconds
+Total Lookups/s:            26,354,335
+Avg Lookups/s per MPI rank: 3,294,291
+Verification checksum: 954318 (Valid)
+================================================================================
+Application 25322428 resources: utime ~2947s, stime ~151s, Rss ~5845812, inblocks ~232236, outblocks ~64

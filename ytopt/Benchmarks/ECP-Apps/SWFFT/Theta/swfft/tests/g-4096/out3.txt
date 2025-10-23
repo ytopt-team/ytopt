@@ -1,0 +1,50 @@
+
+OMP_PROC_BIND=true MPICH_MAX_THREAD_SAFETY=multiple GEOPM_CTL=pthread GEOPM_PROFILE= GEOPM_REPORT=gm3.report KMP_AFFINITY=disabled MV2_ENABLE_AFFINITY=0 KMP_WARNINGS=FALSE aprun -N 1 -n 4096 --cpu-binding 0-63 -e LD_PRELOAD=libgeopm.so -- ../TestDfft 2 4096
+
+Threads per process: 64
+Initializing redistribution using a pencil layout on 4096 ranks.
+distribution 1D: [4096:1:1]
+distribution 3D: [16:16:16]
+distribution 2z: [64:64:1]
+distribution 2x: [1:64:64]
+distribution 2y: [64:1:64]
+
+Hex representations of double precision floats
+0.000000e+00 = 0
+1.000000e+00 = 3ff0000000000000
+68719476736.000000 = 4230000000000000
+
+
+TESTING 0
+
+FORWARD     max 7.879e+00s  avg 6.587e+00s  min 5.186e+00s  dev 5.161e-01s
+
+k-space:
+real in [1.000000e+00,1.000000e+00] = [3ff0000000000000,3ff0000000000000]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+BACKWARD    max 7.586e+00s  avg 6.434e+00s  min 5.122e+00s  dev 4.299e-01s
+
+r-space:
+a[0,0,0] = (68719476736.000000,0.000000) = (4230000000000000,0)
+real in [0.000000e+00,0.000000e+00] = [0,0]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+
+TESTING 1
+
+FORWARD     max 7.576e+00s  avg 6.291e+00s  min 4.918e+00s  dev 5.138e-01s
+
+k-space:
+real in [1.000000e+00,1.000000e+00] = [3ff0000000000000,3ff0000000000000]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+BACKWARD    max 7.658e+00s  avg 6.469e+00s  min 5.140e+00s  dev 4.302e-01s
+
+r-space:
+a[0,0,0] = (68719476736.000000,0.000000) = (4230000000000000,0)
+real in [0.000000e+00,0.000000e+00] = [0,0]
+imag in [0.000000e+00,0.000000e+00] = [0,0]
+
+ Runtime(seconds): 34.445466
+Application 25333125 resources: utime ~864141s, stime ~89321s, Rss ~641604, inblocks ~120030768, outblocks ~33008

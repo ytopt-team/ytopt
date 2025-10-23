@@ -1,0 +1,30 @@
+Jobid: 585956
+qsub --mode script -A EE-ECP -n 128 -t 60 -O runs128x1x64 --attrs mcdram=cache:numa=quad batch2.job
+Mon Feb 28 21:32:38 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/128
+jobid 585956 submitted from terminal /dev/pts/26
+2022-02-28 22:10:11,680 INFO: Starting Resource_Prologue
+2022-02-28 22:10:11,683 DEBUG: no enabling attribute found
+2022-02-28 22:10:11,683 INFO: Resource_Prologue finished with exit code 0
+Mon Feb 28 22:10:31 2022 +0000 (UTC) 
+Mon Feb 28 22:10:31 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/128/batch2.job'
+Mon Feb 28 22:10:31 2022 +0000 (UTC) 
+Mon Feb 28 22:10:31 2022 +0000 (UTC) Environment:
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_PARTCORES=64
+Mon Feb 28 22:10:31 2022 +0000 (UTC) SHELL=/bin/bash
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_PARTNAME=3266-3267,3280,3288-3289,3293,3298,3308,3333,3336-3337,3456-3459,3580-3584,3586,3590,3598-3599,3660-3661,3663-3668,3670-3679,3690-3691,3695,3747,3786,3815,3840-3841,3843-3845,3847-3855,3857-3859,3864,3910,3916,3930-3931,3933-3939,3982,3992,4012,4040-4049,4082-4083,4088-4089,4130-4131,4133-4139,4142-4143,4428,4430,4432-4434,4455,4460,4462-4463,4465,4467,4497,4538,4540-4541,4546,4548-4549,4558-4559,4571,4588-4589
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_JOBID=585956
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_STARTTIME=1646086193
+Mon Feb 28 22:10:31 2022 +0000 (UTC) LOGNAME=wuxf
+Mon Feb 28 22:10:31 2022 +0000 (UTC) USER=wuxf
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_ENDTIME=1646089793
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_PARTSIZE=128
+Mon Feb 28 22:10:31 2022 +0000 (UTC) HOME=/home/wuxf
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_JOBSIZE=128
+Mon Feb 28 22:10:31 2022 +0000 (UTC) COBALT_QUEUE=default
+Mon Feb 28 22:10:31 2022 +0000 (UTC) 
+Mon Feb 28 22:10:31 2022 +0000 (UTC) Info: stdin received from /dev/null
+Mon Feb 28 22:10:31 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/128/runs128x1x64.output
+Mon Feb 28 22:10:31 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/128/runs128x1x64.error
+Mon Feb 28 22:10:31 2022 +0000 (UTC) 
+Mon Feb 28 22:32:30 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

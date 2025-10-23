@@ -1,0 +1,1 @@
+This is the version of RSBench with LLVM Clang/Polly loop optimization pragmas. Please follow the instructions from XSBench/readme.md (https://github.com/ytopt-team/autotune/tree/master/Benchmarks/XSBench)

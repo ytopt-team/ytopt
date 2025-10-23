@@ -1,0 +1,30 @@
+Jobid: 586833
+qsub --mode script -n 128 -t 60 -O runs128x64 --attrs mcdram=cache:numa=quad -A EE-ECP batch.job
+Thu Mar 03 22:36:50 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/test/g-128
+jobid 586833 submitted from terminal /dev/pts/16
+2022-03-04 05:23:28,225 INFO: Starting Resource_Prologue
+2022-03-04 05:23:28,242 DEBUG: no enabling attribute found
+2022-03-04 05:23:28,242 INFO: Resource_Prologue finished with exit code 0
+Fri Mar 04 05:23:50 2022 +0000 (UTC) 
+Fri Mar 04 05:23:50 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/test/g-128/batch.job'
+Fri Mar 04 05:23:50 2022 +0000 (UTC) 
+Fri Mar 04 05:23:50 2022 +0000 (UTC) Environment:
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_PARTCORES=64
+Fri Mar 04 05:23:50 2022 +0000 (UTC) SHELL=/bin/bash
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_PARTNAME=1645,1748-1749,2510-2519,2542,2544,2618,2730-2739,2760,2805,2840-2849,2875-2879,2966-2967,2992-2999,3030-3031,3038-3039,3042,3202,3210,3226,3228-3229,3257,3290-3292,3294-3297,3320-3329,3350-3359,3452,3530-3537,3539,3585,3587-3589,3680-3689,3750-3759,3810-3812
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_JOBID=586833
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_STARTTIME=1646371392
+Fri Mar 04 05:23:50 2022 +0000 (UTC) LOGNAME=wuxf
+Fri Mar 04 05:23:50 2022 +0000 (UTC) USER=wuxf
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_ENDTIME=1646374992
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_PARTSIZE=128
+Fri Mar 04 05:23:50 2022 +0000 (UTC) HOME=/home/wuxf
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_JOBSIZE=128
+Fri Mar 04 05:23:50 2022 +0000 (UTC) COBALT_QUEUE=backfill
+Fri Mar 04 05:23:50 2022 +0000 (UTC) 
+Fri Mar 04 05:23:50 2022 +0000 (UTC) Info: stdin received from /dev/null
+Fri Mar 04 05:23:50 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/test/g-128/runs128x64.output
+Fri Mar 04 05:23:50 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/test/g-128/runs128x64.error
+Fri Mar 04 05:23:50 2022 +0000 (UTC) 
+Fri Mar 04 05:30:25 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

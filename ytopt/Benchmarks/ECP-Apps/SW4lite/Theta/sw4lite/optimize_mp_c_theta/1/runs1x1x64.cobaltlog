@@ -1,0 +1,30 @@
+Jobid: 585954
+qsub --mode script -A EE-ECP -n 1 -t 60 -O runs1x1x64 -qdebug-cache-quad batch2.job
+Mon Feb 28 21:29:43 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/1
+jobid 585954 submitted from terminal /dev/pts/26
+2022-02-28 21:30:26,363 INFO: Starting Resource_Prologue
+2022-02-28 21:30:26,367 DEBUG: no enabling attribute found
+2022-02-28 21:30:26,367 INFO: Resource_Prologue finished with exit code 0
+Mon Feb 28 21:30:47 2022 +0000 (UTC) 
+Mon Feb 28 21:30:47 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/1/batch2.job'
+Mon Feb 28 21:30:47 2022 +0000 (UTC) 
+Mon Feb 28 21:30:47 2022 +0000 (UTC) Environment:
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_PARTCORES=64
+Mon Feb 28 21:30:47 2022 +0000 (UTC) SHELL=/bin/bash
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_PARTNAME=3829
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_JOBID=585954
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_STARTTIME=1646083807
+Mon Feb 28 21:30:47 2022 +0000 (UTC) LOGNAME=wuxf
+Mon Feb 28 21:30:47 2022 +0000 (UTC) USER=wuxf
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_ENDTIME=1646087407
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_PARTSIZE=1
+Mon Feb 28 21:30:47 2022 +0000 (UTC) HOME=/home/wuxf
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_JOBSIZE=1
+Mon Feb 28 21:30:47 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Mon Feb 28 21:30:47 2022 +0000 (UTC) 
+Mon Feb 28 21:30:47 2022 +0000 (UTC) Info: stdin received from /dev/null
+Mon Feb 28 21:30:47 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/1/runs1x1x64.output
+Mon Feb 28 21:30:47 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/1/runs1x1x64.error
+Mon Feb 28 21:30:47 2022 +0000 (UTC) 
+Mon Feb 28 22:29:18 2022 +0000 (UTC) Info: user delete requested with signal SIGTERM by user wuxf

@@ -1,0 +1,100 @@
+#===============================================================================
+# User Options
+#===============================================================================
+CC = mpicc
+# Compiler can be set below, or via environment variable
+ifeq ($(CC),)
+CC    = mpicc
+endif
+OPTIMIZE    = yes
+DEBUG       = no
+PROFILE     = no
+MPI         = yes
+
+#===============================================================================
+# Program name & source code list
+#===============================================================================
+
+program = XSBench
+
+source = \
+Main.c \
+io.c \
+Simulation.c \
+GridInit.c \
+XSutils.c \
+Materials.c
+
+obj = $(source:.c=.o)
+
+#===============================================================================
+# Sets Flags
+#===============================================================================
+
+# Make sure we didn't pick up lower case cc
+ifeq (cc,$(CC))
+CC    = mpicc
+endif
+
+# Standard Flags
+CFLAGS := -std=gnu99 -Wall -fopenmp -dynamic
+
+# Linker Flags
+LDFLAGS = -lm -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+
+# Regular gcc Compiler
+ifneq (,$(findstring gcc,$(CC)))
+  CFLAGS += -fopenmp -flto
+endif
+
+# LLVM Compiler
+ifneq (,$(findstring clang,$(CC)))
+  CFLAGS += -fopenmp -flto 
+endif
+
+# Intel Compiler
+ifneq (,$(findstring intel,$(CC)))
+  CFLAGS += -qopenmp -ipo
+endif
+
+# Debug Flags
+ifeq ($(DEBUG),yes)
+  CFLAGS += -g
+  LDFLAGS  += -g
+endif
+
+# Profiling Flags
+ifeq ($(PROFILE),yes)
+  CFLAGS += -pg
+  LDFLAGS  += -pg
+endif
+
+# Optimization Flags
+ifeq ($(OPTIMIZE),yes)
+  CFLAGS += -O3
+endif
+
+# MPI
+ifeq ($(MPI),yes)
+  CC = cc
+  CFLAGS += -DMPI
+endif
+
+#===============================================================================
+# Targets to Build
+#===============================================================================
+
+$(program): $(obj) XSbench_header.h Makefile
+	$(CC) $(CFLAGS) $(obj) -o $@ $(LDFLAGS)
+
+%.o: %.c XSbench_header.h Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(program) $(obj)
+
+edit:
+	vim -p $(source) XSbench_header.h
+
+run:
+	./$(program)

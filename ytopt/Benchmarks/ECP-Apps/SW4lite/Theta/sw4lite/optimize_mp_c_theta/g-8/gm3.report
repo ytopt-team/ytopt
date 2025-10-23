@@ -1,0 +1,3592 @@
+GEOPM Version: 1.1.0+dev1567gc9a848c8
+Start Time: Fri Mar 04 16:38:45 2022
+Profile: ../sw4lite
+Agent: monitor
+Policy: {}
+
+Hosts:
+  nid03830:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 383.07
+      count: 8620
+      sync-runtime (s): 374.132
+      package-energy (J): 45085.2
+      dram-energy (J): 3508.83
+      power (W): 120.506
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 374.151
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 174.727
+      count: 2146
+      sync-runtime (s): 176.903
+      package-energy (J): 25555.5
+      dram-energy (J): 1659.75
+      power (W): 144.461
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 176.788
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 37.7039
+      count: 3219
+      sync-runtime (s): 37.4653
+      package-energy (J): 5751.31
+      dram-energy (J): 352.307
+      power (W): 153.511
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 37.5525
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 13.2018
+      count: 1073
+      sync-runtime (s): 12.7128
+      package-energy (J): 1772.8
+      dram-energy (J): 119.709
+      power (W): 139.45
+      frequency (%): 107.7
+      frequency (Hz): 1.4001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 12.8177
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.6413
+      count: 1073
+      sync-runtime (s): 13.741
+      package-energy (J): 2233.93
+      dram-energy (J): 128.826
+      power (W): 162.573
+      frequency (%): 107.687
+      frequency (Hz): 1.39993e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.7223
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5ec0"
+      hash: 0x1c0969d0
+      runtime (s): 10.2038
+      count: 2146
+      sync-runtime (s): 6.14454
+      package-energy (J): 798.898
+      dram-energy (J): 57.2431
+      power (W): 130.017
+      frequency (%): 107.702
+      frequency (Hz): 1.40012e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 6.04927
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.75482
+      count: 2146
+      sync-runtime (s): 3.97673
+      package-energy (J): 666.587
+      dram-energy (J): 37.2884
+      power (W): 167.622
+      frequency (%): 107.704
+      frequency (Hz): 1.40015e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 4.05208
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.68442
+      count: 1073
+      sync-runtime (s): 7.00661
+      package-energy (J): 1206.04
+      dram-energy (J): 66.1458
+      power (W): 172.129
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 7.18457
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.21379
+      count: 2146
+      sync-runtime (s): 2.71261
+      package-energy (J): 445.951
+      dram-energy (J): 25.4825
+      power (W): 164.399
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 2.74128
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.61865
+      count: 2146
+      sync-runtime (s): 4.28523
+      package-energy (J): 665.409
+      dram-energy (J): 39.5914
+      power (W): 155.28
+      frequency (%): 107.722
+      frequency (Hz): 1.40039e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 4.16826
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5bfe"
+      hash: 0x3c0e5f56
+      runtime (s): 1.18872
+      count: 2146
+      sync-runtime (s): 4.57806
+      package-energy (J): 669.501
+      dram-energy (J): 42.9774
+      power (W): 146.241
+      frequency (%): 107.72
+      frequency (Hz): 1.40036e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 4.56383
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.749109
+      count: 2146
+      sync-runtime (s): 0.467776
+      package-energy (J): 82.707
+      dram-energy (J): 4.40012
+      power (W): 176.809
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.458716
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.393443
+      count: 6
+      sync-runtime (s): 0.398703
+      package-energy (J): 42.5731
+      dram-energy (J): 3.7879
+      power (W): 106.779
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.398658
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.115863
+      count: 3
+      sync-runtime (s): 0.128014
+      package-energy (J): 15.6646
+      dram-energy (J): 1.19431
+      power (W): 122.366
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.127977
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.112261
+      count: 3
+      sync-runtime (s): 0.115968
+      package-energy (J): 9.29297
+      dram-energy (J): 1.10477
+      power (W): 80.134
+      frequency (%): 107.704
+      frequency (Hz): 1.40015e+09
+      time-hint-network (s): 0.116032
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.080929
+      count: 3
+      sync-runtime (s): 0.0796311
+      package-energy (J): 8.28473
+      dram-energy (J): 0.762177
+      power (W): 104.039
+      frequency (%): 107.708
+      frequency (Hz): 1.40021e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0795162
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.0355763
+      count: 1
+      sync-runtime (s): 0.0356108
+      package-energy (J): 4.22095
+      dram-energy (J): 0.333252
+      power (W): 118.53
+      frequency (%): 107.703
+      frequency (Hz): 1.40014e+09
+      time-hint-network (s): 0.0356135
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.0302875
+      count: 8
+      sync-runtime (s): 0.0301037
+      package-energy (J): 2.39618
+      dram-energy (J): 0.277222
+      power (W): 79.5976
+      frequency (%): 108.794
+      frequency (Hz): 1.41432e+09
+      time-hint-network (s): 0.0300173
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00122464
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00037428
+      count: 2
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 5.80073
+      count: 0
+      sync-runtime (s): 13.4092
+      package-energy (J): 1590.14
+      dram-energy (J): 125.33
+      power (W): 118.586
+      frequency (%): 107.715
+      frequency (Hz): 1.4003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 13.2715
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.328
+      count: 0
+      sync-runtime (s): 658.328
+      package-energy (J): 86606.8
+      dram-energy (J): 6175.38
+      power (W): 131.556
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 374.333
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 270.704
+      time-hint-unset (s): 13.2715
+      geopmctl memory HWM (B): 2.74568e+06
+      geopmctl network BW (B/s): 0
+  nid03832:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 398.062
+      count: 8620
+      sync-runtime (s): 359.706
+      package-energy (J): 47213
+      dram-energy (J): 1861.34
+      power (W): 131.254
+      frequency (%): 107.689
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 359.721
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 165.792
+      count: 2146
+      sync-runtime (s): 166.347
+      package-energy (J): 26206.1
+      dram-energy (J): 860.862
+      power (W): 157.539
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 166.222
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 37.7374
+      count: 3219
+      sync-runtime (s): 51.5061
+      package-energy (J): 8081.18
+      dram-energy (J): 266.906
+      power (W): 156.898
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 51.6099
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 13.2625
+      count: 1073
+      sync-runtime (s): 27.0179
+      package-energy (J): 3796.62
+      dram-energy (J): 140.078
+      power (W): 140.523
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 27.1176
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5587
+      count: 1073
+      sync-runtime (s): 14.1311
+      package-energy (J): 2515.17
+      dram-energy (J): 72.9886
+      power (W): 177.989
+      frequency (%): 107.688
+      frequency (Hz): 1.39994e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 14.1018
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.75364
+      count: 2146
+      sync-runtime (s): 13.2628
+      package-energy (J): 2396.15
+      dram-energy (J): 68.6824
+      power (W): 180.667
+      frequency (%): 107.706
+      frequency (Hz): 1.40018e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.4357
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.55373
+      count: 1073
+      sync-runtime (s): 3.25758
+      package-energy (J): 615.22
+      dram-energy (J): 16.9444
+      power (W): 188.858
+      frequency (%): 107.705
+      frequency (Hz): 1.40017e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.27903
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5ec0"
+      hash: 0x1c0969d0
+      runtime (s): 6.55029
+      count: 2146
+      sync-runtime (s): 3.99111
+      package-energy (J): 576.572
+      dram-energy (J): 20.5359
+      power (W): 144.464
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.94811
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.33448
+      count: 2146
+      sync-runtime (s): 2.15513
+      package-energy (J): 385.893
+      dram-energy (J): 11.2571
+      power (W): 179.058
+      frequency (%): 107.683
+      frequency (Hz): 1.39988e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 2.18536
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.78256
+      count: 2146
+      sync-runtime (s): 0.625428
+      package-energy (J): 102.496
+      dram-energy (J): 3.18709
+      power (W): 163.881
+      frequency (%): 107.713
+      frequency (Hz): 1.40027e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.615292
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.961456
+      count: 2146
+      sync-runtime (s): 0.427649
+      package-energy (J): 82.4393
+      dram-energy (J): 2.25307
+      power (W): 192.774
+      frequency (%): 107.698
+      frequency (Hz): 1.40008e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.431998
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.380987
+      count: 6
+      sync-runtime (s): 0.383973
+      package-energy (J): 44.0567
+      dram-energy (J): 2.01608
+      power (W): 114.739
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.384588
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.116641
+      count: 3
+      sync-runtime (s): 0.167613
+      package-energy (J): 22.3085
+      dram-energy (J): 0.875336
+      power (W): 133.095
+      frequency (%): 107.694
+      frequency (Hz): 1.40002e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.167539
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0785961
+      count: 3
+      sync-runtime (s): 0.0823736
+      package-energy (J): 9.16058
+      dram-energy (J): 0.435974
+      power (W): 111.208
+      frequency (%): 107.712
+      frequency (Hz): 1.40026e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.082249
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0208502
+      count: 3
+      sync-runtime (s): 0.0149954
+      package-energy (J): 1.25903
+      dram-energy (J): 0.0743408
+      power (W): 83.9613
+      frequency (%): 106.549
+      frequency (Hz): 1.38514e+09
+      time-hint-network (s): 0.015007
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00614144
+      count: 2
+      sync-runtime (s): 0.0059141
+      package-energy (J): 0.78418
+      dram-energy (J): 0.032959
+      power (W): 132.595
+      frequency (%): 107.674
+      frequency (Hz): 1.39977e+09
+      time-hint-network (s): 0.00590807
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00053524
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.00042504
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.000178121
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 4.27507
+      count: 0
+      sync-runtime (s): 15.1398
+      package-energy (J): 2055.55
+      dram-energy (J): 77.9282
+      power (W): 135.771
+      frequency (%): 107.77
+      frequency (Hz): 1.40101e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 14.894
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.228
+      count: 0
+      sync-runtime (s): 658.228
+      package-energy (J): 94104.4
+      dram-energy (J): 3406.42
+      power (W): 142.966
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 359.741
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 283.581
+      time-hint-unset (s): 14.894
+      geopmctl memory HWM (B): 2.73025e+06
+      geopmctl network BW (B/s): 0
+  nid03833:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 399.548
+      count: 8620
+      sync-runtime (s): 333.719
+      package-energy (J): 45364.1
+      dram-energy (J): 2485.58
+      power (W): 135.935
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 333.657
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 167.179
+      count: 2146
+      sync-runtime (s): 169.189
+      package-energy (J): 27267.2
+      dram-energy (J): 1261.08
+      power (W): 161.164
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 169.03
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 37.347
+      count: 3219
+      sync-runtime (s): 62.5531
+      package-energy (J): 9828.88
+      dram-energy (J): 465.922
+      power (W): 157.129
+      frequency (%): 107.693
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 62.6627
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 13.2988
+      count: 1073
+      sync-runtime (s): 38.6246
+      package-energy (J): 5553.21
+      dram-energy (J): 288.357
+      power (W): 143.774
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 38.7559
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.61
+      count: 1073
+      sync-runtime (s): 13.0901
+      package-energy (J): 2332.73
+      dram-energy (J): 97.622
+      power (W): 178.206
+      frequency (%): 107.69
+      frequency (Hz): 1.39997e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.0439
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.74455
+      count: 2146
+      sync-runtime (s): 7.09567
+      package-energy (J): 1304.17
+      dram-energy (J): 52.7984
+      power (W): 183.799
+      frequency (%): 107.72
+      frequency (Hz): 1.40036e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 7.10845
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.568
+      count: 1073
+      sync-runtime (s): 5.11214
+      package-energy (J): 964.733
+      dram-energy (J): 38.3964
+      power (W): 188.714
+      frequency (%): 107.696
+      frequency (Hz): 1.40004e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.23543
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5ec0"
+      hash: 0x1c0969d0
+      runtime (s): 3.96387
+      count: 2146
+      sync-runtime (s): 1.3276
+      package-energy (J): 207.366
+      dram-energy (J): 9.91214
+      power (W): 156.196
+      frequency (%): 107.686
+      frequency (Hz): 1.39991e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.31169
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.3869
+      count: 2146
+      sync-runtime (s): 3.80607
+      package-energy (J): 684.785
+      dram-energy (J): 28.3503
+      power (W): 179.919
+      frequency (%): 107.7
+      frequency (Hz): 1.40011e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.81337
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.77293
+      count: 2146
+      sync-runtime (s): 5.00419
+      package-energy (J): 841.869
+      dram-energy (J): 36.949
+      power (W): 168.233
+      frequency (%): 107.704
+      frequency (Hz): 1.40015e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 4.90743
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.965513
+      count: 2146
+      sync-runtime (s): 0.149601
+      package-energy (J): 28.7979
+      dram-energy (J): 1.1256
+      power (W): 192.498
+      frequency (%): 107.697
+      frequency (Hz): 1.40007e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.151435
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.375761
+      count: 6
+      sync-runtime (s): 0.379573
+      package-energy (J): 46.1044
+      dram-energy (J): 2.83214
+      power (W): 121.464
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.380703
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.115488
+      count: 3
+      sync-runtime (s): 0.165707
+      package-energy (J): 22.8176
+      dram-energy (J): 1.23633
+      power (W): 137.698
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.165747
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0780194
+      count: 3
+      sync-runtime (s): 0.0762964
+      package-energy (J): 8.92639
+      dram-energy (J): 0.560486
+      power (W): 116.996
+      frequency (%): 107.708
+      frequency (Hz): 1.4002e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0761527
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0760619
+      count: 3
+      sync-runtime (s): 0.0700357
+      package-energy (J): 6.23499
+      dram-energy (J): 0.517181
+      power (W): 89.0258
+      frequency (%): 107.608
+      frequency (Hz): 1.39891e+09
+      time-hint-network (s): 0.0700341
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00549641
+      count: 2
+      sync-runtime (s): 0.00604947
+      package-energy (J): 0.80011
+      dram-energy (J): 0.0382233
+      power (W): 132.261
+      frequency (%): 107.72
+      frequency (Hz): 1.40036e+09
+      time-hint-network (s): 0.00605867
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00093515
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.00052381
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.000177421
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 4.2433
+      count: 0
+      sync-runtime (s): 17.9059
+      package-energy (J): 2510.77
+      dram-energy (J): 133.568
+      power (W): 140.22
+      frequency (%): 107.694
+      frequency (Hz): 1.40002e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 17.893
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.28
+      count: 0
+      sync-runtime (s): 658.28
+      package-energy (J): 96973.9
+      dram-energy (J): 4904.88
+      power (W): 147.314
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 333.733
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 306.643
+      time-hint-unset (s): 17.893
+      geopmctl memory HWM (B): 2.72942e+06
+      geopmctl network BW (B/s): 0
+  nid03834:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 393.626
+      count: 8620
+      sync-runtime (s): 389.404
+      package-energy (J): 49349.1
+      dram-energy (J): 2915.76
+      power (W): 126.73
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 389.389
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 167.674
+      count: 2146
+      sync-runtime (s): 168.429
+      package-energy (J): 25953.4
+      dram-energy (J): 1260.68
+      power (W): 154.09
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 168.233
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 37.511
+      count: 3219
+      sync-runtime (s): 37.7659
+      package-energy (J): 6200.22
+      dram-energy (J): 283.283
+      power (W): 164.175
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 37.8811
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 13.3481
+      count: 1073
+      sync-runtime (s): 13.3006
+      package-energy (J): 1999.88
+      dram-energy (J): 100.476
+      power (W): 150.36
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.4193
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5483
+      count: 1073
+      sync-runtime (s): 12.8977
+      package-energy (J): 2226.07
+      dram-energy (J): 97.0862
+      power (W): 172.593
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 12.8938
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.77959
+      count: 2146
+      sync-runtime (s): 6.56586
+      package-energy (J): 1182.94
+      dram-energy (J): 49.0522
+      power (W): 180.165
+      frequency (%): 107.704
+      frequency (Hz): 1.40016e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 6.65266
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5ec0"
+      hash: 0x1c0969d0
+      runtime (s): 6.98431
+      count: 2146
+      sync-runtime (s): 7.17588
+      package-energy (J): 1020.07
+      dram-energy (J): 53.3662
+      power (W): 142.152
+      frequency (%): 107.686
+      frequency (Hz): 1.39992e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 7.10769
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.59952
+      count: 1073
+      sync-runtime (s): 5.70884
+      package-energy (J): 1058.16
+      dram-energy (J): 42.9228
+      power (W): 185.354
+      frequency (%): 107.699
+      frequency (Hz): 1.40009e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.83081
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.25809
+      count: 2146
+      sync-runtime (s): 3.89331
+      package-energy (J): 686.701
+      dram-energy (J): 29.4733
+      power (W): 176.38
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.94737
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.61511
+      count: 2146
+      sync-runtime (s): 2.86273
+      package-energy (J): 462.537
+      dram-energy (J): 21.2009
+      power (W): 161.572
+      frequency (%): 107.708
+      frequency (Hz): 1.40021e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 2.78498
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5a9d"
+      hash: 0x945dcac5
+      runtime (s): 1.12189
+      count: 2146
+      sync-runtime (s): 1.47045
+      package-energy (J): 225.768
+      dram-energy (J): 10.9493
+      power (W): 153.536
+      frequency (%): 107.701
+      frequency (Hz): 1.40011e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.44434
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.75678
+      count: 2146
+      sync-runtime (s): 1.07646
+      package-energy (J): 205.198
+      dram-energy (J): 8.10672
+      power (W): 190.622
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.08783
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.384784
+      count: 6
+      sync-runtime (s): 0.3819
+      package-energy (J): 43.0706
+      dram-energy (J): 2.84772
+      power (W): 112.78
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.383286
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.115698
+      count: 3
+      sync-runtime (s): 0.122713
+      package-energy (J): 16.0146
+      dram-energy (J): 0.909119
+      power (W): 130.504
+      frequency (%): 107.695
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.122663
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0794278
+      count: 3
+      sync-runtime (s): 0.0836332
+      package-energy (J): 9.06427
+      dram-energy (J): 0.624023
+      power (W): 108.381
+      frequency (%): 107.72
+      frequency (Hz): 1.40036e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0834983
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.015257
+      count: 3
+      sync-runtime (s): 0.021133
+      package-energy (J): 2.00964
+      dram-energy (J): 0.151749
+      power (W): 95.0951
+      frequency (%): 107.656
+      frequency (Hz): 1.39953e+09
+      time-hint-network (s): 0.0211293
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00271637
+      count: 2
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00111917
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.00032949
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.00015823
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 5.80121
+      count: 0
+      sync-runtime (s): 7.05778
+      package-energy (J): 885.381
+      dram-energy (J): 52.6575
+      power (W): 125.448
+      frequency (%): 107.803
+      frequency (Hz): 1.40143e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 6.92186
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.223
+      count: 0
+      sync-runtime (s): 658.223
+      package-energy (J): 91525.9
+      dram-energy (J): 4929.58
+      power (W): 139.05
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 389.41
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 261.873
+      time-hint-unset (s): 6.92186
+      geopmctl memory HWM (B): 2.72917e+06
+      geopmctl network BW (B/s): 0
+  nid03835:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 383.019
+      count: 8620
+      sync-runtime (s): 376.242
+      package-energy (J): 49214.3
+      dram-energy (J): 2687.31
+      power (W): 130.805
+      frequency (%): 107.69
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 376.274
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 170.947
+      count: 2146
+      sync-runtime (s): 172.134
+      package-energy (J): 26900
+      dram-energy (J): 1228.35
+      power (W): 156.274
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 171.975
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 41.4145
+      count: 3219
+      sync-runtime (s): 40.8369
+      package-energy (J): 6739.79
+      dram-energy (J): 292.181
+      power (W): 165.042
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 40.9195
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 14.0323
+      count: 1073
+      sync-runtime (s): 13.0812
+      package-energy (J): 2026.59
+      dram-energy (J): 94.0191
+      power (W): 154.924
+      frequency (%): 107.7
+      frequency (Hz): 1.4001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.1979
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5852
+      count: 1073
+      sync-runtime (s): 13.1325
+      package-energy (J): 2268.03
+      dram-energy (J): 93.7027
+      power (W): 172.703
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.1236
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5d5f"
+      hash: 0xfb6fd3ec
+      runtime (s): 9.74977
+      count: 2146
+      sync-runtime (s): 7.38679
+      package-energy (J): 1049.69
+      dram-energy (J): 51.7442
+      power (W): 142.104
+      frequency (%): 107.695
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 7.2083
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.68883
+      count: 2146
+      sync-runtime (s): 5.29447
+      package-energy (J): 962.934
+      dram-energy (J): 38.0322
+      power (W): 181.875
+      frequency (%): 107.705
+      frequency (Hz): 1.40017e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.38744
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.63016
+      count: 1073
+      sync-runtime (s): 6.37972
+      package-energy (J): 1184.47
+      dram-energy (J): 45.8426
+      power (W): 185.662
+      frequency (%): 107.695
+      frequency (Hz): 1.40004e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 6.52917
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.22298
+      count: 2146
+      sync-runtime (s): 3.54213
+      package-energy (J): 629.728
+      dram-energy (J): 25.4586
+      power (W): 177.782
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.60247
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.55016
+      count: 2146
+      sync-runtime (s): 3.14952
+      package-energy (J): 523.174
+      dram-energy (J): 22.2065
+      power (W): 166.112
+      frequency (%): 107.721
+      frequency (Hz): 1.40037e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.08114
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5bfe"
+      hash: 0x3c0e5f56
+      runtime (s): 1.17641
+      count: 2146
+      sync-runtime (s): 3.07859
+      package-energy (J): 485.478
+      dram-energy (J): 21.7505
+      power (W): 157.695
+      frequency (%): 107.715
+      frequency (Hz): 1.4003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.03289
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.750101
+      count: 2146
+      sync-runtime (s): 0.768766
+      package-energy (J): 147.222
+      dram-energy (J): 5.5369
+      power (W): 191.505
+      frequency (%): 107.695
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.776947
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.379777
+      count: 6
+      sync-runtime (s): 0.379405
+      package-energy (J): 43.736
+      dram-energy (J): 2.67477
+      power (W): 115.275
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.380193
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.115519
+      count: 3
+      sync-runtime (s): 0.12472
+      package-energy (J): 16.6863
+      dram-energy (J): 0.873001
+      power (W): 133.791
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.124673
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0794002
+      count: 3
+      sync-runtime (s): 0.0823071
+      package-energy (J): 9.12628
+      dram-energy (J): 0.580048
+      power (W): 110.881
+      frequency (%): 107.725
+      frequency (Hz): 1.40042e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0821392
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0411628
+      count: 3
+      sync-runtime (s): 0.0399803
+      package-energy (J): 3.36462
+      dram-energy (J): 0.294479
+      power (W): 84.157
+      frequency (%): 107.709
+      frequency (Hz): 1.40021e+09
+      time-hint-network (s): 0.0400226
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.0301262
+      count: 8
+      sync-runtime (s): 0.0300915
+      package-energy (J): 2.68243
+      dram-energy (J): 0.21286
+      power (W): 89.1426
+      frequency (%): 108.274
+      frequency (Hz): 1.40756e+09
+      time-hint-network (s): 0.030015
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00172039
+      count: 2
+      sync-runtime (s): 0.00500934
+      package-energy (J): 0.420776
+      dram-energy (J): 0.0357513
+      power (W): 83.9984
+      frequency (%): 107.372
+      frequency (Hz): 1.39584e+09
+      time-hint-network (s): 0.00500247
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.0011344
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.00018687
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 5.8367
+      count: 0
+      sync-runtime (s): 12.5599
+      package-energy (J): 1618.93
+      dram-energy (J): 89.5443
+      power (W): 128.896
+      frequency (%): 107.726
+      frequency (Hz): 1.40043e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 12.4705
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.253
+      count: 0
+      sync-runtime (s): 658.253
+      package-energy (J): 93826.8
+      dram-energy (J): 4700.39
+      power (W): 142.539
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 376.349
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 269.421
+      time-hint-unset (s): 12.4705
+      geopmctl memory HWM (B): 2.74193e+06
+      geopmctl network BW (B/s): 0
+  nid03836:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 394.13
+      count: 8620
+      sync-runtime (s): 386.942
+      package-energy (J): 52469.5
+      dram-energy (J): 2617.77
+      power (W): 135.6
+      frequency (%): 107.689
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 386.951
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 166.625
+      count: 2146
+      sync-runtime (s): 167.682
+      package-energy (J): 27064.9
+      dram-energy (J): 1135.39
+      power (W): 161.407
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 167.573
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 40.2032
+      count: 3219
+      sync-runtime (s): 39.1323
+      package-energy (J): 6645.36
+      dram-energy (J): 265.331
+      power (W): 169.818
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 39.2153
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 14.1455
+      count: 1073
+      sync-runtime (s): 13.0634
+      package-energy (J): 2059.71
+      dram-energy (J): 88.9559
+      power (W): 157.67
+      frequency (%): 107.698
+      frequency (Hz): 1.40008e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.1625
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5398
+      count: 1073
+      sync-runtime (s): 13.8035
+      package-energy (J): 2501.6
+      dram-energy (J): 93.5989
+      power (W): 181.23
+      frequency (%): 107.69
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.7915
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.83379
+      count: 2146
+      sync-runtime (s): 12.7527
+      package-energy (J): 2331.49
+      dram-energy (J): 86.1117
+      power (W): 182.824
+      frequency (%): 107.704
+      frequency (Hz): 1.40015e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 12.8835
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.56417
+      count: 1073
+      sync-runtime (s): 3.29276
+      package-energy (J): 629.83
+      dram-energy (J): 22.3271
+      power (W): 191.277
+      frequency (%): 107.7
+      frequency (Hz): 1.4001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.30453
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5d5f"
+      hash: 0xfb6fd3ec
+      runtime (s): 6.26981
+      count: 2146
+      sync-runtime (s): 4.49911
+      package-energy (J): 675.474
+      dram-energy (J): 30.3367
+      power (W): 150.135
+      frequency (%): 107.69
+      frequency (Hz): 1.39997e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 4.43941
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.31673
+      count: 2146
+      sync-runtime (s): 1.86545
+      package-energy (J): 338.456
+      dram-energy (J): 12.641
+      power (W): 181.434
+      frequency (%): 107.689
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.90757
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.73972
+      count: 2146
+      sync-runtime (s): 0.61841
+      package-energy (J): 102.347
+      dram-energy (J): 4.16144
+      power (W): 165.5
+      frequency (%): 107.701
+      frequency (Hz): 1.40011e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.606716
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.965189
+      count: 2146
+      sync-runtime (s): 0.711902
+      package-energy (J): 138.476
+      dram-energy (J): 4.80991
+      power (W): 194.516
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.718926
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.37819
+      count: 6
+      sync-runtime (s): 0.373956
+      package-energy (J): 44.8672
+      dram-energy (J): 2.51614
+      power (W): 119.98
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.374885
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.114616
+      count: 3
+      sync-runtime (s): 0.110653
+      package-energy (J): 15.4189
+      dram-energy (J): 0.756409
+      power (W): 139.344
+      frequency (%): 107.694
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.110673
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0950333
+      count: 3
+      sync-runtime (s): 0.0949855
+      package-energy (J): 8.39294
+      dram-energy (J): 0.641602
+      power (W): 88.3603
+      frequency (%): 107.881
+      frequency (Hz): 1.40245e+09
+      time-hint-network (s): 0.0950467
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0775217
+      count: 3
+      sync-runtime (s): 0.0813802
+      package-energy (J): 9.40033
+      dram-energy (J): 0.560211
+      power (W): 115.511
+      frequency (%): 107.732
+      frequency (Hz): 1.40052e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0811876
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00550597
+      count: 2
+      sync-runtime (s): 0.00500946
+      package-energy (J): 0.435242
+      dram-energy (J): 0.03479
+      power (W): 86.884
+      frequency (%): 108.109
+      frequency (Hz): 1.40542e+09
+      time-hint-network (s): 0.00500229
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00106987
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.000403191
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.00018127
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 4.29565
+      count: 0
+      sync-runtime (s): 13.267
+      package-energy (J): 1867.52
+      dram-energy (J): 89.4832
+      power (W): 140.765
+      frequency (%): 107.774
+      frequency (Hz): 1.40107e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 13.0685
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.301
+      count: 0
+      sync-runtime (s): 658.301
+      package-energy (J): 96903.7
+      dram-energy (J): 4455.46
+      power (W): 147.203
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 387.051
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 258.17
+      time-hint-unset (s): 13.0685
+      geopmctl memory HWM (B): 2.72931e+06
+      geopmctl network BW (B/s): 0
+  nid03838:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 397.811
+      count: 8620
+      sync-runtime (s): 376.102
+      package-energy (J): 50204.8
+      dram-energy (J): 2625.54
+      power (W): 133.487
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 376.043
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 165.857
+      count: 2146
+      sync-runtime (s): 167.671
+      package-energy (J): 26741
+      dram-energy (J): 1170.76
+      power (W): 159.485
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 167.473
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 39.6973
+      count: 3219
+      sync-runtime (s): 39.3579
+      package-energy (J): 6641.06
+      dram-energy (J): 275.175
+      power (W): 168.735
+      frequency (%): 107.696
+      frequency (Hz): 1.40004e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 39.4601
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 14.158
+      count: 1073
+      sync-runtime (s): 13.8919
+      package-energy (J): 2230.82
+      dram-energy (J): 97.6073
+      power (W): 160.584
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 14.0341
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5349
+      count: 1073
+      sync-runtime (s): 12.657
+      package-energy (J): 2227.22
+      dram-energy (J): 88.5262
+      power (W): 175.967
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 12.6468
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.67759
+      count: 2146
+      sync-runtime (s): 6.81333
+      package-energy (J): 1238.56
+      dram-energy (J): 47.5417
+      power (W): 181.784
+      frequency (%): 107.711
+      frequency (Hz): 1.40025e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 6.81137
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.54442
+      count: 1073
+      sync-runtime (s): 5.02488
+      package-energy (J): 934.716
+      dram-energy (J): 35.2034
+      power (W): 186.018
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.15656
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5d5f"
+      hash: 0xfb6fd3ec
+      runtime (s): 4.057
+      count: 2146
+      sync-runtime (s): 1.59007
+      package-energy (J): 244.689
+      dram-energy (J): 11.0344
+      power (W): 153.885
+      frequency (%): 107.689
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.5657
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.34319
+      count: 2146
+      sync-runtime (s): 3.09926
+      package-energy (J): 551.384
+      dram-energy (J): 21.7337
+      power (W): 177.908
+      frequency (%): 107.704
+      frequency (Hz): 1.40015e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.10546
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.71795
+      count: 2146
+      sync-runtime (s): 5.79404
+      package-energy (J): 961.129
+      dram-energy (J): 40.1852
+      power (W): 165.882
+      frequency (%): 107.698
+      frequency (Hz): 1.40007e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.6877
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.961723
+      count: 2146
+      sync-runtime (s): 0.287954
+      package-energy (J): 55.3606
+      dram-energy (J): 2.05055
+      power (W): 192.255
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.290507
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.377533
+      count: 6
+      sync-runtime (s): 0.374934
+      package-energy (J): 44.4866
+      dram-energy (J): 2.62848
+      power (W): 118.652
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.376159
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.11489
+      count: 3
+      sync-runtime (s): 0.110912
+      package-energy (J): 15.1787
+      dram-energy (J): 0.773849
+      power (W): 136.854
+      frequency (%): 107.694
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.110866
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.0773162
+      count: 3
+      sync-runtime (s): 0.0825255
+      package-energy (J): 9.36572
+      dram-energy (J): 0.587769
+      power (W): 113.489
+      frequency (%): 107.716
+      frequency (Hz): 1.4003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0823953
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0497206
+      count: 3
+      sync-runtime (s): 0.0559437
+      package-energy (J): 5.11639
+      dram-energy (J): 0.396881
+      power (W): 91.4561
+      frequency (%): 107.643
+      frequency (Hz): 1.39935e+09
+      time-hint-network (s): 0.0560128
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00624207
+      count: 2
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.000490811
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.00047099
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.000181081
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 4.26698
+      count: 0
+      sync-runtime (s): 25.3341
+      package-energy (J): 3452.06
+      dram-energy (J): 176.734
+      power (W): 136.261
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 25.3423
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.253
+      count: 0
+      sync-runtime (s): 658.253
+      package-energy (J): 95557.4
+      dram-energy (J): 4596.52
+      power (W): 145.168
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 376.099
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 256.801
+      time-hint-unset (s): 25.3423
+      geopmctl memory HWM (B): 2.72677e+06
+      geopmctl network BW (B/s): 0
+  nid03839:
+    Regions:
+    -
+      region: "MPI_Sendrecv"
+      hash: 0xaacfec7a
+      runtime (s): 394.024
+      count: 8620
+      sync-runtime (s): 390.884
+      package-energy (J): 47567.1
+      dram-energy (J): 3220.78
+      power (W): 121.691
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 390.91
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]rhs4sg_rev(int,int,int,int,int,int,int,int*,double*,double*,double*,double*,double*,double*,double*,double,double*,double*,double*)+0x2d5"
+      hash: 0x8091d88f
+      runtime (s): 164.644
+      count: 2146
+      sync-runtime (s): 165.718
+      package-energy (J): 24265.9
+      dram-energy (J): 1365.58
+      power (W): 146.428
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 165.575
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::addsgd4fort_indrev(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double*,double)+0x1e9"
+      hash: 0xb989f6c5
+      runtime (s): 39.5411
+      count: 3219
+      sync-runtime (s): 38.518
+      package-energy (J): 5978.85
+      dram-energy (J): 317.781
+      power (W): 155.222
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 38.5923
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::predfort(int,int,int,int,int,int,double*,double*,double*,double*,double*,double*,double)+0x107"
+      hash: 0x8c1afdf8
+      runtime (s): 14.329
+      count: 1073
+      sync-runtime (s): 12.8299
+      package-energy (J): 1854.95
+      dram-energy (J): 106.347
+      power (W): 144.581
+      frequency (%): 107.698
+      frequency (Hz): 1.40007e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 12.9347
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::corrfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0x15a"
+      hash: 0xaff9c86b
+      runtime (s): 12.5325
+      count: 1073
+      sync-runtime (s): 13.1663
+      package-energy (J): 2143.71
+      dram-energy (J): 108.49
+      power (W): 162.818
+      frequency (%): 107.69
+      frequency (Hz): 1.39997e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 13.1558
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_zero()+0x64"
+      hash: 0x076824a7
+      runtime (s): 7.72112
+      count: 2146
+      sync-runtime (s): 8.07047
+      package-energy (J): 1366.65
+      dram-energy (J): 66.4575
+      power (W): 169.34
+      frequency (%): 107.699
+      frequency (Hz): 1.40009e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 8.20127
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5d5f"
+      hash: 0xfb6fd3ec
+      runtime (s): 6.96774
+      count: 2146
+      sync-runtime (s): 7.50773
+      package-energy (J): 1028.55
+      dram-energy (J): 61.5998
+      power (W): 136.999
+      frequency (%): 107.688
+      frequency (Hz): 1.39994e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 7.40988
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::dpdmtfort(int,int,int,int,int,int,double*,double*,double*,double*,double)+0xcc"
+      hash: 0x675308e1
+      runtime (s): 6.53869
+      count: 1073
+      sync-runtime (s): 5.22416
+      package-energy (J): 909.436
+      dram-energy (J): 43.5009
+      power (W): 174.083
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 5.32561
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x57d3"
+      hash: 0xe49981c5
+      runtime (s): 2.18957
+      count: 2146
+      sync-runtime (s): 3.55259
+      package-energy (J): 593.093
+      dram-energy (J): 29.6104
+      power (W): 166.946
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 3.58952
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x4dec"
+      hash: 0xa40f1402
+      runtime (s): 1.5376
+      count: 2146
+      sync-runtime (s): 1.95692
+      package-energy (J): 304.843
+      dram-energy (J): 15.9397
+      power (W): 155.777
+      frequency (%): 107.705
+      frequency (Hz): 1.40017e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.91988
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::bcfortsg_indrev(int,int,int,int,int,int,int*,int,int,int,double*,double,boundaryConditionType*,double*,double*,double*,double,double*,double*,double*,double*,double*,double*,double,double,double,double*,double*)+0x5a9d"
+      hash: 0x945dcac5
+      runtime (s): 1.08202
+      count: 2146
+      sync-runtime (s): 1.10342
+      package-energy (J): 162.526
+      dram-energy (J): 9.02477
+      power (W): 147.293
+      frequency (%): 107.697
+      frequency (Hz): 1.40006e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.08189
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::Force(double,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<GridPointSource*,std::allocator<GridPointSource*>>,bool)+0xd7"
+      hash: 0xb8b552e4
+      runtime (s): 0.754268
+      count: 2146
+      sync-runtime (s): 1.01032
+      package-energy (J): 179.483
+      dram-energy (J): 8.35011
+      power (W): 177.65
+      frequency (%): 107.694
+      frequency (Hz): 1.40002e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 1.02042
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_value(double)+0x74"
+      hash: 0xa5e30e79
+      runtime (s): 0.380174
+      count: 6
+      sync-runtime (s): 0.375988
+      package-energy (J): 41.0378
+      dram-energy (J): 3.16946
+      power (W): 109.147
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.376852
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]MaterialBlock::set_material_properties(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x132"
+      hash: 0xc0bdb35d
+      runtime (s): 0.114574
+      count: 3
+      sync-runtime (s): 0.12213
+      package-energy (J): 15.4479
+      dram-energy (J): 1.01532
+      power (W): 126.488
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.121957
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]Sarray::set_to_minusOne()+0x6a"
+      hash: 0x6a57ae41
+      runtime (s): 0.077666
+      count: 3
+      sync-runtime (s): 0.0783382
+      package-energy (J): 8.39862
+      dram-energy (J): 0.653137
+      power (W): 107.21
+      frequency (%): 107.706
+      frequency (Hz): 1.40017e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0782048
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0642099
+      count: 3
+      sync-runtime (s): 0.0649737
+      package-energy (J): 5.3244
+      dram-energy (J): 0.545792
+      power (W): 81.947
+      frequency (%): 107.856
+      frequency (Hz): 1.40212e+09
+      time-hint-network (s): 0.0650289
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.00973091
+      count: 2
+      sync-runtime (s): 0.00592302
+      package-energy (J): 0.725586
+      dram-energy (J): 0.0505371
+      power (W): 122.503
+      frequency (%): 107.673
+      frequency (Hz): 1.39975e+09
+      time-hint-network (s): 0.00593763
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]EW::timesteploop(std::vector<Sarray,std::allocator<Sarray>>&,std::vector<Sarray,std::allocator<Sarray>>&)+0x869"
+      hash: 0x67d666d6
+      runtime (s): 0.00044296
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Reduce"
+      hash: 0x8eab3a85
+      runtime (s): 0.00032039
+      count: 8
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Gather"
+      hash: 0x6dccc5a3
+      runtime (s): 0.00016753
+      count: 1
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 5.75617
+      count: 0
+      sync-runtime (s): 8.07071
+      package-energy (J): 981.998
+      dram-energy (J): 66.0565
+      power (W): 121.674
+      frequency (%): 107.771
+      frequency (Hz): 1.40103e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 7.88982
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 658.266
+      count: 0
+      sync-runtime (s): 658.266
+      package-energy (J): 87408.4
+      dram-energy (J): 5425
+      power (W): 132.786
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 390.981
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 259.383
+      time-hint-unset (s): 7.88982
+      geopmctl memory HWM (B): 2.72958e+06
+      geopmctl network BW (B/s): 0
+

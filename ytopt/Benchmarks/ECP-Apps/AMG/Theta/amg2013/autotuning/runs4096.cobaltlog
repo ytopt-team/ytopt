@@ -1,0 +1,5 @@
+Jobid: 589770
+qsub --mode script -n 4096 -t 90 -O runs4096 --attrs mcdram=cache:numa=quad -A EE-ECP batch.job
+Fri Mar 18 14:00:30 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/autotuning
+jobid 589770 submitted from terminal /dev/pts/43
+Tue Mar 22 04:33:42 2022 +0000 (UTC) Info: job is not being held; ignoring release request

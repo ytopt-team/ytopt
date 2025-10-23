@@ -1,0 +1,244 @@
+
+###########################################################
+
+# GridCreate: ndim nparts
+GridCreate: 3 8
+
+# GridSetExtents: part ilower(ndim) iupper(ndim)
+GridSetExtents:  0 (1- 1- 1-) (4+ 3+ 4+)
+GridSetExtents:  1 (1- 1- 1-) (4+ 3+ 4+)
+GridSetExtents:  2 (1- 1- 1-) (4+ 3+ 4+)
+GridSetExtents:  3 (1- 1- 1-) (4+ 3+ 4+)
+GridSetExtents:  4 (1- 1- 1-) (2+ 6+ 4+)
+GridSetExtents:  5 (1- 1- 1-) (6+ 2+ 4+)
+GridSetExtents:  6 (1- 1- 1-) (6+ 2+ 4+)
+GridSetExtents:  7 (1- 1- 1-) (4+ 3+ 4+)
+
+# GridSetVariables: part nvars vartypes[nvars]
+# CELL  = 0
+# NODE  = 1
+# XFACE = 2
+# YFACE = 3
+# ZFACE = 4
+# XEDGE = 5
+# YEDGE = 6
+# ZEDGE = 7
+GridSetVariables:  0 1 [0]
+GridSetVariables:  1 1 [0]
+GridSetVariables:  2 1 [0]
+GridSetVariables:  3 1 [0]
+GridSetVariables:  4 1 [0]
+GridSetVariables:  5 1 [0]
+GridSetVariables:  6 1 [0]
+GridSetVariables:  7 1 [0]
+
+# GridAddVariables: part index(ndim) vartype
+
+# GridSetNeighborBox: part      ilower(ndim)      iupper(ndim) \
+#                     nbor_part nbor_ilower(ndim) nbor_iupper(ndim) \
+#                     index_map[ndim]
+GridSetNeighborBox:  0 (5- 1- 1-) (5- 3+ 4+)  1 (1- 1- 1-) (1- 3+ 4+)  [0 1 2] 
+GridSetNeighborBox:  1 (0+ 1- 1-) (0+ 3+ 4+)  0 (4+ 1- 1-) (4+ 3+ 4+)  [0 1 2] 
+
+GridSetNeighborBox:  1 (5- 1- 1-) (5- 3+ 4+)  2 (1- 1- 1-) (1- 3+ 4+)  [0 1 2] 
+GridSetNeighborBox:  2 (0+ 1- 1-) (0+ 3+ 4+)  1 (4+ 1- 1-) (4+ 3+ 4+)  [0 1 2] 
+
+GridSetNeighborBox:  2 (5- 1- 1-) (5- 3+ 4+)  3 (1- 1- 1-) (1- 3+ 4+)  [0 1 2] 
+GridSetNeighborBox:  3 (0+ 1- 1-) (0+ 3+ 4+)  2 (4+ 1- 1-) (4+ 3+ 4+)  [0 1 2] 
+
+GridSetNeighborBox:  3 (5- 1- 1-) (5- 4+ 4+)  4 (1- 1- 1-) (1- 4+ 4+)  [0 1 2] 
+GridSetNeighborBox:  4 (0+ 1- 1-) (0+ 3+ 4+)  3 (4+ 1- 1-) (4+ 3+ 4+)  [0 1 2] 
+                                              
+GridSetNeighborBox:  4 (3- 5- 1-) (3- 6+ 4+)  5 (1- 1- 1-) (1- 2+ 4+)  [0 1 2] 
+GridSetNeighborBox:  5 (0+ 1- 1-) (0+ 2+ 4+)  4 (2+ 5- 1-) (2+ 6+ 4+)  [0 1 2] 
+
+GridSetNeighborBox:  4 (3- 1- 1-) (3- 2+ 4+)  6 (1- 1- 1-) (1- 2+ 4+)  [0 1 2] 
+GridSetNeighborBox:  6 (0+ 1- 1-) (0+ 2+ 4+)  4 (2+ 1- 1-) (2+ 2+ 4+)  [0 1 2] 
+                                              
+GridSetNeighborBox:  6 (1- 4- 1-) (2+ 4- 4+)  7 (3- 1- 1-) (4+ 1- 4+)  [0 1 2] 
+GridSetNeighborBox:  7 (3- 0+ 1-) (4+ 0+ 4+)  6 (1- 3+ 1-) (2+ 3+ 4+)  [0 1 2] 
+
+# GridSetPeriodic: part periodic[ndim]
+
+###########################################################
+
+# StencilCreate: nstencils sizes[nstencils]
+StencilCreate: 7 [9 9 9 9 8 7 7]
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 0  0 [ 0  0  0] 0  6.0
+StencilSetEntry: 0  1 [-1  0  0] 0  0.0
+StencilSetEntry: 0  2 [ 1  0  0] 0  0.0
+StencilSetEntry: 0  3 [ 0 -1  0] 0 -1.0
+StencilSetEntry: 0  4 [ 0  1  0] 0 -1.0
+StencilSetEntry: 0  5 [ 0  0 -1] 0 -1.0
+StencilSetEntry: 0  6 [ 0  0  1] 0 -1.0
+StencilSetEntry: 0  7 [-1  1  0] 0 -1.0
+StencilSetEntry: 0  8 [ 1 -1  0] 0 -1.0
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 1  0 [ 0  0  0] 0  600.0
+StencilSetEntry: 1  1 [-1  0  0] 0  0.0
+StencilSetEntry: 1  2 [ 1  0  0] 0  0.0
+StencilSetEntry: 1  3 [ 0 -1  0] 0 -100.0
+StencilSetEntry: 1  4 [ 0  1  0] 0 -100.0
+StencilSetEntry: 1  5 [ 0  0 -1] 0 -100.0
+StencilSetEntry: 1  6 [ 0  0  1] 0 -100.0
+StencilSetEntry: 1  7 [-1 -1  0] 0 -100.0
+StencilSetEntry: 1  8 [ 1  1  0] 0 -100.0
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 2  0 [ 0  0  0] 0  0.6
+StencilSetEntry: 2  1 [-1  0  0] 0  0.0
+StencilSetEntry: 2  2 [ 1  0  0] 0  0.0
+StencilSetEntry: 2  3 [ 0 -1  0] 0 -0.1
+StencilSetEntry: 2  4 [ 0  1  0] 0 -0.1
+StencilSetEntry: 2  5 [ 0  0 -1] 0 -0.1
+StencilSetEntry: 2  6 [ 0  0  1] 0 -0.1
+StencilSetEntry: 2  7 [-1  1  0] 0 -0.1
+StencilSetEntry: 2  8 [ 1 -1  0] 0 -0.1
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 3  0 [ 0  0  0] 0  6.0
+StencilSetEntry: 3  1 [-1  0  0] 0  0.0
+StencilSetEntry: 3  2 [ 1  0  0] 0  0.0
+StencilSetEntry: 3  3 [ 0 -1  0] 0 -1.0
+StencilSetEntry: 3  4 [ 0  1  0] 0 -1.0
+StencilSetEntry: 3  5 [ 0  0 -1] 0 -1.0
+StencilSetEntry: 3  6 [ 0  0  1] 0 -1.0
+StencilSetEntry: 3  7 [-1 -1  0] 0 -1.0
+StencilSetEntry: 3  8 [ 1  1  0] 0 -1.0
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 4  0 [ 0  0  0] 0  6.0
+StencilSetEntry: 4  1 [-1  0  0] 0 -1.0
+StencilSetEntry: 4  2 [ 1  0  0] 0 -1.0
+StencilSetEntry: 4  3 [ 0 -1  0] 0 -1.0
+StencilSetEntry: 4  4 [ 0  1  0] 0 -1.0
+StencilSetEntry: 4  5 [ 0  0 -1] 0 -1.0
+StencilSetEntry: 4  6 [ 0  0  1] 0 -1.0
+StencilSetEntry: 4  7 [-1 -1  0] 0  0.0
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 5  0 [ 0  0  0] 0  6.0
+StencilSetEntry: 5  1 [-1  0  0] 0 -1.0
+StencilSetEntry: 5  2 [ 1  0  0] 0 -1.0
+StencilSetEntry: 5  3 [ 0 -1  0] 0 -1.0
+StencilSetEntry: 5  4 [ 0  1  0] 0 -1.0
+StencilSetEntry: 5  5 [ 0  0 -1] 0 -1.0
+StencilSetEntry: 5  6 [ 0  0  1] 0 -1.0
+
+# StencilSetEntry: stencil_num entry offset[ndim] var value
+StencilSetEntry: 6  0 [ 0  0  0] 0  20.4
+StencilSetEntry: 6  1 [-1  0  0] 0  -0.1
+StencilSetEntry: 6  2 [ 1  0  0] 0  -0.1
+StencilSetEntry: 6  3 [ 0 -1  0] 0 -10.0
+StencilSetEntry: 6  4 [ 0  1  0] 0 -10.0
+StencilSetEntry: 6  5 [ 0  0 -1] 0  -0.1
+StencilSetEntry: 6  6 [ 0  0  1] 0  -0.1
+
+###########################################################
+
+# GraphSetStencil: part var stencil_num
+GraphSetStencil:  0 0 0
+GraphSetStencil:  1 0 1
+GraphSetStencil:  2 0 2
+GraphSetStencil:  3 0 3
+GraphSetStencil:  4 0 4
+GraphSetStencil:  5 0 5
+GraphSetStencil:  6 0 5
+GraphSetStencil:  7 0 6
+
+# GraphAddEntries: \
+#   part    ilower(ndim)    iupper(ndim)    stride[ndim]    var \
+#   to_part to_ilower(ndim) to_iupper(ndim) to_stride[ndim] to_var \
+#   index_map[ndim] entry value
+
+###########################################################
+
+# MatrixCreate:
+
+# MatrixSetValues: \
+#   part ilower(ndim) iupper(ndim) stride[ndim] var entry value
+
+##### Dirichlet boundary conditions are set automatically
+
+##### Fix up stencils along part boundaries
+
+MatrixSetValues:  0 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 8  0.0
+MatrixSetValues:  0 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 2 -100.0
+MatrixSetValues:  0 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 0 105.0
+
+MatrixSetValues:  1 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 7  0.0
+MatrixSetValues:  1 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 1 -1.0
+MatrixSetValues:  1 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 0 501.0
+MatrixSetValues:  1 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 8  0.0
+MatrixSetValues:  1 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 2 -0.1
+MatrixSetValues:  1 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 0 500.1
+
+MatrixSetValues:  2 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 7  0.0
+MatrixSetValues:  2 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 1 -100.0
+MatrixSetValues:  2 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 0 100.5
+MatrixSetValues:  2 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 8  0.0
+MatrixSetValues:  2 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 2 -1.0
+MatrixSetValues:  2 (4+ 1- 1-) (4+ 3+ 4+) [1 1 1] 0 0 1.5
+
+MatrixSetValues:  3 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 7  0.0
+MatrixSetValues:  3 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 1 -0.1
+MatrixSetValues:  3 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 1  5.1
+MatrixSetValues:  3 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 7  0.0
+MatrixSetValues:  3 (1- 1- 1-) (1- 3+ 4+) [1 1 1] 0 1 -1.0
+
+MatrixSetValues:  4 (1- 1- 1-) (1- 4+ 4+) [1 1 1] 0 1  0.0
+MatrixSetValues:  4 (1- 1- 1-) (1- 4+ 4+) [1 1 1] 0 7 -1.0
+
+# May need to get the right discretization between parts 9 and 10
+# MatrixSetValues:  9 (1- 3+ 1-) (2+ 3+ 4+) [1 1 1] 0 0  4.0
+# MatrixSetValues:  9 (1- 3+ 1-) (2+ 3+ 4+) [1 1 1] 0 4 -1.0
+
+MatrixSetValues:  7 (3- 1- 1-) (4+ 1- 4+) [1 1 1] 0 0 11.4
+MatrixSetValues:  7 (3- 1- 1-) (4+ 1- 4+) [1 1 1] 0 3 -1.0
+
+# MatrixAddToValues: \
+#   part ilower(ndim) iupper(ndim) var nentries entries[nentries] values[nentries]
+#MatrixAddToValues: 0  (1- 1- 1-) (4+ 4+ 4+) 0 4 [0 1 2 3] [6.0 -1.0 -1.0 -1.0]
+
+###########################################################
+
+# VectorCreate:
+
+###########################################################
+
+#
+# part:  0  1  2  3  4  5  6  7  
+# nvar:  12 12 12 12 12 12 12 12
+# total: 96
+#
+# ProcessPoolCreate: num_pools
+ProcessPoolCreate: 1
+
+# ProcessPoolSetPart: pool part
+ProcessPoolSetPart: 0  0
+ProcessPoolSetPart: 0  1
+ProcessPoolSetPart: 0  2
+ProcessPoolSetPart: 0  3
+ProcessPoolSetPart: 0  4
+ProcessPoolSetPart: 0  5
+ProcessPoolSetPart: 0  6
+ProcessPoolSetPart: 0  7
+
+# ProcessPoolCreate: num_pools
+ProcessPoolCreate: 8
+
+# ProcessPoolSetPart: pool part
+ProcessPoolSetPart: 0  0
+ProcessPoolSetPart: 1  1
+ProcessPoolSetPart: 2  2
+ProcessPoolSetPart: 3  3
+ProcessPoolSetPart: 4  4
+ProcessPoolSetPart: 5  5
+ProcessPoolSetPart: 6  6
+ProcessPoolSetPart: 7  7
+
+###########################################################
+

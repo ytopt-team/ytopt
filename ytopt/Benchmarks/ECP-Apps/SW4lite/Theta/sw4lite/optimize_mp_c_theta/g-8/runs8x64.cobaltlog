@@ -1,0 +1,30 @@
+Jobid: 586965
+qsub --mode script -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP batch.job
+Fri Mar 04 15:42:47 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/g-8
+jobid 586965 submitted from terminal /dev/pts/4
+2022-03-04 16:14:31,611 INFO: Starting Resource_Prologue
+2022-03-04 16:14:31,621 DEBUG: no enabling attribute found
+2022-03-04 16:14:31,621 INFO: Resource_Prologue finished with exit code 0
+Fri Mar 04 16:14:54 2022 +0000 (UTC) 
+Fri Mar 04 16:14:54 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/g-8/batch.job'
+Fri Mar 04 16:14:54 2022 +0000 (UTC) 
+Fri Mar 04 16:14:54 2022 +0000 (UTC) Environment:
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_PARTCORES=64
+Fri Mar 04 16:14:54 2022 +0000 (UTC) SHELL=/bin/bash
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_PARTNAME=3830,3832-3836,3838-3839
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_JOBID=586965
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_STARTTIME=1646410458
+Fri Mar 04 16:14:54 2022 +0000 (UTC) LOGNAME=wuxf
+Fri Mar 04 16:14:54 2022 +0000 (UTC) USER=wuxf
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_ENDTIME=1646414058
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_PARTSIZE=8
+Fri Mar 04 16:14:54 2022 +0000 (UTC) HOME=/home/wuxf
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_JOBSIZE=8
+Fri Mar 04 16:14:54 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Fri Mar 04 16:14:54 2022 +0000 (UTC) 
+Fri Mar 04 16:14:54 2022 +0000 (UTC) Info: stdin received from /dev/null
+Fri Mar 04 16:14:54 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/g-8/runs8x64.output
+Fri Mar 04 16:14:54 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/sw4lite/optimize_mp_c_theta/g-8/runs8x64.error
+Fri Mar 04 16:14:54 2022 +0000 (UTC) 
+Fri Mar 04 17:13:29 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

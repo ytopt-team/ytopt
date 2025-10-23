@@ -1,0 +1,1112 @@
+GEOPM Version: 1.1.0+dev1567gc9a848c8
+Start Time: Thu Mar 03 21:19:13 2022
+Profile: ../TestDfft
+Agent: monitor
+Policy: {}
+
+Hosts:
+  nid03824:
+    Regions:
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 4.68371
+      count: 32
+      sync-runtime (s): 4.69336
+      package-energy (J): 411.118
+      dram-energy (J): 35.5522
+      power (W): 87.5956
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 4.69301
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 1.43684
+      count: 80
+      sync-runtime (s): 1.48432
+      package-energy (J): 126.936
+      dram-energy (J): 11.2478
+      power (W): 85.5177
+      frequency (%): 107.731
+      frequency (Hz): 1.4005e+09
+      time-hint-network (s): 1.48432
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.101942
+      count: 12
+      sync-runtime (s): 0.0944892
+      package-energy (J): 12.0864
+      dram-energy (J): 0.73056
+      power (W): 127.913
+      frequency (%): 107.702
+      frequency (Hz): 1.40013e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0950805
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0259656
+      count: 7
+      sync-runtime (s): 0.0300051
+      package-energy (J): 2.53558
+      dram-energy (J): 0.226913
+      power (W): 84.5051
+      frequency (%): 107.946
+      frequency (Hz): 1.4033e+09
+      time-hint-network (s): 0.0300154
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.7769
+      count: 0
+      sync-runtime (s): 19.7161
+      package-energy (J): 1755.92
+      dram-energy (J): 149.091
+      power (W): 89.0606
+      frequency (%): 107.689
+      frequency (Hz): 1.39996e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.7137
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.0253
+      count: 0
+      sync-runtime (s): 26.0253
+      package-energy (J): 2309.19
+      dram-energy (J): 196.902
+      power (W): 88.7285
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.20734
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0950805
+      time-hint-unset (s): 19.7137
+      geopmctl memory HWM (B): 855168
+      geopmctl network BW (B/s): 0
+  nid03825:
+    Regions:
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 3.73063
+      count: 32
+      sync-runtime (s): 3.73425
+      package-energy (J): 305.884
+      dram-energy (J): 28.6238
+      power (W): 81.9131
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 3.73423
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 2.23768
+      count: 80
+      sync-runtime (s): 2.30401
+      package-energy (J): 184.281
+      dram-energy (J): 17.6857
+      power (W): 79.9825
+      frequency (%): 107.676
+      frequency (Hz): 1.39979e+09
+      time-hint-network (s): 2.30419
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.10149
+      count: 12
+      sync-runtime (s): 0.101387
+      package-energy (J): 12.3677
+      dram-energy (J): 0.774902
+      power (W): 121.986
+      frequency (%): 107.724
+      frequency (Hz): 1.40041e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.101082
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0334666
+      count: 7
+      sync-runtime (s): 0.0300148
+      package-energy (J): 2.3222
+      dram-energy (J): 0.234283
+      power (W): 77.3687
+      frequency (%): 107.79
+      frequency (Hz): 1.40127e+09
+      time-hint-network (s): 0.0300146
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 20.0399
+      count: 0
+      sync-runtime (s): 19.9685
+      package-energy (J): 1640.3
+      dram-energy (J): 153.821
+      power (W): 82.1441
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.9666
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.1432
+      count: 0
+      sync-runtime (s): 26.1432
+      package-energy (J): 2145.54
+      dram-energy (J): 201.179
+      power (W): 82.0687
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.06844
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.101082
+      time-hint-unset (s): 19.9666
+      geopmctl memory HWM (B): 855256
+      geopmctl network BW (B/s): 0
+  nid03826:
+    Regions:
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 3.37292
+      count: 32
+      sync-runtime (s): 3.37577
+      package-energy (J): 275.948
+      dram-energy (J): 25.8334
+      power (W): 81.7436
+      frequency (%): 107.697
+      frequency (Hz): 1.40006e+09
+      time-hint-network (s): 3.37583
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 2.99941
+      count: 80
+      sync-runtime (s): 3.06464
+      package-energy (J): 242.137
+      dram-energy (J): 23.6664
+      power (W): 79.01
+      frequency (%): 107.637
+      frequency (Hz): 1.39928e+09
+      time-hint-network (s): 3.06452
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.0997793
+      count: 12
+      sync-runtime (s): 0.111101
+      package-energy (J): 14.5093
+      dram-energy (J): 0.855499
+      power (W): 130.596
+      frequency (%): 107.71
+      frequency (Hz): 1.40023e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.110872
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0297864
+      count: 7
+      sync-runtime (s): 0.0300584
+      package-energy (J): 2.31104
+      dram-energy (J): 0.227921
+      power (W): 76.8848
+      frequency (%): 107.615
+      frequency (Hz): 1.39899e+09
+      time-hint-network (s): 0.0300127
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.6372
+      count: 0
+      sync-runtime (s): 19.5525
+      package-energy (J): 1588.29
+      dram-energy (J): 150.141
+      power (W): 81.2323
+      frequency (%): 107.696
+      frequency (Hz): 1.40005e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.5507
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.1391
+      count: 0
+      sync-runtime (s): 26.1391
+      package-energy (J): 2123.59
+      dram-energy (J): 200.763
+      power (W): 81.2419
+      frequency (%): 107.691
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.47036
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.110872
+      time-hint-unset (s): 19.5507
+      geopmctl memory HWM (B): 855260
+      geopmctl network BW (B/s): 0
+  nid03827:
+    Regions:
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 2.59787
+      count: 80
+      sync-runtime (s): 2.64978
+      package-energy (J): 225.245
+      dram-energy (J): 19.7727
+      power (W): 85.0051
+      frequency (%): 107.682
+      frequency (Hz): 1.39987e+09
+      time-hint-network (s): 2.64984
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 2.15383
+      count: 32
+      sync-runtime (s): 2.15407
+      package-energy (J): 191.251
+      dram-energy (J): 16.0203
+      power (W): 88.7861
+      frequency (%): 107.694
+      frequency (Hz): 1.40002e+09
+      time-hint-network (s): 2.15405
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.0995537
+      count: 12
+      sync-runtime (s): 0.0874256
+      package-energy (J): 10.8488
+      dram-energy (J): 0.646729
+      power (W): 124.091
+      frequency (%): 107.709
+      frequency (Hz): 1.40021e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0876003
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.00103384
+      count: 7
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 21.191
+      count: 0
+      sync-runtime (s): 21.1469
+      package-energy (J): 1798.45
+      dram-energy (J): 158.064
+      power (W): 85.0454
+      frequency (%): 107.692
+      frequency (Hz): 1.4e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 21.1447
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.0433
+      count: 0
+      sync-runtime (s): 26.0433
+      package-energy (J): 2226.21
+      dram-energy (J): 194.542
+      power (W): 85.4812
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 4.80389
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.0876003
+      time-hint-unset (s): 21.1447
+      geopmctl memory HWM (B): 855236
+      geopmctl network BW (B/s): 0
+  nid03830:
+    Regions:
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 4.16587
+      count: 80
+      sync-runtime (s): 4.23508
+      package-energy (J): 339.597
+      dram-energy (J): 39.8462
+      power (W): 80.1865
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 4.23513
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 2.48697
+      count: 32
+      sync-runtime (s): 2.4843
+      package-energy (J): 209.773
+      dram-energy (J): 23.367
+      power (W): 84.4395
+      frequency (%): 107.697
+      frequency (Hz): 1.40006e+09
+      time-hint-network (s): 2.48432
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.0991079
+      count: 12
+      sync-runtime (s): 0.104746
+      package-energy (J): 12.993
+      dram-energy (J): 0.973343
+      power (W): 124.043
+      frequency (%): 107.703
+      frequency (Hz): 1.40014e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.104357
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0328645
+      count: 7
+      sync-runtime (s): 0.0300073
+      package-energy (J): 2.34271
+      dram-energy (J): 0.285645
+      power (W): 78.0713
+      frequency (%): 107.921
+      frequency (Hz): 1.40298e+09
+      time-hint-network (s): 0.0300335
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.3189
+      count: 0
+      sync-runtime (s): 19.2446
+      package-energy (J): 1589.99
+      dram-energy (J): 180.524
+      power (W): 82.6203
+      frequency (%): 107.69
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.2428
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.1037
+      count: 0
+      sync-runtime (s): 26.1037
+      package-energy (J): 2155.09
+      dram-energy (J): 245.034
+      power (W): 82.5586
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.74948
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.104357
+      time-hint-unset (s): 19.2428
+      geopmctl memory HWM (B): 855276
+      geopmctl network BW (B/s): 0
+  nid03834:
+    Regions:
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 4.61532
+      count: 80
+      sync-runtime (s): 4.64486
+      package-energy (J): 398.844
+      dram-energy (J): 36.6076
+      power (W): 85.8678
+      frequency (%): 107.675
+      frequency (Hz): 1.39978e+09
+      time-hint-network (s): 4.645
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 1.50974
+      count: 32
+      sync-runtime (s): 1.51694
+      package-energy (J): 142.748
+      dram-energy (J): 12.1485
+      power (W): 94.1027
+      frequency (%): 107.694
+      frequency (Hz): 1.40002e+09
+      time-hint-network (s): 1.51684
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.101716
+      count: 12
+      sync-runtime (s): 0.0981175
+      package-energy (J): 13.1923
+      dram-energy (J): 0.784317
+      power (W): 134.454
+      frequency (%): 107.7
+      frequency (Hz): 1.40009e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.097881
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0152915
+      count: 7
+      sync-runtime (s): 0.0150308
+      package-energy (J): 1.24304
+      dram-energy (J): 0.117508
+      power (W): 82.6997
+      frequency (%): 108.201
+      frequency (Hz): 1.40661e+09
+      time-hint-network (s): 0.0150084
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.7293
+      count: 0
+      sync-runtime (s): 19.6914
+      package-energy (J): 1712.31
+      dram-energy (J): 155.735
+      power (W): 86.9576
+      frequency (%): 107.695
+      frequency (Hz): 1.40003e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.6896
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 25.9713
+      count: 0
+      sync-runtime (s): 25.9713
+      package-energy (J): 2268.77
+      dram-energy (J): 205.432
+      power (W): 87.3566
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.17685
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.097881
+      time-hint-unset (s): 19.6896
+      geopmctl memory HWM (B): 855200
+      geopmctl network BW (B/s): 0
+  nid03835:
+    Regions:
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 5.34733
+      count: 80
+      sync-runtime (s): 5.39892
+      package-energy (J): 470.171
+      dram-energy (J): 39.1636
+      power (W): 87.0862
+      frequency (%): 107.696
+      frequency (Hz): 1.40004e+09
+      time-hint-network (s): 5.39885
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 1.06762
+      count: 32
+      sync-runtime (s): 1.09137
+      package-energy (J): 107.668
+      dram-energy (J): 7.90561
+      power (W): 98.6536
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 1.09135
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.0986134
+      count: 12
+      sync-runtime (s): 0.0932271
+      package-energy (J): 13.0563
+      dram-energy (J): 0.678268
+      power (W): 140.048
+      frequency (%): 107.713
+      frequency (Hz): 1.40027e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.092735
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0203143
+      count: 7
+      sync-runtime (s): 0.015013
+      package-energy (J): 1.25629
+      dram-energy (J): 0.110321
+      power (W): 83.6799
+      frequency (%): 107.05
+      frequency (Hz): 1.39165e+09
+      time-hint-network (s): 0.0150073
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.4967
+      count: 0
+      sync-runtime (s): 19.4271
+      package-energy (J): 1716.68
+      dram-energy (J): 141.091
+      power (W): 88.3654
+      frequency (%): 107.691
+      frequency (Hz): 1.39998e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.4257
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.0306
+      count: 0
+      sync-runtime (s): 26.0306
+      package-energy (J): 2309.25
+      dram-energy (J): 188.985
+      power (W): 88.7132
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.5052
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.092735
+      time-hint-unset (s): 19.4257
+      geopmctl memory HWM (B): 854972
+      geopmctl network BW (B/s): 0
+  nid03836:
+    Regions:
+    -
+      region: "MPI_Wait"
+      hash: 0xe22ce943
+      runtime (s): 6.66434
+      count: 80
+      sync-runtime (s): 6.68805
+      package-energy (J): 611.999
+      dram-energy (J): 46.312
+      power (W): 91.5063
+      frequency (%): 107.673
+      frequency (Hz): 1.39975e+09
+      time-hint-network (s): 6.68877
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "[OMPT]fftw_spawn_loop+0x51"
+      hash: 0x8c67a693
+      runtime (s): 0.113436
+      count: 12
+      sync-runtime (s): 0.12982
+      package-energy (J): 18.6497
+      dram-energy (J): 0.881927
+      power (W): 143.658
+      frequency (%): 107.7
+      frequency (Hz): 1.4001e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.129031
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Barrier"
+      hash: 0x7b561f45
+      runtime (s): 0.0309248
+      count: 7
+      sync-runtime (s): 0.029986
+      package-energy (J): 2.63654
+      dram-energy (J): 0.206039
+      power (W): 87.9256
+      frequency (%): 107.343
+      frequency (Hz): 1.39545e+09
+      time-hint-network (s): 0.0300146
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    -
+      region: "MPI_Allreduce"
+      hash: 0x0d94e328
+      runtime (s): 0.0109233
+      count: 32
+      sync-runtime (s): 0.00586295
+      package-energy (J): 0.676575
+      dram-energy (J): 0.0341034
+      power (W): 115.398
+      frequency (%): 107.693
+      frequency (Hz): 1.40001e+09
+      time-hint-network (s): 0.00587514
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Unmarked Totals:
+      runtime (s): 19.2115
+      count: 0
+      sync-runtime (s): 19.1724
+      package-energy (J): 1768.41
+      dram-energy (J): 132.322
+      power (W): 92.2375
+      frequency (%): 107.698
+      frequency (Hz): 1.40007e+09
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 19.1703
+    Epoch Totals:
+      runtime (s): 0
+      count: 0
+      sync-runtime (s): 0
+      package-energy (J): 0
+      dram-energy (J): 0
+      power (W): 0
+      frequency (%): 0
+      frequency (Hz): 0
+      time-hint-network (s): 0
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0
+      time-hint-unset (s): 0
+    Application Totals:
+      runtime (s): 26.0311
+      count: 0
+      sync-runtime (s): 26.0311
+      package-energy (J): 2402.83
+      dram-energy (J): 179.792
+      power (W): 92.3059
+      frequency (%): 107.692
+      frequency (Hz): 1.39999e+09
+      time-hint-network (s): 6.72466
+      time-hint-ignore (s): 0
+      time-hint-compute (s): 0
+      time-hint-memory (s): 0
+      time-hint-io (s): 0
+      time-hint-serial (s): 0
+      time-hint-parallel (s): 0
+      time-hint-unknown (s): 0.129031
+      time-hint-unset (s): 19.1703
+      geopmctl memory HWM (B): 855212
+      geopmctl network BW (B/s): 0
+

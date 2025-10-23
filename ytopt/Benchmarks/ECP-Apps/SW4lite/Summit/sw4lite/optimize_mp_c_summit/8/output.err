@@ -1,0 +1,5 @@
+Warning: more than 1 task/rank assigned to a core
+Warning: more than 1 task/rank assigned to a core
+Warning: more than 1 task/rank assigned to a core
+User defined signal 2
+ERROR:  One or more process (first noticed rank 2) terminated with signal 12

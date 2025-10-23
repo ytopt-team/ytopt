@@ -1,0 +1,1 @@
+This directory includes all the files for autotuning SW4lite on Summit. The autotuning scripts are in the folder autotuning/sw4lite for performance. The file plopper.py under the folder autotuning/plopper entails generating a new code, compiling and execution. The script runs.lsf under autotuning/sw4lite is used to submit a job.

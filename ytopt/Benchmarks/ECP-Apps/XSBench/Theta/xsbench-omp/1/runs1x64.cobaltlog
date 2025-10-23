@@ -1,0 +1,30 @@
+Jobid: 585761
+qsub --mode script -n 1 -t 60 -O runs1x64 -qdebug-cache-quad -A EE-ECP batch.job
+Sun Feb 27 22:12:54 2022 +0000 (UTC) submitted with cwd set to: /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/1
+jobid 585761 submitted from terminal /dev/pts/1
+2022-02-27 22:13:31,094 INFO: Starting Resource_Prologue
+2022-02-27 22:13:31,096 DEBUG: no enabling attribute found
+2022-02-27 22:13:31,097 INFO: Resource_Prologue finished with exit code 0
+Sun Feb 27 22:13:51 2022 +0000 (UTC) 
+Sun Feb 27 22:13:51 2022 +0000 (UTC) Command: '/gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/1/batch.job'
+Sun Feb 27 22:13:51 2022 +0000 (UTC) 
+Sun Feb 27 22:13:51 2022 +0000 (UTC) Environment:
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_PARTCORES=64
+Sun Feb 27 22:13:51 2022 +0000 (UTC) SHELL=/bin/bash
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_PARTNAME=3834
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_JOBID=585761
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_STARTTIME=1645999999
+Sun Feb 27 22:13:51 2022 +0000 (UTC) LOGNAME=wuxf
+Sun Feb 27 22:13:51 2022 +0000 (UTC) USER=wuxf
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_ENDTIME=1646003599
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_PARTSIZE=1
+Sun Feb 27 22:13:51 2022 +0000 (UTC) HOME=/home/wuxf
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_JOBSIZE=1
+Sun Feb 27 22:13:51 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Sun Feb 27 22:13:51 2022 +0000 (UTC) 
+Sun Feb 27 22:13:51 2022 +0000 (UTC) Info: stdin received from /dev/null
+Sun Feb 27 22:13:51 2022 +0000 (UTC) Info: stdout sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/1/runs1x64.output
+Sun Feb 27 22:13:51 2022 +0000 (UTC) Info: stderr sent to /gpfs/mira-home/wuxf/LoopOPT/XSBench-master/openmp-threading/1/runs1x64.error
+Sun Feb 27 22:13:51 2022 +0000 (UTC) 
+Sun Feb 27 22:20:29 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

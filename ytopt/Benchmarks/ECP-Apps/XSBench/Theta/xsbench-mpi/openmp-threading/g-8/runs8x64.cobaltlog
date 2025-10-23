@@ -1,0 +1,60 @@
+Jobid: 586686
+qsub --mode script -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP batch.job
+Thu Mar 03 14:48:08 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8
+jobid 586686 submitted from terminal /dev/pts/16
+2022-03-03 14:48:45,077 INFO: Starting Resource_Prologue
+2022-03-03 14:48:47,814 DEBUG: no enabling attribute found
+2022-03-03 14:48:47,814 INFO: Resource_Prologue finished with exit code 0
+Thu Mar 03 14:49:07 2022 +0000 (UTC) 
+Thu Mar 03 14:49:07 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/batch.job'
+Thu Mar 03 14:49:07 2022 +0000 (UTC) 
+Thu Mar 03 14:49:07 2022 +0000 (UTC) Environment:
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_PARTCORES=64
+Thu Mar 03 14:49:07 2022 +0000 (UTC) SHELL=/bin/bash
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_PARTNAME=3830,3832-3836,3838-3839
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_JOBID=586686
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_STARTTIME=1646318905
+Thu Mar 03 14:49:07 2022 +0000 (UTC) LOGNAME=wuxf
+Thu Mar 03 14:49:07 2022 +0000 (UTC) USER=wuxf
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_ENDTIME=1646322505
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_PARTSIZE=8
+Thu Mar 03 14:49:07 2022 +0000 (UTC) HOME=/home/wuxf
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_JOBSIZE=8
+Thu Mar 03 14:49:07 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Thu Mar 03 14:49:07 2022 +0000 (UTC) 
+Thu Mar 03 14:49:07 2022 +0000 (UTC) Info: stdin received from /dev/null
+Thu Mar 03 14:49:07 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/runs8x64.output
+Thu Mar 03 14:49:07 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/runs8x64.error
+Thu Mar 03 14:49:07 2022 +0000 (UTC) 
+Thu Mar 03 14:56:40 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal
+Jobid: 586690
+qsub --mode script -n 8 -t 60 -O runs8x64 -qdebug-cache-quad -A EE-ECP batch.job
+Thu Mar 03 15:03:20 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8
+jobid 586690 submitted from terminal /dev/pts/16
+2022-03-03 15:03:56,645 INFO: Starting Resource_Prologue
+2022-03-03 15:03:59,844 DEBUG: no enabling attribute found
+2022-03-03 15:03:59,844 INFO: Resource_Prologue finished with exit code 0
+Thu Mar 03 15:04:17 2022 +0000 (UTC) 
+Thu Mar 03 15:04:19 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/batch.job'
+Thu Mar 03 15:04:19 2022 +0000 (UTC) 
+Thu Mar 03 15:04:19 2022 +0000 (UTC) Environment:
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_PARTCORES=64
+Thu Mar 03 15:04:19 2022 +0000 (UTC) SHELL=/bin/bash
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_PARTNAME=3830,3832-3836,3838-3839
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_JOBID=586690
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_STARTTIME=1646319816
+Thu Mar 03 15:04:19 2022 +0000 (UTC) LOGNAME=wuxf
+Thu Mar 03 15:04:19 2022 +0000 (UTC) USER=wuxf
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_ENDTIME=1646323416
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_PARTSIZE=8
+Thu Mar 03 15:04:19 2022 +0000 (UTC) HOME=/home/wuxf
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_JOBSIZE=8
+Thu Mar 03 15:04:19 2022 +0000 (UTC) COBALT_QUEUE=debug-cache-quad
+Thu Mar 03 15:04:19 2022 +0000 (UTC) 
+Thu Mar 03 15:04:19 2022 +0000 (UTC) Info: stdin received from /dev/null
+Thu Mar 03 15:04:19 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/runs8x64.output
+Thu Mar 03 15:04:19 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-8/runs8x64.error
+Thu Mar 03 15:04:19 2022 +0000 (UTC) 
+Thu Mar 03 15:10:57 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

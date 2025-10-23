@@ -1,0 +1,30 @@
+Jobid: 586689
+qsub --mode script -n 128 -t 60 -O runs128x64 --attrs mcdram=cache:numa=quad -A EE-ECP batch.job
+Thu Mar 03 15:01:27 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-128
+jobid 586689 submitted from terminal /dev/pts/16
+2022-03-03 15:03:17,236 INFO: Starting Resource_Prologue
+2022-03-03 15:03:17,253 DEBUG: no enabling attribute found
+2022-03-03 15:03:17,253 INFO: Resource_Prologue finished with exit code 0
+Thu Mar 03 15:03:37 2022 +0000 (UTC) 
+Thu Mar 03 15:03:37 2022 +0000 (UTC) Command: '/lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-128/batch.job'
+Thu Mar 03 15:03:37 2022 +0000 (UTC) 
+Thu Mar 03 15:03:37 2022 +0000 (UTC) Environment:
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_PARTCORES=64
+Thu Mar 03 15:03:37 2022 +0000 (UTC) SHELL=/bin/bash
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_PROJECT=EE-ECP
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_PARTNAME=300-309,470,646,648,672-677,760-769,870-872,874-878,890-894,896-899,950-966,968-969,1070-1079,1090-1099,1240-1245,1247,1249-1259,3547-3548,3551-3557,3600-3604,3606-3609,3618,3651,3700,3723,3738-3739,3765
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_JOBID=586689
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_STARTTIME=1646319777
+Thu Mar 03 15:03:37 2022 +0000 (UTC) LOGNAME=wuxf
+Thu Mar 03 15:03:37 2022 +0000 (UTC) USER=wuxf
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_ENDTIME=1646323377
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_PARTSIZE=128
+Thu Mar 03 15:03:37 2022 +0000 (UTC) HOME=/home/wuxf
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_JOBSIZE=128
+Thu Mar 03 15:03:37 2022 +0000 (UTC) COBALT_QUEUE=backfill
+Thu Mar 03 15:03:37 2022 +0000 (UTC) 
+Thu Mar 03 15:03:37 2022 +0000 (UTC) Info: stdin received from /dev/null
+Thu Mar 03 15:03:37 2022 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-128/runs128x64.output
+Thu Mar 03 15:03:37 2022 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/xsbench-mpi/openmp-threading/g-128/runs128x64.error
+Thu Mar 03 15:03:37 2022 +0000 (UTC) 
+Thu Mar 03 15:10:56 2022 +0000 (UTC) Info: task completed normally with an exit code of 0; initiating job cleanup and removal

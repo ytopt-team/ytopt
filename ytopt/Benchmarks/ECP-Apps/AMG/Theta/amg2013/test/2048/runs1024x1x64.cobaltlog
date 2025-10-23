@@ -1,0 +1,5 @@
+Jobid: 585935
+qsub --mode script -A EE-ECP -n 1024 -t 60 -O runs1024x1x64 --attrs mcdram=cache:numa=quad batch2.job
+Mon Feb 28 20:05:44 2022 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/EE-ECP/wuxf/work/yt/ECP/amg2013/test/2048
+jobid 585935 submitted from terminal /dev/pts/26
+Mon Feb 28 20:10:04 2022 +0000 (UTC) Info: user delete requested; removing job from the queue

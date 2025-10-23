@@ -1,0 +1,18 @@
+# Begin LSF directives
+#BSUB -P MED106
+#BSUB -J flash-x
+#BSUB -o output.log
+#BSUB -e output.err
+#BSUB -alloc_flags gpumps
+#BSUB -W 30
+#BSUB -nnodes 1
+
+module load nvhpc 
+
+export OMP_NUM_THREADS=168
+jsrun -n 1 -a 1 -g 1 -c 42 -bpacked:42 -dpacked ./XSBench -m event > out.txt
+jsrun -n 1 -a 6 -g 6 -c 42 -bpacked:42 -dpacked ./XSBench -m event > out1.txt
+export OMP_NUM_THREADS=84
+jsrun -n 1 -a 1 -g 1 -c 42 -bpacked:21 -dpacked ./XSBench -m event > out3.txt
+jsrun -n 1 -a 6 -g 6 -c 42 -bpacked:21 -dpacked ./XSBench -m event > out4.txt
+

@@ -1,0 +1,38 @@
+
+OMP_PROC_BIND=true MPICH_MAX_THREAD_SAFETY=multiple GEOPM_CTL=pthread GEOPM_PROFILE= GEOPM_REPORT=gm2.report KMP_AFFINITY=disabled MV2_ENABLE_AFFINITY=0 KMP_WARNINGS=FALSE aprun -N 1 -n 128 --cpu-binding 0-63 -e LD_PRELOAD=libgeopm.so -- ../amg2013 -laplace -P 8 4 4 -n 100 100 100
+
+  3D 7-point Laplace problem on a cube
+  (nx_global, ny_global, nz_global) = (800, 400, 400)
+  (Px, Py, Pz) = (8, 4, 4)
+  (cx, cy, cz) = (1.000000, 1.000000, 1.000000)
+
+=============================================
+Setup matrix and rhs:
+=============================================
+Setup matrix and rhs:
+Setup matrix and rhs  wall clock time = 4.081983 seconds
+Setup matrix and rhs  cpu clock time  = 8.159964 seconds
+=============================================
+Setup phase times:
+=============================================
+PCG Setup:
+PCG Setup  wall clock time = 11.242232 seconds
+PCG Setup  cpu clock time  = 468.933777 seconds
+
+System Size / Setup Phase Time: 1.138564e+07
+
+=============================================
+Solve phase times:
+=============================================
+PCG Solve:
+PCG Solve  wall clock time = 9.614619 seconds
+PCG Solve  cpu clock time  = 615.288327 seconds
+
+AMG2013 Benchmark version 1.0
+Iterations = 19
+Final Relative Residual Norm = 7.178163e-07
+
+System Size * Iterations / Solve Phase Time: 2.529481e+08
+
+Runtime(seconds): 24.993
+Application 25328472 resources: utime ~132035s, stime ~10260s, Rss ~608676, inblocks ~4226638, outblocks ~6920

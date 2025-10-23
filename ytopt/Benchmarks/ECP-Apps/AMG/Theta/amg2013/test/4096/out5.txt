@@ -1,0 +1,35 @@
+  3D 7-point Laplace problem on a cube
+  (nx_global, ny_global, nz_global) = (1600, 1600, 1600)
+  (Px, Py, Pz) = (16, 16, 16)
+  (cx, cy, cz) = (1.000000, 1.000000, 1.000000)
+
+=============================================
+Setup matrix and rhs:
+=============================================
+Setup matrix and rhs:
+Setup matrix and rhs  wall clock time = 4.078015 seconds
+Setup matrix and rhs  cpu clock time  = 4.077871 seconds
+=============================================
+Setup phase times:
+=============================================
+PCG Setup:
+PCG Setup  wall clock time = 11.622817 seconds
+PCG Setup  cpu clock time  = 328.203605 seconds
+
+System Size / Setup Phase Time: 3.524103e+08
+
+=============================================
+Solve phase times:
+=============================================
+PCG Solve:
+PCG Solve  wall clock time = 4.509402 seconds
+PCG Solve  cpu clock time  = 288.588452 seconds
+
+AMG2013 Benchmark version 1.0
+Iterations = 28
+Final Relative Residual Norm = 5.709558e-07
+
+System Size * Iterations / Solve Phase Time: 2.543308e+10
+
+Runtime(seconds): 20.415
+Application 25333201 resources: utime ~2381204s, stime ~211210s, Rss ~594524, inblocks ~54696308, outblocks ~2792
