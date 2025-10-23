@@ -72,7 +72,7 @@ class Plopper:
         #Find the execution time 
         
         execution_status = subprocess.Popen(cmd2, shell=True, stdout=subprocess.PIPE)
-        app_timeout = 500
+        app_timeout = 50
 
         try:
                 outs, errs = execution_status.communicate(timeout=app_timeout)

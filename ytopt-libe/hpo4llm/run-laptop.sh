@@ -45,7 +45,7 @@ export NWORKERS="--nworkers ${nws}"  # extra worker running generator (no resour
 # Adjust exe.pl so workers correctly use their resources
 
 # Name of Conda environment
-export CONDA_ENV_NAME=ytune
+export CONDA_ENV_NAME=shap
 
 # Activate conda environment
 #source /usr/local/miniconda/etc/profile.d/conda.sh
