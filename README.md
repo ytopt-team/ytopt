@@ -67,7 +67,7 @@ pip install -e .
 After installing scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` for the latest examples with new features.
 
 ```
-* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
+# [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
     * Prerequisites: ``autotools`` and ``gsl``
         * Ubuntu
           ```
@@ -127,6 +127,8 @@ ytopt/hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters using ray
 ytopt/benchmark/
     a set of problems the user can use to compare our different search algorithms or as examples to build their own problems
+ytopt/Benchmarks/
+    a set of problems for autotuning PolyBench 4.2 and ECP proxy apps
 ytopt-libe/
     scripts and a set of examples for using ytopt-libe with new features 
 ytopt-libe/hpo/
