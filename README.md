@@ -28,10 +28,10 @@ Additional documentation is available on [Read the Docs](https://ytopt.readthedo
 ``ytopt`` requires the following components: ``dh-scikit-optimize``, ``autotune``, and ``ConfigSpace``. When ytopt is being installed, ``ConfigSpace`` and ``LibEnsemble`` are required to be installed automatically.
 
 
-* We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html), for example:
+* We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html) with python version >=3.10, for example:
 
 ```
-conda create --name ytune python=3.10
+conda create --name ytune python=3.13
 conda activate ytune
 ```
 
