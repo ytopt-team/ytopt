@@ -15,11 +15,13 @@
 
 3. Create conda envirment ytune 
 
+```
 conda create --name ytune python=3.13
 conda activate ytune
 
 mkdir ytune
 cd ytune
+```
 
 4. Install ytopt (https://github.com/ytopt-team/ytopt)
 
