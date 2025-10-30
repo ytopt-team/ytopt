@@ -2,7 +2,7 @@
 
  This ytopt-libe-uqgrid requires ytopt and UQGrid from https://github.com/dmaldona/uqgrid. It is self-contained.
 
-# On LLNL Dane: 
+* On LLNL Dane: 
 
 1. Loading the modules: 
 ```
