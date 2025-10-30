@@ -52,7 +52,7 @@ pip install numdifftools
 6. go to the package ytopt-libe-uqgrid
 
 ```
-cd ytopt-libe-uqgrid
+cd ytopt/ytopt-libe/uqgrid
 To run a job on a laptop, use run-laptop.sh to submit a job.
 ./run-laptop.sh
 
