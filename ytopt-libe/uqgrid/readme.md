@@ -1,6 +1,6 @@
 # This package leverages and tailors ytopt-libe to generate power grid scenarios then do TSI analysis in parallel.
 
- This ytopt-libe-uqgrid requires UQGrid from https://github.com/dmaldona/uqgrid.
+ This ytopt-libe-uqgrid requires ytopt and UQGrid from https://github.com/dmaldona/uqgrid. It is self-contained.
 
 # On LLNL Dane: 
 
