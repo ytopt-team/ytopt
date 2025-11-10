@@ -15,9 +15,6 @@ import secrets
 import numpy as np
 import time
 
-import multiprocessing
-multiprocessing.set_start_method('fork', force=True)
-
 # Import libEnsemble items for this test
 from libensemble.libE import libE
 from libensemble.alloc_funcs.start_only_persistent import only_persistent_gens as alloc_f
@@ -60,26 +57,28 @@ libE_specs['sim_dirs_make'] = False  # Otherwise directories separated by each s
 libE_specs['ensemble_dir_path'] = './ensemble_' + secrets.token_hex(nbytes=4)
 
 # Copy or symlink needed files into unique directories
-libE_specs['sim_dir_symlink_files'] = [here + f for f in ['generate_scenarios.py', 'TSI_analysis.py', 'TSI_analysis_parallel.py','config.yaml', 'exe.pl', 'plopper.py', 'processexe.pl', 'data']]
-
-# Declare the sim_f to be optimized, and the input/outputs
-sim_specs = {
-    'sim_f': init_obj,
-    'in': ['p0','p1'],
-    'out': [('objective', float),('elapsed_sec', float)],
-}
+#libE_specs['sim_dir_copy_files'] = [here + f for f in ['mmp.c', 'Materials.c', 'XSutils.c', 'XSbench_header.h']]
+libE_specs['sim_dir_symlink_files'] = [here + f for f in ['openmc.sh', 'settings.xml', 'materials.xml', 'geometry.xml', 'exe.pl', 'plopper.py', 'processexe.pl']]
 
 cs = CS.ConfigurationSpace(seed=1234)
-#NOISE_VAR
-#p0 = CSH.OrdinalHyperparameter(name='p0', sequence=[0.75,1.00,1.25,1.50], default_value=0.75)
-p0= CSH.CategoricalHyperparameter(name='p0', choices=['0.75','1.00','1.25','1.50'], default_value='0.75')
-#NOISE_TYPE
-#p1= CSH.CategoricalHyperparameter(name='p1', choices=['uniform', 'normal'], default_value='uniform')
-p1= CSH.CategoricalHyperparameter(name='p1', choices=['uniform'], default_value='uniform')
-#for other use later on
-#p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.000001, upper=0.1, default_value=0.0005)
+# queuing logic type
+p0 = CSH.CategoricalHyperparameter(name='p0', choices=["openmc", "openmc-queueless"], default_value="openmc-queueless")
+# maximum number of particles in-flight
+p1= CSH.UniformIntegerHyperparameter(name='p1', lower=500000, upper=8000000, default_value=1000000, q=1000)
+# number of logarithmic hash grid bins
+p2 = CSH.UniformIntegerHyperparameter(name='p2', lower=100, upper=100000, default_value=4000, q=100)
+# minimum sorting threshold
+p3 = CSH.UniformIntegerHyperparameter(name='p3', lower=0, upper=100000, default_value=20000, q=1000)
+#number of threads
+p4= CSH.UniformIntegerHyperparameter(name='p4', lower=2, upper=8, default_value=8, q=2)
+#number of tasks per gpu
+p5= CSH.OrdinalHyperparameter(name='p5',sequence=[1, 2], default_value=1)
+#number of gpus per node
+p6= CSH.CategoricalHyperparameter(name='p6', choices=['cores','threads','sockets'], default_value='threads')
 
-cs.add_hyperparameters([p0, p1])
+cs.add_hyperparameters([p0, p1, p2, p3, p4, p5, p6])
+cond = EqualsCondition(p3, p0, "openmc")
+cs.add_conditions([cond])
 
 ytoptimizer = Optimizer(
     num_workers=num_sim_workers,
@@ -92,10 +91,24 @@ ytoptimizer = Optimizer(
     set_NI=10,
 )
 
+# Declare the sim_f to be optimized, and the input/outputs
+# Add p3_present indicator due to LibEnsemble API -- it is implicit from the ConfigSpace
+# but must be explicitly tracked due to current limitations.
+sim_specs = {
+    'sim_f': init_obj,
+    'in': ['p0', 'p1', 'p2',
+            'p3_present',
+            'p3', 'p4', 'p5', 'p6'],
+    'out': [('objective', float),('elapsed_sec', float)],
+}
+
 # Declare the gen_f that will generate points for the sim_f, and the various input/outputs
 gen_specs = {
     'gen_f': persistent_ytopt,
-    'out': [('p0', float, (1,)), ('p1', "<U24", (1,))],
+    'out': [('p0', "<U24", (1,)), ('p1', int, (1,)), ('p2', int, (1,)),
+            ('p3_present', bool, (1,)),
+            ('p3', int, (1,)),
+            ('p4', int, (1,)), ('p5', int, (1,)), ('p6', "<U24", (1,))],
     'persis_in': sim_specs['in'] + ['objective'] + ['elapsed_sec'],
     'user': {
         'ytoptimizer': ytoptimizer,  # provide optimizer to generator function
@@ -122,3 +135,13 @@ H, persis_info, flag = libE(sim_specs, gen_specs, exit_criteria, persis_info,
 if is_manager:
     print("\nlibEnsemble has completed evaluations.")
     #save_libE_output(H, persis_info, __file__, nworkers)
+
+    #print("\nSaving just sim_specs[['in','out']] to a CSV")
+    #H = np.load(glob.glob('*.npy')[0])
+    #H = H[H["sim_ended"]]
+    #H = H[H["returned"]]
+    #dtypes = H[gen_specs['persis_in']].dtype
+    #b = np.vstack(map(list, H[gen_specs['persis_in']]))
+    #print(b)
+    #np.savetxt('results.csv',b, header=','.join(dtypes.names), delimiter=',',fmt=','.join(['%s']*b.shape[1]))
+

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<settings>
+  <run_mode>eigenvalue</run_mode>
+  <particles>10000000</particles>
+  <temperature_multipole>false</temperature_multipole>
+  <batches>2</batches>
+  <inactive>1</inactive>
+  <source strength="1.0">
+    <space type="box">
+      <parameters>-160 -160 -183 160 160 183</parameters>
+    </space>
+  </source>
+</settings>
