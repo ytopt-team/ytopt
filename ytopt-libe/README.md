@@ -24,6 +24,8 @@ tvm/
     Autotuning Apache TVM (Tensor Virtual Machine)-based scientific applications (3mm, lu, cholesky)
 svms/
     Autotuning SVM (Support Vector Machine)-based scientific simulations
+openmc/
+    Autotuning ECP application OpenMC 
 ```
 
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
