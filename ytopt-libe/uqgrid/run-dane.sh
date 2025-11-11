@@ -15,7 +15,7 @@ let nevals=4
 let nfolders=4
 
 #--- process processexe.pl to change the number of nodes (no change)
-# set the MPI ranks per run
+# set the number of nodes  per run
 ./processcp.pl ${nranks}
 
 # set application timeout
