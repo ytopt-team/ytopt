@@ -33,8 +33,7 @@ cat >batch.job <<EOF
 #SBATCH --job-name=IEEE500-samples
 #SBATCH --output=logs/IEEE500-samples_%j.out
 #SBATCH --error=logs/IEEE500-samples_%j.err
-#SBATCH -N 4
-#SBATCH -n 4
+#SBATCH -N ${nnds}
 #SBATCH -c 32
 #SBATCH --ntasks-per-node=1
 #SBATCH -p pbatch
