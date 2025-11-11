@@ -7,10 +7,11 @@
 use Time::HiRes qw(gettimeofday); 
 
 $A_FILE = "tmpoutfile.txt";
+
 foreach $filename (@ARGV) {
     #print "Start to preprocess ", $filename, "...\n";
     $retval = gettimeofday( ); 
-    system("python '$filename' > tmpoutfile.txt");
+    system("python $filename > $A_FILE");
     $tt = gettimeofday( );
     $ttotal = $tt - $retval;
     printf("%.4f", $ttotal);

@@ -50,16 +50,17 @@ class Plopper:
         exetime = sys.maxsize
         counter = random.randint(1, 10001) # To reduce collision increasing the sampling intervals
 
-        tmpconfig = self.outputdir+"/"+str(counter)+".yaml"
+        #tmpconfig = self.outputdir+"/"+str(counter)+".yaml"
+        tmpconfig = self.outputdir+"/"+"config.yaml"
 
         # Generate intermediate file
         dictVal = self.createDict(x, params)
         self.plotValues(dictVal, self.sourcefile, tmpconfig)
 
         # create gen and tsi executables
-        #tmpgen = "../../generate_scenarios.py" + " --config " + tmpconfig
-        tmpgen = " ../../generate_scenarios.py" + " --config " + "../"+str(counter)+".yaml"
         #tmpgen = "../../generate_scenarios.py" 
+        #tmpgen = " ../../generate_scenarios.py" + " --config " + "../"+str(counter)+".yaml"
+        tmpgen = "../../generate_scenarios.py" + " --config " + "../config.yaml"
         #tmptsi = "../../TSI_analysis.py" 
         tmptsi = "  ../../TSI_analysis_parallel.py" 
 

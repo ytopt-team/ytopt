@@ -188,19 +188,19 @@ def main():
        'BATCH_SIZE': 10
     }  
 
+    #begin with defaults → YAML 
+    CONFIG = dict(DEFAULT_CONFIG)          # start with defaults
+
     # parse command-line flag --config
     parser = argparse.ArgumentParser(
         description="Scenario generation + TSI analysis pipeline"
     )
     parser.add_argument(
         '--config', 
-	type=argparse.FileType('r'), # 'r' for read mode
+	#type=argparse.FileType('r'), # 'r' for read mode
         help="Path to YAML file with hyper-parameters (overrides defaults)"
     )
-    cli_args = parser.parse_args()
-
-    #begin with defaults → YAML 
-    CONFIG = dict(DEFAULT_CONFIG)          # start with defaults
+    cli_args = parser.parse_args(['--config', '../config.yaml'])
 
     # YAML file, if provided, update the config
     if cli_args.config:
@@ -208,6 +208,8 @@ def main():
         with cfg_path.open() as f:
             yaml_cfg = yaml.safe_load(f) or {}
         CONFIG.update(yaml_cfg)
+    else:
+        print("No config file specified.")
 
     #PowerGridModel = "IEEE-9" #"ACTIVSg200" #  "IEEE-39" #  "ACTIVSg500" #
     PowerGridModel = CONFIG['PowerGridModel']
@@ -221,7 +223,6 @@ def main():
     #BATCH_SIZE = 10
     BATCH_SIZE = CONFIG['BATCH_SIZE']
 
-    #PATH = "/usr/workspace/hiop/dane/project/scidac_2025/cheng38/uqgrid/bin/data"
     PATH = "../../data"
 
     if PowerGridModel == "IEEE-9":
