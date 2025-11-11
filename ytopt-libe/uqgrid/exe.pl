@@ -1,4 +1,4 @@
-#!/usr/bin/env perl 
+#!/usr/bin/env perl -w
 
 #Author: Xingfu Wu
 #MCS, ANL
@@ -10,7 +10,7 @@ $A_FILE = "tmpoutfile.txt";
 foreach $filename (@ARGV) {
     #print "Start to preprocess ", $filename, "...\n";
     $retval = gettimeofday( ); 
-    system("python $filename > tmpoutfile.txt");
+    system("python '$filename' > tmpoutfile.txt");
     $tt = gettimeofday( );
     $ttotal = $tt - $retval;
     printf("%.4f", $ttotal);

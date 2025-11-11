@@ -58,10 +58,10 @@ class Plopper:
 
         # create gen and tsi executables
         #tmpgen = "../../generate_scenarios.py" + " --config " + tmpconfig
-        tmpgen = "../../generate_scenarios.py" + " --config " + "../"+str(counter)+".yaml"
+        tmpgen = " ../../generate_scenarios.py" + " --config " + "../"+str(counter)+".yaml"
         #tmpgen = "../../generate_scenarios.py" 
         #tmptsi = "../../TSI_analysis.py" 
-        tmptsi = "../../TSI_analysis_parallel.py" 
+        tmptsi = "  ../../TSI_analysis_parallel.py" 
 
         cmdgen = "../../exe.pl " + tmpgen 
         cmdtsi = "../../exe.pl " + tmptsi

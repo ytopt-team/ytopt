@@ -190,15 +190,13 @@ def main():
 
     # parse command-line flag --config
     parser = argparse.ArgumentParser(
-        description="Scenario generation + TSI analysis pipeline")
+        description="Scenario generation + TSI analysis pipeline"
+    )
     parser.add_argument(
-        "--config",
-        help="Path to YAML file with hyper-parameters (overrides defaults)")
-    parser.add_argument(
-        "--set",
-        nargs="*",
-        metavar="KEY=VAL",
-        help="Override individual keys, e.g.  --set NOISE_VAR=0.2 BATCH_SIZE=4")
+        '--config', 
+	type=argparse.FileType('r'), # 'r' for read mode
+        help="Path to YAML file with hyper-parameters (overrides defaults)"
+    )
     cli_args = parser.parse_args()
 
     #begin with defaults → YAML 
@@ -237,15 +235,15 @@ def main():
     elif PowerGridModel == "ACTIVSg200":
         raw = f"{PATH}/ACTIVSG/ACTIVSg200.raw"
         dyr = f"{PATH}/ACTIVSG/ACTIVSg200.dyr"
-        n_bus = 49
+        n_bus = 200
     elif PowerGridModel == "ACTIVSg500":
         raw = f"{PATH}/ACTIVSG/ACTIVSg500.raw"
         dyr = f"{PATH}/ACTIVSG/ACTIVSg500.dyr"
-        n_bus = 90
+        n_bus = 500
     else:
         raise RuntimeError(f"{PowerGridModel} is an invalid model!")
 
-    fault_locations   = list(range(1, n_bus + 1))
+    fault_locations   = list(range(0, n_bus))
 
     # Calculate total scenarios
     total_scenarios = SAMPLES_PER_FAULT_LOCATION * len(fault_locations) * len(FAULT_IMPEDANCES)
