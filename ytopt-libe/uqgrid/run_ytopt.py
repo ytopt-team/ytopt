@@ -26,9 +26,8 @@ from libensemble.tools import parse_args, save_libE_output, add_unique_random_st
 from ytopt_obj import init_obj  # Simulator function, calls Plopper
 from ytopt_asktell import persistent_ytopt  # Generator function, communicates with ytopt optimizer
 
-import ConfigSpace as CS
-import ConfigSpace.hyperparameters as CSH
-from ConfigSpace import ConfigurationSpace, EqualsCondition
+from ConfigSpace import ConfigurationSpace, Categorical, Float, Integer, EqualsCondition
+
 from ytopt.search.optimizer import Optimizer
 
 # Parse comms, default options from commandline
@@ -69,17 +68,17 @@ sim_specs = {
     'out': [('objective', float),('elapsed_sec', float)],
 }
 
-cs = CS.ConfigurationSpace(seed=1234)
+cs = ConfigurationSpace(seed=1234)
 #NOISE_VAR
-#p0 = CSH.OrdinalHyperparameter(name='p0', sequence=[0.75,1.00,1.25,1.50], default_value=0.75)
-p0= CSH.CategoricalHyperparameter(name='p0', choices=['0.75','1.00','1.25','1.50'], default_value='0.75')
-#NOISE_TYPE
-#p1= CSH.CategoricalHyperparameter(name='p1', choices=['uniform', 'normal'], default_value='uniform')
-p1= CSH.CategoricalHyperparameter(name='p1', choices=['uniform'], default_value='uniform')
-#for other use later on
-#p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.000001, upper=0.1, default_value=0.0005)
+p0 = Categorical("p0", ["0.75", "1.00","1.25","1.50"], default="0.75") 
 
-cs.add_hyperparameters([p0, p1])
+#NOISE_TYPE
+#p1 = Categorical("p1", ["uniform", "normal"], default="uniform") 
+p1 = Categorical("p1", ["uniform"], default="uniform") 
+#for other use later on
+#p2 = Float('p2', bounds=(0.000001, 0.1), default=0.0005)
+
+cs.add([p0, p1])
 
 ytoptimizer = Optimizer(
     num_workers=num_sim_workers,
