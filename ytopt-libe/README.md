@@ -26,6 +26,8 @@ svms/
     Autotuning SVM (Support Vector Machine)-based scientific simulations
 openmc/
     Autotuning ECP application OpenMC 
+heffte/
+    Autotuning ECP application HeFFTe
 ```
 
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
