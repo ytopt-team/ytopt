@@ -1,0 +1,9 @@
+module load cray-fftw
+
+git clone https://github.com/icl-utk-edu/heffte.git
+mkdir heffte/build
+cd heffte/build
+
+cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_SHARED_LIBS=ON -D CMAKE_INSTALL_PREFIX=./  -D Heffte_ENABLE_FFTW=ON -D CMAKE_CXX_COMPILER=CC -D CMAKE_CXX_FLAGS="-O3 -fopenmp" ..
+
+make -j 4
