@@ -75,6 +75,7 @@ p0 = Categorical("p0", ["0.75", "1.00","1.25","1.50"], default="0.75")
 #NOISE_TYPE
 #p1 = Categorical("p1", ["uniform", "normal"], default="uniform") 
 p1 = Categorical("p1", ["uniform"], default="uniform") 
+
 #for other use later on
 #p2 = Float('p2', bounds=(0.000001, 0.1), default=0.0005)
 

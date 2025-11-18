@@ -198,7 +198,7 @@ def main():
     parser.add_argument(
         '--config', 
 	#type=argparse.FileType('r'), # 'r' for read mode
-        help="Path to YAML file with hyper-parameters (overrides defaults)"
+        help="Path to YAML file with hyperparameters (overrides defaults)"
     )
     cli_args = parser.parse_args(['--config', '../config.yaml'])
 
