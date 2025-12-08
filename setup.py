@@ -28,9 +28,7 @@ REQUIRED = [
     'numpy',
     #'scikit-optimize',
     'scikit-learn',
-    #'scikit-learn==1.0.2',
     'pandas',
-    #'pandas==1.5.3',
     'tqdm',
     #'keras',
     # nas
