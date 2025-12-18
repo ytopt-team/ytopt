@@ -28,7 +28,7 @@ foreach $filename (@ARGV) {
    if ($v2 == 0 ) {
         printf("100");
    } else {
-        # object: 1/accuracy
+        # object: -accuracy
         printf("%.3f", -1 * $v2)
    }
    close(TEMFILE);
