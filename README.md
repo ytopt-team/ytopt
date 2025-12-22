@@ -113,6 +113,7 @@ Otherwise, access the subdirectory ``ytopt-libe`` for the latest examples with n
 ``python run_ytopt.py --comms local --nworkers 3  --max-evals=10 --learner RF``
 
 Where: 
+  * ``run_ytopt.py``: Defines the parameter space, then runs libEnsemble to call the ytopt ask/tell interface in a generator function, and the ytopt findRunTime interface in a simulator function.
   * ``--nworkers`` is the number of workers (master+workers) to be created to run the evaluations in parallel.
   * ``--comms`` is the communication type. 
 
