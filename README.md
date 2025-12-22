@@ -163,8 +163,8 @@ Otherwise, access the subdirectory ``ytopt-libe`` or [ytopt-libensemble](https:/
 ``python run_ytopt.py --comms local --nworkers 3  --max-evals=10 --learner RF``
 
 Where: 
-  * ``--nworkers`` is the number of workers (master+workers) to run the evaluations in parallel.
-  * ``--comms`` is the communication type 
+  * ``--nworkers`` is the number of workers (master+workers) to be created to run the evaluations in parallel.
+  * ``--comms`` is the communication type. 
 
 # Tutorials
 
