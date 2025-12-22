@@ -139,7 +139,7 @@ ytopt-libe/hpo4llm/
 
 # Basic Usage
 
-``ytopt`` is typically run from the command-line in the following example manner:
+1. ``ytopt`` is typically run from the command-line in the following example manner:
 
 ``python -m ytopt.search.ambs --evaluator ray --problem problem.Problem --max-evals=10 --learner RF``
 
@@ -157,6 +157,14 @@ See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic in
 See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
 
 Otherwise, access the subdirectory ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+
+2. ``ytopt-libe`` is typically run from the command-line in the following example manner:
+
+``python run_ytopt.py --comms local --nworkers 3  --max-evals=10 --learner RF``
+
+Where: 
+  * ``--nworkers`` is the number of workers (master+workers) to run the evaluations in parallel.
+  * ``--comms`` is the communication type 
 
 # Tutorials
 
