@@ -156,7 +156,7 @@ See the [``autotune`` docs](https://github.com/ytopt-team/autotune) for basic in
 
 See the [``ConfigSpace`` docs](https://automl.github.io/ConfigSpace/main/) for guidance on defining input/output parameter spaces for problems.
 
-Otherwise, access the subdirectory ``ytopt-libe`` or [ytopt-libensemble](https://github.com/ytopt-team/ytopt-libensemble) for the latest examples with new features.
+Otherwise, access the subdirectory ``ytopt-libe`` for the latest examples with new features.
 
 2. ``ytopt-libe`` is typically run from the command-line in the following example manner:
 
@@ -196,8 +196,6 @@ The core ``ytopt`` team is at Argonne National Laboratory:
 
 
 <!--Modules, patches (code, documentation, etc.) contributed by:
-
-* David Fridlander <davidfrid2@gmail.com>
 
 # How can I participate?
 
