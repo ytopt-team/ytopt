@@ -66,54 +66,6 @@ pip install -e .
 
 After installing scikit-optimize, autotune, and ytopt successfully, the autotuning framework ytopt is ready to use. Browse the ``ytopt/benchmark`` directory for an extensive collection of old examples, or encourage to access ``ytopt-libe`` for the latest examples with new features.
 
-```
-* [Optional] Install [CConfigSpace](https://github.com/argonne-lcf/CCS.git):
-    * Prerequisites: ``autotools`` and ``gsl``
-        * Ubuntu
-          ```
-          sudo apt-get install autoconf automake libtool libgsl-dev
-          ```
-
-        * MacOS
-          ```
-          brew install autoconf automake libtool gsl
-          ```
-    * Build and Install the library and python bindings:
-      the `configure` command can take an optional `--prefix=` parameter to specify a
-      different install path than the default one (`/usr/local`). Depending on the
-      chosen location you may need elevated previleges to run `make install`.
-      ```
-      git clone git@github.com:argonne-lcf/CCS.git
-      cd CCS
-      ./autogen.sh
-      mkdir build
-      cd build
-      ../configure
-      make
-      make install
-      cd ../bindings/python
-      pip install parglare==0.12.0
-      pip install -e .
-      ```
-    * Setup environment:
-      in order for the python binding to find the CConfigSpace library, the path to
-      the library install location (`/usr/local/lib` by default) must be appended
-      to the `LD_LIBRARY_PATH` environment variable on Linux, while on MacOS the
-      `DYLD_LIBRARY_PATH` environment variable serves the same purpose. Alternatively
-      the `LIBCCONFIGSPACE_SO_` environment variable can be made to point to the installed
-      `libcconfigspace.so` file on Linux or to the installed `libcconfigspace.dylib`
-      on MacOS. 
-
-* [Optional] Install Online tuning:
-    * Online tuning with transfer learning interface is built on Synthetic Data Vault (SDV):
-    * Install [SDV](https://github.com/sdv-dev/SDV.git):
-      ```
-      cd ytopt
-      pip install -e .[online]
-      ```
-    * For macOS it may need to do: ``pip install -e ".[online]"``  
-
-```
 
 # Directory structure
 ```
@@ -133,8 +85,6 @@ ytopt-libe/
     scripts and a set of examples for using ytopt-libe with new features 
 ytopt-libe/hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters using libensemble
-ytopt-libe/hpo4llm/
-    Hyperparameter optimization for a loss function for LLM training
 ```
 
 # Basic Usage
