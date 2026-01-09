@@ -8,7 +8,7 @@
 
 
 
-``ytopt`` is a machine learning-based autotuning and hyperparameter optimization software package that uses Bayesian Optimization to find the best input parameter/hyperparameter configurations for a given kernel, miniapp, or application with the best system configurations for a given HPC system.
+``ytopt`` is a machine learning-based autotuning and hyperparameter optimization software package in python that uses Bayesian Optimization to find the best input parameter/hyperparameter configurations for a given kernel, miniapp, or application with the best system configurations for a given HPC system.
 
 ``ytopt`` accepts the following as input:
 
@@ -18,7 +18,7 @@
 
 By sampling and evaluating a small number of input configurations, ``ytopt`` gradually builds a surrogate model of the input-output space. This process continues until the user-specified time or the maximum number of evaluations is reached.
 
-``ytopt`` handles both unconstrained and constrained optimization problems, searches asynchronously, and can look-ahead on iterations to more effectively adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
+``ytopt`` handles both unconstrained and constrained optimization problems, searches and evaluates asynchronously, and can look-ahead on iterations to more effectively adapt to new evaluations and adjust the search towards promising configurations, leading to a more efficient and faster convergence on the best solutions.
 
 Internally, ``ytopt`` uses a manager-worker computational paradigm, where one node fits the surrogate model and generates new input configurations, and other nodes perform the computationally expensive evaluations and return the results to the manager node. This is implemented in two ways: using [ray](https://github.com/ray-project/ray) for ``ytopt/benchmark`` in sequential processing and  using [libensemble](https://github.com/Libensemble/libensemble) for ``ytopt-libe`` in parallel processing.
 
