@@ -1,6 +1,6 @@
-BSD 2-Clause License
+BSD 3-Clause License
 
-Copyright (c) 2025, ytopt
+Copyright (c) 2026, ytopt
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
