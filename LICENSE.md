@@ -1,4 +1,4 @@
-BSD 3-Clause License
+BSD 2-Clause License
 
 Copyright (c) 2026, ytopt
 All rights reserved.
