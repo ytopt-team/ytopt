@@ -4,7 +4,7 @@ from numpy.typing import NDArray
 # add coef0_param for sigmoid_kernel - wuxf
 class ExperimentalKernel:
     def sigmoid_kernel(self, x: NDArray[np.int64], y: NDArray[np.int64],
-                       ratio: float,coef0_param:float) -> NDArray[np.float64]:
+                       ratio: float, coef0_param: float) -> NDArray[np.float64]:
         #C = 0
         C = coef0_param
         output = np.asarray(np.tanh(ratio * np.dot(x, y.T) + C))
@@ -31,7 +31,7 @@ class ExperimentalKernel:
                      y: NDArray[np.int64],
                      mixing_ratio: float,
                      sigmoid_ratio: float,
-		     coef0_param: float,
+	             coef0_param: float,
                      gaussian_ratio: float) -> NDArray[np.float64]:
         return np.asarray(
             (1 - mixing_ratio) * self.sigmoid_kernel(x, y, sigmoid_ratio,coef0_param) +

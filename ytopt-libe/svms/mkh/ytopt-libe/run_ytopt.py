@@ -71,14 +71,14 @@ sim_specs = {
 
 cs = CS.ConfigurationSpace(seed=1234)
 #mixed ratio
-p0= CSH.UniformFloatHyperparameter(name='p0', lower=0.0, upper=1.0, q=0.0001, log = False)
+p0= CSH.UniformFloatHyperparameter(name='p0', lower=0.0, upper=1.0, log = False)
 #sigmoid_ratio: float = 0.0001,
 p1= CSH.UniformFloatHyperparameter(name='p1', lower=0.00005, upper=0.0003, default_value=0.0001, log = False)
 #gaussian_ratio: float = 1
 p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.8, upper=1, default_value=1, log = False)
-p3= CSH.UniformFloatHyperparameter(name='p3', lower=-1.0, upper=1.0, q=0.01, default_value=0.0, log = False) #coef0
+p3= CSH.UniformFloatHyperparameter(name='p3', lower=-1.0, upper=1.0, default_value=0.0, log = False) #coef0
 
-p4= CSH.UniformFloatHyperparameter(name='p4', lower=0.37, upper=10, q=0.01, default_value=1, log = False) #C
+p4= CSH.UniformFloatHyperparameter(name='p4', lower=0.37, upper=10, default_value=1, log = False) #C
 
 cs.add_hyperparameters([p0,p1,p2,p3,p4])
 

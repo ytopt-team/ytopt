@@ -18,7 +18,7 @@ $filename1 =  $ARGV[0];
         chomp ($line);
 
         if ($line =~ /system/) {
-                print OUTFILE "    system(\"python \$filename > tmpoutfile.txt 2>&1\");", "\n";
+                print OUTFILE "    system(\"mpiexec -n 1 python \$filename > tmpoutfile.txt 2>&1\");", "\n";
 	} else {
                 print OUTFILE $line, "\n";
         }
