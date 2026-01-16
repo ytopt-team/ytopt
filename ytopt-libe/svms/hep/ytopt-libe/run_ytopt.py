@@ -71,17 +71,15 @@ sim_specs = {
 
 cs = CS.ConfigurationSpace(seed=1234)
 
-#p0= CSH.UniformFloatHyperparameter(name='p0', lower=0.0, upper=0.001, q=0.00001, default_value=0.0001, log = False) #mix
-p0= CSH.UniformFloatHyperparameter(name='p0', lower=0.0, upper=0.001, q=0.00001, log = False) #mix
+p0= CSH.UniformFloatHyperparameter(name='p0', lower=0.00009, upper=0.0009, default_value=0.0001, log = False) #mix
 
-#p1= CSH.UniformFloatHyperparameter(name='p1', lower=0.00001, upper=0.001, q=0.00001, default_value=0.0001,log = False) #sig_ratio
-p1= CSH.UniformFloatHyperparameter(name='p1', lower=0.00001, upper=0.001, q=0.00001, log = False) #sig_ratio
+p1= CSH.UniformFloatHyperparameter(name='p1', lower=0.00009, upper=0.0009, default_value=0.0001,log = False) #sig_ratio
 
-p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.9, upper=1.5, q=0.001,default_value=1,  log = False) #gaus_ratio
+p2= CSH.UniformFloatHyperparameter(name='p2', lower=0.96, upper=1.5, default_value=1,  log = False) #gaus_ratio
 
-p3= CSH.UniformFloatHyperparameter(name='p3', lower=-1.0, upper=1.0, q=0.01, default_value=0.0, log = False) #coef0
+p3= CSH.UniformFloatHyperparameter(name='p3', lower=-1.0, upper=1.0, default_value=0.0, log = False) #coef0
 
-p4= CSH.UniformFloatHyperparameter(name='p4', lower=0.37, upper=10, q=0.01, default_value=1, log = False) #C
+p4= CSH.UniformFloatHyperparameter(name='p4', lower=0.37, upper=10, default_value=1, log = False) #C
 
 cs.add_hyperparameters([p0, p1, p2, p3,p4])
 #cond = EqualsCondition(p3, p4, "mixed_kernel")
