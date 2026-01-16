@@ -135,7 +135,7 @@ The new format (``ConfigSpace`` 1.0 or higher):
 from ConfigSpace import ConfigurationSpace, Categorical, Float, Integer
 cs = ConfigurationSpace(seed=1234)
 p0 = Float('p0', bounds=(0.00001, 0.1), default=0.001)
-p1 = Integer('p1', bounds=(1, 50), default=1)
+p1 = Integer('p1', bounds=(1, 50), default=10)
 p2 = Categorical("p2", ["rmsprop", "adam", "sgd"], default="rmsprop")
 cs.add([p0, p1, p2])
 ```
