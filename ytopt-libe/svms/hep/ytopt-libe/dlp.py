@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import glob, os
 import matplotlib.pyplot as plt
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
 import seaborn as sns
 from sklearn.svm import SVC
@@ -14,7 +15,8 @@ from tensorflow.keras import layers
 from tensorflow.keras.layers.experimental import RandomFourierFeatures
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from tensorflow.keras.layers import Dense, Dropout
-from sklearn.utils.fixes import loguniform
+#from sklearn.utils.fixes import loguniform
+from scipy.stats import loguniform
 from sklearn.model_selection import StratifiedShuffleSplit
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import GridSearchCV
@@ -288,7 +290,7 @@ def plot(y_pred,y_test,y_prob):
   
 def main():
     ## data
-    path = '/Users/xingfu/research/tmp/ytune/ytopt-libensemble/ytopt-libe-svms/hep/positive-charge/'
+    path = '/home/wuxf/hep/positive-charge/'
     charge_files = glob.glob(path+'recon8t_d1695*')
     label_files= glob.glob(path+'labels_d1695*')
     
