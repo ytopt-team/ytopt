@@ -25,7 +25,7 @@ Internally, ``ytopt`` uses a manager-worker computational paradigm, where one no
 Additional documentation is available on [Read the Docs](https://ytopt.readthedocs.io/en/latest/). Access ``ytopt-libe`` for the latest examples with new features and development.
 
 # Installation instructions
-``ytopt`` requires the following components: ``dh-scikit-optimize``, ``autotune``, and ``ConfigSpace``. When ytopt is being installed, ``ConfigSpace`` and ``LibEnsemble`` are required to be installed automatically.
+``ytopt`` requires the following components: ``dh-scikit-optimize``, ``autotune``, and [``ConfigSpace``](https://github.com/automl/ConfigSpace). When ytopt is being installed, ``ConfigSpace`` and ``LibEnsemble`` are required to be installed automatically.
 
 
 * We recommend creating isolated Python environments on your local machine using [conda](https://docs.conda.io/projects/conda/en/latest/index.html) with python version >=3.10, for example:
@@ -117,7 +117,7 @@ Where:
   * ``--nworkers`` is the number of workers (master+workers) to be created to run the evaluations in parallel.
   * ``--comms`` is the communication type. 
 
-3. ``ytopt-libe`` supports both the old format and the new format in ``ConfigSpace`` to define the search space as follows:
+3. ``ytopt-libe`` supports both the old format and the new format in [``ConfigSpace``](https://github.com/automl/ConfigSpace) to define the search space as follows:
 
 The old format (``ConfigSpace`` 0.71 or lower):
 ```
