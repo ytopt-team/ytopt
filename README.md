@@ -118,7 +118,7 @@ Where:
   * ``--nworkers`` is the number of workers (master+workers) to be created to run the evaluations in parallel.
   * ``--comms`` is the communication type. 
 
-3. ``ytopt-libe`` supports both the old format and the new format in [``ConfigSpace``](https://github.com/automl/ConfigSpace) to define the search space as follows:
+3. ``ytopt-libe`` supports both the old and the new formats in [``ConfigSpace``](https://github.com/automl/ConfigSpace) to define the search space as follows:
 
 The old format (``ConfigSpace`` 0.71 or lower):
 ```
@@ -141,7 +141,7 @@ p2 = Categorical('p2', ['rmsprop', 'adam', 'sgd'], default='rmsprop')
 cs.add([p0, p1, p2])
 ```
 Although the old format in ``ConfigSpace`` supports the quantization factor q, 
-the new format does not support it.
+the new format does not support it anymore.
 
 # Tutorials
 
