@@ -37,5 +37,5 @@ learning rate  (Real, 1e-1 to 1e-5)
 epochs (Integer, 1 to 50)
 optimizer (String, [rmsprop, adam, sgd)
 
-We use the latest [configspace](https://automl.github.io/ConfigSpace/latest/guide/) to define the parameter space by replacing the old configspace format.
+We use the latest [configspace](https://automl.github.io/ConfigSpace/latest/guide/) to define the parameter space by replacing the old configspace format. When the output file results.csv is generated, the folder plots provides the tools to generate the plots and sensitivity analysis.
 ```
