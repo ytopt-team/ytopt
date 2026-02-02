@@ -14,6 +14,8 @@ hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters
 hpo4llm/
     Hyperparameter optimization for a loss function for LLM training
+hpo4julia/
+    Hyperparameter optimization for a julia code
 deeplearning/
     Autotuning deep learning applications 
 xsbench/
@@ -28,6 +30,8 @@ openmc/
     Autotuning ECP application OpenMC 
 heffte/
     Autotuning ECP application HeFFTe
+uqgrid/
+    Tailors ytopt-libe to generate power grid scenarios and analyze TSI in parallel
 ```
 
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
