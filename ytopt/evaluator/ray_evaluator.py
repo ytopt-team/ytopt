@@ -13,7 +13,7 @@ from ytopt.evaluator.evaluate import Evaluator
 logger = logging.getLogger(__name__)
 
 
-@ray.remote
+@ray.remote(num_gpus=1)  # Request 1 GPU per task
 def compute_objective(func, x):
     return func(x)
 
