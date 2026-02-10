@@ -12,7 +12,7 @@ Files:
 - run-laptop.sh: a batch file to configure and run the HPO on a laptop
 
 Folder: 
--plots: visulize the results
+- plots: visulize the results
 
 To run with libEnsemble, use ytopt_obj.py as the sim function. It is recommand to use run-laptop.sh to test the HPO process on any laptop. Before the run, use the installation instructions from https://github.com/ytopt-team/ytopt to create a conda environment and install the required python packages.
 
