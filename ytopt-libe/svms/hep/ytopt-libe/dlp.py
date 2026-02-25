@@ -290,7 +290,7 @@ def plot(y_pred,y_test,y_prob):
   
 def main():
     ## data
-    path = '/home/wuxf/hep/positive-charge/'
+    path = './positive-charge/'
     charge_files = glob.glob(path+'recon8t_d1695*')
     label_files= glob.glob(path+'labels_d1695*')
     
