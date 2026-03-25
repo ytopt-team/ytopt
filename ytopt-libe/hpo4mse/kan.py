@@ -8,9 +8,9 @@ from scipy.special import jn, yn  # Bessel functions
 from sklearn.metrics import mean_squared_error
 
 # --- Configuration ---
-M_GAUSSIANS = #P0   # @param {type:"integer"}
-N_SIGMOIDS = #P1    # @param {type:"integer"}
-SPLINE_SMOOTH = #P2 # @param {type:"number"} Controls spline aggressiveness
+M_GAUSSIANS = #P0   # @param {type:"integer"} range: (0, 10)
+N_SIGMOIDS = #P1    # @param {type:"integer"} range: (0, 10)
+SPLINE_SMOOTH = #P2 # @param {type:"number"} Controls spline aggressiveness range: (0.0001, 0.1)
 
 # --- 1. Define Comprehensive Function Set ---
 # Format: "Name": (Function, (min_x, max_x))
