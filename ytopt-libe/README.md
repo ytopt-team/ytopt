@@ -11,7 +11,10 @@ This directory includes the ECP apps, ECP proxy apps, deep learning applications
 
 ```
 hpo4mse/
-    Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE ((Mean Squared Error) difference between mixture model and Splines. This is the typical example with the latest features. Recommand to start ytopt with this example.
+    Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE 
+    (Mean Squared Error) difference between mixture model and Splines. 
+    This is the typical example with the latest features. 
+    Recommand to start ytopt with this example.
 hpo/
     Hyperparameter optimization with 7 and 17 hyperparameters
 hpo4llm/

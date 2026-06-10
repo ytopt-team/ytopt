@@ -1,4 +1,4 @@
-Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE ((Mean
+Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE (Mean
 Squared Error) difference between mixture model and Splines using ytopt-libe
 
 This benchmark is about comparison between  Mixture Model vs Splines (Expanded Function Set).
