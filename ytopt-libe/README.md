@@ -42,7 +42,17 @@ uqgrid/
 After installing ConfigSpace, Scikit-optimize, autotune, ytopt, and libensemble successfully, the autotuning framework ytopt-libe is ready to use.
 If you have some issues about ConfigSpace, just downgrade configspace by the following command line "pip install configspace==0.7.1" in your conda environment to solve these issues.
 
-* Example: Using ytopt-libe to autotune the  MPI/OpenMP version of XSBench:
+* Example: Using ytopt-libe to autotune the Python benchmark in hpo4mse:
+```
+cd ytopt
+cd ytopt-libe/hpo4mse
+* Make sure to create the conda environemnt ytune before running a test
+* Modify the run script runs-laptop.sh with the proper conda environment, number of wokers, MPI ranks, and the application timeout (recommanded to use the script to make these settings)
+* Then, use the run script 
+
+./runs-laptop.sh
+```
+* Example: Using ytopt-libe to autotune the MPI/OpenMP version of XSBench:
 ```
 cd ytopt
 cd ytopt-libe/xsbench
