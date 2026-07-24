@@ -153,7 +153,8 @@ def run_benchmark(m, n, smoothing):
         spl_avg += r['MSE_Spl']
 
     avg = mix_avg - spl_avg
-    print(f"Average difference: {abs(avg):.1e}")
+    mse_diff = abs(avg)
+    print(f"Average difference: {mse_diff:.1e}")
 
 if __name__ == "__main__":
     run_benchmark(M_GAUSSIANS, N_SIGMOIDS, SPLINE_SMOOTH)
