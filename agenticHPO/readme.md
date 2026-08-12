@@ -1,6 +1,6 @@
 This benchmark is about comparison between  Mixture Model vs Splines (Expanded Function Set).
 
-Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE (Mean
+Hyperparameter Optimization (HPO) for the Benchmark to minimize the absolute value of the MSE (Mean
 Squared Error) difference between mixture model and Splines 
 
 One HPO implementation using ytopt is from the link https://github.com/ytopt-team/ytopt/tree/main/ytopt-libe/hpo4mse. This agenticHPO is based on the HPO implementation.
