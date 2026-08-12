@@ -1,9 +1,9 @@
+This benchmark is about comparison between  Mixture Model vs Splines (Expanded Function Set).
+
 Hyperparameter Optimization for the Benchmark to minimize the absolute value of the MSE (Mean
 Squared Error) difference between mixture model and Splines 
 
-This benchmark is about comparison between  Mixture Model vs Splines (Expanded Function Set).
-
-One implementaion using ytopt is from the link https://github.com/ytopt-team/ytopt/tree/main/ytopt-libe/hpo4mse. 
+One HPO implementation using ytopt is from the link https://github.com/ytopt-team/ytopt/tree/main/ytopt-libe/hpo4mse. This agenticHPO is based on the HPO implementation.
 
 Files:
 - kan-hpo.py: a simple agentic workflow for hyperparameter optimization with a random search  using Academy (https://github.com/academy-agents/academy). It requires to install academy ''' pip install academy-py '''. It recommands to create a conda environment to run the script on a machine at Argonne network.
