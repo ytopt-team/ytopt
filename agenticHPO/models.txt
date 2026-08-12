@@ -1,0 +1,11 @@
+Model API: 
+https://apps.inside.anl.gov/argoapi/v1
+
+Models:
+
+gpt56sol
+gemini35flash
+claudeopus48
+
+Access token:
+Argonne account name
