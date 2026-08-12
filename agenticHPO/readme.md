@@ -7,5 +7,6 @@ One HPO implementation using ytopt is from the link https://github.com/ytopt-tea
 
 Files:
 - kan-hpo.py: a simple agentic workflow for hyperparameter optimization with a random search  using Academy (https://github.com/academy-agents/academy). 
+- models.txt: a list for the latest LLM models supported by Argonne Argo API.
 - It requires to install academy ''' pip install academy-py '''. It recommands to create a conda environment to run the script on a machine at Argonne network.
 - It supports OpenAI GPT5.6, Google Gemini3.5 flash, and Anthropic Claude Opus5.0 via Argonne Argo API (https://argo.anl.gov). Check Argonne Argo API document for latest model support. 
