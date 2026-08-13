@@ -301,7 +301,7 @@ async def main() -> int:
             orchestrator.agent_id,
         )
 
-        max_rounds = 6 
+        max_rounds = 3 
         rounds = 0
          # We'll run the entire workflow in a single trace
         while True:  
