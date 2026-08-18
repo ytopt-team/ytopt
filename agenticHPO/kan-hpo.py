@@ -31,6 +31,10 @@ from ConfigSpace import ConfigurationSpace, Categorical, Float, Integer
 
 logger = logging.getLogger(__name__)
 
+def is_auto_mode() -> bool:
+    """Return True when examples should bypass interactive prompts."""
+    return os.environ.get("EXAMPLES_INTERACTIVE_MODE", "").lower() == "auto"
+
 
 # An Academy agent that wraps computational tools: in this case,
 # a single function that runs locally.
@@ -46,11 +50,11 @@ logger = logging.getLogger(__name__)
 def construct_config(random_seed: int):
     cs = ConfigurationSpace(seed=random_seed)
     # m: M_GAUSSIANS
-    p0 = Integer('p0', bounds=(0, 20), default=6)
+    p0 = Integer('p0', bounds=(0, 10), default=6)
     # n: N_SIGMOIDS
-    p1 = Integer('p1', bounds=(0, 20), default=6)
+    p1 = Integer('p1', bounds=(0, 10), default=6)
     # smoothing: SPLINE_SMOOTH
-    p2 = Float('p2', bounds=(0.0001, 0.1), default=0.001)
+    p2 = Float('p2', bounds=(0.0001, 0.01), default=0.001)
     cs.add([p0, p1, p2])
     configs = cs.sample_configuration()
 
@@ -293,7 +297,7 @@ async def main() -> int:
             },
         )
 
-        msg = 'given smiles=construct_config(1234),Execute the function compute_mse_diff, minimize the metric mse_diff'
+        msg = 'given smiles=construct_config,Execute the function compute_mse_diff, minimize the metric mse_diff'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
@@ -301,20 +305,27 @@ async def main() -> int:
             orchestrator.agent_id,
         )
 
-        max_rounds = 3 
+        #auto_mode = is_auto_mode()
+        auto_mode = True
+        max_rounds = 3 if auto_mode else None
         rounds = 0
+
+        # We'll run the entire workflow in a single trace
+        with trace("LLM as a judge"):
          # We'll run the entire workflow in a single trace
-        while True:  
-            result = float(await orchestrator.answer(msg))
-            if result <= 6.1e-07:
-                print("Result is equal or less than the constraint 6.1e-07 for stopping.")
-                break
-            rounds += 1
-            if max_rounds is not None and rounds >= max_rounds:
-                print("Stopping after limited rounds.")
-                break
+            while True:  
+                result = float(await orchestrator.answer(msg))
+                # The best: 6.1e-07
+                if result <= 6.1e-04:
+                    print("Result is equal or less than the constraint 6.1e-07 for stopping.")
+                    break
+                if auto_mode:
+                    rounds += 1
+                    if max_rounds is not None and rounds >= max_rounds:
+                        print("Stopping after limited rounds.")
+                        break
          
-        logger.info('Received result: "%s"', result)
+            logger.info('Received result: "%s"', result)
 
     return 0
 
