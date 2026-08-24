@@ -297,7 +297,7 @@ async def main() -> int:
             },
         )
 
-        msg = 'given smiles=construct_config,Execute the function compute_mse_diff, minimize the metric mse_diff'
+        msg = 'given smiles=construct_config, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
@@ -316,7 +316,7 @@ async def main() -> int:
             while True:  
                 result = float(await orchestrator.answer(msg))
                 # The best: 6.1e-07
-                if result <= 6.1e-04:
+                if result <= 6.1e-05:
                     print("Result is equal or less than the constraint 6.1e-07 for stopping.")
                     break
                 if auto_mode:
