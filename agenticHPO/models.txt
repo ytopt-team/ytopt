@@ -5,7 +5,6 @@ Models:
 
 gpt56sol
 gemini35flash
-claudeopus48
 
 Access token:
 Argonne account name
