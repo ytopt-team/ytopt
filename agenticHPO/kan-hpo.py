@@ -31,10 +31,6 @@ from ConfigSpace import ConfigurationSpace, Categorical, Float, Integer
 
 logger = logging.getLogger(__name__)
 
-def is_auto_mode() -> bool:
-    """Return True when examples should bypass interactive prompts."""
-    return os.environ.get("EXAMPLES_INTERACTIVE_MODE", "").lower() == "auto"
-
 
 # An Academy agent that wraps computational tools: in this case,
 # a single function that runs locally.
@@ -65,7 +61,7 @@ def construct_config(random_seed: int):
         m =configs['p0']
         n =configs['p1']
 
-    smoothing =configs['p2'] # @param {type:"float"} Controls spline aggressiveness range: (0.0001, 0.1)
+    smoothing =configs['p2'] # @param {type:"float"} Controls spline aggressiveness range: (0.0001, 0.01)
 
     return m, n, smoothing
 
@@ -136,8 +132,16 @@ class MySimAgent(Agent):
     @action
     async def compute_mse_diff(self, smiles: str) -> float:
         """Compute the mse_diff."""
-        random_seed = np.random.randint(1,10000)
-        m, n, smoothing = construct_config(random_seed)
+        #random_seed = np.random.randint(1,10000)
+        #m, n, smoothing = construct_config(random_seed)
+
+        smiles = smiles.replace("(", "").replace(")", "").split(",")
+        #m = smiles['m']
+        #n = smiles['n']
+        #smoothing = smiles['smoothing']
+        m = int(smiles[0].strip())
+        n = int(smiles[1].strip())
+        smoothing = float(smiles[2].strip())
 
         print(f"--- Benchmarking: {m}G + {n}S vs Splines (Smoothing={smoothing}) ---")
 
@@ -214,6 +218,10 @@ def make_sim_tool(handle: Handle[MySimAgent]) -> Tool:
 
     return compute_mse_diff
 
+class Configuration(Agent):
+    @action
+    async def construct_config(self, random_seed: int) -> str:
+        return construct_config(random_seed)
 
 # An Academy agent that creates a LangChain agent that will respond to
 # questions about mse_diff by running a ReACT loop
@@ -224,12 +232,14 @@ class Orchestrator(Agent):
         self,
         model: str,
         access_token: str,
+        config: Handle[Configuration],
         simulators: list[Handle[MySimAgent]],
         base_url: str | None = None,
     ):
         self.model = model
         self.access_token = access_token
         self.base_url = base_url
+        self.config = config
         self.simulators = simulators
 
     async def agent_on_startup(self) -> None:
@@ -246,6 +256,10 @@ class Orchestrator(Agent):
     @action
     async def answer(self, goal: str) -> str:
         """Use other agents to answer questions about mse_diff."""
+        random_seed = np.random.randint(1,10000)
+        config = await self.config.construct_config(random_seed)
+        goal = "Given smiles= " + str(config) + goal
+        #print(goal)
 
         # This call runs the ReACT loop, in which:
         #   1) the LLM is used to determine which tool to call,
@@ -273,31 +287,32 @@ async def main() -> int:
 
     mp_context = multiprocessing.get_context('spawn')
     executor = ProcessPoolExecutor(
-    #executor = ThreadPoolExecutor(
         max_workers=3,
         mp_context=mp_context,
     )
 
     async with await Manager.from_exchange_factory(
-        #factory=LocalExchangeFactory(),
         factory=HttpExchangeFactory(),
         # Agents are run by the manager in the processes of this
         # process pool executor.
         executors=executor,
         log_config=recommended_logging(),
     ) as manager:
+        configuration = await manager.launch(Configuration)
         simulator = await manager.launch(MySimAgent)
         orchestrator = await manager.launch(
             Orchestrator,
             kwargs={
                 'model': model,
                 'access_token': token,
+                'config': configuration, 
                 'simulators': [simulator],
                 'base_url': url,
             },
         )
 
-        msg = 'given smiles=construct_config, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
+        #msg = ' given smiles=construct_config, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
+        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
@@ -305,7 +320,6 @@ async def main() -> int:
             orchestrator.agent_id,
         )
 
-        #auto_mode = is_auto_mode()
         auto_mode = True
         max_rounds = 3 if auto_mode else None
         rounds = 0
@@ -313,10 +327,10 @@ async def main() -> int:
         # We'll run the entire workflow in a single trace
         with trace("LLM as a judge"):
          # We'll run the entire workflow in a single trace
-            while True:  
+            while True:
                 result = float(await orchestrator.answer(msg))
                 # The best: 6.1e-07
-                if result <= 6.1e-05:
+                if result <= 6.1e-04:
                     print("Result is equal or less than the constraint 6.1e-07 for stopping.")
                     break
                 if auto_mode:
@@ -324,8 +338,7 @@ async def main() -> int:
                     if max_rounds is not None and rounds >= max_rounds:
                         print("Stopping after limited rounds.")
                         break
-         
-            logger.info('Received result: "%s"', result)
+        logger.info('Received result: "%s"', result)
 
     return 0
 
