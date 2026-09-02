@@ -330,7 +330,7 @@ async def main() -> int:
             while True:
                 result = float(await orchestrator.answer(msg))
                 # The best: 6.1e-07
-                if result <= 6.1e-04:
+                if result <= 6.1e-07:
                     print("Result is equal or less than the constraint 6.1e-07 for stopping.")
                     break
                 if auto_mode:
