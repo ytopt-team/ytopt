@@ -312,7 +312,7 @@ async def main() -> int:
         )
 
         #msg = ' given smiles=construct_config, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
-        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
+        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff, show the minimum of all mse_diff'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
@@ -321,7 +321,7 @@ async def main() -> int:
         )
 
         auto_mode = True
-        max_rounds = 3 if auto_mode else None
+        max_rounds = 5 if auto_mode else None
         rounds = 0
 
         # We'll run the entire workflow in a single trace
