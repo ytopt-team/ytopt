@@ -258,8 +258,8 @@ class Orchestrator(Agent):
         """Use other agents to answer questions about mse_diff."""
         random_seed = np.random.randint(1,10000)
         config = await self.config.construct_config(random_seed)
-        goal = "Given smiles= " + str(config) + goal
-        #print(goal)
+        goal = "You are a hyperparameter optimization expert. Given smiles= " + str(config) + goal
+        print(goal)
 
         # This call runs the ReACT loop, in which:
         #   1) the LLM is used to determine which tool to call,
@@ -311,8 +311,7 @@ async def main() -> int:
             },
         )
 
-        #msg = ' given smiles=construct_config, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff'
-        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff, show the minimum of all mse_diff'
+        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff. At the end,  show the minimum of all mse_diff values with the configuration of m, n, smoothing'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
