@@ -4,6 +4,7 @@ import asyncio
 import logging
 import multiprocessing
 import os
+import csv, time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from agents import Agent, ItemHelpers, Runner, TResponseInputItem, trace
 
@@ -135,6 +136,9 @@ class MySimAgent(Agent):
         #random_seed = np.random.randint(1,10000)
         #m, n, smoothing = construct_config(random_seed)
 
+        # Start the timer
+        start_time = time.perf_counter()
+
         smiles = smiles.replace("(", "").replace(")", "").split(",")
         #m = smiles['m']
         #n = smiles['n']
@@ -201,6 +205,16 @@ class MySimAgent(Agent):
     
         avg = mix_avg - spl_avg
         mse_diff = abs(avg)
+        # End the timer
+        end_time = time.perf_counter()
+
+        # Calculate elapsed time
+        elapsed_time = end_time - start_time
+        #print(elapsed_time)
+        #write the configuration and metric to CSV
+        with open('./outputs.csv', 'a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow([m, n, smoothing, mse_diff, elapsed_time])
         print(mse_diff)
         return mse_diff
 
