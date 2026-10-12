@@ -4,6 +4,7 @@ import asyncio
 import logging
 import multiprocessing
 import os
+import csv, time
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from agents import Agent, ItemHelpers, Runner, TResponseInputItem, trace
 
@@ -135,6 +136,9 @@ class MySimAgent(Agent):
         #random_seed = np.random.randint(1,10000)
         #m, n, smoothing = construct_config(random_seed)
 
+        # Start the timer
+        start_time = time.perf_counter()
+
         smiles = smiles.replace("(", "").replace(")", "").split(",")
         #m = smiles['m']
         #n = smiles['n']
@@ -201,6 +205,17 @@ class MySimAgent(Agent):
     
         avg = mix_avg - spl_avg
         mse_diff = abs(avg)
+
+        # End the timer
+        end_time = time.perf_counter()
+
+        # Calculate elapsed time
+        elapsed_time = end_time - start_time
+        #print(elapsed_time)
+        #write the configuration and metric to CSV
+        with open('./results.csv', 'a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow([m, n, smoothing, mse_diff, elapsed_time])
         print(mse_diff)
         return mse_diff
 
@@ -258,14 +273,13 @@ class Orchestrator(Agent):
         """Use other agents to answer questions about mse_diff."""
         random_seed = np.random.randint(1,10000)
         config = await self.config.construct_config(random_seed)
-        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where mis an interger between 0 and 10, n is an interger between 0 and 10, and smoothing is a float number between 0.0001 and 0.01, execute the function compute_mse_diff to minimize the metric mse_diff. Given smiles= " + str(config) + goal
+        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where m is an interger between 0 and 10, n is an interger between 0 and 10, and smoothing is a float number between 0.0001 and 0.01, execute the function compute_mse_diff to minimize the metric mse_diff. Given smiles= " + str(config) + goal
         #print(goal)
 
         # This call runs the ReACT loop, in which:
         #   1) the LLM is used to determine which tool to call,
         #   2) the tool is called (by messaging the Academy agent)
         response= await self.react_loop.ainvoke(
-            #{'max_tokens': 64000},
             {'messages': [{'role': 'user', 'content': goal}]},
         )
         #last_ai_message = next(m for m in reversed(response["messages"]) if getattr(m, "type", None) == "ai")
