@@ -32,7 +32,6 @@ from ConfigSpace import ConfigurationSpace, Categorical, Float, Integer
 
 logger = logging.getLogger(__name__)
 
-
 # An Academy agent that wraps computational tools: in this case,
 # a single function that runs locally.
 #
@@ -271,23 +270,23 @@ class Orchestrator(Agent):
     @action
     async def answer(self, goal: str) -> str:
         """Use other agents to answer questions about mse_diff."""
+
         random_seed = np.random.randint(1,10000)
         config = await self.config.construct_config(random_seed)
-        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where m is an interger between 0 and 10, n is an interger between 0 and 10, and smoothing is a float number between 0.0001 and 0.01, execute the function compute_mse_diff to minimize the metric mse_diff. Given smiles= " + str(config) + goal
+        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where m is an interger between 0 and 10, n is an interger between 0 and 10, and smoothing is a float number between 0.0001 and 0.01, both m and n cannot be 0 at the same time, execute the function compute_mse_diff to minimize the metric mse_diff. Given smiles= " + str(config) + goal
         #print(goal)
 
         # This call runs the ReACT loop, in which:
         #   1) the LLM is used to determine which tool to call,
         #   2) the tool is called (by messaging the Academy agent)
+
         response= await self.react_loop.ainvoke(
             {'messages': [{'role': 'user', 'content': goal}]},
         )
         #last_ai_message = next(m for m in reversed(response["messages"]) if getattr(m, "type", None) == "ai")
         last_ai_message = next(m for m in reversed(response["messages"]) if getattr(m, "type", None) == "tool")
 
-
-        # Print or return only the content
-        print(last_ai_message.content)
+        #print(last_ai_message.content)
         return last_ai_message.content
 
 # The main program creates the two Academy agents, SIMULATOR and ORCHESTRATOR
@@ -328,7 +327,7 @@ async def main() -> int:
             },
         )
 
-        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff. At the end of all the runs, present the minimum of all mse_diff values with the configuration of m, n, smoothing'
+        msg = ', use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff. mse_diff is equal or less than the constraint 6.1e-07 for stopping. At the end of all the runs, present the minimum of all mse_diff values with the configuration of m, n, smoothing'
         #print(msg)
         logger.info(
             'Invoking process("%s") on %s',
