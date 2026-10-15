@@ -3,13 +3,16 @@
 Hyperparameter Optimization (HPO) for the Benchmark, which is about comparison between  Mixture Model vs Splines (Expanded Function Set), to minimize the absolute value of the MSE (Mean
 Squared Error) difference between mixture model and Splines, is an agentic workflow using Academy.
 It requires to install academy 
-''' pip install academy-py '''
+``` 
+pip install academy-py 
+```
 
 Warning: This example requires access to an OpenAI compatible language model API and contains additional dependencies to langchain and langchain-openai:
-'''
+
+```
 pip install langchain>=1.0
 pip install langchain-openai
-'''
+```
 
 One HPO implementation using ytopt is from the link https://github.com/ytopt-team/ytopt/tree/main/ytopt-libe/hpo4mse. This agenticHPO is based on the HPO implementation.
 
