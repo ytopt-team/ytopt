@@ -1,3 +1,5 @@
+# agenticHPO: Agentic AI for Hyperparameter Optimization in AI for Science and Engineering
+
 This benchmark is about comparison between  Mixture Model vs Splines (Expanded Function Set).
 
 Hyperparameter Optimization (HPO) for the Benchmark to minimize the absolute value of the MSE (Mean
