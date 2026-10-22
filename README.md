@@ -189,6 +189,7 @@ list above.
 The ytopt team uses git-flow to organize the development: [Git-Flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/). For tests we are using: [Pytest](https://docs.pytest.org/en/latest/). -->
 
 # Publications
+* A. R. Shovon, R. Pereira, X. Wu, B. Videau and S. Perarnau, Drava: An Event-Driven Runtime for Scientific Pipelines with Agentic Configuration Optimization, SC2026 Workshop XLOOP'26, Nov. 15, 2026, Chicago. 
 * X. Wu, T. Oli, J. H. Qian, V. Taylor, M. C. Hersam, and V. K. Sangwan, An Autotuning-based Hyperparameter Optimization Framework for Mixed-kernel SVM Classifications in Science and Engineering, ISC2026 Workshop on AI on HPC: Performance Engineering, Challenges, and Opportunities, June 26, 2026, [LNCS 17079](https://link.springer.com/book/9783032415318), Hamburg, Germany.
 * M. A. Hossain, X. Wu, V. Taylor, A. Jannesari, Generalizing Scaling Laws for Dense and Sparse Large Language Models, IPDPS2026 Workshop on HPC for AI Foundation Models & LLMs for Science (HPAI4S'26), May 26, 2026, New Orleans, USA. DOI: [10.48550/arXiv.2508.06617](https://arxiv.org/pdf/2508.06617).
 * X. Wu, P. Balaprakash, M. Kruse, J. Koo, B. Videau, P. Hovland, V. Taylor, B. Geltz, S. Jana, and M. Hall, "ytopt: Autotuning Scientific Applications for Energy Efficiency at Large Scales", Concurrency and Computation: Practice and Experience, Vol. 37 (1): e8322, Jan. 2025.  DOI: [10.1002/cpe.8322](https://onlinelibrary.wiley.com/doi/10.1002/cpe.8322).
