@@ -326,7 +326,7 @@ async def main() -> int:
         )
 
         msg = ' as a starting point, use Bayesian Optimization to search the parameter space cs to choose the values for m, n, smoothing, execute the function compute_mse_diff to minimize the metric mse_diff. mse_diff is equal or less than the constraint 6.1e-07 for stopping. At the end of all the runs, present the minimum of all mse_diff values with the configuration of m, n, smoothing'
-        #print(msg)
+        print(msg)
         logger.info(
             'Invoking process("%s") on %s',
             msg,
