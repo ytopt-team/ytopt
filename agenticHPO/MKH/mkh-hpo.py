@@ -608,19 +608,19 @@ async def main() -> int:
     )
     url = url_input if len(url_input) > 0 else None
 
-  #  mp_context = multiprocessing.get_context('spawn')
-  #  executor = ProcessPoolExecutor(
-  #      max_workers=3,
-  #      mp_context=mp_context,
-  #  )
+    mp_context = multiprocessing.get_context('spawn')
+    executor = ProcessPoolExecutor(
+        max_workers=3,
+        mp_context=mp_context,
+    )
 
     async with await Manager.from_exchange_factory(
-  #      factory=HttpExchangeFactory(),
+        factory=HttpExchangeFactory(),
         # Agents are run by the manager in the processes of this
         # process pool executor.
-  #      executors=executor,
-        factory=LocalExchangeFactory(),
-        executors=ThreadPoolExecutor(),
+        executors=executor,
+  #      factory=LocalExchangeFactory(),
+  #      executors=ThreadPoolExecutor(),
         log_config=recommended_logging(),
     ) as manager:
         configuration = await manager.launch(Configuration)
