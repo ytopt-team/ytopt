@@ -10,4 +10,4 @@ Files:
 - kan-hpo.py (process-level parallelism): a simple agentic workflow for hyperparameter optimization with a random search  using Academy (https://github.com/academy-agents/academy). 
 - models.txt: a list for the latest LLM models supported by Argonne Argo API.
 - It supports OpenAI GPT5.6 and Google Gemini3.5 flash via Argonne Argo API (https://argo.anl.gov). Check Argonne Argo API document for latest model support. 
-- The file *.csv is the output results with the format "m, n, smoothing, mse_diff, elapsed_time" for HPO using agenticHPO.
+- The file results.csv is the output results with the format "m, n, smoothing, mse_diff, elapsed_time" for HPO using agenticHPO.

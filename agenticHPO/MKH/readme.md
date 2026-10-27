@@ -8,4 +8,4 @@ Files:
 - hpo.py (thread-level parallelism): a simple agentic workflow for hyperparameter optimization using Academy.
 - mkh-hpo.py (process-level parallelism): a simple agentic workflow for hyperparameter optimization using Academy.
 - models.txt: a list for the latest LLM models supported by Argonne Argo API.
-- The file *.csv is the output results with the format "mixing_ratio, sigmoid_ratio, gaussian_ratio, coef0_param, C_param, avg_accuracy, elapsed_time" for HPO using agenticHPO.
+- The file results.csv is the output results with the format "mixing_ratio, sigmoid_ratio, gaussian_ratio, coef0_param, C_param, avg_accuracy, elapsed_time" for HPO using agenticHPO.
