@@ -3,11 +3,13 @@ https://apps.inside.anl.gov/argoapi/v1
 
 Models:
 
+gpt6luna
+gpt6sol
+gpt6astra
 gpt56terra
 gpt56luna
 gpt56sol
-gemini35flash
-#claudeopus5
+gemini4argon
 
 Access token:
 Argonne account name

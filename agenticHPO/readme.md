@@ -17,4 +17,4 @@ pip install langchain-openai
 - KANs: This agenticHPO example about comparison between Mixture Model vs Splines (Expanded Function Set) is based on the HPO implementation using ytopt from the link https://github.com/ytopt-team/ytopt/tree/main/ytopt-libe/hpo4mse. 
 - models.txt: a list for the latest LLM models supported by Argonne Argo API.
 - It recommands to create a conda environment to run the script on a machine at Argonne network.
-- It supports OpenAI GPT5.6 and Google Gemini3.5 flash via Argonne Argo API (https://argo.anl.gov). Check Argonne Argo API document for latest model support. 
+- It supports OpenAI GPT6 and Google Gemini4 via Argonne Argo API (https://argo.anl.gov). Check Argonne Argo API document for latest model support. 
