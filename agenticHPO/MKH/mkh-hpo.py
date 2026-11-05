@@ -582,7 +582,7 @@ class Orchestrator(Agent):
 
         random_seed = np.random.randint(1,10000)
         config = await self.config.construct_config(random_seed)
-        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where mixing_ratio is a float number between 0.00009 and 0.0009, sigmoid_ratio is a float number between 0.00009 and 0.0009, gaussian_ratio is a float number between 0.96 and 1.5, coef0_param is a float number between -1.0 and 1.0, C_param is a float number between 0.37 and 10.0, execute the function compute_avg_accuracy to maximize the metric avg_accuracy. Given smiles= " + str(config) + goal
+        goal = "You are a hyperparameter optimization expert. Search the parameter space cs, where mixing_ratio is a float number between 0.0 and 1.0, sigmoid_ratio is a float number between 0.00005 and 0.0003, gaussian_ratio is a float number between 0.8 and 1.0, coef0_param is a float number between -1.0 and 1.0, C_param is a float number between 0.37 and 10.0, execute the function compute_avg_accuracy to maximize the metric avg_accuracy. Given smiles= " + str(config) + goal
         print(goal)
 
         # This call runs the ReACT loop, in which:
