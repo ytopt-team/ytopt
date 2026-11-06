@@ -66,7 +66,7 @@ libE_specs['sim_dir_symlink_files'] = [here + f for f in ['speed3d.sh', 'exe.pl'
 sim_specs = {
     'sim_f': init_obj,
     'in': ['p0', 'p1', 'p2', 'p3', 'p4', 'p5','p6', 'p7', 'p8', 'p9'],
-    'out': [('RUNTIME', float),('elapsed_sec', float)],
+    'out': [('object', float),('elapsed_sec', float)],
 }
 
 cs = CS.ConfigurationSpace(seed=1234)
@@ -111,7 +111,7 @@ gen_specs = {
     'out': [('p0', "<U24", (1,)), ('p1', int, (1,)),('p2', "<U24", (1,)),('p3', "<U24", (1,)),
 		('p4', "<U24", (1,)),('p5', "<U24", (1,)),('p6', "<U24", (1,)),
 		('p7', "<U30", (1,)), ('p8', "<U30", (1,)), ('p9', int, (1,))],
-    'persis_in': sim_specs['in'] + ['RUNTIME'] + ['elapsed_sec'],
+    'persis_in': sim_specs['in'] + ['object'] + ['elapsed_sec'],
     'user': {
         'ytoptimizer': ytoptimizer,  # provide optimizer to generator function
         'num_sim_workers': num_sim_workers,

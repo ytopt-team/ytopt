@@ -66,7 +66,7 @@ libE_specs['sim_dir_symlink_files'] = [here + f for f in ['speed3d.sh', 'exe.pl'
 sim_specs = {
     'sim_f': init_obj,
     'in': ['p0', 'p1', 'p2', 'p3', 'p4', 'p5','p6', 'p7', 'p8', 'p9'],
-    'out': [('RUNTIME', float),('elapsed_sec', float)],
+    'out': [('object', float),('elapsed_sec', float)],
 }
 
 cs = CS.ConfigurationSpace(seed=1234)
