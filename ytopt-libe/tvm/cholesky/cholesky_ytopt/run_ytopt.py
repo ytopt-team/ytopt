@@ -68,7 +68,7 @@ libE_specs['sim_dir_symlink_files'] = [here + f for f in ['dlp.py', 'exe.pl', 'p
 sim_specs = {
     'sim_f': init_obj,
     'in': ['p0', 'p1'],
-    'out': [('RUNTIME', float),('elapsed_sec', float)],
+    'out': [('object', float),('elapsed_sec', float)],
 }
 
 cs = CS.ConfigurationSpace(seed=1234)
@@ -99,7 +99,7 @@ ytoptimizer = Optimizer(
 gen_specs = {
     'gen_f': persistent_ytopt,
     'out': [('p0', int, (1,)), ('p1', int, (1,))],
-    'persis_in': sim_specs['in'] + ['RUNTIME'] + ['elapsed_sec'],
+    'persis_in': sim_specs['in'] + ['object'] + ['elapsed_sec'],
     'user': {
         'ytoptimizer': ytoptimizer,  # provide optimizer to generator function
         'num_sim_workers': num_sim_workers,
