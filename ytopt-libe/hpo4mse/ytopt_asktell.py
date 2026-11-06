@@ -35,7 +35,7 @@ def persistent_ytopt(H, persis_info, gen_specs, libE_info):
                 field_params = {}
                 for field in fields:
                     field_params[field] = entry[field][0]
-                results += [(field_params, entry['Object'])]
+                results += [(field_params, entry['object'])]
             print('results: ', results)
             ytoptimizer.tell(results)
 

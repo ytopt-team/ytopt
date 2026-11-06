@@ -65,7 +65,7 @@ libE_specs['sim_dir_symlink_files'] = [here + f for f in ['kan.py', 'exe.pl', 'p
 sim_specs = {
     'sim_f': init_obj,
     'in': ['p0', 'p1', 'p2'],
-    'out': [('Object', float),('elapsed_sec', float),('Best', float)],
+    'out': [('object', float),('elapsed_sec', float),('Best', float)],
 }
 
 cs = ConfigurationSpace(seed=1234)
@@ -93,7 +93,7 @@ ytoptimizer = Optimizer(
 gen_specs = {
     'gen_f': persistent_ytopt,
     'out': [('p0', int, (1,)), ('p1', int, (1,)), ('p2', float, (1,)), ],
-    'persis_in': sim_specs['in'] + ['Object'] + ['elapsed_sec'] + ['Best'],
+    'persis_in': sim_specs['in'] + ['object'] + ['elapsed_sec'] + ['Best'],
     'user': {
         'ytoptimizer': ytoptimizer,  # provide optimizer to generator function
         'num_sim_workers': num_sim_workers,
