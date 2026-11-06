@@ -18,7 +18,7 @@ def init_obj(H, persis_info, sim_specs, libE_info):
 
     y = myobj(point, sim_specs['in'], libE_info['workerID'])  # ytopt objective wants a dict
     H_o = np.zeros(1, dtype=sim_specs['out'])
-    H_o['RUNTIME'] = y
+    H_o['object'] = y
     H_o['elapsed_sec'] = time.time() - start_time
 
     return H_o, persis_info

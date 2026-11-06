@@ -74,7 +74,7 @@ libE_specs['sim_dir_symlink_files'] = [here + f for f in ['./src', './loh1', 'mm
 sim_specs = {
     'sim_f': init_obj,
     'in': ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7'],
-    'out': [('RUNTIME', float),('elapsed_sec', float)],
+    'out': [('object', float),('elapsed_sec', float)],
 
 }
 
@@ -119,7 +119,7 @@ gen_specs = {
     'out': [('p0', int, (1,)), ('p1', "<U9", (1,)), ('p2', "<U9", (1,)),
             ('p3', "<U9", (1,)), ('p4', "<U30", (1,)), ('p5', "<U30", (1,)), ('p6', "<U30", (1,)), ('p7', "<U30", (1,)), ],
 
-    'persis_in': sim_specs['in'] + ['RUNTIME'] + ['elapsed_sec'],
+    'persis_in': sim_specs['in'] + ['object'] + ['elapsed_sec'],
     'user': {
         'ytoptimizer': ytoptimizer,  # provide optimizer to generator function
         'num_sim_workers': num_sim_workers,
